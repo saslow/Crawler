@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhp71vl6av8ov"]
+
+[ext_resource type="Script" path="res://scripts/player/player.gd" id="1_wfvhb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rme08"]
+radius = 56.5685
+
+[node name="Player" type="CharacterBody2D"]
+motion_mode = 1
+wall_min_slide_angle = 0.523599
+floor_max_angle = 3.14159
+script = ExtResource("1_wfvhb")
+
+[node name="Camera" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+position_smoothing_speed = 30.0
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_rme08")
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="Timer" type="Timer" parent="Timers"]
+one_shot = true
