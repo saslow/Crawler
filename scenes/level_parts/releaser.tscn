@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://7sgec55gmorl"]
+
+[ext_resource type="Script" path="res://scripts/level_parts/releaser.gd" id="1_08i2d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p3xve"]
+size = Vector2(16, 16)
+
+[node name="ReleaserArea" type="Area2D"]
+editor_description = "Костыль для разработки"
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_08i2d")
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_p3xve")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

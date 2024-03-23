@@ -1,0 +1,76 @@
+[editor_metadata]
+
+executable_path="C:/Games/Godot/4_2_0/Godot_v4.2-stable_win64.exe"
+use_advanced_connections=false
+
+[debug_options]
+
+run_live_debug=true
+run_reload_scripts=true
+run_debug_collisions=true
+
+[linked_properties]
+
+Node3D:scale=true
+GridMap:scale=true
+Node2D:scale=true
+TileMap:scale=true
+Button:scale=true
+CollisionPolygon2D:scale=true
+CharacterBody2D:scale=true
+RigidBody2D:scale=true
+CollisionShape2D:scale=true
+Camera2D:zoom=true
+Camera2D:scale=true
+StaticBody2D:scale=true
+Label:scale=true
+Node2D:zoom=true
+Path2D:scale=true
+MeshInstance2D:scale=true
+Sprite2D:scale=true
+BackBufferCopy:scale=true
+Control:scale=true
+CanvasLayer:scale=true
+VBoxContainer:scale=true
+Panel:scale=true
+Line2D:scale=true
+RayCast2D:scale=true
+Area2D:scale=true
+PanelContainer:scale=true
+HBoxContainer:scale=true
+TextureRect:scale=true
+ColorRect:scale=true
+
+[dialog_bounds]
+
+create_new_node=Rect2(2097, 108, 1125, 864)
+project_settings=Rect2(2072, 75, 1125, 864)
+search_help=Rect2(425, 240, 850, 480)
+editor_settings=Rect2(2057, 123, 1125, 864)
+
+[project_settings]
+
+advanced_mode=true
+show_builtin_actions=true
+
+[recent_files]
+
+scenes=["res://scenes/levels/level_0.tscn", "res://scenes/levels/_level_template.tscn", "res://scenes/player/player.tscn", "res://tools/level_editor/level_editor.tscn", "res://scenes/global/global.tscn", "res://scenes/player/player_debug.tscn", "res://addons/addons/inspector_extender/attributes/inspector_message.tscn", "res://scenes/player.tscn", "res://scenes/level.tscn", "res://scenes/palyer.tscn"]
+scripts=["Object", "EditorInterface", "EditorSelection", "EditorInspectorPlugin", "Engine", "EditorFileSystemDirectory", "IP", "ClassDB", "DisplayServer", "EngineDebugger"]
+
+[2d_editor]
+
+grid_offset=Vector2(0, 0)
+grid_step=Vector2(8, 8)
+primary_grid_step=Vector2i(8, 8)
+snap_rotation_offset=0.0
+snap_rotation_step=0.261799
+snap_scale_step=0.1
+
+[script_setup]
+
+last_selected_language="GDScript"
+
+[color_picker]
+
+recent_presets=PackedColorArray(0.396351, 0.660191, 0.800063, 1, 0.0399899, 0.11851, 0.158542, 1, 0.00339284, 0.11118, 0.217144, 1, 0, 0.127711, 0.13422, 1, 0, 0.130041, 0.128954, 1, 1.05286e-08, 0.0730355, 0.0722834, 1, 0, 0.116329, 0.115323, 1, 1, 1, 0, 1, 1, 1, 58.462, 1)

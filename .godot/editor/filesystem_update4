@@ -1,3 +1,9 @@
-res://scenes/levels/level_0.tscn
 res://scenes/player/player.tscn
+res://materials/themes/light_panel_theme.tres
+res://scripts/player/player.gd
+res://scripts/player/player_debug.gd
+res://scenes/player/player_debug.tscn
 res://scenes/levels/_level_template.tscn
+res://addons/LevelEditor/level_editor.tscn
+res://scenes/levels/level_0.tscn
+res://scenes/level_parts/releaser.tscn

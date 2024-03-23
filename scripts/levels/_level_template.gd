@@ -1,3 +1,4 @@
+@tool
 extends Node2D
 class_name Level
 
@@ -5,7 +6,9 @@ class_name Level
 func _ready() -> void:
 	pass # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+func get_player() -> CharacterBody2D:
+	return get_node("Players/Player")

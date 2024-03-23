@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://ccnlwj4wv3tcp"]
+
+[node name="DeathTouchComponent" type="Node"]

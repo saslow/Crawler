@@ -1,24 +1,90 @@
-[gd_scene load_steps=3 format=3 uid="uid://dhp71vl6av8ov"]
+[gd_scene load_steps=7 format=3 uid="uid://dhp71vl6av8ov"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_wfvhb"]
+[ext_resource type="Texture2D" uid="uid://cybmpiqssbdte" path="res://icon.svg" id="2_hy8xy"]
+[ext_resource type="PackedScene" uid="uid://d1btdy1brmsea" path="res://scenes/player/player_debug.tscn" id="4_76pis"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_rme08"]
-radius = 56.5685
+[sub_resource type="AtlasTexture" id="AtlasTexture_6f0nf"]
+atlas = ExtResource("2_hy8xy")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q8ch2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6f0nf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kkgyf"]
+radius = 56.0
 
 [node name="Player" type="CharacterBody2D"]
-motion_mode = 1
+collision_layer = 2
+collision_mask = 25
 wall_min_slide_angle = 0.523599
-floor_max_angle = 3.14159
+floor_block_on_wall = false
+floor_snap_length = 0.0
 script = ExtResource("1_wfvhb")
 
-[node name="Camera" type="Camera2D" parent="."]
-position_smoothing_enabled = true
-position_smoothing_speed = 30.0
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.875, 0.875)
+sprite_frames = SubResource("SpriteFrames_q8ch2")
 
 [node name="Shape" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_rme08")
+shape = SubResource("CircleShape2D_kkgyf")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+enabled = false
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(4.76837e-07, -32)
+position_smoothing_enabled = true
+position_smoothing_speed = 20.0
+
+[node name="PlayerDebug" parent="Camera" instance=ExtResource("4_76pis")]
 
 [node name="Timers" type="Node" parent="."]
 
-[node name="Timer" type="Timer" parent="Timers"]
+[node name="RunBufferTimer" type="Timer" parent="Timers"]
+process_callback = 0
+wait_time = 0.1
 one_shot = true
+
+[node name="SlideTimer" type="Timer" parent="Timers"]
+process_callback = 0
+wait_time = 0.5
+one_shot = true
+
+[node name="FirstJumpStateTimer" type="Timer" parent="Timers"]
+process_callback = 0
+wait_time = 0.1
+one_shot = true
+
+[node name="SecondJumpStateTimer" type="Timer" parent="Timers"]
+process_callback = 0
+wait_time = 0.2
+one_shot = true
+
+[node name="JumpInputBuffer" type="Timer" parent="Timers"]
+process_callback = 0
+wait_time = 0.09
+one_shot = true
+
+[node name="BumpTimer" type="Timer" parent="Timers"]
+editor_description = "If a character bumps into a wall while running, he will be stunned by \"wait_time\"(0.6s)."
+process_callback = 0
+wait_time = 0.4
+one_shot = true
+
+[node name="RunStoppingTimer" type="Timer" parent="Timers"]
+process_callback = 0
+wait_time = 0.3
+one_shot = true
+
+[connection signal="timeout" from="Timers/RunBufferTimer" to="." method="_on_run_stop_timer_timeout"]
+[connection signal="timeout" from="Timers/FirstJumpStateTimer" to="." method="_on_first_jump_state_timer_timeout"]
+[connection signal="timeout" from="Timers/BumpTimer" to="." method="_on_bump_timer_timeout"]

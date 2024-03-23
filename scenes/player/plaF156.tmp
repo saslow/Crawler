@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=3 uid="uid://dhp71vl6av8ov"]
+
+[ext_resource type="Script" path="res://scripts/player/player.gd" id="1_wfvhb"]
+[ext_resource type="Texture2D" uid="uid://cybmpiqssbdte" path="res://icon.svg" id="2_hy8xy"]
+[ext_resource type="PackedScene" uid="uid://d1btdy1brmsea" path="res://scenes/player/player_debug.tscn" id="4_76pis"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6f0nf"]
+atlas = ExtResource("2_hy8xy")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q8ch2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6f0nf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_s2mbk"]
+radius = 0.6
+
+[node name="Player" type="CharacterBody3D"]
+motion_mode = 1
+wall_min_slide_angle = 0.523599
+floor_max_angle = 3.14159
+script = ExtResource("1_wfvhb")
+
+[node name="Sprite" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+billboard = 1
+double_sided = false
+no_depth_test = true
+sprite_frames = SubResource("SpriteFrames_q8ch2")
+
+[node name="Shape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+shape = SubResource("SphereShape3D_s2mbk")
+
+[node name="Camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 20, 20)
+fov = 30.0
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="RunStopTimer" type="Timer" parent="Timers"]
+wait_time = 0.2
+one_shot = true
+
+[node name="SlideTimer" type="Timer" parent="Timers"]
+wait_time = 0.5
+one_shot = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PlayerDebug" parent="CanvasLayer" instance=ExtResource("4_76pis")]
+
+[connection signal="timeout" from="Timers/RunStopTimer" to="." method="_on_run_stop_timer_timeout"]
