@@ -1,6 +1,9 @@
 extends CharacterBody2D
 
-var speed = NORMAL_SPEED
+var speed : float = NORMAL_SPEED
+
+##only -1 or 1
+@export_range(-1, 1, 2) var last_true_axis : int = 1
 
 var state : sm = sm.GROUND
 
@@ -13,20 +16,22 @@ var is_releasing : bool
 var is_jumping : bool = false
 var can_jump : bool = true
 
-const NORMAL_SPEED : int = 850
-const MAX_SPEED : int = 1600
-const JUMP_FORCE : float = 780
+const NORMAL_SPEED : int = 500
+const JUMP_MAX_SPEED  : int = 1100
+const MAX_SPEED : int = 1300
+const JUMP_FORCE : int = 650
 const ACCELERATION : float = 0.3
 const FRICTION : float = 0.1
 
 var last_floor_angle : float
 var last_real_floor_angle : float
 var last_wall_angle : float
-var raw_x_vel : float # unused
+var last_real_wall_angle : float
 
+var last_floor_normal : Vector2
+var last_wall_normal : Vector2
 var x_vel : Vector2
 var y_vel : Vector2
-var last_floor_normal : Vector2
 
 @onready var jump_buffer_timer : Timer = $Timers/JumpInputBuffer
 
@@ -49,7 +54,7 @@ func _process(delta: float) -> void:
 	state_machine(delta)
 	
 func _physics_process(delta: float) -> void:
-	$RayCast2D.target_position = velocity
+	$RayCast2D.target_position = velocity/3
 	physics_state_machine(delta)
 	
 	if is_on_floor():
@@ -64,7 +69,13 @@ func _physics_process(delta: float) -> void:
 func physics_state_machine(delta : float) -> void:
 	match state:
 		sm.GROUND:
+			last_wall_angle = 0.0
+			last_real_wall_angle = 0.0
+			last_wall_normal = Vector2.ZERO
+			$Timers/FloorStickBlockingTimer.stop()
 			stop_jump_timers()
+			if get_floor_angle() <= PI/4:
+				last_true_axis_changing()
 			movement(delta)
 			jump_start(delta)
 			floor_detaching()
@@ -77,25 +88,53 @@ func physics_state_machine(delta : float) -> void:
 		sm.AIR:
 			#is_releasing = false
 			running()
-			movement(delta, 0.5, 0.5)
-			falling(delta)
 			sprite_rotation_reset()
-			wall_attaching()
+			jump_input_buffering()
+			floor_attaching()
+			if $Timers/MovementBlockingTimer.is_stopped():
+				movement(delta, 0.5, 0.5)
+			
 			if $Timers/FirstJumpStateTimer.is_stopped() and $Timers/SecondJumpStateTimer.is_stopped():
+				wall_attaching()
+				falling(delta)
 				is_jumping = false
-				jump_input_buffering()
-				floor_attaching()
 			else:
 				is_jumping = true
 				jumping(delta)
 		sm.WALL_SLIDING:
 			if is_on_wall():
 				last_wall_angle = get_wall_angle()
+				last_real_wall_angle = get_real_wall_angle()
+				last_wall_normal = get_wall_normal()
+				
+			x_vel = Vector2.ZERO
+			
+			sprite_rotation_reset()
+			running()
 			stop_jump_timers()
-			falling(delta, 0.5, 500)
-			jump_start(delta)
-			if is_on_floor() and get_floor_angle() < PI / 5:
+			if get_wall_angle() > PI/4 or !$Timers/WallSlidingGroundingBlockingTimer.is_stopped():
+				if !is_on_floor_only():
+					$Timers/WallSlidingGroundingBlockingTimer.start()
+					
+				if is_on_floor():
+					if get_real_floor_angle() > 0:
+						y_vel = lerp(y_vel, last_wall_normal.rotated(PI/2) * (700 * $Timers/WallSlidingGroundingBlockingTimer.time_left * 5), 0.07)
+					else:
+						y_vel = lerp(y_vel, last_wall_normal.rotated(-PI/2) * (700 * $Timers/WallSlidingGroundingBlockingTimer.time_left * 5), 0.07)
+				else:
+					if get_real_wall_angle() > 0:
+						y_vel = lerp(y_vel, get_wall_normal().rotated(PI/2) * 700, 0.07)
+					else:
+						y_vel = lerp(y_vel, get_wall_normal().rotated(-PI/2) * 700, 0.07)
+			else:
+				falling(delta)
 				floor_attaching()
+				
+			jump_start(delta)
+			if is_on_wall() and is_on_floor():
+				if get_floor_angle() + get_wall_angle() < rad_to_deg(95):
+					state = sm.GROUND
+			
 			if !is_on_wall():
 				floor_detaching()
 		sm.HURT:
@@ -109,7 +148,7 @@ func physics_state_machine(delta : float) -> void:
 				x_vel.x = lerpf(x_vel.x, 0, 0.1)
 		sm.RUN_STOPPING:
 			pass
-			
+
 		sm.DEBUG:
 			pass
 			
@@ -130,24 +169,24 @@ func state_machine(delta : float):
 			pass
 			
 func movement(delta : float, acc_mult : float = 1, fr_mult : float = 1) -> void:
-	if Input.get_axis("LEFT", "RIGHT") != 0 and $Timers/SlideTimer.is_stopped():
+	if ((Input.get_axis("LEFT", "RIGHT") != 0) or (is_running)) and $Timers/SlideTimer.is_stopped():
 		if state != sm.AIR:
 			if is_running:
 				#raw_x_vel = lerpf(raw_x_vel, speed, ACCELERATION / 8 * acc_mult)
-				x_vel = lerp(x_vel, get_floor_normal().rotated(PI/2 * Input.get_axis("LEFT", "RIGHT")) * speed, ACCELERATION / 4 * acc_mult)
+				x_vel = lerp(x_vel, get_floor_normal().rotated(PI/2 * last_true_axis) * speed, ACCELERATION / 4 * acc_mult)
 			else:
 				#raw_x_vel = lerpf(raw_x_vel, speed, ACCELERATION * acc_mult)
 				x_vel.x = lerpf(x_vel.x, Input.get_axis("LEFT", "RIGHT") * speed, ACCELERATION * acc_mult)
 		else:
 			if is_running:
 				#raw_x_vel = lerpf(raw_x_vel, speed, ACCELERATION / 8 * acc_mult)
-				x_vel.x = lerpf(x_vel.x, Input.get_axis("LEFT", "RIGHT") * speed, ACCELERATION / 4 * acc_mult)
-				x_vel.y = 0
+				x_vel.x = lerpf(x_vel.x, speed * last_true_axis, ACCELERATION / 4 * acc_mult)
+				#x_vel.y = 0
 				
 			else:
 				#raw_x_vel = lerpf(raw_x_vel, speed, ACCELERATION * acc_mult)
 				x_vel.x = lerpf(x_vel.x, Input.get_axis("LEFT", "RIGHT") * speed, ACCELERATION * acc_mult)
-				x_vel.y = 0
+				#x_vel.y = 0
 				
 	else:
 		if state != sm.AIR:
@@ -180,43 +219,68 @@ func movement(delta : float, acc_mult : float = 1, fr_mult : float = 1) -> void:
 			#x_vel.x = lerpf(x_vel.x, Vector3.ZERO.x, FRICTION * fr_mult)
 		
 func running() -> void:
-	if ( Input.is_action_pressed("RUN") and Input.get_axis("LEFT", "RIGHT") != 0 ):
-		if not(is_on_floor()):
-			floor_max_angle = (3*PI)/4.5
-		else:
+	if Input.is_action_pressed("RUN"):
+		if is_on_floor() or state == sm.WALL_SLIDING:
+			is_running = true
+			speed = move_toward(speed, MAX_SPEED, 24)
 			floor_max_angle = PI
-		is_running = true
-		
-		#if get_wall_angle(true) > 90:
-			#$Timers/BumpTimer.start()
-			#state = sm.STUNNED
-			#speed = lerpf(speed, NORMAL_SPEED, 0.4)
-		#else:
-		speed = move_toward(speed, MAX_SPEED, 24)
+		else:
+			if is_running:
+				floor_max_angle = (3*PI)/4.5
 
-		if get_floor_angle() <= PI/4:
+		if get_floor_angle() <= PI/4 and is_running:
 			$Timers/RunBufferTimer.start()
 	elif !$Timers/RunBufferTimer.is_stopped():
-		floor_max_angle = PI/4
-		is_running = true
-		x_vel.y = JUMP_FORCE
-		#
-		#if get_wall_angle(true) > 90:
-			#$Timers/BumpTimer.start()
-			#state = sm.STUNNED
-			#speed = lerpf(speed, NORMAL_SPEED, 0.4)
-		#else:
-		speed = move_toward(speed, MAX_SPEED, 24)
+		if is_on_floor():
+			is_running = true
+			speed = move_toward(speed, MAX_SPEED, 24)
+		#x_vel.y = JUMP_FORCE
 		
-		if Input.is_action_pressed("RUN") and Input.get_axis("LEFT", "RIGHT") != 0 and get_floor_angle() <= PI/4:
+		if Input.is_action_pressed("RUN") and get_floor_angle() <= PI/4:
 			$Timers/RunBufferTimer.start()
 	else:
-		floor_max_angle = PI/4
-		is_running = false
-		speed = NORMAL_SPEED
+		if is_on_floor() or is_on_wall():
+			floor_max_angle = PI/4
+			is_running = false
+			speed = NORMAL_SPEED
+#func running() -> void:
+	#if ( Input.is_action_pressed("RUN") and Input.get_axis("LEFT", "RIGHT") != 0 ):
+		#if not(is_on_floor()):
+			#floor_max_angle = (3*PI)/4.5
+		#else:
+			#floor_max_angle = PI
+		#is_running = true
+		#
+		##if get_wall_angle(true) > 90:
+			##$Timers/BumpTimer.start()
+			##state = sm.STUNNED
+			##speed = lerpf(speed, NORMAL_SPEED, 0.4)
+		##else:
+		#speed = move_toward(speed, MAX_SPEED, 24)
+#
+		#if get_floor_angle() <= PI/4:
+			#$Timers/RunBufferTimer.start()
+	#elif !$Timers/RunBufferTimer.is_stopped():
+		#floor_max_angle = PI/4
+		#is_running = true
+		#x_vel.y = JUMP_FORCE
+		##
+		##if get_wall_angle(true) > 90:
+			##$Timers/BumpTimer.start()
+			##state = sm.STUNNED
+			##speed = lerpf(speed, NORMAL_SPEED, 0.4)
+		##else:
+		#speed = move_toward(speed, MAX_SPEED, 24)
+		#
+		#if Input.is_action_pressed("RUN") and Input.get_axis("LEFT", "RIGHT") != 0 and get_floor_angle() <= PI/4:
+			#$Timers/RunBufferTimer.start()
+	#else:
+		#floor_max_angle = PI/4
+		#is_running = false
+		#speed = NORMAL_SPEED
 		
 func floor_attaching() -> void:
-	if is_on_floor():
+	if is_on_floor() and ($Timers/FloorStickBlockingTimer.is_stopped()) and $Timers/MovementBlockingTimer.is_stopped():
 		state = sm.GROUND
 		
 func floor_detaching() -> void:
@@ -225,8 +289,12 @@ func floor_detaching() -> void:
 		state = sm.AIR
 		
 func wall_attaching():
-	if is_on_wall():
+	if is_on_wall() and $Timers/MovementBlockingTimer.is_stopped():
 		state = sm.WALL_SLIDING
+		
+func last_true_axis_changing() -> void:
+	if Input.get_axis("LEFT", "RIGHT") != 0:
+		last_true_axis = Input.get_axis("LEFT", "RIGHT")
 		
 func falling(delta : float, gravity_mult : float = 1, max_garvity_velocity : float = 5000) -> void:
 	y_vel.y += g.GRAVITY * gravity_mult
@@ -235,43 +303,47 @@ func falling(delta : float, gravity_mult : float = 1, max_garvity_velocity : flo
 		
 func jumping(delta : float) -> void:
 	if !$Timers/FirstJumpStateTimer.is_stopped() or !$Timers/SecondJumpStateTimer.is_stopped():
-		if (last_floor_angle <= PI/3)\
-		or (last_wall_angle <= PI/3): # <=60
-			y_vel.y = -JUMP_FORCE
-			y_vel.x = 0
-		elif ((last_floor_angle > PI/3) and (last_floor_angle <= PI/1.9))\
-		or ((last_wall_angle > PI/3) and (last_wall_angle <= PI/1.9)): # >60  and  <=180/1.9
-			y_vel.y = -JUMP_FORCE
-			y_vel.x = 0
-			if last_real_floor_angle > 0\
-			or last_wall_angle > 0:
-				x_vel.x = speed/1.5
-				x_vel.y = 0
+		if is_running:
+			if (last_floor_angle <= PI/3):
+				y_vel.x = 0
+				y_vel.y = -JUMP_FORCE
+			#elif ((last_floor_angle > PI/3) and (last_floor_angle <= (3*PI)/4)):
+				#$Timers/MovementBlockingTimer.start()
+				#if last_real_floor_angle > 0:
+					#y_vel.x = MAX_SPEED
+				#else:
+					#y_vel.x = -MAX_SPEED
+				#y_vel.y = -JUMP_FORCE/10
 			else:
-				x_vel.x = -speed/1.5
-				x_vel.y = 0
-		elif ((last_floor_angle > PI/1.9) and (last_floor_angle <= (3*PI)/3.6))\
-		or ((last_wall_angle > PI/1.9) and (last_wall_angle <= (3*PI)/3.6)): # >180/1.9 and <=150
-			y_vel.y = JUMP_FORCE/2
-			y_vel.x = 0
-			if last_real_floor_angle > 0\
-			or last_wall_angle > 0:
-				x_vel.x = speed/1.5
-				x_vel.y = 0
-			else:
-				x_vel.x = -speed/1.5
-				x_vel.y = 0
+				#$Timers/MovementBlockingTimer.start()
+				y_vel = last_floor_normal * JUMP_FORCE
 		else:
-			y_vel = last_floor_normal * JUMP_FORCE
+			if (last_wall_angle <= PI/3):
+				y_vel.x = 0
+				y_vel.y = -JUMP_FORCE
+			#elif ( (last_wall_angle > PI/4) and ( last_wall_angle <= (3*PI)/4 ) ):
+				#$Timers/MovementBlockingTimer.start()
+				#if last_real_wall_angle > 0:
+					#x_vel.x = JUMP_FORCE
+				#else:
+					#x_vel.x = -JUMP_FORCE
+				#y_vel.y = -JUMP_FORCE
+			#else:
+				#$Timers/MovementBlockingTimer.start()
+				#y_vel = last_floor_normal * JUMP_FORCE
 		
 	if Input.is_action_just_released("JUMP"):
 		can_jump = false
 		
 func jump_start(delta : float) -> void:
-	if Input.is_action_just_pressed("JUMP"):
-		#y_vel = get_floor_normal() * JUMP_FORCE
+	if (Input.is_action_just_pressed("JUMP") or !$Timers/JumpInputBuffer.is_stopped()):
+		#y_vel = Vector2.ZERO
+		$Timers/JumpInputBuffer.stop()
+		$Timers/FloorStickBlockingTimer.start()
 		$Timers/FirstJumpStateTimer.start()
-		#can_jump = true
+		#can_jump = true8
+		if get_floor_angle() > PI/3:
+			last_true_axis = -last_true_axis
 		state = sm.AIR
 		
 func jump_input_buffering() -> void:
@@ -285,16 +357,25 @@ func sprite_leveling() -> void:
 func sprite_rotation_reset() -> void:
 	$Sprite.rotation = lerp_angle($Sprite.rotation, 0.0, 0.1)
 		
-func get_wall_angle( rad_to_deg : bool = false) -> float:
+func get_real_wall_angle( rad_to_deg : bool = false) -> float:
 	if is_on_wall():
-		if rad_to_deg == true:
-			return rad_to_deg( abs( Vector2.UP.angle_to( get_wall_normal() ) ) )
+		if rad_to_deg:
+			return rad_to_deg( Vector2.UP.angle_to( get_wall_normal() ) )
 		else:
-			return  abs( Vector2.UP.angle_to( get_wall_normal() ) )
+			return Vector2.UP.angle_to( get_wall_normal() ) 
 	else:
 		return 0.0
 
 		is_running_fast = true
+		
+func get_wall_angle( rad_to_deg : bool = false) -> float:
+	if is_on_wall():
+		if rad_to_deg:
+			return rad_to_deg( abs( Vector2.UP.angle_to( get_wall_normal() ) ) )
+		else:
+			return abs( Vector2.UP.angle_to( get_wall_normal() ) )
+	else:
+		return 0.0
 		
 func get_real_floor_angle( rad_to_deg : bool = false) -> float:
 	if is_on_floor():

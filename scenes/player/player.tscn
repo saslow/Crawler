@@ -42,6 +42,7 @@ enabled = false
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(4.76837e-07, -32)
+process_callback = 0
 position_smoothing_enabled = true
 position_smoothing_speed = 20.0
 
@@ -51,7 +52,7 @@ position_smoothing_speed = 20.0
 
 [node name="RunBufferTimer" type="Timer" parent="Timers"]
 process_callback = 0
-wait_time = 0.1
+wait_time = 0.05
 one_shot = true
 
 [node name="SlideTimer" type="Timer" parent="Timers"]
@@ -61,17 +62,16 @@ one_shot = true
 
 [node name="FirstJumpStateTimer" type="Timer" parent="Timers"]
 process_callback = 0
-wait_time = 0.1
+wait_time = 0.15
 one_shot = true
 
 [node name="SecondJumpStateTimer" type="Timer" parent="Timers"]
 process_callback = 0
-wait_time = 0.2
+wait_time = 0.15
 one_shot = true
 
 [node name="JumpInputBuffer" type="Timer" parent="Timers"]
-process_callback = 0
-wait_time = 0.09
+wait_time = 0.1
 one_shot = true
 
 [node name="BumpTimer" type="Timer" parent="Timers"]
@@ -83,6 +83,20 @@ one_shot = true
 [node name="RunStoppingTimer" type="Timer" parent="Timers"]
 process_callback = 0
 wait_time = 0.3
+one_shot = true
+
+[node name="FloorStickBlockingTimer" type="Timer" parent="Timers"]
+process_callback = 0
+wait_time = 0.05
+one_shot = true
+
+[node name="MovementBlockingTimer" type="Timer" parent="Timers"]
+process_callback = 0
+wait_time = 0.15
+one_shot = true
+
+[node name="WallSlidingGroundingBlockingTimer" type="Timer" parent="Timers"]
+wait_time = 0.2
 one_shot = true
 
 [connection signal="timeout" from="Timers/RunBufferTimer" to="." method="_on_run_stop_timer_timeout"]
