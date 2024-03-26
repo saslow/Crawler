@@ -54,7 +54,9 @@ func _process(delta: float) -> void:
 	state_machine(delta)
 	
 func _physics_process(delta: float) -> void:
-	$RayCast2D.target_position = velocity/3
+	$VelRay.target_position = velocity/3
+	$YVelRay.target_position = y_vel/3
+	$XVelRay.target_position = x_vel/3
 	physics_state_machine(delta)
 	
 	if is_on_floor():
@@ -86,17 +88,16 @@ func physics_state_machine(delta : float) -> void:
 			else:
 				y_vel = -get_floor_normal() * speed
 		sm.AIR:
-			#is_releasing = false
+			is_releasing = false
 			running()
 			sprite_rotation_reset()
 			jump_input_buffering()
 			floor_attaching()
-			if $Timers/MovementBlockingTimer.is_stopped():
-				movement(delta, 0.5, 0.5)
+			movement(delta, 0.5, 0.5)
 			
 			if $Timers/FirstJumpStateTimer.is_stopped() and $Timers/SecondJumpStateTimer.is_stopped():
-				wall_attaching()
 				falling(delta)
+				wall_attaching()
 				is_jumping = false
 			else:
 				is_jumping = true
@@ -199,13 +200,10 @@ func movement(delta : float, acc_mult : float = 1, fr_mult : float = 1) -> void:
 		else:
 			if is_running:
 				#raw_x_vel = lerpf(raw_x_vel, 0, FRICTION / 20 * fr_mult)
-				x_vel.x = lerpf(x_vel.x, 0, FRICTION * fr_mult)
-				x_vel.y = 0
+				x_vel = lerp(x_vel, Vector2.ZERO, FRICTION * fr_mult)
 			else:
 				#raw_x_vel = lerpf(raw_x_vel, 0, FRICTION * fr_mult)
-				x_vel.x = lerpf(x_vel.x, 0, FRICTION * fr_mult)
-				x_vel.y = 0
-			
+				x_vel = lerp(x_vel, Vector2.ZERO, FRICTION * fr_mult)
 #func movement(delta : float, acc_mult : float = 1, fr_mult : float = 1) -> void:
 	#if Input.get_axis("LEFT", "RIGHT") != 0 and $Timers/SlideTimer.is_stopped():
 		#if is_running:
@@ -239,10 +237,10 @@ func running() -> void:
 		if Input.is_action_pressed("RUN") and get_floor_angle() <= PI/4:
 			$Timers/RunBufferTimer.start()
 	else:
-		if is_on_floor() or is_on_wall():
-			floor_max_angle = PI/4
+		if is_on_floor():
 			is_running = false
 			speed = NORMAL_SPEED
+		floor_max_angle = PI/4
 #func running() -> void:
 	#if ( Input.is_action_pressed("RUN") and Input.get_axis("LEFT", "RIGHT") != 0 ):
 		#if not(is_on_floor()):
@@ -280,12 +278,14 @@ func running() -> void:
 		#speed = NORMAL_SPEED
 		
 func floor_attaching() -> void:
-	if is_on_floor() and ($Timers/FloorStickBlockingTimer.is_stopped()) and $Timers/MovementBlockingTimer.is_stopped():
+	if is_on_floor() and $Timers/FloorStickBlockingTimer.is_stopped() and $Timers/MovementBlockingTimer.is_stopped():
+		#y_vel = Vector2.ZERO
+		x_vel.y = 0
 		state = sm.GROUND
 		
 func floor_detaching() -> void:
 	if not(is_on_floor()):
-		y_vel = Vector2.ZERO
+		#y_vel = Vector2.ZERO
 		state = sm.AIR
 		
 func wall_attaching():
@@ -296,9 +296,9 @@ func last_true_axis_changing() -> void:
 	if Input.get_axis("LEFT", "RIGHT") != 0:
 		last_true_axis = Input.get_axis("LEFT", "RIGHT")
 		
-func falling(delta : float, gravity_mult : float = 1, max_garvity_velocity : float = 5000) -> void:
-	y_vel.y += g.GRAVITY * gravity_mult
-	y_vel.y = clampf(y_vel.y, -99_999, max_garvity_velocity)
+func falling(delta : float, gravity_mult : float = 1, max_gravity_velocity : float = 5000) -> void:
+	y_vel.y += g.GRAVITY
+	y_vel.y = clampf(y_vel.y, -99_999, max_gravity_velocity)
 	y_vel.x = 0
 		
 func jumping(delta : float) -> void:
@@ -314,9 +314,9 @@ func jumping(delta : float) -> void:
 				#else:
 					#y_vel.x = -MAX_SPEED
 				#y_vel.y = -JUMP_FORCE/10
-			else:
+			#else:
 				#$Timers/MovementBlockingTimer.start()
-				y_vel = last_floor_normal * JUMP_FORCE
+				#y_vel = last_floor_normal * JUMP_FORCE
 		else:
 			if (last_wall_angle <= PI/3):
 				y_vel.x = 0
@@ -336,15 +336,14 @@ func jumping(delta : float) -> void:
 		can_jump = false
 		
 func jump_start(delta : float) -> void:
-	if (Input.is_action_just_pressed("JUMP") or !$Timers/JumpInputBuffer.is_stopped()):
+	if (Input.is_action_just_pressed("JUMP") ) or !$Timers/JumpInputBuffer.is_stopped():
 		#y_vel = Vector2.ZERO
 		$Timers/JumpInputBuffer.stop()
 		$Timers/FloorStickBlockingTimer.start()
 		$Timers/FirstJumpStateTimer.start()
-		#can_jump = true8
-		if get_floor_angle() > PI/3:
-			last_true_axis = -last_true_axis
+		#can_jump = true
 		state = sm.AIR
+		print("fgh,gfsghj")
 		
 func jump_input_buffering() -> void:
 	if Input.is_action_just_pressed("JUMP"):

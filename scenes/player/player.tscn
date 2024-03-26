@@ -37,8 +37,18 @@ sprite_frames = SubResource("SpriteFrames_q8ch2")
 [node name="Shape" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_kkgyf")
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
+[node name="VelRay" type="RayCast2D" parent="."]
 enabled = false
+
+[node name="YVelRay" type="RayCast2D" parent="."]
+self_modulate = Color(0.14902, 1, 0, 1)
+enabled = false
+target_position = Vector2(88, -24)
+
+[node name="XVelRay" type="RayCast2D" parent="."]
+modulate = Color(1, 0.364706, 0.219608, 1)
+enabled = false
+target_position = Vector2(-112, -16)
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(4.76837e-07, -32)

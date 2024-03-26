@@ -11,3 +11,7 @@ func debug(delta) -> void:
 	$Debug/MonitorsContainer/FloorAngle/Label.text = "   R_FLOOR_ANGLE: " + str( snapped( g.player.get_real_floor_angle(true), 0.1 ) )
 	$Debug/MonitorsContainer/WallAngle/Label.text = "   WALL_ANGLE: " + str( snapped( g.player.get_real_wall_angle(true), 0.1 ) )
 	$Debug/MonitorsContainer/JumpBufferIsStopped/Label.text = "   J_B_stopped: " + str(g.player.jump_buffer_timer.is_stopped())
+	$Debug/MonitorsContainer/Vel/Label.text = "   Vel: " + str( g.player.velocity ) 
+	$Debug/MonitorsContainer/YVel/Label.text = "   YVel: " + str( g.player.y_vel ) 
+	$Debug/MonitorsContainer/XVel/Label.text = "   XVel: " + str( g.player.x_vel ) 
+	
