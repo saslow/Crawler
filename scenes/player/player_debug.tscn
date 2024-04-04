@@ -11,6 +11,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1.5, 1.5)
 script = ExtResource("1_jmchc")
 
 [node name="Debug" type="Control" parent="."]

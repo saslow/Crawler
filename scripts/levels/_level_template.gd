@@ -10,5 +10,5 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func get_player() -> CharacterBody2D:
-	return get_node("Players/Player")
+func get_player(ID : int) -> CharacterBody2D:
+	return get_node("Players/Player" + str(ID))
