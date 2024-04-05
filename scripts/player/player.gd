@@ -11,7 +11,7 @@ func set_last_true_axis(new_axis : int) -> void:
 			else:
 				$Timers/TurningTimer.start(0.34)
 		else:
-			$Timers/TurningTimer.start()
+			$Timers/TurningTimer.start(0.03)
 		last_true_axis = new_axis
 
 ## Index of player in multiplayer mode
@@ -23,8 +23,11 @@ func set_last_true_axis(new_axis : int) -> void:
 @onready var jump_buffer_timer : Timer = $Timers/JumpInputBuffer
 
 ##Represents player state. 
-var state : sm = sm.GROUND # sm - state machine
+var state : sm = sm.GROUND : set = set_state
+func set_state(new_state : sm) -> void: # sm - state machine
+	state = new_state
 var speed : float = NORMAL_SPEED
+var last_x_vel_y : float
 var last_floor_angle : float
 var last_real_floor_angle : float
 var last_wall_angle : float
@@ -43,6 +46,7 @@ var is_releasing : bool
 var is_jumping : bool = false : set = set_is_jumping
 func set_is_jumping(value) -> void:
 	is_jumping = value
+var is_axis_changing_delayed : bool = false
 var can_jump : bool = true
 
 # Anim ++++
@@ -80,10 +84,11 @@ enum characters_IDs{
 }
 
 func _ready() -> void:
+	#Engine.time_scale = 0.1
 	pass
 	
 func _process(delta: float) -> void:
-
+	$Label.text = str($Casts/XVel.get_collision_point().distance_to(position))
 	if Input.is_action_just_pressed("JUST_TEST_BUTTON"):
 		g.another_character.global_position = g.current_character.global_position
 
@@ -102,16 +107,17 @@ func _process(delta: float) -> void:
 	state_machine(delta)
 	
 func _physics_process(delta: float) -> void:
-	#$VelRay.target_position = velocity/3
-	#$YVelRay.target_position = last_floor_normal * 400
-	#$XVelRay.target_position = x_vel/3
+	if is_on_floor():
+		last_x_vel_y = x_vel.y
+		
+	$Casts/YVel.target_position = y_vel
+	#$Casts/XVel.target_position = velocity
 	physics_state_machine(delta)
-	
 	if is_on_floor():
 		last_floor_normal = get_floor_normal()
 		last_floor_angle = get_floor_angle()
 		last_real_floor_angle = get_real_floor_angle()
-	
+
 	velocity = x_vel + y_vel
 	
 	move_and_slide()
@@ -119,19 +125,25 @@ func _physics_process(delta: float) -> void:
 func physics_state_machine(delta : float) -> void:
 	match state:
 		sm.GROUND:
+			if is_axis_changing_delayed and get_floor_angle() > deg_to_rad(80):
+				last_true_axis = -last_true_axis
+				$Timers/TurningTimer.stop()
+			is_axis_changing_delayed = false
+			
 			last_wall_angle = 0.0
 			last_real_wall_angle = 0.0
 			last_wall_normal = Vector2.ZERO
 			$Timers/FloorStickBlockingTimer.stop()
 			stop_jump_timers()
-			last_true_axis_changing()
+			if !is_axis_changing_delayed:
+				last_true_axis_changing()
 			movement(delta)
 			jump_start(delta)
 			floor_detaching()
 			sprite_leveling()
 			running()
 			if is_releasing:
-				y_vel /= 5
+				y_vel /= 1.5
 			else:
 				y_vel = -get_floor_normal() * speed
 		sm.AIR:
@@ -139,8 +151,8 @@ func physics_state_machine(delta : float) -> void:
 			running()
 			sprite_rotation_reset()
 			jump_input_buffering()
+			#last_true_axis_changing()
 			floor_attaching()
-			last_true_axis_changing()
 			
 			if $Timers/FirstJumpStateTimer.is_stopped() and $Timers/SecondJumpStateTimer.is_stopped():
 				if !is_running:
@@ -224,12 +236,15 @@ func state_machine(delta : float):
 				$Anim.play("idle")
 			else:
 				if is_running:
-					if get_position_delta().length() < 20:
+					if get_position_delta().length() < 18:
 						$Anim.play("walk_to_run")
 					else:
 						$Anim.play("run")
 				else:
-					$Anim.play("walk")
+					if get_real_velocity().length() < 100:
+						$Anim.play("idle")
+					else:
+						$Anim.play("walk")
 		sm.AIR:
 			pass
 		sm.HURT:
@@ -262,7 +277,7 @@ func movement(delta : float, acc_mult : float = 1, fr_mult : float = 1) -> void:
 		else:
 			if is_running:
 				#$Anim.play("run")
-				x_vel.x = lerpf(x_vel.x, last_true_axis * speed, ACCELERATION * acc_mult)
+				x_vel.x = lerpf(x_vel.x, last_true_axis * speed, ACCELERATION / 6 * acc_mult)
 				x_vel.y = 0
 				#x_vel = lerp(x_vel, last_floor_normal.rotated(PI/2 * last_true_axis) * speed, ACCELERATION / 6 * acc_mult)
 			else:
@@ -285,10 +300,6 @@ func movement(delta : float, acc_mult : float = 1, fr_mult : float = 1) -> void:
 				x_vel = lerp(x_vel, Vector2.ZERO, FRICTION * fr_mult)
 		
 func running() -> void:
-	if Input.is_action_just_pressed("RUN" + get_player_index()):
-		if is_on_floor() or state == sm.WALL_SLIDING:
-			$Anim.play("walk_to_run")
-			
 	if Input.is_action_pressed("RUN" + get_player_index()):
 		if is_on_floor() or state == sm.WALL_SLIDING:
 			is_running = true
@@ -297,6 +308,7 @@ func running() -> void:
 			floor_max_angle = PI
 		else:
 			if is_running:
+				#floor_max_angle = deg_to_rad(80)
 				floor_max_angle = (3*PI)/4.5
 		#if get_floor_angle() <= PI/4 and is_running:
 			#$Timers/RunBufferTimer.start()
@@ -310,13 +322,18 @@ func running() -> void:
 	else:
 		if is_on_floor():
 			is_running = false
-			speed = NORMAL_SPEED
+			speed = move_toward(speed, NORMAL_SPEED, 15)
 		floor_max_angle = PI/4
 
 func floor_attaching() -> void:
 	if is_on_floor() and $Timers/FloorStickBlockingTimer.is_stopped():
-		#x_vel = Vector2.ZERO
-		x_vel.y = 0
+		
+		#if (last_floor_angle > PI/2) and ( last_floor_angle < (3*PI)/2 ):
+			##x_vel = Vector2.ZERO
+			#x_vel.x = 0
+		#else:
+			#x_vel.y = 0
+			#
 		state = sm.GROUND
 		
 func floor_detaching() -> void:
@@ -340,12 +357,12 @@ func falling(delta : float, gravity_mult : float = 1, max_gravity_velocity : flo
 func jumping(delta : float) -> void:
 	if !$Timers/FirstJumpStateTimer.is_stopped() or !$Timers/SecondJumpStateTimer.is_stopped():
 		if is_running:
-			if last_floor_angle > deg_to_rad(89) and last_floor_angle < deg_to_rad(91):
+			if last_floor_angle > deg_to_rad(80) and last_floor_angle < deg_to_rad(100):
 				#y_vel = last_floor_normal * (JUMP_FORCE + 500)
-				if get_position_delta().y > 0:
-					y_vel = (last_floor_normal * (JUMP_FORCE + 300) )
+				if get_real_velocity().y < 40:
+					y_vel = ( last_floor_normal * JUMP_FORCE ) + Vector2(0, -500)
 				else:
-					y_vel = (last_floor_normal * (JUMP_FORCE + 300) )
+					y_vel = ( last_floor_normal * (JUMP_FORCE)) + Vector2(0, 500)
 			else:
 				y_vel = (last_floor_normal * (JUMP_FORCE + 500))
 		else:
@@ -357,23 +374,26 @@ func jumping(delta : float) -> void:
 		can_jump = false
 		
 func jump_start(delta : float) -> void:
-	if (Input.is_action_just_pressed("JUMP" + get_player_index())):# or (!$Timers/JumpInputBuffer.is_stopped() and get_floor_angle() > PI/2):
-		#y_vel = Vector2.ZERO
-		#$Timers/JumpInputBuffer.stop()
+	if (Input.is_action_just_pressed("JUMP" + get_player_index())) or (!$Timers/JumpInputBuffer.is_stopped() and get_floor_angle() > PI/2):
+		y_vel = Vector2.ZERO
+		$Timers/JumpInputBuffer.stop()
 		$Timers/FloorStickBlockingTimer.start()
 		
-		if ( get_floor_angle() > deg_to_rad(89) ):
+		if ( get_floor_angle() > deg_to_rad(80) ):
+			if x_vel.y < 0:
+				last_true_axis = -last_true_axis
+			else:
+				is_axis_changing_delayed = true
 			if get_floor_angle() > (3*PI)/4:
 				$Timers/FirstJumpStateTimer.start(0.15)
 			else:
-				$Timers/FirstJumpStateTimer.start(0.15)
-			if get_real_floor_angle() > 0 and get_position_delta().y < 0:
-				last_true_axis = -last_true_axis
-			if get_real_floor_angle() < 0 and get_position_delta().y < 0:
-				last_true_axis = -last_true_axis
-			$Timers/TurningTimer.stop()
+				$Timers/FirstJumpStateTimer.start(0.3)
+			#if get_real_floor_angle() > 0 and velocity.y < 40:
+				#last_true_axis = -last_true_axis
+			#if get_real_floor_angle() < 0 and velocity.y > 40:
 		else:
 			$Timers/FirstJumpStateTimer.start(0.15)
+		$Timers/TurningTimer.stop()
 		state = sm.AIR
 		
 func jump_input_buffering() -> void:
@@ -384,6 +404,7 @@ func jump_ceiling_blocker() -> void:
 	if is_on_ceiling():
 		velocity.y = 0
 		y_vel.y = 0
+		x_vel.y = 0
 		stop_jump_timers()
 		
 func sprite_leveling() -> void:

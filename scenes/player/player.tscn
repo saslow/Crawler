@@ -170,6 +170,14 @@ floor_block_on_wall = false
 floor_snap_length = 0.0
 script = ExtResource("1_wfvhb")
 
+[node name="Label" type="Label" parent="."]
+offset_left = -336.0
+offset_top = -536.0
+offset_right = -296.0
+offset_bottom = -513.0
+scale = Vector2(17.9859, 16.338)
+text = "TEST"
+
 [node name="Sprite" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(0, -1.52588e-05)
@@ -192,6 +200,16 @@ metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
 [node name="Casts" type="Node2D" parent="."]
+
+[node name="YVel" type="RayCast2D" parent="Casts"]
+self_modulate = Color(0, 0.752941, 0, 1)
+scale = Vector2(2.98187, 2.98187)
+enabled = false
+target_position = Vector2(-320, 0)
+
+[node name="XVel" type="RayCast2D" parent="Casts"]
+self_modulate = Color(1, 0, 0, 1)
+target_position = Vector2(-488, 0)
 
 [node name="Timers" type="Node" parent="."]
 

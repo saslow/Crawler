@@ -1,10 +1,10 @@
 res://scenes/player/player.tscn
-res://materials/themes/light_panel_theme.tres
 res://materials/tilesets/test/test_tileset_sonic.tres
-res://scripts/player/player.gd
 res://scenes/levels/_level_template.tscn
 res://scenes/player/player_debug.tscn
 res://addons/LevelEditor/level_editor.tscn
 res://scenes/levels/level_0.tscn
 res://addons/phantom_camera/examples/example_scenes/2D/2DExampleScene.tscn
 res://scenes/level_parts/releaser.tscn
+res://materials/themes/light_panel_theme.tres
+res://scripts/player/player.gd
