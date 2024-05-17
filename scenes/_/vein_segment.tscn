@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvsk4h2tadmdd"]
+
+[ext_resource type="Script" path="res://scripts/_/vein_segment.gd" id="1_ngo62"]
+[ext_resource type="Shape2D" uid="uid://gkd516sblst2" path="res://materials/shapes/vein_segment_shape.tres" id="2_n18lx"]
+[ext_resource type="Texture2D" uid="uid://cw3o53ht1pbff" path="res://sprites/_/segment.png" id="3_n23db"]
+[ext_resource type="Texture2D" uid="uid://hjvkrstx3dn" path="res://sprites/_/segment_outline.png" id="4_asm3t"]
+
+[node name="0" type="PathFollow2D"]
+script = ExtResource("1_ngo62")
+
+[node name="Collision" type="CharacterBody2D" parent="."]
+rotation = 1.5708
+
+[node name="Shape" type="CollisionShape2D" parent="Collision"]
+shape = ExtResource("2_n18lx")
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="Sprite" type="Sprite2D" parent="."]
+visible = false
+z_index = -1
+texture = ExtResource("3_n23db")
+
+[node name="Outline" type="Sprite2D" parent="Sprite"]
+z_index = -2
+texture = ExtResource("4_asm3t")

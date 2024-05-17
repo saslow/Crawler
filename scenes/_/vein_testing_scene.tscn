@@ -1,0 +1,300 @@
+[gd_scene load_steps=15 format=3 uid="uid://5hwuhen8i47q"]
+
+[ext_resource type="Script" path="res://scripts/_/vein_system.gd" id="1_2w30m"]
+[ext_resource type="Script" path="res://scripts/_/test_vein.gd" id="1_kcv5y"]
+[ext_resource type="PackedScene" uid="uid://dvsk4h2tadmdd" path="res://scenes/_/vein_segment.tscn" id="2_1vjy7"]
+[ext_resource type="PackedScene" uid="uid://7sgec55gmorl" path="res://scenes/level_parts/releaser.tscn" id="4_jsanv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kgmhu"]
+size = Vector2(20, 26)
+
+[sub_resource type="Animation" id="Animation_5t6fd"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_bfe3w"]
+resource_name = "moving"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path2D:spacing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.01),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 75.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Path2D:shared_progress")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 2.46229),
+"update": 0,
+"values": [0.0, 3360.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jwvfn"]
+_data = {
+"RESET": SubResource("Animation_5t6fd"),
+"moving": SubResource("Animation_bfe3w")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ckda2"]
+radius = 39.0
+height = 158.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pj8av"]
+radius = 38.0
+height = 156.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_08twb"]
+radius = 36.0
+height = 152.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8131e"]
+radius = 37.0
+height = 154.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1ulnk"]
+radius = 35.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jc0en"]
+radius = 40.0
+
+[node name="VeinSystem" type="Node2D"]
+script = ExtResource("1_2w30m")
+
+[node name="Trigger" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 2
+
+[node name="Shape" type="CollisionShape2D" parent="Trigger"]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_kgmhu")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jwvfn")
+}
+
+[node name="Sprite" type="Line2D" parent="."]
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+
+[node name="Path2D" type="Path2D" parent="."]
+script = ExtResource("1_kcv5y")
+spacing = 0.0
+
+[node name="0" parent="Path2D" instance=ExtResource("2_1vjy7")]
+progress = 3360.0
+
+[node name="1" parent="Path2D" instance=ExtResource("2_1vjy7")]
+progress = 3435.0
+
+[node name="2" parent="Path2D" instance=ExtResource("2_1vjy7")]
+progress = 3510.0
+
+[node name="3" parent="Path2D" instance=ExtResource("2_1vjy7")]
+progress = 3585.0
+
+[node name="4" parent="Path2D" instance=ExtResource("2_1vjy7")]
+progress = 3660.0
+
+[node name="5" parent="Path2D" instance=ExtResource("2_1vjy7")]
+progress = 3735.0
+
+[node name="6" parent="Path2D" instance=ExtResource("2_1vjy7")]
+progress = 3810.0
+
+[node name="7" parent="Path2D" instance=ExtResource("2_1vjy7")]
+progress = 3885.0
+
+[node name="8" parent="Path2D" instance=ExtResource("2_1vjy7")]
+progress = 3960.0
+
+[node name="9" parent="Path2D" instance=ExtResource("2_1vjy7")]
+progress = 4035.0
+
+[node name="10" parent="Path2D" instance=ExtResource("2_1vjy7")]
+progress = 4110.0
+
+[node name="11" parent="Path2D" instance=ExtResource("2_1vjy7")]
+progress = 4185.0
+
+[node name="12" parent="Path2D" instance=ExtResource("2_1vjy7")]
+progress = 4260.0
+
+[node name="13" parent="Path2D" instance=ExtResource("2_1vjy7")]
+progress = 4335.0
+
+[node name="14" parent="Path2D" instance=ExtResource("2_1vjy7")]
+progress = 4410.0
+
+[node name="15" parent="Path2D" instance=ExtResource("2_1vjy7")]
+progress = 4485.0
+
+[node name="16" parent="Path2D" instance=ExtResource("2_1vjy7")]
+progress = 4560.0
+
+[node name="17" parent="Path2D" instance=ExtResource("2_1vjy7")]
+progress = 4635.0
+
+[node name="18" parent="Path2D" instance=ExtResource("2_1vjy7")]
+progress = 4710.0
+
+[node name="19" parent="Path2D" instance=ExtResource("2_1vjy7")]
+progress = 4785.0
+
+[node name="20" parent="Path2D" instance=ExtResource("2_1vjy7")]
+progress = 4860.0
+
+[node name="21" parent="Path2D" instance=ExtResource("2_1vjy7")]
+progress = 4935.0
+
+[node name="22" parent="Path2D" instance=ExtResource("2_1vjy7")]
+progress = 5010.0
+
+[node name="23" parent="Path2D" instance=ExtResource("2_1vjy7")]
+progress = 5085.0
+
+[node name="24" parent="Path2D" instance=ExtResource("2_1vjy7")]
+progress = 5160.0
+
+[node name="25" parent="Path2D" instance=ExtResource("2_1vjy7")]
+progress = 5235.0
+
+[node name="26" parent="Path2D" instance=ExtResource("2_1vjy7")]
+progress = 5310.0
+
+[node name="27" parent="Path2D" instance=ExtResource("2_1vjy7")]
+progress = 5385.0
+
+[node name="28" parent="Path2D" instance=ExtResource("2_1vjy7")]
+progress = 5460.0
+
+[node name="29" parent="Path2D" instance=ExtResource("2_1vjy7")]
+progress = 5535.0
+
+[node name="30" parent="Path2D" instance=ExtResource("2_1vjy7")]
+progress = 5610.0
+
+[node name="31" parent="Path2D" instance=ExtResource("2_1vjy7")]
+progress = 5685.0
+
+[node name="32" parent="Path2D" instance=ExtResource("2_1vjy7")]
+progress = 5760.0
+
+[node name="33" parent="Path2D" instance=ExtResource("2_1vjy7")]
+progress = 5835.0
+
+[node name="34" parent="Path2D" instance=ExtResource("2_1vjy7")]
+progress = 5910.0
+
+[node name="35" parent="Path2D" instance=ExtResource("2_1vjy7")]
+progress = 5985.0
+
+[node name="36" parent="Path2D" instance=ExtResource("2_1vjy7")]
+progress = 6060.0
+
+[node name="Shape" parent="Path2D/36/Collision" index="0"]
+shape = SubResource("CapsuleShape2D_ckda2")
+
+[node name="37" parent="Path2D" instance=ExtResource("2_1vjy7")]
+progress = 6135.0
+
+[node name="Shape" parent="Path2D/37/Collision" index="0"]
+shape = SubResource("CapsuleShape2D_pj8av")
+
+[node name="38" parent="Path2D" instance=ExtResource("2_1vjy7")]
+progress = 6210.0
+
+[node name="Shape" parent="Path2D/38/Collision" index="0"]
+shape = SubResource("CapsuleShape2D_08twb")
+
+[node name="39" parent="Path2D" instance=ExtResource("2_1vjy7")]
+progress = 6285.0
+
+[node name="Shape" parent="Path2D/39/Collision" index="0"]
+shape = SubResource("CapsuleShape2D_8131e")
+
+[node name="40" parent="Path2D" instance=ExtResource("2_1vjy7")]
+progress = 6360.0
+
+[node name="Shape" parent="Path2D/40/Collision" index="0"]
+position = Vector2(0.0001448, 40)
+shape = SubResource("CircleShape2D_1ulnk")
+
+[node name="ReleaserArea2" parent="Path2D/40" instance=ExtResource("4_jsanv")]
+position = Vector2(192, 0)
+
+[node name="CollisionEnd" type="CharacterBody2D" parent="Path2D/40"]
+position = Vector2(192, 0)
+rotation = 3.14159
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Path2D/40/CollisionEnd"]
+position = Vector2(192, -1.71661e-05)
+polygon = PackedVector2Array(40, -35, -192, 1.67852e-05, 40, 35)
+
+[node name="PathEnd" type="PathFollow2D" parent="Path2D"]
+progress = 6720.0
+rotates = false
+loop = false
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="EndMarker" type="Marker2D" parent="Path2D/PathEnd"]
+z_index = 10
+rotation = 0.785398
+gizmo_extents = 180.0
+
+[node name="Label" type="Label" parent="Path2D/PathEnd"]
+offset_left = 512.0
+offset_top = 160.0
+offset_right = 1024.0
+offset_bottom = 194.0
+scale = Vector2(-2, -2)
+text = "NO CURVE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PathActualStart" type="PathFollow2D" parent="Path2D"]
+progress = 3360.0
+rotates = false
+loop = false
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="Path2D/PathActualStart"]
+offset_left = -512.0
+offset_top = -160.0
+offset_bottom = -126.0
+scale = Vector2(2, 2)
+text = "-START-"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StartMarker" type="Marker2D" parent="Path2D/PathActualStart"]
+self_modulate = Color(1, 0, 0, 1)
+z_index = 10
+rotation = 0.785398
+gizmo_extents = 180.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathActualStart"]
+shape = SubResource("CircleShape2D_jc0en")
+disabled = true
+debug_color = Color(0.956863, 0, 0.709804, 0.419608)
+
+[connection signal="body_entered" from="Trigger" to="Path2D" method="_on_trigger_body_entered"]
+
+[editable path="Path2D/36"]
+[editable path="Path2D/37"]
+[editable path="Path2D/38"]
+[editable path="Path2D/39"]
+[editable path="Path2D/40"]

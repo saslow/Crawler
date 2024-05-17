@@ -43,11 +43,16 @@ var is_attacking : bool = false
 var is_dead : bool = false
 var is_bumping : bool = false
 var is_releasing : bool
+var is_releasing_vertical : bool
+#var is_releasing_horizontal : bool
 var is_jumping : bool = false : set = set_is_jumping
 func set_is_jumping(value) -> void:
 	is_jumping = value
 var is_axis_changing_delayed : bool = false
 var can_jump : bool = true
+
+var normal_collision_shape : = preload("res://materials/shapes/player_normal_collision_shape.tres")
+var slide_collision_shape : = preload("res://materials/shapes/player_slide_collision_shape.tres")
 
 # Anim ++++
 var was_running : bool = false
@@ -88,7 +93,7 @@ func _ready() -> void:
 	pass
 	
 func _process(delta: float) -> void:
-	$Label.text = str($Casts/XVel.get_collision_point().distance_to(position))
+	#$Label.text = str($Casts/XVel.get_collision_point().distance_to(position))
 	if Input.is_action_just_pressed("JUST_TEST_BUTTON"):
 		g.another_character.global_position = g.current_character.global_position
 
@@ -98,7 +103,7 @@ func _process(delta: float) -> void:
 			$Sprite.flip_h = false
 		else:
 			$Sprite.flip_h = true
-	else:
+	elif is_on_floor():
 		if Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) > 0:
 			$Sprite.flip_h = false
 		if Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) < 0:
@@ -110,7 +115,7 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor():
 		last_x_vel_y = x_vel.y
 		
-	$Casts/YVel.target_position = y_vel
+	#$Casts/YVel.target_position = y_vel
 	#$Casts/XVel.target_position = velocity
 	physics_state_machine(delta)
 	if is_on_floor():
@@ -141,13 +146,27 @@ func physics_state_machine(delta : float) -> void:
 			jump_start(delta)
 			floor_detaching()
 			sprite_leveling()
+			rotatable_leveling()
+			
+			#
+			
+			if Input.is_action_just_pressed("DOWN" + get_player_index()):
+				position += -get_floor_normal() * 29
+			if Input.is_action_pressed("DOWN" + get_player_index()):
+				$Shape.shape = slide_collision_shape
+			else:
+				$Shape.shape = normal_collision_shape
+				
+			#
+				
 			running()
 			if is_releasing:
-				y_vel /= 1.5
+				y_vel = Vector2(0, 0)
 			else:
 				y_vel = -get_floor_normal() * speed
 		sm.AIR:
-			is_releasing = false
+			#is_releasing = false
+			#is_releasing_vertical = false
 			running()
 			sprite_rotation_reset()
 			jump_input_buffering()
@@ -157,6 +176,10 @@ func physics_state_machine(delta : float) -> void:
 			if $Timers/FirstJumpStateTimer.is_stopped() and $Timers/SecondJumpStateTimer.is_stopped():
 				if !is_running:
 					movement(delta, 0.5, 0.5)
+				else:
+					if is_releasing:
+						if velocity.x < (speed - 150) and velocity.x > -(speed + 150):
+							movement_in_air_state_when_running()
 				wall_attaching()
 				is_jumping = false
 				falling(delta)
@@ -299,6 +322,9 @@ func movement(delta : float, acc_mult : float = 1, fr_mult : float = 1) -> void:
 			else:
 				x_vel = lerp(x_vel, Vector2.ZERO, FRICTION * fr_mult)
 		
+func movement_in_air_state_when_running() -> void:
+	x_vel.x += last_true_axis * speed/8
+		
 func running() -> void:
 	if Input.is_action_pressed("RUN" + get_player_index()):
 		if is_on_floor() or state == sm.WALL_SLIDING:
@@ -322,7 +348,7 @@ func running() -> void:
 	else:
 		if is_on_floor():
 			is_running = false
-			speed = move_toward(speed, NORMAL_SPEED, 15)
+			speed = NORMAL_SPEED
 		floor_max_angle = PI/4
 
 func floor_attaching() -> void:
@@ -360,9 +386,9 @@ func jumping(delta : float) -> void:
 			if last_floor_angle > deg_to_rad(80) and last_floor_angle < deg_to_rad(100):
 				#y_vel = last_floor_normal * (JUMP_FORCE + 500)
 				if get_real_velocity().y < 40:
-					y_vel = ( last_floor_normal * JUMP_FORCE ) + Vector2(0, -500)
+					y_vel = ( last_floor_normal * (JUMP_FORCE + 200)) + Vector2(0, -700)
 				else:
-					y_vel = ( last_floor_normal * (JUMP_FORCE)) + Vector2(0, 500)
+					y_vel = ( last_floor_normal * (JUMP_FORCE + 200)) + Vector2(0, 500)
 			else:
 				y_vel = (last_floor_normal * (JUMP_FORCE + 500))
 		else:
@@ -409,6 +435,9 @@ func jump_ceiling_blocker() -> void:
 		
 func sprite_leveling() -> void:
 	$Sprite.rotation = lerp_angle($Sprite.rotation, get_real_floor_angle(), 0.2)
+	
+func rotatable_leveling() -> void:
+	$Rotatable.rotation = get_real_floor_angle()
 	
 func sprite_rotation_reset() -> void:
 	$Sprite.rotation = lerp_angle($Sprite.rotation, 0.0, 0.1)
