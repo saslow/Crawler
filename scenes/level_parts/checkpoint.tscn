@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbnkuulgivlk0"]
+
+[ext_resource type="Script" path="res://scripts/_/editor_icon.gd" id="1_0fj56"]
+[ext_resource type="Script" path="res://scripts/level_parts/checkpoint.gd" id="1_1npox"]
+
+[node name="Checkpoint" type="Area2D"]
+script = ExtResource("1_1npox")
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+debug_color = Color(0.666667, 0.509804, 0, 0.419608)
+
+[node name="Polygon" type="CollisionPolygon2D" parent="."]
+
+[node name="Icon" type="Label" parent="."]
+visible = false
+self_modulate = Color(1, 0.796078, 0, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "CHECK
+POINT"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_0fj56")

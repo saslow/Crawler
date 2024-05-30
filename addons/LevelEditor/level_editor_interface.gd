@@ -14,8 +14,8 @@ func _process(delta: float) -> void:
 
 func _on_level_tree_restore_button_pressed() -> void:
 	if EditorInterface.get_edited_scene_root() is Level:
-		_add_folder_to_tree(scene_tree, "TileMaps")
-		_add_folder_to_tree(scene_tree, "Karusels")
+		_add_folder_to_tree(scene_tree, "Friezes")
+		_add_folder_to_tree(scene_tree, "LevelParts")
 		_add_folder_to_tree(scene_tree, "Enemies")
 		_add_folder_to_tree(scene_tree, "Players")
 

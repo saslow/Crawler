@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://w07m35qgysc0"]
+
+[ext_resource type="Script" path="res://scripts/components/entity_component_system.gd" id="1_nf1yh"]
+
+[node name="EntityComponentSystem" type="Area2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_nf1yh")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+
+[node name="CollisionPolygon" type="CollisionPolygon2D" parent="."]
+
+[node name="LifeTimer" type="Timer" parent="."]
+process_callback = 0
+one_shot = true
+
+[node name="DeathTimer" type="Timer" parent="."]
+process_callback = 0
+one_shot = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="LifeTimer" to="." method="_on_life_timer_timeout"]

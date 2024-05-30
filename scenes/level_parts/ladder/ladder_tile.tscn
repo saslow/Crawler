@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://dpsqnh0tlolfh"]
+
+[node name="0" type="PathFollow2D"]
+
+[node name="Area" type="Area2D" parent="."]
+
+[node name="Shape" type="CollisionPolygon2D" parent="Area"]
+position = Vector2(70, 0)
+polygon = PackedVector2Array(-70, 24, -70, -24, -2, -56, 66, -24, 66, 24, -2, 56)
+
+[node name="CentralPoint" type="Node2D" parent="."]
+position = Vector2(68, 0)

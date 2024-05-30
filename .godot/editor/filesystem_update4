@@ -1,7 +1,13 @@
-res://scenes/player/player.tscn
+res://scenes/level_parts/ladder/ladder.tscn
 res://materials/themes/light_panel_theme.tres
+res://materials/world_environments/normal.tres
 res://materials/tilesets/test/test_tileset_sonic.tres
 res://materials/shapes/vein_segment_shape.tres
+res://scenes/level_parts/grind_pipe.tscn
+res://scripts/player/player.gd
+res://scenes/level_parts/checkpoint.tscn
+res://scripts/_/editor_icon.gd
+res://scenes/player/player.tscn
 res://scenes/levels/_level_template.tscn
 res://scenes/player/player_debug.tscn
 res://addons/LevelEditor/level_editor.tscn
@@ -9,5 +15,7 @@ res://scenes/levels/level_0.tscn
 res://scenes/level_parts/releaser.tscn
 res://scenes/_/vein_testing_scene.tscn
 res://scenes/_/vein_segment.tscn
-res://scripts/player/player.gd
-res://scripts/level_parts/releaser.gd
+res://scenes/components/entity_component_system.tscn
+res://scripts/level_parts/grind_pipe.gd
+res://bugs.txt
+res://scripts/level_parts/checkpoint.gd

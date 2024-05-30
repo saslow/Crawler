@@ -48,7 +48,7 @@ func _ready():
 		$PathActualStart/Label.visible = false
 
 func _process(delta):
-	path_end_progress = 2 * ( (get_child_count()-1) * debug_spacing )
+	path_end_progress = 2 * ( (get_child_count()-1) * debug_spacing ) - 120
 	$PathEnd.progress = path_end_progress
 	$PathActualStart.progress = path_end_progress / 2
 	if curve != null:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://dhp71vl6av8ov"]
+[gd_scene load_steps=70 format=3 uid="uid://dhp71vl6av8ov"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_wfvhb"]
 [ext_resource type="Texture2D" uid="uid://dtqk2r7dk4nfv" path="res://sprites/Peppino/hurtwalk_00.png" id="2_1i5yc"]
@@ -60,6 +60,13 @@
 [ext_resource type="Texture2D" uid="uid://dxrjeibj7occj" path="res://sprites/Peppino/machslide_01.png" id="59_gxjik"]
 [ext_resource type="Shape2D" uid="uid://bygddctap0ysj" path="res://materials/shapes/player_normal_collision_shape.tres" id="59_syb2e"]
 [ext_resource type="Texture2D" uid="uid://4wcb2da7kx8w" path="res://sprites/Peppino/machslide_02.png" id="60_202wg"]
+[ext_resource type="PackedScene" uid="uid://w07m35qgysc0" path="res://scenes/components/entity_component_system.tscn" id="61_lv68y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jkgb2"]
+size = Vector2(32, 75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g63mw"]
+size = Vector2(6, 1)
 
 [sub_resource type="Animation" id="Animation_oqob7"]
 resource_name = "idle"
@@ -165,7 +172,7 @@ collision_layer = 2
 collision_mask = 49
 wall_min_slide_angle = 0.523599
 floor_block_on_wall = false
-floor_snap_length = 0.0
+floor_snap_length = 2.0
 script = ExtResource("1_wfvhb")
 
 [node name="Label" type="Label" parent="."]
@@ -179,19 +186,63 @@ text = "TEST"
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(2.347, 2.347)
+scale = Vector2(2.35, 2.35)
 texture = ExtResource("2_3c5fl")
 offset = Vector2(0, -28.6131)
 
 [node name="Rotatable" type="Node2D" parent="."]
-position = Vector2(0, -16)
 
 [node name="SlideCollisionShapePosition" type="Node2D" parent="Rotatable"]
 position = Vector2(0, 28)
 
 [node name="Polygon2D" type="Polygon2D" parent="Rotatable/SlideCollisionShapePosition"]
+visible = false
 self_modulate = Color(1, 1, 1, 0.478431)
 polygon = PackedVector2Array(0, -28, -8, -4, 0, 28, 8, -4)
+
+[node name="Casts" type="Node2D" parent="Rotatable"]
+
+[node name="DownCast" type="RayCast2D" parent="Rotatable/Casts"]
+target_position = Vector2(0, 41)
+
+[node name="UpCast0" type="RayCast2D" parent="Rotatable/Casts"]
+position = Vector2(-32, 0)
+target_position = Vector2(-1.45519e-11, -57)
+
+[node name="UpCast1" type="RayCast2D" parent="Rotatable/Casts"]
+position = Vector2(32, 0)
+target_position = Vector2(-1.45519e-11, -57)
+
+[node name="RightCast" type="RayCast2D" parent="Rotatable/Casts"]
+position = Vector2(0, -24)
+target_position = Vector2(45, 0)
+
+[node name="LeftCast" type="RayCast2D" parent="Rotatable/Casts"]
+position = Vector2(0, -24)
+target_position = Vector2(-45, 0)
+
+[node name="EntityComponentSystem" parent="Rotatable" node_paths=PackedStringArray("components_owner") instance=ExtResource("61_lv68y")]
+entity_type = 2
+components_owner = NodePath("../..")
+contact_damage = false
+
+[node name="CollisionShape" parent="Rotatable/EntityComponentSystem" index="0"]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_jkgb2")
+debug_color = Color(0.858824, 0, 0.878431, 0.419608)
+
+[node name="GrindAreaPos0" type="Node2D" parent="Rotatable"]
+position = Vector2(0, 40)
+
+[node name="GrindAreaPos1" type="Node2D" parent="Rotatable"]
+position = Vector2(0, 20)
+
+[node name="GrindArea" type="Area2D" parent="Rotatable"]
+
+[node name="Shape" type="CollisionShape2D" parent="Rotatable/GrindArea"]
+position = Vector2(0, 40)
+shape = SubResource("RectangleShape2D_g63mw")
+debug_color = Color(0.796078, 0.423529, 0, 1)
 
 [node name="Anim" type="AnimationPlayer" parent="."]
 libraries = {
@@ -199,7 +250,6 @@ libraries = {
 }
 
 [node name="Shape" type="CollisionShape2D" parent="."]
-position = Vector2(0, -16)
 shape = ExtResource("59_syb2e")
 
 [node name="PlayerDebug" parent="." instance=ExtResource("4_76pis")]
@@ -209,9 +259,6 @@ offset_bottom = -32.0
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
-[node name="Casts" type="Node2D" parent="."]
-position = Vector2(0, -16)
-
 [node name="Timers" type="Node" parent="."]
 
 [node name="RunBufferTimer" type="Timer" parent="Timers"]
@@ -220,6 +267,7 @@ wait_time = 0.05
 one_shot = true
 
 [node name="SlideTimer" type="Timer" parent="Timers"]
+editor_description = "used"
 process_callback = 0
 wait_time = 0.5
 one_shot = true
@@ -239,9 +287,8 @@ wait_time = 0.1
 one_shot = true
 
 [node name="BumpTimer" type="Timer" parent="Timers"]
-editor_description = "If a character bumps into a wall while running, he will be stunned by \"wait_time\"(0.6s)."
+editor_description = "If a character bumps into a wall while running, he will be stunned by \"wait_time\"(0.4s)."
 process_callback = 0
-wait_time = 0.4
 one_shot = true
 
 [node name="RunStoppingTimer" type="Timer" parent="Timers"]
@@ -263,9 +310,22 @@ process_callback = 0
 wait_time = 0.07
 one_shot = true
 
+[node name="SlideDashTimer" type="Timer" parent="Timers"]
+editor_description = "used
+"
+process_callback = 0
+wait_time = 0.1
+one_shot = true
+
+[connection signal="area_entered" from="Rotatable/EntityComponentSystem" to="." method="_on_entity_component_system_area_entered"]
+[connection signal="body_entered" from="Rotatable/GrindArea" to="." method="_on_grind_area_body_entered"]
+[connection signal="body_exited" from="Rotatable/GrindArea" to="." method="_on_grind_area_body_exited"]
 [connection signal="animation_changed" from="Anim" to="." method="_on_anim_animation_changed"]
 [connection signal="current_animation_changed" from="Anim" to="." method="_on_anim_current_animation_changed"]
 [connection signal="timeout" from="Timers/RunBufferTimer" to="." method="_on_run_stop_timer_timeout"]
 [connection signal="timeout" from="Timers/FirstJumpStateTimer" to="." method="_on_first_jump_state_timer_timeout"]
 [connection signal="timeout" from="Timers/BumpTimer" to="." method="_on_bump_timer_timeout"]
 [connection signal="timeout" from="Timers/TurningTimer" to="." method="_on_turning_timer_timeout"]
+[connection signal="timeout" from="Timers/SlideDashTimer" to="." method="_on_slide_dash_timer_timeout"]
+
+[editable path="Rotatable/EntityComponentSystem"]

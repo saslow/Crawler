@@ -23,7 +23,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.01),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, 75.0]
+"values": [0.0, 80.0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -83,9 +83,8 @@ libraries = {
 }
 
 [node name="Sprite" type="Line2D" parent="."]
-joint_mode = 2
+texture_mode = 2
 begin_cap_mode = 2
-end_cap_mode = 2
 antialiased = true
 
 [node name="Path2D" type="Path2D" parent="."]
@@ -243,7 +242,7 @@ position = Vector2(192, -1.71661e-05)
 polygon = PackedVector2Array(40, -35, -192, 1.67852e-05, 40, 35)
 
 [node name="PathEnd" type="PathFollow2D" parent="Path2D"]
-progress = 6720.0
+progress = 6600.0
 rotates = false
 loop = false
 metadata/_edit_group_ = true
@@ -264,8 +263,12 @@ text = "NO CURVE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Polygon2D" type="Polygon2D" parent="Path2D/PathEnd"]
+self_modulate = Color(1, 1, 1, 0.254902)
+polygon = PackedVector2Array(-48, 72, 0, 0, 48, 72)
+
 [node name="PathActualStart" type="PathFollow2D" parent="Path2D"]
-progress = 3360.0
+progress = 3300.0
 rotates = false
 loop = false
 metadata/_edit_group_ = true
