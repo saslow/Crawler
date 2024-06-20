@@ -1,0 +1,350 @@
+[gd_scene load_steps=45 format=3 uid="uid://c3eibqugw7ujf"]
+
+[ext_resource type="Script" path="res://scripts/levels/_level_template.gd" id="1_doibg"]
+[ext_resource type="Environment" uid="uid://ceawqhyu41n60" path="res://materials/world_environments/normal.tres" id="2_mlig6"]
+[ext_resource type="PackedScene" uid="uid://cks0nfml4ictn" path="res://scenes/level_parts/grind_pipe.tscn" id="2_s3xon"]
+[ext_resource type="Script" path="res://scripts/player/player_system.gd" id="3_6ip7s"]
+[ext_resource type="PackedScene" uid="uid://dhp71vl6av8ov" path="res://scenes/player/player.tscn" id="3_iwvj8"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2D.gd" id="3_ligbi"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_g6872"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="5_88tv0"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/vertex_properties.gd" id="7_st3b2"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/shapes/point.gd" id="8_fu613"]
+[ext_resource type="PackedScene" uid="uid://brhfbf6i2boia" path="res://scenes/menus/pause_menu.tscn" id="9_1tcrl"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/shapes/point_array.gd" id="9_v6dhv"]
+[ext_resource type="PackedScene" uid="uid://cbnkuulgivlk0" path="res://scenes/level_parts/checkpoint.tscn" id="10_1kqm7"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/shapes/shape.gd" id="10_rsace"]
+[ext_resource type="PackedScene" uid="uid://c6stoaluguydg" path="res://scenes/enemies/flying_demon.tscn" id="10_xj8st"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/materials/edge_material.gd" id="11_rco2p"]
+[ext_resource type="Texture2D" uid="uid://dtqhbrtui8dt6" path="res://sprites/_/grind_pipe_tile.png" id="12_3cm04"]
+[ext_resource type="PackedScene" uid="uid://cj40q87hg8j0k" path="res://scenes/enemies/dagger_demon.tscn" id="12_s3bip"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/normal_range.gd" id="13_hkp1u"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/materials/edge_material_metadata.gd" id="14_3wjb8"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/materials/shape_material.gd" id="15_snuem"]
+[ext_resource type="PackedScene" uid="uid://w07m35qgysc0" path="res://scenes/components/entity_component_system.tscn" id="17_3bg8m"]
+
+[sub_resource type="Resource" id="Resource_hsbhf"]
+script = ExtResource("4_g6872")
+duration = 1.0
+transition = 0
+ease = 2
+
+[sub_resource type="Resource" id="Resource_bwdcu"]
+script = ExtResource("7_st3b2")
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_quv1k"]
+script = ExtResource("8_fu613")
+position = Vector2(-1928, 296)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_bwdcu")
+
+[sub_resource type="Resource" id="Resource_j4u6y"]
+script = ExtResource("7_st3b2")
+texture_idx = 7
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_anr3r"]
+script = ExtResource("8_fu613")
+position = Vector2(-536, 40)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_j4u6y")
+
+[sub_resource type="Resource" id="Resource_xrrhn"]
+script = ExtResource("9_v6dhv")
+_points = {
+48: SubResource("Resource_quv1k"),
+50: SubResource("Resource_anr3r")
+}
+_point_order = Array[int]([48, 50])
+_constraints = {}
+_next_key = 51
+_material_overrides = {}
+
+[sub_resource type="Resource" id="Resource_rox2p"]
+script = ExtResource("7_st3b2")
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_8pc1s"]
+script = ExtResource("8_fu613")
+position = Vector2(1656, 0)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_rox2p")
+
+[sub_resource type="Resource" id="Resource_d7y7t"]
+script = ExtResource("7_st3b2")
+texture_idx = -5
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_ld7no"]
+script = ExtResource("8_fu613")
+position = Vector2(1792, -128)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_d7y7t")
+
+[sub_resource type="Resource" id="Resource_rhlam"]
+script = ExtResource("7_st3b2")
+texture_idx = -13
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_7sv4d"]
+script = ExtResource("8_fu613")
+position = Vector2(1792, -704)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_rhlam")
+
+[sub_resource type="Resource" id="Resource_wsm4s"]
+script = ExtResource("7_st3b2")
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_dlus5"]
+script = ExtResource("8_fu613")
+position = Vector2(-303.05, 15.3662)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_wsm4s")
+
+[sub_resource type="Resource" id="Resource_0643b"]
+script = ExtResource("9_v6dhv")
+_points = {
+44: SubResource("Resource_8pc1s"),
+45: SubResource("Resource_ld7no"),
+46: SubResource("Resource_7sv4d"),
+49: SubResource("Resource_dlus5")
+}
+_point_order = Array[int]([49, 44, 45, 46])
+_constraints = {}
+_next_key = 51
+_material_overrides = {}
+
+[sub_resource type="Resource" id="Resource_couey"]
+script = ExtResource("11_rco2p")
+textures = Array[Texture2D]([ExtResource("12_3cm04")])
+textures_corner_outer = Array[Texture2D]([])
+textures_corner_inner = Array[Texture2D]([])
+textures_taper_left = Array[Texture2D]([])
+textures_taper_right = Array[Texture2D]([])
+randomize_texture = false
+use_corner_texture = true
+use_taper_texture = true
+fit_mode = 0
+
+[sub_resource type="Resource" id="Resource_l188d"]
+script = ExtResource("13_hkp1u")
+begin = 0.0
+distance = 360.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_73ai0"]
+script = ExtResource("14_3wjb8")
+edge_material = SubResource("Resource_couey")
+normal_range = SubResource("Resource_l188d")
+weld = true
+render = true
+z_index = 0
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="Resource" id="Resource_xjk2j"]
+script = ExtResource("15_snuem")
+_edge_meta_materials = Array[ExtResource("14_3wjb8")]([SubResource("Resource_73ai0")])
+fill_textures = Array[Texture2D]([])
+fill_texture_z_index = -10
+fill_texture_show_behind_parent = false
+fill_texture_scale = 1.0
+fill_texture_absolute_position = false
+fill_texture_absolute_rotation = false
+fill_texture_offset = Vector2(0, 0)
+fill_texture_angle_offset = 0.0
+fill_mesh_offset = 0.0
+render_offset = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c7w06"]
+size = Vector2(56, 992)
+
+[sub_resource type="Curve2D" id="Curve2D_hg111"]
+_data = {
+"points": PackedVector2Array(-376.808, -4.86964, 376.808, 4.86964, 432, -1240, 39.9488, -204.053, -39.9488, 204.053, 1168, -872, 30.9592, 349.115, -30.9592, -349.115, -456, -896, 0, 0, 0, 0, 432, -1240)
+}
+point_count = 4
+
+[sub_resource type="Curve2D" id="Curve2D_c2du1"]
+_data = {
+"points": PackedVector2Array(221.479, 764.157, -221.479, -764.157, 1272, 1400, 547.599, 1536.3, -547.599, -1536.3, 1000, -2216)
+}
+point_count = 2
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_doibg")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_mlig6")
+
+[node name="Camera" type="Node2D" parent="."]
+position = Vector2(-1848, 224)
+script = ExtResource("3_ligbi")
+priority_override = false
+priority = 0
+zoom = Vector2(0.5, 0.5)
+follow_mode = 2
+follow_target = NodePath("../Players/Player0")
+follow_parameters/target_offset = Vector2(0, 0)
+follow_parameters/damping = true
+follow_parameters/damping_value = 30.0
+frame_preview = true
+pixel_perfect = false
+limit/draw_limits = true
+limit/left = -10000000
+limit/top = -10000000
+limit/right = 10000000
+limit/bottom = 10000000
+limit/limit_node_target = NodePath("")
+limit/smoothed = false
+tween_parameters = SubResource("Resource_hsbhf")
+tween_on_load = true
+inactive_update_mode = 0
+metadata/_edit_lock_ = true
+
+[node name="GlobalCamera" type="Camera2D" parent="."]
+position = Vector2(-1848, 224)
+zoom = Vector2(0.5, 0.5)
+metadata/_edit_lock_ = true
+
+[node name="PhantomCameraHost" type="Node" parent="GlobalCamera"]
+script = ExtResource("5_88tv0")
+
+[node name="Friezes" type="Node2D" parent="."]
+
+[node name="GrindPipe" parent="Friezes" instance=ExtResource("2_s3xon")]
+
+[node name="Shape" parent="Friezes/GrindPipe" index="0"]
+_points = SubResource("Resource_xrrhn")
+
+[node name="Polygon" parent="Friezes/GrindPipe" index="1"]
+polygon = PackedVector2Array(-1930.89, 280.264, -538.894, 24.2639, -533.106, 55.7361, -1925.11, 311.736)
+
+[node name="Shape2" type="Node2D" parent="Friezes/GrindPipe"]
+script = ExtResource("10_rsace")
+_points = SubResource("Resource_0643b")
+shape_material = SubResource("Resource_xjk2j")
+tessellation_stages = 2
+collision_offset = 1.0
+collision_polygon_node_path = NodePath("../CollisionPolygon2D")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Friezes/GrindPipe"]
+polygon = PackedVector2Array(-303.175, -0.633308, 1650.04, -14.8499, 1777.31, -134.346, 1776, -704, 1808, -704, 1806.69, -121.654, 1661.96, 14.8499, -302.924, 31.3657)
+
+[node name="LevelParts" type="Node2D" parent="."]
+
+[node name="Checkpoint" parent="LevelParts" instance=ExtResource("10_1kqm7")]
+position = Vector2(-1679, 109)
+
+[node name="Shape" parent="LevelParts/Checkpoint" index="0"]
+position = Vector2(0, -496)
+shape = SubResource("RectangleShape2D_c7w06")
+
+[node name="EntityComponentSystem7" parent="LevelParts" instance=ExtResource("17_3bg8m")]
+collision_layer = 32
+collision_mask = 6
+entity_type = 1
+
+[node name="CollisionPolygon" parent="LevelParts/EntityComponentSystem7" index="1"]
+polygon = PackedVector2Array(-80, 1056, -3616, 856, 3160, 840)
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="FlyingDemonPathLoop" type="Path2D" parent="Enemies"]
+position = Vector2(-736, -392)
+curve = SubResource("Curve2D_hg111")
+
+[node name="FlyingDemon" parent="Enemies/FlyingDemonPathLoop" instance=ExtResource("10_xj8st")]
+position = Vector2(1117.94, -1020.43)
+progress = 736.146
+behaviour = 1
+
+[node name="FlyingDemon2" parent="Enemies/FlyingDemonPathLoop" instance=ExtResource("10_xj8st")]
+position = Vector2(-430.085, -831.905)
+progress = 2576.51
+behaviour = 1
+
+[node name="FlyingDemonPathVariable" type="Path2D" parent="Enemies"]
+position = Vector2(-280, -424)
+curve = SubResource("Curve2D_c2du1")
+
+[node name="FlyingDemon" parent="Enemies/FlyingDemonPathVariable" instance=ExtResource("10_xj8st")]
+position = Vector2(1251.47, -1005)
+progress = 2412.04
+behaviour = 1
+speed = 800.0
+
+[node name="FlyingDemon2" parent="Enemies/FlyingDemonPathVariable" instance=ExtResource("10_xj8st")]
+position = Vector2(1240.72, 199.938)
+progress = 1206.02
+behaviour = 1
+speed = 800.0
+
+[node name="FlyingDemon5" parent="Enemies/FlyingDemonPathVariable" instance=ExtResource("10_xj8st")]
+position = Vector2(1272, 1400)
+behaviour = 1
+speed = 800.0
+
+[node name="FlyingDemonPathVariable2" type="Path2D" parent="Enemies"]
+position = Vector2(2296, 144)
+scale = Vector2(-1, 1)
+curve = SubResource("Curve2D_c2du1")
+
+[node name="FlyingDemon" parent="Enemies/FlyingDemonPathVariable2" instance=ExtResource("10_xj8st")]
+position = Vector2(1251.47, -1005)
+progress = 2412.04
+behaviour = 1
+speed = 800.0
+
+[node name="FlyingDemon2" parent="Enemies/FlyingDemonPathVariable2" instance=ExtResource("10_xj8st")]
+position = Vector2(1240.72, 199.938)
+progress = 1206.02
+behaviour = 1
+speed = 800.0
+
+[node name="FlyingDemon5" parent="Enemies/FlyingDemonPathVariable2" instance=ExtResource("10_xj8st")]
+position = Vector2(1272, 1400)
+behaviour = 1
+speed = 800.0
+
+[node name="DaggerDemon" parent="Enemies" instance=ExtResource("12_s3bip")]
+position = Vector2(-1056, -64)
+behaviour = 1
+
+[node name="Players" type="Node2D" parent="."]
+script = ExtResource("3_6ip7s")
+
+[node name="Player0" parent="Players" instance=ExtResource("3_iwvj8")]
+position = Vector2(-1848, 224)
+
+[node name="Player1" parent="Players" instance=ExtResource("3_iwvj8")]
+position = Vector2(1784, -752)
+player_index = 1
+character_index = 1
+metadata/_edit_lock_ = true
+
+[node name="PauseMenu" parent="." instance=ExtResource("9_1tcrl")]
+
+[editable path="Friezes/GrindPipe"]
+[editable path="LevelParts/Checkpoint"]
+[editable path="LevelParts/EntityComponentSystem7"]
+[editable path="Enemies/DaggerDemon"]
+[editable path="Enemies/DaggerDemon/EnemyTemplate"]
+[editable path="Enemies/DaggerDemon/EnemyTemplate/Rotatable/DamageHitboxComponent"]

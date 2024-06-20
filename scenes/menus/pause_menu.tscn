@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=3 uid="uid://brhfbf6i2boia"]
+
+[ext_resource type="Script" path="res://scripts/menus/pause_menu.gd" id="1_in4x4"]
+
+[node name="PauseMenu" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_in4x4")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -56.0
+offset_top = -56.0
+offset_right = 1992.0
+offset_bottom = 1128.0
+color = Color(0, 0, 0, 0.223529)
+
+[node name="MainMenuButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 448.0
+offset_bottom = 128.0
+text = "ToMainMenu"
+
+[node name="Options" type="Button" parent="."]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 160.0
+offset_right = 448.0
+offset_bottom = 224.0
+disabled = true
+text = "Options"
+
+[connection signal="pressed" from="MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="Options" to="." method="_on_options_pressed"]

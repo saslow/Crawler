@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://c6stoaluguydg"]
+
+[ext_resource type="PackedScene" uid="uid://cqmh4t4ov7mja" path="res://scenes/enemies/enemy_template.tscn" id="1_lbk34"]
+[ext_resource type="Script" path="res://scripts/enemies/flying_demon/flying_demon.gd" id="1_ws2rj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_glkov"]
+size = Vector2(112, 112)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_od1n7"]
+size = Vector2(112, 112)
+
+[node name="FlyingDemon" type="PathFollow2D"]
+rotates = false
+script = ExtResource("1_ws2rj")
+
+[node name="EnemyTemplate" parent="." instance=ExtResource("1_lbk34")]
+reset_pos_on_player_respawned = false
+
+[node name="EntityComponentSystem" parent="EnemyTemplate/Rotatable" index="0"]
+collision_layer = 8
+
+[node name="Shape" parent="EnemyTemplate/Rotatable/EntityComponentSystem" index="0"]
+shape = SubResource("RectangleShape2D_glkov")
+
+[node name="CollisionPolygon" parent="EnemyTemplate/Rotatable/DamageHitboxComponent" index="1"]
+polygon = PackedVector2Array(-69, 62, -69, -66, 59, -66, 59, 62)
+
+[node name="Shape" parent="EnemyTemplate" index="1"]
+shape = SubResource("RectangleShape2D_od1n7")
+
+[editable path="EnemyTemplate"]
+[editable path="EnemyTemplate/Rotatable/DamageHitboxComponent"]

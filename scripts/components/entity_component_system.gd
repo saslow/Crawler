@@ -10,9 +10,6 @@ enum entity_types{
 @export_category("Type")
 @export var entity_type : entity_types = entity_types.ENEMY
 
-@export_category("Owner")
-@export var components_owner : CharacterBody2D
-
 @export_category("Properties")
 @export_group("Character-Enemy")
 @export var hit_points : int = 1
@@ -20,19 +17,20 @@ enum entity_types{
 @export_group("Enemy-Projectile")
 @export var contact_damage : bool = true
 @export var entity_piercing : bool = false
+@export var character_attack : bool = false
+
+@export_group("Targets")
 
 func _ready() -> void:
-	if entity_type == entity_types.PROJECTILE:
-		$LifeTimer.autostart = true
+	pass
 
 func _on_area_entered(area : Area2D):
-	if entity_type == entity_types.CHARACTER or entity_type == entity_types.ENEMY:
-		if area is EntityComponentSystem:
-			if area.entity_type == entity_types.PROJECTILE or area.entity_type == entity_types.ENEMY:
-				if area.contact_damage == true:
-					hit_points -= 1
-				if !entity_piercing:
-					components_owner.queue_free()
-
-func _on_life_timer_timeout():
-	queue_free()
+	if ( area is EntityComponentSystem ) and (entity_type == entity_types.PROJECTILE or entity_type == entity_types.ENEMY) and (contact_damage == true):
+		if area.entity_type == EntityComponentSystem.entity_types.CHARACTER:
+			area.get_parent().get_parent().injured.emit()
+	if (area is EntityComponentSystem) and (entity_type == entity_types.PROJECTILE) and (character_attack == true):
+		if area.entity_type == EntityComponentSystem.entity_types.ENEMY:
+			area.get_parent().get_parent().injured.emit()
+	
+func _on_body_entered(body):
+	pass

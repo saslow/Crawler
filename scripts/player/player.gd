@@ -20,6 +20,7 @@ class_name Player
 @export_range(0, 1) var player_index : player_IDs = player_IDs.FIRST
 
 @export var character_index : characters_IDs = characters_IDs.BOY
+@export var component_system : EntityComponentSystem
 
 ##I dont know
 @onready var jump_buffer_timer : Timer = $Timers/JumpInputBuffer
@@ -56,6 +57,7 @@ func set_is_jumping(value) -> void:
 	is_jumping = value
 var is_axis_changing_delayed : bool = false
 var is_on_grind_pipe : bool = false
+var is_in_slide_area : bool = false
 var is_grinding : bool = false
 var can_jump : bool = true
 
@@ -72,10 +74,14 @@ const MAX_SPEED : int = 1400
 const JUMP_FORCE : int = 650
 const ACCELERATION : float = 0.3 # 0 - 1
 const FRICTION : float = 0.1 # 0 - 1
+const NORMAL_LEFT_AND_RIGHT_RAYS_LENGHT : int = 45
+
+
+signal injured()
 
 # SAVING
 
-var last_save_point_position : Vector2
+var last_checkpoint_position : Vector2
 
 # Player states enum. S.M. - state machine
 enum sm{
@@ -102,7 +108,7 @@ enum characters_IDs{
 
 func _ready() -> void:
 	#Engine.time_scale = 0.1
-	last_save_point_position = position
+	last_checkpoint_position = position
 	
 func _process(delta: float) -> void:
 	#$Label.text = str($Casts/XVel.get_collision_point().distance_to(position))
@@ -111,23 +117,50 @@ func _process(delta: float) -> void:
 
 	character_swapped_indicator()
 	
-	if is_running:
-		if last_true_axis > 0:
-			$Sprite.flip_h = false
-		else:
-			$Sprite.flip_h = true
-	elif is_on_floor():
-		if Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) > 0:
-			$Sprite.flip_h = false
-		if Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) < 0:
-			$Sprite.flip_h = true
+	if state != sm.BUMPED:
+		if is_running:
+			if last_true_axis > 0:
+				$Sprite.scale.x = 2
+			else:
+				$Sprite.scale.x = -2
+		elif is_on_floor():
+			if Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) > 0:
+				$Sprite.scale.x = 2
+			if Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) < 0:
+				$Sprite.scale.x = -2
+				
+	if last_true_axis > 0:
+		$Rotatable/AttackAreas/AttackArea.position = $Rotatable/AttackAreas/AreaRightPos.position
+	else:
+		$Rotatable/AttackAreas/AttackArea.position = $Rotatable/AttackAreas/AreaLeftPos.position
+	#if is_running:
+		#if last_true_axis > 0:
+			#$Sprite.flip_h = false
+		#else:
+			#$Sprite.flip_h = true
+	#elif is_on_floor():
+		#if Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) > 0:
+			#$Sprite.flip_h = false
+		#if Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) < 0:
+			#$Sprite.flip_h = true
 		
 	state_machine(delta)
 	
 func _physics_process(delta: float) -> void:
 	if is_on_floor():
 		last_x_vel_y = x_vel.y
-		
+	
+	#if state != sm.BUMPED:
+		#if is_running:
+			#if last_true_axis > 0:
+				#$Rotatable/Casts/SideCast.target_position = $Rotatable/Casts/RightTargetNormalPos.position
+			#else:
+				#$Rotatable/Casts/SideCast.target_position = $Rotatable/Casts/LeftTargetNormalPos.position
+		#elif is_on_floor():
+			#if Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) > 0:
+				#$Rotatable/Casts/SideCast.target_position = $Rotatable/Casts/RightTargetNormalPos.position
+			#if Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) < 0:
+				#$Rotatable/Casts/SideCast.target_position = $Rotatable/Casts/LeftTargetNormalPos.position
 	#$Casts/YVel.target_position = y_vel
 	#$Casts/XVel.target_position = velocity
 	physics_state_machine(delta)
@@ -141,6 +174,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 func physics_state_machine(delta : float) -> void:
+	
 	match state:
 		sm.GROUND:
 			if is_axis_changing_delayed and get_floor_angle() > deg_to_rad(80):
@@ -164,6 +198,8 @@ func physics_state_machine(delta : float) -> void:
 			
 			#
 			
+			attack()
+			
 			grinding()
 			slide_dash_start()
 			slide_dash()
@@ -183,10 +219,12 @@ func physics_state_machine(delta : float) -> void:
 			#slide_dash()
 			running()
 			sprite_rotation_reset()
+			rotatable_rotation_reset()
 			jump_input_buffering()
 			#last_true_axis_changing()
 			floor_attaching()
 			#slide_dash_start()
+			attack()
 			
 			if $Timers/FirstJumpStateTimer.is_stopped() and $Timers/SecondJumpStateTimer.is_stopped():
 				if !is_running:
@@ -221,6 +259,7 @@ func physics_state_machine(delta : float) -> void:
 			x_vel.y = 0
 			
 			sprite_rotation_reset()
+			rotatable_rotation_reset()
 			running()
 			stop_jump_timers()
 			if get_wall_angle() > PI/4:
@@ -264,6 +303,7 @@ func physics_state_machine(delta : float) -> void:
 			x_vel = Vector2.ZERO
 			y_vel = Vector2.ZERO
 			velocity = Vector2.ZERO
+			$Anim.play("bump")
 			#sprite_leveling(1)
 		sm.RUN_STOPPING:
 			pass
@@ -313,7 +353,7 @@ func movement(delta : float, acc_mult : float = 1, fr_mult : float = 1) -> void:
 				x_vel = lerp(x_vel, last_floor_normal.rotated(PI/2 * last_true_axis) * SLIDE_MAX_SPEED, 0.3)
 			else:
 				#$Anim.play("move")
-				x_vel.x = lerpf(x_vel.x, Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) * speed, ACCELERATION * acc_mult)
+				x_vel.x = lerpf(x_vel.x, Vector2( Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()), 0 ).normalized().x  * speed, ACCELERATION * acc_mult)
 				x_vel.y = 0
 				#x_vel = lerp(x_vel, last_floor_normal.rotated(PI/2 * last_true_axis) * speed, ACCELERATION * acc_mult)
 				
@@ -328,7 +368,7 @@ func movement(delta : float, acc_mult : float = 1, fr_mult : float = 1) -> void:
 			else:
 				#$Anim.play("move")
 				x_vel.y = 0
-				x_vel.x = lerpf(x_vel.x, Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) * speed, ACCELERATION * acc_mult)
+				x_vel.x = lerpf(x_vel.x, Vector2( Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()), 0 ).normalized().x * speed, ACCELERATION * acc_mult)
 				
 	else:
 		if state != sm.AIR:
@@ -353,7 +393,7 @@ func running() -> void:
 			is_running = true
 			if $Timers/TurningTimer.is_stopped():
 				speed = move_toward(speed, MAX_SPEED, 8)
-				if $Rotatable/Casts/DownCast.is_colliding() and (($Rotatable/Casts/RightCast.is_colliding() and last_true_axis == 1) or ($Rotatable/Casts/LeftCast.is_colliding() and last_true_axis == -1)):
+				if ( $Rotatable/Casts/DownCast0.is_colliding() or $Rotatable/Casts/DownCast1.is_colliding() ) and (($Rotatable/Casts/RightCast.is_colliding() and last_true_axis == 1) or ($Rotatable/Casts/LeftCast.is_colliding() and last_true_axis == -1)):
 					speed = NORMAL_SPEED
 					is_running = false
 					floor_max_angle = PI/4
@@ -386,7 +426,7 @@ func floor_attaching() -> void:
 		
 func floor_detaching() -> void:
 	if not(is_on_floor()):
-		if last_floor_angle > (3*PI)/4:
+		if last_floor_angle > deg_to_rad(135):
 			last_true_axis = -last_true_axis
 		state = sm.AIR
 		
@@ -405,7 +445,7 @@ func falling(delta : float, gravity_mult : float = 1, max_gravity_velocity : flo
 func jumping(delta : float) -> void:
 	if !$Timers/FirstJumpStateTimer.is_stopped() or !$Timers/SecondJumpStateTimer.is_stopped():
 		if is_running:
-			if last_floor_angle > deg_to_rad(80) and last_floor_angle < deg_to_rad(100):
+			if last_floor_angle > deg_to_rad(45) and last_floor_angle < deg_to_rad(135):
 				#y_vel = last_floor_normal * (JUMP_FORCE + 500)
 				if get_real_velocity().y < 40:
 					#y_vel = ( last_floor_normal * (JUMP_FORCE + 200)) + Vector2(0, -700)
@@ -425,14 +465,14 @@ func jumping(delta : float) -> void:
 		can_jump = false
 		
 func jump_start(delta : float) -> void:
-	if (Input.is_action_just_pressed("JUMP" + get_player_index())) or (!$Timers/JumpInputBuffer.is_stopped()):# and get_floor_angle() > PI/2):
+	if ( Input.is_action_just_pressed("JUMP" + get_player_index())) or (!$Timers/JumpInputBuffer.is_stopped() ) and is_sliding == false:# and get_floor_angle() > PI/2):
 		y_vel = Vector2.ZERO
 		is_on_grind_pipe = false
 		$Timers/JumpInputBuffer.stop()
 		$Timers/SlideDashTimer.stop()
 		$Timers/FloorStickBlockingTimer.start()
 		
-		if ( get_floor_angle() > deg_to_rad(80) ):
+		if ( get_floor_angle() > deg_to_rad(45) ) and is_sliding == false:
 			if x_vel.y < 0:
 				last_true_axis = -last_true_axis
 			else:
@@ -444,10 +484,12 @@ func jump_start(delta : float) -> void:
 			#if get_real_floor_angle() > 0 and velocity.y < 40:
 				#last_true_axis = -last_true_axis
 			#if get_real_floor_angle() < 0 and velocity.y > 40:
-		else:
+			
+		elif is_sliding == false:
 			$Timers/FirstJumpStateTimer.start(0.15)
-		$Timers/TurningTimer.stop()
-		state = sm.AIR
+		if is_sliding == false:
+			$Timers/TurningTimer.stop()
+			state = sm.AIR
 		
 func jump_input_buffering() -> void:
 	if Input.is_action_just_pressed("JUMP" + get_player_index()):
@@ -461,9 +503,12 @@ func jump_ceiling_blocker() -> void:
 		stop_jump_timers()
 		
 func slide_dash_start() -> void:
-	if Input.is_action_just_pressed("3ACTION" + get_player_index()) and is_running:
-		position += -get_floor_normal() * 20
-	if (Input.is_action_pressed("3ACTION" + get_player_index()) and is_running) or ($Rotatable/Casts/DownCast.is_colliding() and ($Rotatable/Casts/UpCast0.is_colliding() or $Rotatable/Casts/UpCast1.is_colliding()) and is_sliding) :
+	#if Input.is_action_just_pressed("3ACTION" + get_player_index()) and is_running:
+		#position += -get_floor_normal() * 20
+	#if (Input.is_action_pressed("3ACTION" + get_player_index()) and is_running) or ($Rotatable/Casts/DownCast.is_colliding() and ($Rotatable/Casts/UpCast0.is_colliding() or $Rotatable/Casts/UpCast1.is_colliding()) and is_sliding) :
+		#$Timers/SlideDashTimer.start()
+		#is_sliding = true
+	if (Input.is_action_pressed("3ACTION" + get_player_index()) and is_running) or is_in_slide_area == true:
 		$Timers/SlideDashTimer.start()
 		is_sliding = true
 		
@@ -471,31 +516,48 @@ func slide_dash() -> void:
 	if is_sliding:
 		floor_max_angle = PI
 		#$Rotatable/GrindArea.position = $Rotatable/GrindAreaPos1.position
-		$Sprite.scale.y = 2.35/2 # TEST
-		$Shape.scale = Vector2(0.5, 0.5)
+		$Sprite.scale.y = 1 # TEST
+		#$Shape.scale = Vector2(0.5, 0.5)
 		$Rotatable/EntityComponentSystem/CollisionShape.scale.y = 0.5
 	else:
 		#$Rotatable/GrindArea.position = $Rotatable/GrindAreaPos0.position
-		$Sprite.scale.y = 2.35 # TEST
-		$Shape.scale = Vector2.ONE
+		$Sprite.scale.y = 2 # TEST
+		#$Shape.scale = Vector2.ONE
 		$Rotatable/EntityComponentSystem/CollisionShape.scale.y = 1
 		
 func grinding() -> void:
 	if is_on_grind_pipe and is_running and !is_sliding and $Timers/TurningTimer.is_stopped() and is_on_floor() and Input.is_action_just_pressed("DOWN" + get_player_index()):
 		is_grinding = true
+		#modulate = Color.BLACK
 		position += -get_floor_normal() * 72
+		apply_floor_snap()
 		last_true_axis = -last_true_axis
 		is_grinding = false
+	#else:
+		#modulate = Color(0, 0, 0, 1)
+		
+func attack() -> void:
+	if Input.is_action_just_pressed("1ACTION" + get_player_index()) and $Timers/AttackTimers/AttackTimer.time_left < $Timers/AttackTimers/AttackTimer.wait_time/2:
+		#$Rotatable/AttackAreas/AttackArea/Shape.disabled = false
+		$Rotatable/AttackAreas/AttackArea.monitoring = true
+		$Rotatable/AttackAreas/AttackArea/CollisionShape.debug_color = Color(1, 0, 0, 0.3)
+		$Timers/AttackTimers/AttackTimer.start()
 		
 func sprite_leveling(weight : float = 0.2) -> void:
 	#if !is_releasing:
-	$Sprite.rotation = lerp_angle($Sprite.rotation, get_real_floor_angle(), weight)
+	#if $Timers/TurningTimer.is_stopped():
+	if $Timers/TurningTimer.is_stopped():
+		$Sprite.rotation = lerp_angle($Sprite.rotation, get_real_floor_angle(), weight)
 	
 func rotatable_leveling() -> void:
-	$Rotatable.rotation = get_real_floor_angle()
+	if $Timers/TurningTimer.is_stopped():
+		$Rotatable.rotation = get_real_floor_angle()
 	
 func sprite_rotation_reset() -> void:
 	$Sprite.rotation = lerp_angle($Sprite.rotation, 0.0, 0.1)
+	
+func rotatable_rotation_reset() -> void:
+	$Rotatable.rotation = 0
 		
 func get_real_wall_angle( rad_to_deg : bool = false) -> float:
 	if is_on_wall():
@@ -548,6 +610,16 @@ func get_player_index() -> String:
 	
 #func get_camera() -> PhantomCamera2D:
 	#return $Camera
+	
+func disable_slide_area_blockers_collision() -> void:
+	$Rotatable/Casts/RightCast.position = Vector2.ZERO
+	$Rotatable/Casts/LeftCast.position = Vector2.ZERO
+	collision_mask -= 128
+	
+func enable_slide_area_blockers_collision() -> void:
+	$Rotatable/Casts/RightCast.position = $Rotatable/Casts/LeftAndRightRaysNormalPos.position
+	$Rotatable/Casts/LeftCast.position = $Rotatable/Casts/LeftAndRightRaysNormalPos.position
+	collision_mask += 128
 		
 func _on_run_stop_timer_timeout() -> void: # $Timers/RunStopTimer
 	if !is_running:
@@ -571,6 +643,34 @@ func _on_grind_area_body_exited(body):
 	if body is GrindPipe:
 		is_on_grind_pipe = false
 		
+func properties_update() -> void:
+	state = sm.GROUND
+	speed = NORMAL_SPEED
+	last_x_vel_y = 0.0
+	last_floor_angle = 0.0
+	last_real_floor_angle = 0.0
+	last_wall_angle = 0.0
+	last_real_wall_angle = 0.0
+	last_floor_normal = Vector2.ZERO
+	last_wall_normal = Vector2.ZERO
+	x_vel = Vector2.ZERO
+	y_vel = Vector2.ZERO
+
+	is_running = false
+	is_running_fast = false
+	is_attacking = false
+	is_dead = false
+	is_bumping = false
+	is_sliding = false
+	is_releasing = false
+	is_releasing_vertical = false
+#var is_releasing_horizontal : bool
+	is_jumping = false
+	is_axis_changing_delayed = false
+	is_on_grind_pipe = false
+	is_grinding = false
+	can_jump = true
+		
 # test
 
 func character_swapped_indicator():
@@ -580,13 +680,27 @@ func character_swapped_indicator():
 		$Sprite.self_modulate = Color(1, 0, 0, 1)
 
 func _on_turning_timer_timeout():
-	if speed > MAX_SPEED - 300:
-		speed = MAX_SPEED - 300
+	pass
 		
 func _on_slide_dash_timer_timeout():
 	is_sliding = false
 
 func _on_entity_component_system_area_entered(area):
-	if area is Checkpoint:
-		last_save_point_position = area.global_position
-		area.set_deferred("monitoring", false)
+	pass
+	#if area is Checkpoint:
+		#last_save_point_position = area.global_position
+		#area.set_deferred("monitorable", false)
+		#print("checkpoint" + " " + str(last_save_point_position))
+
+func _on_injured():
+	component_system.hit_points -= 1
+	if component_system.hit_points == 0:
+		position = last_checkpoint_position
+		component_system.hit_points = 1
+		properties_update()
+		g.player_respawned.emit()
+
+func _on_attack_timer_timeout():
+	#$Rotatable/AttackAreas/AttackArea/Shape.disabled = true
+	$Rotatable/AttackAreas/AttackArea.monitoring = false
+	$Rotatable/AttackAreas/AttackArea/CollisionShape.debug_color = Color(1, 0, 0, 0)

@@ -9,12 +9,12 @@
 [ext_resource type="Script" path="res://addons/rmsmartshape/normal_range.gd" id="6_sfw0a"]
 [ext_resource type="Script" path="res://addons/rmsmartshape/materials/edge_material_metadata.gd" id="7_ljene"]
 
-[sub_resource type="Resource" id="Resource_ki68k"]
+[sub_resource type="Resource" id="Resource_6mxvv"]
 script = ExtResource("3_k5x42")
 _points = {}
 _point_order = Array[int]([])
 _constraints = {}
-_next_key = 33
+_next_key = 45
 _material_overrides = {}
 
 [sub_resource type="Resource" id="Resource_couey"]
@@ -60,14 +60,14 @@ fill_mesh_offset = 0.0
 render_offset = 0.0
 
 [node name="GrindPipe" type="StaticBody2D"]
+collision_mask = 0
 script = ExtResource("1_r72hc")
 
 [node name="Shape" type="Node2D" parent="."]
 script = ExtResource("2_bfqfb")
-_points = SubResource("Resource_ki68k")
+_points = SubResource("Resource_6mxvv")
 shape_material = SubResource("Resource_xjk2j")
 tessellation_stages = 2
-tessellation_tolerence = 6.0
 collision_offset = 1.0
 collision_polygon_node_path = NodePath("../Polygon")
 

@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://u58wxgaidhh5"]
+
+[ext_resource type="Script" path="res://scripts/level_parts/slide_area.gd" id="1_cmn0h"]
+
+[node name="SlideArea" type="Area2D"]
+collision_layer = 0
+collision_mask = 6
+script = ExtResource("1_cmn0h")
+
+[node name="Polygon" type="CollisionPolygon2D" parent="."]
+
+[node name="Blocker0" type="AnimatableBody2D" parent="."]
+collision_layer = 128
+collision_mask = 0
+
+[node name="Col0" type="CollisionShape2D" parent="Blocker0"]
+
+[node name="Blocker1" type="AnimatableBody2D" parent="."]
+collision_layer = 128
+collision_mask = 0
+
+[node name="Col1" type="CollisionShape2D" parent="Blocker1"]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

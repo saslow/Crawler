@@ -1,0 +1,55 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqmh4t4ov7mja"]
+
+[ext_resource type="Script" path="res://scripts/enemies/enemy_template.gd" id="1_40kip"]
+[ext_resource type="Script" path="res://scripts/components/entity_component_system.gd" id="2_yudqy"]
+[ext_resource type="PackedScene" uid="uid://w07m35qgysc0" path="res://scenes/components/entity_component_system.tscn" id="3_fo20p"]
+
+[node name="EnemyTemplate" type="CharacterBody2D" node_paths=PackedStringArray("component_system", "damage_hitbox_component")]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_40kip")
+component_system = NodePath("Rotatable/EntityComponentSystem")
+damage_hitbox_component = NodePath("Rotatable/DamageHitboxComponent")
+
+[node name="Rotatable" type="Node2D" parent="."]
+
+[node name="EntityComponentSystem" type="Area2D" parent="Rotatable"]
+collision_layer = 32
+collision_mask = 6
+script = ExtResource("2_yudqy")
+
+[node name="Shape" type="CollisionShape2D" parent="Rotatable/EntityComponentSystem"]
+self_modulate = Color(1, 1, 1, 0.529412)
+debug_color = Color(0.941176, 0, 0.607843, 0.227451)
+
+[node name="Polygon" type="CollisionPolygon2D" parent="Rotatable/EntityComponentSystem"]
+
+[node name="DamageHitboxComponent" parent="Rotatable" instance=ExtResource("3_fo20p")]
+position = Vector2(4216, -3360)
+collision_layer = 32
+collision_mask = 6
+entity_type = 1
+
+[node name="CollisionShape" parent="Rotatable/DamageHitboxComponent" index="0"]
+position = Vector2(-4216, 3360)
+debug_color = Color(1, 0.00784314, 0.0745098, 0.419608)
+
+[node name="CollisionPolygon" parent="Rotatable/DamageHitboxComponent" index="1"]
+position = Vector2(-4211, 3362)
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="Label" type="Label" parent="."]
+visible = false
+self_modulate = Color(1, 0, 0, 1)
+offset_left = -368.0
+offset_top = -232.0
+offset_right = 272.0
+offset_bottom = -89.0
+text = "СКОПЫТИЛСЯ СДОХ ПОМЕР ОТПРАВИЛСЯ В МИР ИНОЙ УМЕР СМЕРТЬ НАСТИГЛА ЕГО ВСПЛЫЛ БРЮХОМ ВВЕРХ ПОТЕРЯН ПОДОХ АННИГИЛИРОВАЛСЯ "
+autowrap_mode = 2
+
+[connection signal="injured" from="." to="." method="_on_injured"]
+
+[editable path="Rotatable/DamageHitboxComponent"]
