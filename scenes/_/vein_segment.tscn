@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/_/vein_segment.gd" id="1_ngo62"]
 [ext_resource type="Shape2D" uid="uid://gkd516sblst2" path="res://materials/shapes/vein_segment_shape.tres" id="2_n18lx"]
-[ext_resource type="Texture2D" uid="uid://cw3o53ht1pbff" path="res://sprites/_/segment.png" id="3_n23db"]
+[ext_resource type="Texture2D" uid="uid://cw3o53ht1pbff" path="res://sprites/_/seg.png" id="3_n23db"]
 [ext_resource type="Texture2D" uid="uid://hjvkrstx3dn" path="res://sprites/_/segment_outline.png" id="4_asm3t"]
 
 [node name="0" type="PathFollow2D"]

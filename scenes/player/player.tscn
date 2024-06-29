@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://dhp71vl6av8ov"]
+[gd_scene load_steps=52 format=3 uid="uid://dhp71vl6av8ov"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_wfvhb"]
 [ext_resource type="Texture2D" uid="uid://bhdqe7q3s6pvs" path="res://sprites/entities/boy/boy_bump/boy bump.0001.png" id="2_4i5rq"]
@@ -26,7 +26,6 @@
 [ext_resource type="Texture2D" uid="uid://b2irebwkno5vn" path="res://sprites/entities/boy/boy_walk/boy walk.0005.png" id="35_ytq4v"]
 [ext_resource type="Texture2D" uid="uid://bieyf361gtd48" path="res://sprites/entities/boy/boy_walk/boy walk.0006.png" id="36_wxy6f"]
 [ext_resource type="Texture2D" uid="uid://bd00r4x362d7k" path="res://sprites/entities/boy/boy_walk/boy walk.0007.png" id="37_lfwn3"]
-[ext_resource type="Texture2D" uid="uid://bs3y1wj43ig81" path="res://sprites/Peppino/machslideend_05.png" id="38_6lafu"]
 [ext_resource type="Texture2D" uid="uid://p0ib21j42rnx" path="res://sprites/entities/boy/boy_walk/boy walk.0008.png" id="38_kc3mu"]
 [ext_resource type="Texture2D" uid="uid://b6wlnvj82fuui" path="res://sprites/entities/boy/boy_walk/boy walk.0009.png" id="39_inccq"]
 [ext_resource type="Texture2D" uid="uid://hhwhlxu28xby" path="res://sprites/entities/boy/boy_walk/boy walk.0010.png" id="40_vwrdl"]
@@ -38,18 +37,11 @@
 [ext_resource type="Texture2D" uid="uid://1hr0kwnvnv87" path="res://sprites/entities/boy/boy_bump/boy bump.0005.png" id="47_44hlb"]
 [ext_resource type="Texture2D" uid="uid://jxyupvcbcn4e" path="res://sprites/entities/boy/boy_run/boy run.0004.png" id="47_qxxjn"]
 [ext_resource type="Texture2D" uid="uid://beaf7sucgeu5d" path="res://sprites/entities/boy/boy_bump/boy bump.0006.png" id="48_eclcl"]
-[ext_resource type="Texture2D" uid="uid://bfe1bnh4vxaow" path="res://sprites/Peppino/machslidestart_00.png" id="51_n4iip"]
-[ext_resource type="Texture2D" uid="uid://ci01dfxaxl4em" path="res://sprites/Peppino/machslidestart_01.png" id="52_h7cy4"]
-[ext_resource type="Texture2D" uid="uid://bbu861qoayyry" path="res://sprites/Peppino/machslidestart_02.png" id="53_qjr2q"]
-[ext_resource type="Texture2D" uid="uid://cg58au2gxxmd8" path="res://sprites/Peppino/machslidestart_03.png" id="54_1oywq"]
-[ext_resource type="Texture2D" uid="uid://bf4xb4oh1ufps" path="res://sprites/Peppino/machslidestart_04.png" id="55_a3t2u"]
-[ext_resource type="Texture2D" uid="uid://duijwjij4xhcx" path="res://sprites/Peppino/machslidestart_05.png" id="56_j0fji"]
-[ext_resource type="Texture2D" uid="uid://d36whevqw4rtv" path="res://sprites/Peppino/machslidestart_06.png" id="57_j8uu6"]
-[ext_resource type="Texture2D" uid="uid://dj82ylhkyjthg" path="res://sprites/Peppino/machslide_00.png" id="58_cqqdx"]
-[ext_resource type="Texture2D" uid="uid://dxrjeibj7occj" path="res://sprites/Peppino/machslide_01.png" id="59_gxjik"]
 [ext_resource type="Shape2D" uid="uid://bygddctap0ysj" path="res://materials/shapes/player_normal_collision_shape.tres" id="59_syb2e"]
-[ext_resource type="Texture2D" uid="uid://4wcb2da7kx8w" path="res://sprites/Peppino/machslide_02.png" id="60_202wg"]
 [ext_resource type="PackedScene" uid="uid://w07m35qgysc0" path="res://scenes/components/entity_component_system.tscn" id="61_lv68y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xiuep"]
+size = Vector2(122, 12)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o1n1h"]
 radius = 104.0
@@ -157,18 +149,6 @@ resource_name = "run_to_idle"
 length = 0.916675
 loop_mode = 1
 step = 0.0833333
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [ExtResource("38_6lafu"), ExtResource("51_n4iip"), ExtResource("52_h7cy4"), ExtResource("53_qjr2q"), ExtResource("54_1oywq"), ExtResource("55_a3t2u"), ExtResource("56_j0fji"), ExtResource("57_j8uu6"), ExtResource("58_cqqdx"), ExtResource("59_gxjik"), ExtResource("60_202wg")]
-}
 
 [sub_resource type="Animation" id="Animation_xdvwl"]
 resource_name = "walk"
@@ -262,8 +242,16 @@ text = "TEST"
 [node name="Sprite" type="Sprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(2, 2)
-texture = ExtResource("2_jehxh")
-offset = Vector2(12, -30)
+texture = ExtResource("2_4i5rq")
+offset = Vector2(25, -28)
+
+[node name="CrushingArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CrushingArea"]
+position = Vector2(0, 42)
+shape = SubResource("RectangleShape2D_xiuep")
 
 [node name="Rotatable" type="Node2D" parent="."]
 
@@ -356,6 +344,9 @@ position = Vector2(0, -27.75)
 shape = SubResource("RectangleShape2D_jkgb2")
 debug_color = Color(0.858824, 0, 0.878431, 0.419608)
 
+[node name="CollisionPolygon" parent="Rotatable/EntityComponentSystem" index="1"]
+scale = Vector2(0.971778, 0.991193)
+
 [node name="GrindAreaPos0" type="Node2D" parent="Rotatable"]
 position = Vector2(0, 40)
 
@@ -435,6 +426,7 @@ one_shot = true
 process_callback = 0
 wait_time = 0.07
 one_shot = true
+autostart = true
 
 [node name="SlideDashTimer" type="Timer" parent="Timers"]
 editor_description = "used
@@ -450,6 +442,7 @@ wait_time = 0.2
 one_shot = true
 
 [connection signal="injured" from="." to="." method="_on_injured"]
+[connection signal="area_entered" from="CrushingArea" to="." method="_on_crushing_area_area_entered"]
 [connection signal="area_entered" from="Rotatable/EntityComponentSystem" to="." method="_on_entity_component_system_area_entered"]
 [connection signal="body_entered" from="Rotatable/GrindArea" to="." method="_on_grind_area_body_entered"]
 [connection signal="body_exited" from="Rotatable/GrindArea" to="." method="_on_grind_area_body_exited"]

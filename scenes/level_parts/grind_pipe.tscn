@@ -69,6 +69,6 @@ _points = SubResource("Resource_6mxvv")
 shape_material = SubResource("Resource_xjk2j")
 tessellation_stages = 2
 collision_offset = 1.0
-collision_polygon_node_path = NodePath("../Polygon")
+collision_polygon_node_path = NodePath("../CollisionPolygon2D")
 
-[node name="Polygon" type="CollisionPolygon2D" parent="."]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]

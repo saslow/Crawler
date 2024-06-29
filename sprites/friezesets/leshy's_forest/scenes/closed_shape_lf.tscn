@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://cdu74rbej2g2q"]
+
+[ext_resource type="Script" path="res://addons/rmsmartshape/shapes/shape.gd" id="1_fqd5q"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/shapes/point_array.gd" id="2_fx2rw"]
+[ext_resource type="Resource" uid="uid://jwvwqbnyerjo" path="res://sprites/friezesets/leshy's_forest/leshy's_forest_friezeset0.tres" id="3_8b0bm"]
+
+[sub_resource type="Resource" id="Resource_a00nl"]
+script = ExtResource("2_fx2rw")
+_points = {}
+_point_order = Array[int]([])
+_constraints = {}
+_next_key = 0
+_material_overrides = {}
+
+[node name="ClosedShapeLF" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_fqd5q")
+_points = SubResource("Resource_a00nl")
+shape_material = ExtResource("3_8b0bm")

@@ -1,4 +1,4 @@
-extends CharacterBody2D
+xtends CharacterBody2D
 
 @onready var player_area2D = %PlayerArea2D
 @onready var player_sprite: Sprite2D = %PlayerSprite

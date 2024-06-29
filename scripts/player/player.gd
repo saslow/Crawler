@@ -71,7 +71,7 @@ var was_running : bool = false
 const NORMAL_SPEED : int = 700
 const SLIDE_MAX_SPEED  : int = 1000
 const MAX_SPEED : int = 1400
-const JUMP_FORCE : int = 650
+const JUMP_FORCE : int = 750
 const ACCELERATION : float = 0.3 # 0 - 1
 const FRICTION : float = 0.1 # 0 - 1
 const NORMAL_LEFT_AND_RIGHT_RAYS_LENGHT : int = 45
@@ -108,12 +108,11 @@ enum characters_IDs{
 
 func _ready() -> void:
 	#Engine.time_scale = 0.1
+	g.background_level_changed.connect(_on_background_level_changed)
 	last_checkpoint_position = position
 	
 func _process(delta: float) -> void:
 	#$Label.text = str($Casts/XVel.get_collision_point().distance_to(position))
-	if Input.is_action_just_pressed("JUST_TEST_BUTTON"):
-		g.another_character.global_position = g.current_character.global_position
 
 	character_swapped_indicator()
 	
@@ -376,7 +375,6 @@ func movement(delta : float, acc_mult : float = 1, fr_mult : float = 1) -> void:
 				x_vel = lerp(x_vel, Vector2.ZERO, FRICTION * fr_mult / 2)
 			else:
 				x_vel = lerp(x_vel, Vector2.ZERO, FRICTION * fr_mult)
-				x_vel.y = 0
 
 		else:
 			if is_running:
@@ -452,7 +450,7 @@ func jumping(delta : float) -> void:
 					y_vel = ( last_floor_normal * (JUMP_FORCE)) + Vector2(0, -700)
 				else:
 					#y_vel = ( last_floor_normal * (JUMP_FORCE + 200)) + Vector2(0, 500)
-					y_vel = ( last_floor_normal * (JUMP_FORCE)) + Vector2(0, 500)
+					y_vel = ( last_floor_normal * (JUMP_FORCE)) + Vector2(0, 700)
 			else:
 				#y_vel = (last_floor_normal * (JUMP_FORCE + 500))
 				y_vel = (last_floor_normal * (JUMP_FORCE))
@@ -546,12 +544,10 @@ func attack() -> void:
 func sprite_leveling(weight : float = 0.2) -> void:
 	#if !is_releasing:
 	#if $Timers/TurningTimer.is_stopped():
-	if $Timers/TurningTimer.is_stopped():
-		$Sprite.rotation = lerp_angle($Sprite.rotation, get_real_floor_angle(), weight)
+	$Sprite.rotation = lerp_angle($Sprite.rotation, get_real_floor_angle(), weight)
 	
 func rotatable_leveling() -> void:
-	if $Timers/TurningTimer.is_stopped():
-		$Rotatable.rotation = get_real_floor_angle()
+	$Rotatable.rotation = get_real_floor_angle()
 	
 func sprite_rotation_reset() -> void:
 	$Sprite.rotation = lerp_angle($Sprite.rotation, 0.0, 0.1)
@@ -704,3 +700,23 @@ func _on_attack_timer_timeout():
 	#$Rotatable/AttackAreas/AttackArea/Shape.disabled = true
 	$Rotatable/AttackAreas/AttackArea.monitoring = false
 	$Rotatable/AttackAreas/AttackArea/CollisionShape.debug_color = Color(1, 0, 0, 0)
+
+func _on_crushing_area_area_entered(area):
+	if (area.name == "CrushArea") and (area.get_parent().is_killed == false) and (velocity.y > -250):
+		area.get_parent().injured.emit()
+		state = sm.AIR
+		if is_on_floor():
+			$Timers/FloorStickBlockingTimer.start()
+		y_vel.y = -1500
+		
+func _on_background_level_changed(new_bg_level : Vector2) -> void:
+	if new_bg_level == Vector2(1, 0.9):
+		g.current_level.camera.zoom = Vector2.ONE
+		global_position = $"../../Other/ParallaxBackground/ParallaxLayer/LevelParts/Polygon2D".global_position * 0.5
+		reparent($"../../Other/ParallaxBackground/ParallaxLayer/Players")
+	if new_bg_level == Vector2.ONE:
+		g.current_level.camera.zoom = Vector2(0.5, 0.5)
+		global_position = $"../../../../Polygon2D".global_position
+		reparent($"../../../../../Players")
+		scale = Vector2.ONE
+		

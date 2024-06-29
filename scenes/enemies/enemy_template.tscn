@@ -37,6 +37,14 @@ debug_color = Color(1, 0.00784314, 0.0745098, 0.419608)
 [node name="CollisionPolygon" parent="Rotatable/DamageHitboxComponent" index="1"]
 position = Vector2(-4211, 3362)
 
+[node name="CrushArea" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="Shape" type="CollisionShape2D" parent="CrushArea"]
+
+[node name="Polygon" type="CollisionPolygon2D" parent="CrushArea"]
+
 [node name="Shape" type="CollisionShape2D" parent="."]
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 

@@ -18,6 +18,8 @@ enum behaviours{
 func _ready():
 	#g.player_respawned.connect(_on_player_respawned)
 	start_progress = progress
+	$EnemyTemplate/WingsAnim.play("flying")
+	$EnemyTemplate/BodyAnim.play("flying")
 
 func _physics_process(delta):
 	match behaviour:
@@ -40,3 +42,5 @@ func _physics_process(delta):
 				
 func _on_player_respawned():
 	progress = start_progress
+	$EnemyTemplate/WingsAnim.play("flying")
+	$EnemyTemplate/BodyAnim.play("flying")

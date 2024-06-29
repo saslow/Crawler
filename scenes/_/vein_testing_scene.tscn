@@ -78,6 +78,8 @@ position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_kgmhu")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+callback_mode_process = 0
+callback_mode_method = 1
 libraries = {
 "": SubResource("AnimationLibrary_jwvfn")
 }
@@ -231,7 +233,7 @@ position = Vector2(0.0001448, 40)
 shape = SubResource("CircleShape2D_1ulnk")
 
 [node name="ReleaserArea2" parent="Path2D/40" instance=ExtResource("4_jsanv")]
-position = Vector2(192, 0)
+position = Vector2(144, -1)
 
 [node name="CollisionEnd" type="CharacterBody2D" parent="Path2D/40"]
 position = Vector2(192, 0)
@@ -239,7 +241,7 @@ rotation = 3.14159
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Path2D/40/CollisionEnd"]
 position = Vector2(192, -1.71661e-05)
-polygon = PackedVector2Array(40, -35, -192, 1.67852e-05, 40, 35)
+polygon = PackedVector2Array(40, -35, -144, 0.000138855, 40, 35)
 
 [node name="PathEnd" type="PathFollow2D" parent="Path2D"]
 progress = 6600.0

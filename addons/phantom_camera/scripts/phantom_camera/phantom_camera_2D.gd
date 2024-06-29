@@ -790,7 +790,6 @@ func get_tween_ease() -> int:
 func is_active() -> bool:
 	return Properties.is_active
 
-
 ## Enables or disables the Tween on Load.
 func set_tween_on_load(value: bool) -> void:
 	Properties.tween_onload = value

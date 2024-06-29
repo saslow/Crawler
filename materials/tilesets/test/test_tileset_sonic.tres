@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" load_steps=4 format=3 uid="uid://0bkv1680807"]
 
-[ext_resource type="Texture2D" uid="uid://drka66kbq2s1q" path="res://sprites/tilesets/tileset_test_sonic.png" id="1_7ph8y"]
+[ext_resource type="Texture2D" uid="uid://drka66kbq2s1q" path="res://sprites/friezesets/tileset_test_sonic.png" id="1_7ph8y"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_pj2r6"]
 

@@ -12,6 +12,7 @@ const MAX_FALLING_VEL_Y : int = 5000
 const MIN_FALLING_VEL_Y : int = -60000
 
 signal player_respawned()
+signal background_level_changed(new_bg_level_scale : Vector2)
 
 #func _set_player_input_swap(value : bool) -> void:
 	#if value == false:
@@ -49,7 +50,10 @@ func _physics_process(delta):
 		##change_current_level("res://scenes/levels/level_1.tscn")
 	#if Input.is_action_just_pressed("SWAP"):
 		#player_character_swapped = !player_character_swapped
-	pass
+	if Input.is_action_just_pressed("SS2D_SHAPE_POINTS_REFRESH"):
+		background_level_changed.emit(Vector2(1, 0.9))
+	if Input.is_action_just_pressed("JUST_TEST_BUTTON"):
+		background_level_changed.emit(Vector2(1, 1))
 		
 func change_current_level(path : String) -> void:
 	get_tree().change_scene_to_file(path)

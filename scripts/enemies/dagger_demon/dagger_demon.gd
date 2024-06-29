@@ -15,7 +15,7 @@ extends Node2D
 var vel_x : Vector2
 var vel_y : Vector2
 
-var start_position : Vector2
+#var start_position : Vector2
 var start_direction : int
 
 enum sm{

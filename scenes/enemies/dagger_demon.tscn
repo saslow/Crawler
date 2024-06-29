@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cj40q87hg8j0k"]
+[gd_scene load_steps=9 format=3 uid="uid://cj40q87hg8j0k"]
 
 [ext_resource type="PackedScene" uid="uid://cqmh4t4ov7mja" path="res://scenes/enemies/enemy_template.tscn" id="1_2yayb"]
 [ext_resource type="Script" path="res://scripts/enemies/dagger_demon/dagger_demon.gd" id="2_gawhf"]
@@ -11,6 +11,12 @@ size = Vector2(16, 16)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_3ypm5"]
 b = Vector2(0, 51)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nvjmh"]
+size = Vector2(80, 56)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d5g3v"]
+size = Vector2(80, 28)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yo1lo"]
 radius = 40.0
@@ -40,7 +46,7 @@ shape = SubResource("RectangleShape2D_n7s0a")
 
 [node name="CollisionPolygon" parent="EnemyTemplate/Rotatable/DamageHitboxComponent" index="1"]
 position = Vector2(5, 2)
-polygon = PackedVector2Array(-5, -42, -29, -34, -37, -26, -45, -2, -37, 22, -29, 30, -5, 38, 19, 30, 27, 22, 35, -2, 27, -26, 19, -34)
+polygon = PackedVector2Array(-5, -74, -37, -74, -45, -2, -37, 22, -29, 30, -5, 38, 19, 30, 27, 22, 35, -2, 27, -74)
 
 [node name="LeftEdgeArea" type="Area2D" parent="EnemyTemplate/Rotatable" index="2"]
 position = Vector2(-96, 0)
@@ -58,7 +64,18 @@ collision_layer = 0
 position = Vector2(-39, 0)
 shape = SubResource("SegmentShape2D_3ypm5")
 
-[node name="Shape" parent="EnemyTemplate" index="1"]
+[node name="CrushArea" parent="EnemyTemplate" index="1"]
+position = Vector2(0, -96)
+
+[node name="Shape" parent="EnemyTemplate/CrushArea" index="0"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_nvjmh")
+
+[node name="Shape2" type="CollisionShape2D" parent="EnemyTemplate/CrushArea" index="1"]
+position = Vector2(0, 10)
+shape = SubResource("RectangleShape2D_d5g3v")
+
+[node name="Shape" parent="EnemyTemplate" index="2"]
 shape = SubResource("CircleShape2D_yo1lo")
 
 [node name="Label2" type="Label" parent="EnemyTemplate"]
