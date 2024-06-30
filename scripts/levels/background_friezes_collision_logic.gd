@@ -1,21 +1,21 @@
 extends Node2D
 
-var scale_of_friezes : Vector2
+var scale_of_friezes : int
 
 func _ready():
 	g.background_level_changed.connect(_on_background_level_changed)
 	if get_parent() is Level:
 		print("level")
-		scale_of_friezes = Vector2.ONE
+		scale_of_friezes = 0
 		enable_bodies_collision()
 	elif get_parent() is ParallaxLayer:
-		scale_of_friezes = get_parent().motion_scale
+		scale_of_friezes = 1
 		disable_bodies_collision()
 	if g.background_level_changed.is_connected(_on_background_level_changed):
-		print("yaeddggs")
+		print("а вы знали что пельмени придумали удмурты?")
 	
-func _on_background_level_changed(new_level_scale : Vector2) -> void:
-	if new_level_scale == scale_of_friezes:
+func _on_background_level_changed(new_level : int) -> void:
+	if new_level == scale_of_friezes:
 		enable_bodies_collision()
 	else:
 		disable_bodies_collision()

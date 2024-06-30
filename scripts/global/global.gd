@@ -10,9 +10,11 @@ var another_character : Player
 const GRAVITY = 60
 const MAX_FALLING_VEL_Y : int = 5000
 const MIN_FALLING_VEL_Y : int = -60000
+var current_bg_zoom : Vector2 = Vector2.ONE
+var current_bg_level : int = 0
 
 signal player_respawned()
-signal background_level_changed(new_bg_level_scale : Vector2)
+signal background_level_changed(new_bg_level : int)
 
 #func _set_player_input_swap(value : bool) -> void:
 	#if value == false:
@@ -39,6 +41,8 @@ signal background_level_changed(new_bg_level_scale : Vector2)
 	#player_character_swapped = value
 	
 func _ready():
+	background_level_changed.connect(_on_background_level_changed)
+	#background_level_changed.connect(_on_background_level_changed)
 	#change_current_level("res://scenes/levels/level_0.tscn")
 	#current_character = player_first
 	#another_character = player_second
@@ -50,10 +54,10 @@ func _physics_process(delta):
 		##change_current_level("res://scenes/levels/level_1.tscn")
 	#if Input.is_action_just_pressed("SWAP"):
 		#player_character_swapped = !player_character_swapped
-	if Input.is_action_just_pressed("SS2D_SHAPE_POINTS_REFRESH"):
-		background_level_changed.emit(Vector2(1, 0.9))
-	if Input.is_action_just_pressed("JUST_TEST_BUTTON"):
-		background_level_changed.emit(Vector2(1, 1))
+	pass
 		
 func change_current_level(path : String) -> void:
 	get_tree().change_scene_to_file(path)
+	
+func _on_background_level_changed(value : int) -> void:
+	current_bg_level = value

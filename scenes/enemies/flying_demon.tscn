@@ -98,7 +98,7 @@ offset = Vector2(-2, 0)
 [node name="Body" type="Sprite2D" parent="EnemyTemplate"]
 texture_filter = 1
 position = Vector2(0, -64)
-scale = Vector2(2.2, 1.9)
+scale = Vector2(2, 2)
 texture = ExtResource("5_7vihg")
 offset = Vector2(-4, 32)
 

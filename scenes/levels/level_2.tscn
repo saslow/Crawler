@@ -1,9 +1,8 @@
-[gd_scene load_steps=49 format=3 uid="uid://ci6yk08y0n2um"]
+[gd_scene load_steps=48 format=3 uid="uid://ci6yk08y0n2um"]
 
 [ext_resource type="Script" path="res://scripts/levels/_level_template.gd" id="1_e0oai"]
+[ext_resource type="Script" path="res://scripts/_/global_camera.gd" id="2_18r8q"]
 [ext_resource type="Environment" uid="uid://ceawqhyu41n60" path="res://materials/world_environments/normal.tres" id="2_b7xua"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2D.gd" id="3_4hmb6"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="5_vil2b"]
 [ext_resource type="Script" path="res://addons/rmsmartshape/shapes/shape.gd" id="6_hsaap"]
 [ext_resource type="Script" path="res://addons/rmsmartshape/materials/edge_material.gd" id="7_i7auh"]
 [ext_resource type="Script" path="res://addons/rmsmartshape/vertex_properties.gd" id="7_ugjib"]
@@ -21,7 +20,7 @@
 [ext_resource type="Script" path="res://addons/rmsmartshape/shapes/shape_render.gd" id="18_4rrvs"]
 [ext_resource type="PackedScene" uid="uid://7sgec55gmorl" path="res://scenes/level_parts/releaser.tscn" id="18_k7n1q"]
 
-[sub_resource type="Resource" id="Resource_n2l1f"]
+[sub_resource type="Resource" id="Resource_rp547"]
 script = ExtResource("7_ugjib")
 texture_idx = 8
 flip = false
@@ -32,9 +31,9 @@ script = ExtResource("8_bo0dg")
 position = Vector2(-528, 16)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
-properties = SubResource("Resource_n2l1f")
+properties = SubResource("Resource_rp547")
 
-[sub_resource type="Resource" id="Resource_4m4og"]
+[sub_resource type="Resource" id="Resource_y1i5b"]
 script = ExtResource("7_ugjib")
 texture_idx = 18
 flip = false
@@ -45,9 +44,9 @@ script = ExtResource("8_bo0dg")
 position = Vector2(1464, -56)
 point_in = Vector2(-376, 272)
 point_out = Vector2(384, -272)
-properties = SubResource("Resource_4m4og")
+properties = SubResource("Resource_y1i5b")
 
-[sub_resource type="Resource" id="Resource_4nlq8"]
+[sub_resource type="Resource" id="Resource_2wqm3"]
 script = ExtResource("7_ugjib")
 texture_idx = -5
 flip = false
@@ -58,9 +57,9 @@ script = ExtResource("8_bo0dg")
 position = Vector2(1832, -992)
 point_in = Vector2(-312, 328)
 point_out = Vector2(320, -320)
-properties = SubResource("Resource_4nlq8")
+properties = SubResource("Resource_2wqm3")
 
-[sub_resource type="Resource" id="Resource_evbrd"]
+[sub_resource type="Resource" id="Resource_x4q27"]
 script = ExtResource("7_ugjib")
 texture_idx = 3
 flip = false
@@ -71,9 +70,9 @@ script = ExtResource("8_bo0dg")
 position = Vector2(3536, -1264)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
-properties = SubResource("Resource_evbrd")
+properties = SubResource("Resource_x4q27")
 
-[sub_resource type="Resource" id="Resource_tdhmg"]
+[sub_resource type="Resource" id="Resource_snude"]
 script = ExtResource("7_ugjib")
 texture_idx = -3
 flip = false
@@ -84,9 +83,9 @@ script = ExtResource("8_bo0dg")
 position = Vector2(3520, -672)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
-properties = SubResource("Resource_tdhmg")
+properties = SubResource("Resource_snude")
 
-[sub_resource type="Resource" id="Resource_640kl"]
+[sub_resource type="Resource" id="Resource_1nlu7"]
 script = ExtResource("7_ugjib")
 texture_idx = 8
 flip = false
@@ -97,9 +96,9 @@ script = ExtResource("8_bo0dg")
 position = Vector2(5344, -672)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
-properties = SubResource("Resource_640kl")
+properties = SubResource("Resource_1nlu7")
 
-[sub_resource type="Resource" id="Resource_vs2ct"]
+[sub_resource type="Resource" id="Resource_jptmd"]
 script = ExtResource("7_ugjib")
 texture_idx = -12
 flip = false
@@ -110,9 +109,9 @@ script = ExtResource("8_bo0dg")
 position = Vector2(5920, 656)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
-properties = SubResource("Resource_vs2ct")
+properties = SubResource("Resource_jptmd")
 
-[sub_resource type="Resource" id="Resource_1qh8g"]
+[sub_resource type="Resource" id="Resource_j31xm"]
 script = ExtResource("7_ugjib")
 texture_idx = 0
 flip = false
@@ -123,9 +122,9 @@ script = ExtResource("8_bo0dg")
 position = Vector2(-528, 664)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
-properties = SubResource("Resource_1qh8g")
+properties = SubResource("Resource_j31xm")
 
-[sub_resource type="Resource" id="Resource_5n43t"]
+[sub_resource type="Resource" id="Resource_82uje"]
 script = ExtResource("7_ugjib")
 texture_idx = 8
 flip = false
@@ -136,9 +135,9 @@ script = ExtResource("8_bo0dg")
 position = Vector2(-528, 16)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
-properties = SubResource("Resource_5n43t")
+properties = SubResource("Resource_82uje")
 
-[sub_resource type="Resource" id="Resource_5mtbp"]
+[sub_resource type="Resource" id="Resource_1p3e8"]
 script = ExtResource("7_ugjib")
 texture_idx = -2
 flip = false
@@ -149,9 +148,9 @@ script = ExtResource("8_bo0dg")
 position = Vector2(5328, -112)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
-properties = SubResource("Resource_5mtbp")
+properties = SubResource("Resource_1p3e8")
 
-[sub_resource type="Resource" id="Resource_pom1m"]
+[sub_resource type="Resource" id="Resource_kbdgd"]
 script = ExtResource("7_ugjib")
 texture_idx = 4
 flip = false
@@ -162,7 +161,7 @@ script = ExtResource("8_bo0dg")
 position = Vector2(5936, -112)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
-properties = SubResource("Resource_pom1m")
+properties = SubResource("Resource_kbdgd")
 
 [sub_resource type="Resource" id="Resource_a00nl"]
 script = ExtResource("9_w2dm4")
@@ -247,7 +246,15 @@ process_thread_group = 1
 process_thread_group_order = 0
 process_thread_messages = 0
 script = ExtResource("1_e0oai")
-camera = NodePath("Players/Player0/Camera2D")
+camera = NodePath("GlobalCamera")
+
+[node name="GlobalCamera" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
+position = Vector2(728, -72)
+zoom = Vector2(0.5, 0.5)
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+script = ExtResource("2_18r8q")
+target = NodePath("../Players/Player0")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("2_b7xua")
@@ -256,6 +263,7 @@ environment = ExtResource("2_b7xua")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Friezes"]
 position = Vector2(16, 112)
+collision_layer = 257
 
 [node name="ClosedShapeLF2" type="Node2D" parent="Friezes/StaticBody2D"]
 texture_filter = 1
@@ -363,13 +371,6 @@ polygon = PackedVector2Array(-528.109, 15.8824, 327, 81.9994, 994.125, 69.9993, 
 position = Vector2(992, -176)
 metadata/_edit_group_ = true
 
-[node name="Camera2D" type="Camera2D" parent="Players/Player0"]
-position = Vector2(-264, 104)
-zoom = Vector2(0.5, 0.5)
-
-[node name="PhantomCameraHost" type="Node" parent="Players/Player0/Camera2D"]
-script = ExtResource("5_vil2b")
-
 [node name="Player1" parent="Players" instance=ExtResource("17_o7kkx")]
 position = Vector2(464, 32)
 collision_layer = 4
@@ -382,30 +383,6 @@ metadata/_edit_group_ = true
 self_modulate = Color(1, 0, 0, 1)
 
 [node name="PauseMenu" parent="." instance=ExtResource("18_1u4yo")]
-
-[node name="PhantomCamera2D" type="Node2D" parent="."]
-position = Vector2(728, -72)
-script = ExtResource("3_4hmb6")
-priority_override = false
-priority = 0
-zoom = Vector2(0.5, 0.5)
-follow_mode = 3
-follow_group = Array[NodePath]([NodePath("../Players/Player0"), NodePath("../Players/Player1")])
-follow_parameters/auto_zoom = false
-follow_parameters/target_offset = Vector2(0, 0)
-follow_parameters/damping = false
-frame_preview = true
-pixel_perfect = false
-limit/draw_limits = true
-limit/left = -10000000
-limit/top = -10000000
-limit/right = 10000000
-limit/bottom = 10000000
-limit/limit_node_target = NodePath("")
-limit/smoothed = false
-tween_parameters = null
-tween_on_load = true
-inactive_update_mode = 0
 
 [editable path="Players/Player0"]
 [editable path="Players/Player0/Rotatable/AttackAreas/AttackArea"]

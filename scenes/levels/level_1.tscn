@@ -1,11 +1,10 @@
-[gd_scene load_steps=44 format=3 uid="uid://c3eibqugw7ujf"]
+[gd_scene load_steps=43 format=3 uid="uid://c3eibqugw7ujf"]
 
 [ext_resource type="Script" path="res://scripts/levels/_level_template.gd" id="1_doibg"]
+[ext_resource type="Script" path="res://scripts/_/global_camera.gd" id="2_g12c4"]
 [ext_resource type="Environment" uid="uid://ceawqhyu41n60" path="res://materials/world_environments/normal.tres" id="2_mlig6"]
 [ext_resource type="Script" path="res://scripts/player/player_system.gd" id="3_6ip7s"]
 [ext_resource type="PackedScene" uid="uid://dhp71vl6av8ov" path="res://scenes/player/player.tscn" id="3_iwvj8"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2D.gd" id="3_ligbi"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="5_88tv0"]
 [ext_resource type="Script" path="res://addons/rmsmartshape/shapes/shape_open.gd" id="6_ra1d7"]
 [ext_resource type="Script" path="res://addons/rmsmartshape/vertex_properties.gd" id="7_st3b2"]
 [ext_resource type="Script" path="res://addons/rmsmartshape/shapes/point.gd" id="8_fu613"]
@@ -18,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://w07m35qgysc0" path="res://scenes/components/entity_component_system.tscn" id="17_3bg8m"]
 [ext_resource type="PackedScene" uid="uid://d0634w5kelvba" path="res://scenes/enemies/dagger_demon_2.tscn" id="20_1ujmb"]
 
-[sub_resource type="Resource" id="Resource_a8ieu"]
+[sub_resource type="Resource" id="Resource_dn4by"]
 script = ExtResource("7_st3b2")
 texture_idx = 0
 flip = false
@@ -29,9 +28,9 @@ script = ExtResource("8_fu613")
 position = Vector2(-4184, -1024)
 point_in = Vector2(-40, -208)
 point_out = Vector2(40, 208)
-properties = SubResource("Resource_a8ieu")
+properties = SubResource("Resource_dn4by")
 
-[sub_resource type="Resource" id="Resource_a1ga1"]
+[sub_resource type="Resource" id="Resource_288jg"]
 script = ExtResource("7_st3b2")
 texture_idx = 0
 flip = false
@@ -42,9 +41,9 @@ script = ExtResource("8_fu613")
 position = Vector2(-4184, -1024)
 point_in = Vector2(-40, -208)
 point_out = Vector2(40, 208)
-properties = SubResource("Resource_a1ga1")
+properties = SubResource("Resource_288jg")
 
-[sub_resource type="Resource" id="Resource_psxqj"]
+[sub_resource type="Resource" id="Resource_eb80m"]
 script = ExtResource("7_st3b2")
 texture_idx = -2
 flip = false
@@ -55,9 +54,9 @@ script = ExtResource("8_fu613")
 position = Vector2(-4192, 152)
 point_in = Vector2(-240, -288)
 point_out = Vector2(248, 296)
-properties = SubResource("Resource_psxqj")
+properties = SubResource("Resource_eb80m")
 
-[sub_resource type="Resource" id="Resource_xnu37"]
+[sub_resource type="Resource" id="Resource_x6t70"]
 script = ExtResource("7_st3b2")
 texture_idx = 0
 flip = false
@@ -68,9 +67,9 @@ script = ExtResource("8_fu613")
 position = Vector2(-1472, 704)
 point_in = Vector2(-680, -16)
 point_out = Vector2(680, 16)
-properties = SubResource("Resource_xnu37")
+properties = SubResource("Resource_x6t70")
 
-[sub_resource type="Resource" id="Resource_wosgh"]
+[sub_resource type="Resource" id="Resource_77kb7"]
 script = ExtResource("7_st3b2")
 texture_idx = 1
 flip = false
@@ -81,9 +80,9 @@ script = ExtResource("8_fu613")
 position = Vector2(2408, 296)
 point_in = Vector2(-192, 328)
 point_out = Vector2(200, -320)
-properties = SubResource("Resource_wosgh")
+properties = SubResource("Resource_77kb7")
 
-[sub_resource type="Resource" id="Resource_xu1wv"]
+[sub_resource type="Resource" id="Resource_r62ea"]
 script = ExtResource("7_st3b2")
 texture_idx = -2
 flip = false
@@ -94,9 +93,9 @@ script = ExtResource("8_fu613")
 position = Vector2(2192, -672)
 point_in = Vector2(-360, 432)
 point_out = Vector2(368, -432)
-properties = SubResource("Resource_xu1wv")
+properties = SubResource("Resource_r62ea")
 
-[sub_resource type="Resource" id="Resource_fovdt"]
+[sub_resource type="Resource" id="Resource_2q0gj"]
 script = ExtResource("7_st3b2")
 texture_idx = 0
 flip = false
@@ -107,9 +106,9 @@ script = ExtResource("8_fu613")
 position = Vector2(3040, -688)
 point_in = Vector2(-136, -288)
 point_out = Vector2(136, 296)
-properties = SubResource("Resource_fovdt")
+properties = SubResource("Resource_2q0gj")
 
-[sub_resource type="Resource" id="Resource_rsdmv"]
+[sub_resource type="Resource" id="Resource_0wkl0"]
 script = ExtResource("7_st3b2")
 texture_idx = -3
 flip = false
@@ -120,9 +119,9 @@ script = ExtResource("8_fu613")
 position = Vector2(-4200, -536)
 point_in = Vector2(128, -216)
 point_out = Vector2(-120, 224)
-properties = SubResource("Resource_rsdmv")
+properties = SubResource("Resource_0wkl0")
 
-[sub_resource type="Resource" id="Resource_5o5yh"]
+[sub_resource type="Resource" id="Resource_xlw2d"]
 script = ExtResource("7_st3b2")
 texture_idx = 4
 flip = false
@@ -133,9 +132,9 @@ script = ExtResource("8_fu613")
 position = Vector2(2960, 1376)
 point_in = Vector2(712, -640)
 point_out = Vector2(-712, 648)
-properties = SubResource("Resource_5o5yh")
+properties = SubResource("Resource_xlw2d")
 
-[sub_resource type="Resource" id="Resource_u0q0v"]
+[sub_resource type="Resource" id="Resource_il0da"]
 script = ExtResource("7_st3b2")
 texture_idx = 0
 flip = false
@@ -146,9 +145,9 @@ script = ExtResource("8_fu613")
 position = Vector2(-4984, 1328)
 point_in = Vector2(776, 520)
 point_out = Vector2(-768, -520)
-properties = SubResource("Resource_u0q0v")
+properties = SubResource("Resource_il0da")
 
-[sub_resource type="Resource" id="Resource_524xy"]
+[sub_resource type="Resource" id="Resource_ofwgb"]
 script = ExtResource("7_st3b2")
 texture_idx = 0
 flip = false
@@ -159,7 +158,7 @@ script = ExtResource("8_fu613")
 position = Vector2(-4992, -1160)
 point_in = Vector2(-568, 376)
 point_out = Vector2(568, -376)
-properties = SubResource("Resource_524xy")
+properties = SubResource("Resource_ofwgb")
 
 [sub_resource type="Resource" id="Resource_xn12i"]
 script = ExtResource("9_v6dhv")
@@ -198,8 +197,17 @@ _data = {
 }
 point_count = 2
 
-[node name="Level" type="Node2D"]
+[node name="Level" type="Node2D" node_paths=PackedStringArray("camera")]
 script = ExtResource("1_doibg")
+camera = NodePath("GlobalCamera")
+
+[node name="GlobalCamera" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
+position = Vector2(-3704, -8)
+zoom = Vector2(0.5, 0.5)
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+script = ExtResource("2_g12c4")
+target = NodePath("../Players/Player0")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("2_mlig6")
@@ -207,6 +215,7 @@ environment = ExtResource("2_mlig6")
 [node name="Friezes" type="Node2D" parent="."]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Friezes"]
+collision_layer = 257
 
 [node name="SS2D_Shape_Open" type="Node2D" parent="Friezes/StaticBody2D"]
 texture_filter = 1
@@ -313,6 +322,9 @@ speed = 800.0
 position = Vector2(1016, -48)
 behaviour = 1
 
+[node name="EnemyTemplate" parent="Enemies/DaggerDemon" index="0"]
+collision_mask = 256
+
 [node name="DaggerDemon2" parent="Enemies" instance=ExtResource("20_1ujmb")]
 position = Vector2(-2016, -64)
 
@@ -324,43 +336,15 @@ position = Vector2(-3704, -8)
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="Camera2D" type="Camera2D" parent="Players/Player0"]
-zoom = Vector2(0.5, 0.5)
-
-[node name="PhantomCameraHost" type="Node" parent="Players/Player0/Camera2D"]
-script = ExtResource("5_88tv0")
-
 [node name="Player1" parent="Players" instance=ExtResource("3_iwvj8")]
 position = Vector2(-4216, -1064)
+collision_layer = 4
 player_index = 1
 character_index = 1
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
 [node name="PauseMenu" parent="." instance=ExtResource("9_1tcrl")]
-
-[node name="PhantomCamera2D" type="Node2D" parent="."]
-position = Vector2(-3704, -8)
-script = ExtResource("3_ligbi")
-priority_override = false
-priority = 0
-zoom = Vector2(0.5, 0.5)
-follow_mode = 2
-follow_target = NodePath("../Players/Player0")
-follow_parameters/target_offset = Vector2(0, 0)
-follow_parameters/damping = false
-frame_preview = true
-pixel_perfect = false
-limit/draw_limits = true
-limit/left = -10000000
-limit/top = -10000000
-limit/right = 10000000
-limit/bottom = 10000000
-limit/limit_node_target = NodePath("")
-limit/smoothed = false
-tween_parameters = null
-tween_on_load = true
-inactive_update_mode = 0
 
 [editable path="LevelParts/Checkpoint"]
 [editable path="LevelParts/Checkpoint2"]

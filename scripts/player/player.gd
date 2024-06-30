@@ -709,14 +709,17 @@ func _on_crushing_area_area_entered(area):
 			$Timers/FloorStickBlockingTimer.start()
 		y_vel.y = -1500
 		
-func _on_background_level_changed(new_bg_level : Vector2) -> void:
-	if new_bg_level == Vector2(1, 0.9):
-		g.current_level.camera.zoom = Vector2.ONE
-		global_position = $"../../Other/ParallaxBackground/ParallaxLayer/LevelParts/Polygon2D".global_position * 0.5
+func _on_background_level_changed(new_bg_level : int) -> void:
+	if new_bg_level == 1:
+		#global_position = $"../../Other/ParallaxBackground/ParallaxLayer/LevelParts/Polygon2D".global_position
+		global_position = Vector2(800, -1000)
+		g.current_bg_zoom = Vector2(2, 2)
 		reparent($"../../Other/ParallaxBackground/ParallaxLayer/Players")
-	if new_bg_level == Vector2.ONE:
-		g.current_level.camera.zoom = Vector2(0.5, 0.5)
+		#scale = Vector2(0.5, 0.5)
+		scale = Vector2.ONE
+	if new_bg_level == 0:
 		global_position = $"../../../../Polygon2D".global_position
+		g.current_bg_zoom = Vector2.ONE
 		reparent($"../../../../../Players")
 		scale = Vector2.ONE
-		
+	

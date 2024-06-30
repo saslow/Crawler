@@ -6,7 +6,7 @@
 
 [node name="EnemyTemplate" type="CharacterBody2D" node_paths=PackedStringArray("component_system", "damage_hitbox_component")]
 collision_layer = 8
-collision_mask = 0
+collision_mask = 128
 script = ExtResource("1_40kip")
 component_system = NodePath("Rotatable/EntityComponentSystem")
 damage_hitbox_component = NodePath("Rotatable/DamageHitboxComponent")
