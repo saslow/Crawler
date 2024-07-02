@@ -61,6 +61,7 @@ rotates = false
 script = ExtResource("1_ws2rj")
 
 [node name="EnemyTemplate" parent="." instance=ExtResource("1_lbk34")]
+collision_mask = 0
 reset_pos_on_player_respawned = false
 
 [node name="EntityComponentSystem" parent="EnemyTemplate/Rotatable" index="0"]

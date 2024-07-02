@@ -18,7 +18,6 @@ var start_direction : int
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#$EnemyTemplate.activity_changed.connect(_on_activity_changed)
 	start_direction = direction
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -116,19 +115,3 @@ func _on_player_detecting_area_body_exited(body) -> void:
 	if body is Player:
 		is_angry = false
 		player_is_in_area = false
-		
-func _on_activity_changed(value : bool) -> void:
-	print_debug("activity_changed")
-	match value:
-			true:
-				$EnemyTemplate/Label2.text = "true"
-				$EnemyTemplate/Rotatable/AttackHitbox.set_deferred("monitoring", true)
-				$EnemyTemplate/Rotatable/AttackHitbox.set_deferred("monitorable", true)
-				$EnemyTemplate/Rotatable/PlayerDetectingArea.set_deferred("monitoring", true)
-				$EnemyTemplate/Rotatable/PlayerDetectingArea.set_deferred("monitorable", true)
-			false:
-				$EnemyTemplate/Label2.text = "false"
-				$EnemyTemplate/Rotatable/AttackHitbox.set_deferred("monitoring", false)
-				$EnemyTemplate/Rotatable/AttackHitbox.set_deferred("monitorable", false)
-				$EnemyTemplate/Rotatable/PlayerDetectingArea.set_deferred("monitoring", false)
-				$EnemyTemplate/Rotatable/PlayerDetectingArea.set_deferred("monitorable", false)

@@ -1,3 +1,8 @@
+SS2D_Shape
+CollisionPolygon3D
+SubViewportContainer
+SubViewport
+CollisionShape3D
 CanvasLayer
 ParallaxBackground
 PreviewingParallaxBackground
@@ -6,10 +11,4 @@ Node2D
 PhantomCameraHost
 Polygon2D
 Area2D
-SS2D_Shape
 ParallaxLayer
-RemoteTransform2D
-SubViewport
-SubViewportContainer
-CharacterBody2D
-AnimatableBody2D

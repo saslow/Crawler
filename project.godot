@@ -10,7 +10,17 @@ config_version=5
 
 [addons]
 
-instance_dock/scenes=[]
+instance_dock/scenes=[{
+"name": "level parts",
+"scenes": [{
+"scene": "res://scenes/level_parts/releaser.tscn"
+}, {
+"scene": "res://scenes/level_parts/slide_area.tscn"
+}, {
+"scene": "res://scenes/level_parts/checkpoint.tscn"
+}],
+"scroll": 0
+}]
 instance_dock/preview_resolution=Vector2i(64, 64)
 
 [application]

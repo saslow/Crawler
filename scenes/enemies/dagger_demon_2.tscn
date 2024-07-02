@@ -172,7 +172,6 @@ libraries = {
 }
 
 [node name="EnemyTemplate" parent="." instance=ExtResource("7_n1wim")]
-collision_mask = 256
 
 [node name="AttackHitbox" parent="EnemyTemplate/Rotatable" index="0" instance=ExtResource("12_r5str")]
 collision_layer = 32
@@ -186,6 +185,7 @@ position = Vector2(149, -110.5)
 polygon = PackedVector2Array(204.8, -115.2, 178, -22, 104, -2, 75, -15)
 
 [node name="PlayerDetectingArea" type="Area2D" parent="EnemyTemplate/Rotatable" index="1"]
+visible = false
 collision_layer = 0
 collision_mask = 6
 
@@ -225,15 +225,6 @@ scale = Vector2(2, 2)
 texture = ExtResource("1_xip75")
 offset = Vector2(20, -30)
 
-[node name="Label2" type="Label" parent="EnemyTemplate"]
-offset_left = -1228.8
-offset_top = -921.6
-offset_right = -1188.8
-offset_bottom = -898.6
-scale = Vector2(16.6915, 26.2108)
-text = "test"
-
-[connection signal="activity_changed" from="EnemyTemplate" to="." method="_on_activity_changed"]
 [connection signal="body_entered" from="EnemyTemplate/Rotatable/PlayerDetectingArea" to="." method="_on_player_detecting_area_body_entered"]
 [connection signal="body_exited" from="EnemyTemplate/Rotatable/PlayerDetectingArea" to="." method="_on_player_detecting_area_body_exited"]
 

@@ -367,7 +367,7 @@ func movement(delta : float, acc_mult : float = 1, fr_mult : float = 1) -> void:
 			else:
 				#$Anim.play("move")
 				x_vel.y = 0
-				x_vel.x = lerpf(x_vel.x, Vector2( Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()), 0 ).normalized().x * speed, ACCELERATION * acc_mult)
+				x_vel.x = lerpf(x_vel.x, Vector2( Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()), 0 ).normalized().x * speed, (ACCELERATION * acc_mult)/1.5 )
 				
 	else:
 		if state != sm.AIR:
@@ -380,7 +380,7 @@ func movement(delta : float, acc_mult : float = 1, fr_mult : float = 1) -> void:
 			if is_running:
 				x_vel = lerp(x_vel, Vector2.ZERO, FRICTION * fr_mult)
 			else:
-				x_vel = lerp(x_vel, Vector2.ZERO, FRICTION * fr_mult)
+				x_vel = lerp(x_vel, Vector2.ZERO, FRICTION * fr_mult / 2)
 		
 func movement_in_air_state_when_running() -> void:
 	x_vel.x += last_true_axis * speed/8

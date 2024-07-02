@@ -71,7 +71,7 @@ script = ExtResource("1_2w30m")
 
 [node name="Trigger" type="Area2D" parent="."]
 collision_layer = 8
-collision_mask = 2
+collision_mask = 6
 
 [node name="Shape" type="CollisionShape2D" parent="Trigger"]
 position = Vector2(0, -3)

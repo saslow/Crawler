@@ -1,9 +1,11 @@
-res://scenes/levels/level_0.tscn
+res://scenes/enemies/dagger_demon_2.tscn
 res://materials/themes/light_panel_theme.tres
 res://materials/shapes/vein_segment_shape.tres
 res://materials/world_environments/normal.tres
 res://sprites/friezesets/leshy's_forest/leshy's_forest_friezeset0.tres
-res://scripts/levels/_level_template.gd
+res://scenes/levels/level_0.tscn
+res://scenes/enemies/enemy_template.tscn
+res://scenes/enemies/flying_demon.tscn
 res://scenes/menus/main_menu.tscn
 res://scenes/player/player.tscn
 res://scenes/levels/level_1.tscn
@@ -11,8 +13,7 @@ res://scenes/levels/level_2.tscn
 res://scenes/_/vein_testing_scene.tscn
 res://scenes/_/vein_segment.tscn
 res://scenes/level_parts/grind_pipe.tscn
-res://scenes/enemies/enemy_template.tscn
-res://scenes/enemies/flying_demon.tscn
-res://scenes/enemies/dagger_demon_2.tscn
-res://scripts/global/global.gd
+res://scripts/enemies/dagger_demon_2/dagger_demon_2.gd
+res://scripts/enemies/enemy_template.gd
 res://scripts/player/player.gd
+res://scenes/level_parts/releaser.tscn
