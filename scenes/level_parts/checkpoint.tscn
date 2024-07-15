@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://cbnkuulgivlk0"]
+[gd_scene load_steps=4 format=3 uid="uid://cbnkuulgivlk0"]
 
 [ext_resource type="Script" path="res://scripts/_/editor_icon.gd" id="1_0fj56"]
 [ext_resource type="Script" path="res://scripts/level_parts/checkpoint.gd" id="1_1npox"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kckor"]
+size = Vector2(16, 680)
 
 [node name="Checkpoint" type="Area2D"]
 collision_layer = 16
@@ -10,6 +13,8 @@ script = ExtResource("1_1npox")
 metadata/_edit_group_ = true
 
 [node name="Shape" type="CollisionShape2D" parent="."]
+position = Vector2(0, -340)
+shape = SubResource("RectangleShape2D_kckor")
 debug_color = Color(0.666667, 0.509804, 0, 0.419608)
 
 [node name="Polygon" type="CollisionPolygon2D" parent="."]

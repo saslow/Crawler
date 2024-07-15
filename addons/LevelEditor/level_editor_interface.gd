@@ -18,6 +18,7 @@ func _on_level_tree_restore_button_pressed() -> void:
 		_add_folder_to_tree(scene_tree, "LevelParts")
 		_add_folder_to_tree(scene_tree, "Enemies")
 		_add_folder_to_tree(scene_tree, "Players")
+		_add_folder_to_tree(scene_tree, "RoomChangers")
 
 func _add_folder_to_tree(parent : Node2D, folder_name : String) -> void:
 	if !parent.has_node(folder_name):

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bforgvdaigfio"]
+
+[ext_resource type="Script" path="res://scripts/global/room_changer_singleton.gd" id="1_5u30u"]
+
+[node name="RoomChangerSingleton" type="Node"]
+script = ExtResource("1_5u30u")

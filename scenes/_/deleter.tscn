@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://yoa67ngsooi6"]
+
+[ext_resource type="Script" path="res://scripts/_/editor_icon.gd" id="1_1csu8"]
+
+[node name="Deleter" type="Node"]
+script = ExtResource("1_1csu8")

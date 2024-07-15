@@ -13,7 +13,7 @@ signal injured()
 
 func _ready():
 	g.player_respawned.connect(_on_player_respawned)
-	start_position = global_position
+	start_position = position
 		
 func _physics_process(delta):
 	pass
@@ -27,7 +27,7 @@ func _on_injured():
 	visible = false
 	
 func _on_player_respawned():
-	global_position = start_position
+	position = start_position
 	visible = true
 	is_killed = false
 	damage_hitbox_component.monitoring = true

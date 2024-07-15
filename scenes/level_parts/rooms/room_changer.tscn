@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://dnnym0185m5as"]
+
+[ext_resource type="Script" path="res://scripts/level_parts/rooms/room_changer.gd" id="1_ueuom"]
+
+[node name="RoomChanger" type="Area2D"]
+collision_layer = 0
+collision_mask = 6
+script = ExtResource("1_ueuom")
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+
+[node name="NewPlayerPositions" type="Node2D" parent="."]
+
+[node name="0" type="Marker2D" parent="NewPlayerPositions"]
+position = Vector2(32, 0)
+gizmo_extents = 160.0
+
+[node name="1" type="Marker2D" parent="NewPlayerPositions"]
+self_modulate = Color(0, 0, 1, 1)
+position = Vector2(64, 0)
+gizmo_extents = 160.0
+
+[connection signal="body_entered" from="." to="." method="_on_player_entered"]
+[connection signal="body_exited" from="." to="." method="_on_player_exited"]

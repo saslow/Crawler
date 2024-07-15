@@ -1,0 +1,51 @@
+[gd_resource type="Resource" script_class="SS2D_Material_Shape" load_steps=11 format=3 uid="uid://curcug8ntubcd"]
+
+[ext_resource type="Script" path="res://addons/rmsmartshape/materials/edge_material.gd" id="1_jh628"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/materials/shape_material.gd" id="1_qu5e7"]
+[ext_resource type="Texture2D" uid="uid://d06w4yn4wiwse" path="res://sprites/friezesets/leshy's_forest/sprites/tree/tree_up.png" id="2_n7fun"]
+[ext_resource type="Texture2D" uid="uid://bde6nt0aiqsmh" path="res://sprites/friezesets/leshy's_forest/sprites/tree/tree_outer_corner.png" id="4_wvta2"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/normal_range.gd" id="5_0kj5b"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/materials/edge_material_metadata.gd" id="6_kl6et"]
+[ext_resource type="Texture2D" uid="uid://k0vq47lscjcl" path="res://sprites/friezesets/leshy's_forest/sprites/tree/tree_fill.png" id="10_p7ce6"]
+
+[sub_resource type="Resource" id="Resource_mj0xn"]
+script = ExtResource("1_jh628")
+textures = Array[Texture2D]([ExtResource("2_n7fun")])
+textures_corner_outer = Array[Texture2D]([ExtResource("4_wvta2")])
+textures_corner_inner = Array[Texture2D]([])
+textures_taper_left = Array[Texture2D]([])
+textures_taper_right = Array[Texture2D]([])
+randomize_texture = false
+use_corner_texture = true
+use_taper_texture = true
+fit_mode = 0
+
+[sub_resource type="Resource" id="Resource_o37ba"]
+script = ExtResource("5_0kj5b")
+begin = 315.0
+distance = 270.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_ud5e8"]
+script = ExtResource("6_kl6et")
+edge_material = SubResource("Resource_mj0xn")
+normal_range = SubResource("Resource_o37ba")
+weld = true
+render = true
+z_index = 0
+z_as_relative = true
+offset = 1.0
+
+[resource]
+script = ExtResource("1_qu5e7")
+_edge_meta_materials = Array[ExtResource("6_kl6et")]([SubResource("Resource_ud5e8"), null])
+fill_textures = Array[Texture2D]([ExtResource("10_p7ce6")])
+fill_texture_z_index = -10
+fill_texture_show_behind_parent = false
+fill_texture_scale = 1.0
+fill_texture_absolute_position = false
+fill_texture_absolute_rotation = false
+fill_texture_offset = Vector2(0, 0)
+fill_texture_angle_offset = 0.0
+fill_mesh_offset = 0.0
+render_offset = -0.6
