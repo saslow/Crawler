@@ -21,6 +21,9 @@ const TUP = preload("../lib/tuple.gd")
 #-DECLARATIONS-#
 ################
 
+## EDITED ##
+## UJE NOT EDITED ##
+
 var _dirty: bool = false
 var _edges: Array[SS2D_Edge] = []
 var _meshes: Array[SS2D_Mesh] = []
@@ -107,9 +110,11 @@ var collision_offset: float = 0.0 : set = set_collision_offset
 ## NodePath to CollisionPolygon2D node for which polygon data will be generated.
 @export_node_path("CollisionPolygon2D") var collision_polygon_node_path: NodePath : set = set_collision_polygon_node_path
 
+@export var is_unique : bool = false
 #####################
 #-SETTERS / GETTERS-#
 #####################
+
 
 func set_collision_polygon_node_path(value: NodePath) -> void:
 	collision_polygon_node_path = value
@@ -157,11 +162,20 @@ func _refresh_action(value: String) -> void:
 	if value.length() > 0:
 		_points_modified()
 
-
+## EDITED ##
 func _make_unique_action(value: String) -> void:
 	if value.length() > 0:
+		is_unique = true
+		modulate = Color(1, 1, 1, 1)
 		emit_signal("make_unique_pressed", self)
 
+func _ready():
+	if Engine.is_editor_hint():
+		if !is_unique:
+			modulate = Color(1, 0, 1, 1)
+	else:
+		modulate = Color(1, 1, 1, 1)
+## EDITED STOPS HERE (NAVERNOE, ANGLISKIY NE PONIMAU) ##
 
 func set_flip_edges(b: bool) -> void:
 	flip_edges = b

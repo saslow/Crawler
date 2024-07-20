@@ -1,4 +1,15 @@
+res://scenes/menus/main_menu.tscn
 res://materials/themes/light_panel_theme.tres
-res://sprites/friezesets/bluebox/bluebox.tres
 res://sprites/friezesets/leshy's_forest/leshy's_forest_friezeset0.tres
 res://materials/shaders/tv.gdshader
+res://scenes/player/player.tscn
+res://scenes/levels/level_0.tscn
+res://scenes/levels/level_1.tscn
+res://scenes/levels/level_2.tscn
+res://scenes/level_parts/grind_pipe.tscn
+res://scenes/enemies/enemy_template.tscn
+res://scenes/enemies/flying_demon.tscn
+res://scenes/enemies/dagger_demon_2.tscn
+res://scenes/level_parts/releaser.tscn
+res://scenes/level_parts/checkpoint.tscn
+res://sprites/friezesets/bluebox/bluebox0.tscn

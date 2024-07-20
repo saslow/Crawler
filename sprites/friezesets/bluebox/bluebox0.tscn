@@ -1,0 +1,78 @@
+[gd_scene load_steps=17 format=3 uid="uid://brnao33cbomgt"]
+
+[ext_resource type="Script" path="res://addons/rmsmartshape/shapes/shape.gd" id="1_rdbi7"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/shapes/point_array.gd" id="2_w81ex"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/materials/edge_material.gd" id="3_3t8w3"]
+[ext_resource type="Texture2D" uid="uid://btmj5tssherxk" path="res://sprites/friezesets/bluebox/bluebox_edge_top.png" id="4_uqscn"]
+[ext_resource type="Texture2D" uid="uid://fe80ru1a3gwm" path="res://sprites/friezesets/bluebox/bluebox_edge_corner_inner.png" id="5_siq2f"]
+[ext_resource type="Texture2D" uid="uid://b8jo3givln2l" path="res://sprites/friezesets/bluebox/bluebox_edge_corner_outer.png" id="6_rteu6"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/normal_range.gd" id="7_d8g5r"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/materials/edge_material_metadata.gd" id="8_dd2id"]
+[ext_resource type="Texture2D" uid="uid://bpbph5uawf5ob" path="res://sprites/friezesets/bluebox/bluebox_fill.png" id="9_3m0ok"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/materials/shape_material.gd" id="10_rd42b"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/shapes/shape_render.gd" id="11_lm6qx"]
+
+[sub_resource type="Resource" id="Resource_w130j"]
+script = ExtResource("2_w81ex")
+_points = {}
+_point_order = Array[int]([])
+_constraints = {}
+_next_key = 26
+_material_overrides = {}
+
+[sub_resource type="Resource" id="Resource_ycebv"]
+script = ExtResource("3_3t8w3")
+textures = Array[Texture2D]([ExtResource("4_uqscn")])
+textures_corner_outer = Array[Texture2D]([ExtResource("6_rteu6")])
+textures_corner_inner = Array[Texture2D]([ExtResource("5_siq2f")])
+textures_taper_left = Array[Texture2D]([ExtResource("4_uqscn")])
+textures_taper_right = Array[Texture2D]([ExtResource("4_uqscn")])
+randomize_texture = false
+use_corner_texture = true
+use_taper_texture = true
+fit_mode = 0
+
+[sub_resource type="Resource" id="Resource_ckc48"]
+script = ExtResource("7_d8g5r")
+begin = 0.0
+distance = 360.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_rb12j"]
+script = ExtResource("8_dd2id")
+edge_material = SubResource("Resource_ycebv")
+normal_range = SubResource("Resource_ckc48")
+weld = true
+render = true
+z_index = 0
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="Resource" id="Resource_mj5an"]
+script = ExtResource("10_rd42b")
+_edge_meta_materials = Array[ExtResource("8_dd2id")]([SubResource("Resource_rb12j")])
+fill_textures = Array[Texture2D]([ExtResource("9_3m0ok")])
+fill_texture_z_index = -10
+fill_texture_show_behind_parent = false
+fill_texture_scale = 1.0
+fill_texture_absolute_position = true
+fill_texture_absolute_rotation = true
+fill_texture_offset = Vector2(0, 0)
+fill_texture_angle_offset = 0.0
+fill_mesh_offset = 0.0
+render_offset = 0.0
+
+[node name="Bluebox0" type="Node2D"]
+script = ExtResource("1_rdbi7")
+_points = SubResource("Resource_w130j")
+shape_material = SubResource("Resource_mj5an")
+collision_polygon_node_path = NodePath("Collider/Shape")
+is_unique = true
+
+[node name="_SS2D_RENDER" type="Node2D" parent="."]
+script = ExtResource("11_lm6qx")
+
+[node name="Collider" type="StaticBody2D" parent="."]
+
+[node name="Shape" type="CollisionPolygon2D" parent="Collider"]
+modulate = Color(1, 1, 1, 0.117647)

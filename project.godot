@@ -33,7 +33,7 @@ instance_dock/scenes=[{
 }, {
 "name": "friezes",
 "scenes": [{
-"scene": "res://sprites/friezesets/bluebox/bluebox_template.tscn"
+"scene": "res://sprites/friezesets/bluebox/bluebox0.tscn"
 }],
 "scroll": 0
 }, {
@@ -48,6 +48,7 @@ instance_dock/mjpeg_quality=1.0
 [application]
 
 config/name="Platformer"
+config/tags=PackedStringArray("2d")
 run/main_scene="res://scenes/menus/main_menu.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 boot_splash/bg_color=Color(0, 0.160784, 0.196078, 0)

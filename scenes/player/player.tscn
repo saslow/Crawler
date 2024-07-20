@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://dhp71vl6av8ov"]
+[gd_scene load_steps=52 format=3 uid="uid://dhp71vl6av8ov"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_wfvhb"]
 [ext_resource type="Texture2D" uid="uid://bhdqe7q3s6pvs" path="res://sprites/entities/boy/boy_bump/boy bump.0001.png" id="2_4i5rq"]
@@ -220,8 +220,6 @@ _data = {
 "walk": SubResource("Animation_xdvwl"),
 "walk_to_run": SubResource("Animation_0jd3j")
 }
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_j666b"]
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("component_system")]
 collision_layer = 2
@@ -447,21 +445,6 @@ one_shot = true
 process_callback = 0
 wait_time = 0.3
 one_shot = true
-
-[node name="ColorRect" type="ColorRect" parent="."]
-visible = false
-material = SubResource("ShaderMaterial_j666b")
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -1920.0
-offset_top = -1080.0
-grow_horizontal = 0
-grow_vertical = 0
-scale = Vector2(2, 2)
-mouse_filter = 2
 
 [connection signal="injured" from="." to="." method="_on_injured"]
 [connection signal="area_entered" from="CrushingArea" to="." method="_on_crushing_area_area_entered"]
