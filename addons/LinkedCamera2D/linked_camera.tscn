@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1pdlwm8mx8pq"]
+
+[ext_resource type="Script" path="res://addons/LinkedCamera2D/linked_camera2D.gd" id="1_6pd5n"]
+
+[node name="LinkedCamera" type="Camera2D"]
+zoom = Vector2(0.5, 0.5)
+script = ExtResource("1_6pd5n")

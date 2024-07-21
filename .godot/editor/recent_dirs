@@ -1,4 +1,7 @@
+res://addons/LinkedCamera2D
 res://sprites/friezesets/bluebox
+res://scenes/levels
+res://scripts/levels
 res://sprites/entities/boy/boy_walk
 res://materials/shaders
 res://scenes/global
@@ -8,17 +11,14 @@ res://scenes/level_parts/rooms
 res://scripts/_
 res://scenes/_
 res://sprites/friezesets/leshy's_forest
-res://scenes/levels
 res://sprites/friezesets/leshy's_forest/scenes
 res://scripts/enemies/dagger_demon_2
 res://scenes/enemies
 res://scripts/enemies/dagger_demon
 res://scripts/enemies/flying_demon
 res://scripts/menus
-res://scripts/levels
 res://scenes/level_parts
 res://scripts/level_parts
 C:/Programs/godot/projects/Crawler
-res://materials/world_environments
 C:/Programs/godot/projects/Builds/NotRel/UnzipThatFileEldar
 C:/Programs/godot/projects/Builds/NotRel
