@@ -7,7 +7,10 @@ class_name Level3D
 		#_relocate_layers = false
 var player_current_layer_id : int = 0
 const SVP_HOLDER_PIXEL_SIZE : float = 0.0083
-
+@onready var mc : Camera3D = $MainCamera
+var is_mc_transitioning : bool
+var target_transition_z : float
+const DEFAULT_MC_TRANSITION_TIME : float = 2.1
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if !Engine.is_editor_hint():
@@ -23,6 +26,9 @@ func _ready() -> void:
 				$Layers3D.add_child(h)
 				
 				i.reparent(svp)
+				
+func _physics_process(delta) -> void:
+	mc_transitioning_process()
 
 func set_svp_custom_properties(svp : SubViewport, transparent : bool, size : Vector2, name : String) -> void:
 	svp.name = name
@@ -46,3 +52,13 @@ func set_svp_holder_custom_properties(h : Sprite3D, svp : SubViewport, z : float
 	#texture.viewport_path = get_path_to(svp)
 	#h.texture = texture
 	h.texture = svp.get_texture()
+	
+func mc_transitioning_process():
+	if is_mc_transitioning:
+		mc.position.z = lerpf(mc.position.z, target_transition_z, 0.1)
+
+func start_mc_transition(to_z : float, time : float = DEFAULT_MC_TRANSITION_TIME) -> void:
+	is_mc_transitioning = true
+	target_transition_z = -((to_z - 1) * 13)
+	await get_tree().create_timer(time).timeout
+	is_mc_transitioning = false

@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbl2ag2biwpjj"]
+
+[ext_resource type="Script" path="res://scripts/level_parts/jump_pad.gd" id="1_ng67e"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ue3py"]
+radius = 72.0
+
+[node name="JumpPad" type="Area2D"]
+collision_layer = 0
+collision_mask = 6
+script = ExtResource("1_ng67e")
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+scale = Vector2(1, 1.00845)
+shape = SubResource("CircleShape2D_ue3py")
+debug_color = Color(1, 0.423529, 0.431373, 0.419608)
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(0, -4)
+scale = Vector2(0.252242, 0.252242)
+color = Color(1, 0.396078, 0.364706, 1)
+polygon = PackedVector2Array(0, -224, -158.578, -79.289, -63.4312, -79.289, -64, 224, 64, 224, 63.4312, -79.289, 158.578, -79.289)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

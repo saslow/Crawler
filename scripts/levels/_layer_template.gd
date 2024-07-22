@@ -3,7 +3,7 @@ extends Node2D
 class_name Layer2D
 
 @export var local_camera : Camera2D
-@export_range(0, 64) var z : float = 1
+@export_range(0, 64, 0.1) var z : float = 1
 @export var transparent : bool = true
 
 # Called when the node enters the scene tree for the first time.

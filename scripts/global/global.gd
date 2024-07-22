@@ -16,3 +16,10 @@ const DEFAULT_RESOLUTION : Vector2 = Vector2(1920, 1080)
 
 signal player_respawned()
 signal background_level_changed(new_bg_level : int)
+
+func change_players_layer(reparent_to : Layer2D) -> void:
+	g.player.reparent(reparent_to.get_node("Players"))
+	g.second_player.reparent(reparent_to.get_node("Players"))
+	
+func get_viewports_folder() -> Node:
+	return get_node("/root/Level3D/Viewports")

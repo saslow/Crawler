@@ -20,6 +20,8 @@ instance_dock/scenes=[{
 "scene": "res://scenes/level_parts/checkpoint.tscn"
 }, {
 "scene": "res://scenes/level_parts/rooms/room_changer.tscn"
+}, {
+"scene": "res://scenes/level_parts/jump_pad.tscn"
 }],
 "scroll": 0
 }, {

@@ -1,7 +1,12 @@
-res://scenes/levels/level_0r.tscn
 res://sprites/friezesets/bluebox/bluebox0_material.tres
 res://sprites/friezesets/leshy's_forest/leshy's_forest_friezeset0.tres
 res://materials/shaders/tv.gdshader
+res://scenes/level_parts/jump_pad.tscn
+res://scripts/level_parts/jump_pad.gd
+res://scripts/levels/_layer_template.gd
+res://scenes/levels/level_0r.tscn
+res://scripts/global/global.gd
+res://scripts/player/player.gd
 res://scenes/menus/main_menu.tscn
 res://scenes/player/player.tscn
 res://scenes/levels/level_0.tscn
@@ -15,8 +20,6 @@ res://scenes/level_parts/releaser.tscn
 res://scenes/level_parts/checkpoint.tscn
 res://sprites/friezesets/bluebox/bluebox0.tscn
 res://scenes/levels/_level_template.tscn
-res://scripts/levels/_layer_template.gd
+res://addons/LinkedCamera2D/linked_camera.tscn
 res://scripts/levels/_level_template.gd
 res://addons/LinkedCamera2D/linked_camera2D.gd
-res://scripts/global/global.gd
-res://addons/LinkedCamera2D/linked_camera.tscn
