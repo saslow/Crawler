@@ -7,13 +7,15 @@ class_name Level3D
 		#_relocate_layers = false
 var player_current_layer_id : int = 0
 const SVP_HOLDER_PIXEL_SIZE : float = 0.0083
-@onready var mc : Camera3D = $MainCamera
+var mc : Camera3D
 var is_mc_transitioning : bool
 var target_transition_z : float
 const DEFAULT_MC_TRANSITION_TIME : float = 2.1
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if !Engine.is_editor_hint():
+		mc = $MainCamera
 		g.current_level = self
 		if $Layers2D.get_child_count() != 0:
 			for i : Layer2D in $Layers2D.get_children():

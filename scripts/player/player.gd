@@ -12,7 +12,8 @@ class_name Player
 					else:
 						$Timers/TurningTimer.start(0.34)
 				else:
-					$Timers/TurningTimer.start(0.03)
+					if $Timers.has_node("TurningTimer"):
+						$Timers/TurningTimer.start(0.03)
 			is_grinding = false
 			last_true_axis = new_axis
 
@@ -22,7 +23,7 @@ class_name Player
 @export var character_index : characters_IDs = characters_IDs.BOY
 @export var component_system : EntityComponentSystem
 
-##I dont know
+#I dont know (._ . )   (what this line means?)
 @onready var jump_buffer_timer : Timer = $Timers/JumpInputBuffer
 
 ##Represents player state. 
@@ -30,6 +31,11 @@ var state : sm = sm.GROUND :
 	set(new_state):
 		if new_state == sm.GROUND and new_state != state:
 			x_vel.y = 0
+		if new_state == sm.REBOUND and new_state != state:
+			velocity = Vector2.ZERO
+			y_vel = Vector2.ZERO
+			x_vel = Vector2.ZERO
+			$Anim.play("rebound")
 		state = new_state
 var speed : float = NORMAL_SPEED
 var last_x_vel_y : float
@@ -43,9 +49,7 @@ var last_wall_normal : Vector2
 var x_vel : Vector2
 var y_vel : Vector2
 
-var is_running : bool = false :
-	set(value):
-		is_running = value
+var is_running : bool = false
 
 var is_running_fast : bool = false
 var is_attacking : bool = false
@@ -53,9 +57,7 @@ var is_dead : bool = false
 var is_bumping : bool = false
 var is_sliding : bool = false
 var is_releasing : bool
-var is_jumping : bool = false : set = set_is_jumping
-func set_is_jumping(value) -> void:
-	is_jumping = value
+var is_jumping : bool = false
 var is_axis_changing_delayed : bool = false
 var is_on_grind_pipe : bool = false
 var is_in_slide_area : bool = false
@@ -94,8 +96,9 @@ enum sm{
 	AIR = 3,
 	RUN_STOPPING = 4,
 	WALL_SLIDING = 5,
+	REBOUND = 6,
 	
-	DEBUG = 6,
+	DEBUG = 7,
 	
 }
 
@@ -190,7 +193,7 @@ func _physics_process(delta: float) -> void:
 
 	#if !Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()):
 		#x_vel = Vector2.ZERO
-	if state != sm.DEBUG:
+	if state != sm.DEBUG and state != sm.REBOUND:
 		velocity = x_vel + y_vel
 	if state == sm.GROUND:
 		if (Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) != 0) or is_running:
@@ -588,14 +591,14 @@ func attack() -> void:
 	if Input.is_action_just_pressed("1ACTION" + get_player_index()) and $Timers/AttackTimers/AttackTimer.time_left < $Timers/AttackTimers/AttackTimer.wait_time/2:
 		#$Rotatable/AttackAreas/AttackArea/Shape.disabled = false
 		$Rotatable/AttackAreas/AttackArea.monitoring = true
-		$Rotatable/AttackAreas/AttackArea/CollisionShape.debug_color = Color(1, 0, 0, 0.3)
+		$Rotatable/AttackAreas/AttackArea/CollisionShape.set_deferred("debug_color", Color(1, 0, 0, 0.3))
 		$Timers/AttackTimers/AttackTimer.start()
 		
 func sprite_leveling(weight : float = 0.2) -> void:
 	#if !is_releasing:
 	#if $Timers/TurningTimer.is_stopped():
-	$Sprite.rotation = lerp_angle($Sprite.rotation, get_real_floor_angle(), weight)
-	
+	if $Anim.current_animation != "rebound":
+		$Sprite.rotation = lerp_angle($Sprite.rotation, get_real_floor_angle(), weight)
 func rotatable_leveling() -> void:
 	$Rotatable.rotation = get_real_floor_angle()
 	

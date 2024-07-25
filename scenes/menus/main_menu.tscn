@@ -40,6 +40,8 @@ offset_bottom = 384.0
 text = "Quit"
 metadata/_edit_use_anchors_ = true
 
+[node name="Players" type="Node2D" parent="."]
+
 [connection signal="pressed" from="Buttons/Level1" to="." method="_on_level_1_pressed"]
 [connection signal="pressed" from="Buttons/Level2" to="." method="_on_level_2_pressed"]
 [connection signal="pressed" from="Buttons/Level3" to="." method="_on_level_3_pressed"]

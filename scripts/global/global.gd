@@ -13,13 +13,14 @@ const GRAVITY = 60
 const MAX_FALLING_VEL_Y : int = 5000
 const MIN_FALLING_VEL_Y : int = -60000
 const DEFAULT_RESOLUTION : Vector2 = Vector2(1920, 1080)
+const HALF_DEFAULT_RESOLUTION_HEIGHT : int = 540
 
 signal player_respawned()
 signal background_level_changed(new_bg_level : int)
 
 func change_players_layer(reparent_to : Layer2D) -> void:
-	g.player.reparent(reparent_to.get_node("Players"))
-	g.second_player.reparent(reparent_to.get_node("Players"))
+	g.player.call_deferred("reparent", reparent_to.get_node("Players"))
+	g.second_player.call_deferred("reparent", reparent_to.get_node("Players"))
 	
 func get_viewports_folder() -> Node:
 	return get_node("/root/Level3D/Viewports")

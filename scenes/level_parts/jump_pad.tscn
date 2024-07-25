@@ -14,11 +14,25 @@ script = ExtResource("1_ng67e")
 scale = Vector2(1, 1.00845)
 shape = SubResource("CircleShape2D_ue3py")
 debug_color = Color(1, 0.423529, 0.431373, 0.419608)
+metadata/_edit_lock_ = true
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 position = Vector2(0, -4)
 scale = Vector2(0.252242, 0.252242)
 color = Color(1, 0.396078, 0.364706, 1)
 polygon = PackedVector2Array(0, -224, -158.578, -79.289, -63.4312, -79.289, -64, 224, 64, 224, 63.4312, -79.289, 158.578, -79.289)
+metadata/_edit_lock_ = true
+
+[node name="TargetPosition" type="Node2D" parent="."]
+position = Vector2(0, -128)
+scale = Vector2(0.252242, 0.252242)
+metadata/_edit_group_ = true
+
+[node name="Polygon2D2" type="Polygon2D" parent="TargetPosition"]
+position = Vector2(2.30761e-10, -222.009)
+rotation = 3.14159
+color = Color(0.298039, 0.635294, 1, 1)
+polygon = PackedVector2Array(0, -224, -158.578, -79.289, -63.4312, -79.289, -64, 224, 64, 224, 63.4312, -79.289, 158.578, -79.289)
+metadata/_edit_lock_ = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
