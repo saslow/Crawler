@@ -27,7 +27,7 @@ class_name Player
 @onready var jump_buffer_timer : Timer = $Timers/JumpInputBuffer
 
 ##Represents player state. 
-var state : sm = sm.GROUND :
+@export var state : sm = sm.GROUND :
 	set(new_state):
 		if new_state == sm.GROUND and new_state != state:
 			x_vel.y = 0
@@ -62,6 +62,7 @@ var is_axis_changing_delayed : bool = false
 var is_on_grind_pipe : bool = false
 var is_in_slide_area : bool = false
 var is_grinding : bool = false
+var is_coyote_jump_allowed : bool = false
 var _debug_mode : bool = false
 
 var can_jump : bool = true
@@ -355,6 +356,11 @@ func physics_state_machine(delta : float) -> void:
 			#sprite_leveling(1)
 		sm.RUN_STOPPING:
 			pass
+		sm.REBOUND:
+			y_vel = Vector2.ZERO
+			x_vel = Vector2.ZERO
+			velocity = Vector2.ZERO
+			#$Shape.disabled = true
 		sm.DEBUG:
 			velocity = Input.get_vector("LEFT" + get_player_index(), "RIGHT" + get_player_index(), "UP" + get_player_index(), "DOWN" + get_player_index()) * 2000
 
@@ -365,19 +371,20 @@ func physics_state_machine(delta : float) -> void:
 func state_machine(delta : float):
 	match state:
 		sm.GROUND:
-			if get_real_velocity().length() < 100 and !(is_running or Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) != 0):
-				$Anim.play("idle")
-			else:
-				if is_running:
-					if speed < MAX_SPEED - 10:
-						$Anim.play("walk_to_run")
-					else:
-						$Anim.play("run")
+			if $Anim.current_animation != "rebound":
+				if get_real_velocity().length() < 100 and !(is_running or Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) != 0):
+					$Anim.play("idle")
 				else:
-					if get_real_velocity().length() < 100:
-						$Anim.play("idle")
+					if is_running:
+						if speed < MAX_SPEED - 10:
+							$Anim.play("walk_to_run")
+						else:
+							$Anim.play("run")
 					else:
-						$Anim.play("walk")
+						if get_real_velocity().length() < 100:
+							$Anim.play("idle")
+						else:
+							$Anim.play("walk")
 		sm.AIR:
 			pass
 		sm.HURT:
@@ -725,6 +732,9 @@ func character_swapped_indicator():
 		$Sprite.self_modulate = Color(1, 1, 1, 1)
 	else:
 		$Sprite.self_modulate = Color(1, 0, 0, 1)
+		
+func emit_players_rebound_max_height_reached():
+	g.players_rebound_max_height_reached.emit()
 
 func _on_turning_timer_timeout():
 	pass

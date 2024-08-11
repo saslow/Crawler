@@ -2,17 +2,16 @@
 extends Node2D
 class_name Layer2D
 
-@export var local_camera : Camera2D
-@export_range(0, 64, 0.1) var z : float = 1
-@export var transparent : bool = true
-
-@export_category("Set materials for friezes")
 @export var ss2d_material_shape : SS2D_Material_Shape :
 	set(material):
 		if get_node("Friezes").get_child_count() > 0:
 			for frieze : SS2D_Shape in get_node("Friezes").get_children():
 				frieze.shape_material = material
-		ss2d_material_shape = null
+		ss2d_material_shape = material
+
+@export_range(0, 64, 0.1) var z : float = 1
+@export var transparent : bool = true
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

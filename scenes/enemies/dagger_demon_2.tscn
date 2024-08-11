@@ -172,6 +172,7 @@ libraries = {
 }
 
 [node name="EnemyTemplate" parent="." instance=ExtResource("7_n1wim")]
+collision_mask = 385
 
 [node name="AttackHitbox" parent="EnemyTemplate/Rotatable" index="0" instance=ExtResource("12_r5str")]
 collision_layer = 32

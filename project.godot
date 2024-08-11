@@ -249,7 +249,7 @@ DEBUG_MODE={
 
 [layer_names]
 
-2d_physics/layer_1="solids0"
+2d_physics/layer_1="solids"
 2d_physics/layer_2="player1"
 2d_physics/layer_3="player2"
 2d_physics/layer_4="enemies"
@@ -257,8 +257,7 @@ DEBUG_MODE={
 2d_physics/layer_6="projectiles"
 2d_physics/layer_7="water"
 2d_physics/layer_8="slide_blocker"
-2d_physics/layer_9="solids1"
-2d_physics/layer_10="solids2"
+2d_physics/layer_9="one_way_solids"
 
 [phantom_camera]
 

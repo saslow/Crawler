@@ -1,23 +1,540 @@
-[gd_scene load_steps=7 format=3 uid="uid://brnao33cbomgt"]
+[gd_scene load_steps=73 format=3 uid="uid://brnao33cbomgt"]
 
 [ext_resource type="Script" path="res://addons/rmsmartshape/shapes/shape.gd" id="1_rdbi7"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/normal_range.gd" id="2_2dlks"]
 [ext_resource type="Script" path="res://addons/rmsmartshape/shapes/point_array.gd" id="2_w81ex"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/materials/edge_material_metadata.gd" id="3_bbpp0"]
 [ext_resource type="Resource" uid="uid://bthev3f165hms" path="res://sprites/friezesets/bluebox/bluebox0_material.tres" id="3_wpphu"]
 [ext_resource type="Script" path="res://scripts/components/frieze_editor_label.gd" id="5_fht45"]
 [ext_resource type="Script" path="res://addons/rmsmartshape/shapes/shape_render.gd" id="11_lm6qx"]
 
-[sub_resource type="Resource" id="Resource_w130j"]
+[sub_resource type="Resource" id="Resource_uw1gd"]
+script = ExtResource("2_2dlks")
+begin = 0.0
+distance = 360.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_fg5vj"]
+script = ExtResource("3_bbpp0")
+normal_range = SubResource("Resource_uw1gd")
+weld = true
+render = true
+z_index = 0
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="Resource" id="Resource_ubd1m"]
+script = ExtResource("2_2dlks")
+begin = 0.0
+distance = 360.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_pjckn"]
+script = ExtResource("3_bbpp0")
+normal_range = SubResource("Resource_ubd1m")
+weld = true
+render = false
+z_index = 0
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="Resource" id="Resource_m0tg4"]
+script = ExtResource("2_2dlks")
+begin = 0.0
+distance = 360.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_hkq03"]
+script = ExtResource("3_bbpp0")
+normal_range = SubResource("Resource_m0tg4")
+weld = true
+render = false
+z_index = 0
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="Resource" id="Resource_m7lhb"]
+script = ExtResource("2_2dlks")
+begin = 0.0
+distance = 360.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_ggmt1"]
+script = ExtResource("3_bbpp0")
+normal_range = SubResource("Resource_m7lhb")
+weld = true
+render = false
+z_index = 0
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="Resource" id="Resource_4l30o"]
+script = ExtResource("2_2dlks")
+begin = 0.0
+distance = 360.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_84f1q"]
+script = ExtResource("3_bbpp0")
+normal_range = SubResource("Resource_4l30o")
+weld = true
+render = false
+z_index = 0
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="Resource" id="Resource_786ti"]
+script = ExtResource("2_2dlks")
+begin = 0.0
+distance = 360.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_cdw2q"]
+script = ExtResource("3_bbpp0")
+normal_range = SubResource("Resource_786ti")
+weld = true
+render = false
+z_index = 0
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="Resource" id="Resource_cdce5"]
+script = ExtResource("2_2dlks")
+begin = 0.0
+distance = 360.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_l48ap"]
+script = ExtResource("3_bbpp0")
+normal_range = SubResource("Resource_cdce5")
+weld = true
+render = false
+z_index = 0
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="Resource" id="Resource_yt4a7"]
+script = ExtResource("2_2dlks")
+begin = 0.0
+distance = 360.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_4em40"]
+script = ExtResource("3_bbpp0")
+normal_range = SubResource("Resource_yt4a7")
+weld = true
+render = false
+z_index = 0
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="Resource" id="Resource_p5xm0"]
+script = ExtResource("2_2dlks")
+begin = 0.0
+distance = 360.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_imlxn"]
+script = ExtResource("3_bbpp0")
+normal_range = SubResource("Resource_p5xm0")
+weld = true
+render = false
+z_index = 0
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="Resource" id="Resource_uev8v"]
+script = ExtResource("2_2dlks")
+begin = 0.0
+distance = 360.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_28igr"]
+script = ExtResource("3_bbpp0")
+normal_range = SubResource("Resource_uev8v")
+weld = true
+render = false
+z_index = 0
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="Resource" id="Resource_iciym"]
+script = ExtResource("2_2dlks")
+begin = 0.0
+distance = 360.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_sk0cj"]
+script = ExtResource("3_bbpp0")
+normal_range = SubResource("Resource_iciym")
+weld = true
+render = false
+z_index = 0
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="Resource" id="Resource_gjoms"]
+script = ExtResource("2_2dlks")
+begin = 0.0
+distance = 360.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_2tu4v"]
+script = ExtResource("3_bbpp0")
+normal_range = SubResource("Resource_gjoms")
+weld = true
+render = true
+z_index = 0
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="Resource" id="Resource_5vm6p"]
+script = ExtResource("2_2dlks")
+begin = 0.0
+distance = 360.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_gtjbq"]
+script = ExtResource("3_bbpp0")
+normal_range = SubResource("Resource_5vm6p")
+weld = true
+render = true
+z_index = 0
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="Resource" id="Resource_8rfki"]
+script = ExtResource("2_2dlks")
+begin = 0.0
+distance = 360.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_ig08l"]
+script = ExtResource("3_bbpp0")
+normal_range = SubResource("Resource_8rfki")
+weld = true
+render = true
+z_index = 0
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="Resource" id="Resource_jrk7y"]
+script = ExtResource("2_2dlks")
+begin = 0.0
+distance = 360.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_kh2vl"]
+script = ExtResource("3_bbpp0")
+normal_range = SubResource("Resource_jrk7y")
+weld = true
+render = true
+z_index = 0
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="Resource" id="Resource_sabhi"]
+script = ExtResource("2_2dlks")
+begin = 0.0
+distance = 360.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_kkfms"]
+script = ExtResource("3_bbpp0")
+normal_range = SubResource("Resource_sabhi")
+weld = true
+render = true
+z_index = 0
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="Resource" id="Resource_t6owa"]
+script = ExtResource("2_2dlks")
+begin = 0.0
+distance = 360.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_4mok3"]
+script = ExtResource("3_bbpp0")
+normal_range = SubResource("Resource_t6owa")
+weld = true
+render = true
+z_index = 0
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="Resource" id="Resource_8kmda"]
+script = ExtResource("2_2dlks")
+begin = 0.0
+distance = 360.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_ilh23"]
+script = ExtResource("3_bbpp0")
+normal_range = SubResource("Resource_8kmda")
+weld = true
+render = true
+z_index = 0
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="Resource" id="Resource_p8sqv"]
+script = ExtResource("2_2dlks")
+begin = 0.0
+distance = 360.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_k6nxu"]
+script = ExtResource("3_bbpp0")
+normal_range = SubResource("Resource_p8sqv")
+weld = true
+render = true
+z_index = 0
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="Resource" id="Resource_4y2od"]
+script = ExtResource("2_2dlks")
+begin = 0.0
+distance = 360.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_2h0a0"]
+script = ExtResource("3_bbpp0")
+normal_range = SubResource("Resource_4y2od")
+weld = true
+render = true
+z_index = 0
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="Resource" id="Resource_yx05f"]
+script = ExtResource("2_2dlks")
+begin = 0.0
+distance = 360.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_vw5ip"]
+script = ExtResource("3_bbpp0")
+normal_range = SubResource("Resource_yx05f")
+weld = true
+render = true
+z_index = 0
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="Resource" id="Resource_ep8lv"]
+script = ExtResource("2_2dlks")
+begin = 0.0
+distance = 360.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_mm03p"]
+script = ExtResource("3_bbpp0")
+normal_range = SubResource("Resource_ep8lv")
+weld = true
+render = true
+z_index = 0
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="Resource" id="Resource_gblfi"]
+script = ExtResource("2_2dlks")
+begin = 0.0
+distance = 360.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_8c32p"]
+script = ExtResource("3_bbpp0")
+normal_range = SubResource("Resource_gblfi")
+weld = true
+render = true
+z_index = 0
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="Resource" id="Resource_3pktt"]
+script = ExtResource("2_2dlks")
+begin = 0.0
+distance = 360.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_5x4hh"]
+script = ExtResource("3_bbpp0")
+normal_range = SubResource("Resource_3pktt")
+weld = true
+render = true
+z_index = 0
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="Resource" id="Resource_kclwe"]
+script = ExtResource("2_2dlks")
+begin = 0.0
+distance = 360.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_3muic"]
+script = ExtResource("3_bbpp0")
+normal_range = SubResource("Resource_kclwe")
+weld = true
+render = true
+z_index = 0
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="Resource" id="Resource_61dc5"]
+script = ExtResource("2_2dlks")
+begin = 0.0
+distance = 360.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_i1v0e"]
+script = ExtResource("3_bbpp0")
+normal_range = SubResource("Resource_61dc5")
+weld = true
+render = true
+z_index = 0
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="Resource" id="Resource_48mrt"]
+script = ExtResource("2_2dlks")
+begin = 0.0
+distance = 360.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_dmeje"]
+script = ExtResource("3_bbpp0")
+normal_range = SubResource("Resource_48mrt")
+weld = true
+render = true
+z_index = 0
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="Resource" id="Resource_junfd"]
+script = ExtResource("2_2dlks")
+begin = 0.0
+distance = 360.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_x280f"]
+script = ExtResource("3_bbpp0")
+normal_range = SubResource("Resource_junfd")
+weld = true
+render = true
+z_index = 0
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="Resource" id="Resource_fnnq0"]
+script = ExtResource("2_2dlks")
+begin = 0.0
+distance = 360.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_y6axb"]
+script = ExtResource("3_bbpp0")
+normal_range = SubResource("Resource_fnnq0")
+weld = true
+render = true
+z_index = 0
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="Resource" id="Resource_3nmil"]
+script = ExtResource("2_2dlks")
+begin = 0.0
+distance = 360.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_qe6vx"]
+script = ExtResource("3_bbpp0")
+normal_range = SubResource("Resource_3nmil")
+weld = true
+render = true
+z_index = 0
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="Resource" id="Resource_kwfxa"]
+script = ExtResource("2_2dlks")
+begin = 0.0
+distance = 360.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_4anhw"]
+script = ExtResource("3_bbpp0")
+normal_range = SubResource("Resource_kwfxa")
+weld = true
+render = true
+z_index = 0
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="Resource" id="Resource_dsntk"]
+script = ExtResource("2_2dlks")
+begin = 0.0
+distance = 360.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_f6d3u"]
+script = ExtResource("3_bbpp0")
+normal_range = SubResource("Resource_dsntk")
+weld = true
+render = true
+z_index = 0
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="Resource" id="Resource_8avon"]
 script = ExtResource("2_w81ex")
 _points = {}
 _point_order = Array[int]([])
 _constraints = {}
-_next_key = 26
-_material_overrides = {}
+_next_key = 36
+_material_overrides = {
+Array[int]([0, 27]): SubResource("Resource_fg5vj"),
+Array[int]([2, 1]): SubResource("Resource_pjckn"),
+Array[int]([3, 2]): SubResource("Resource_hkq03"),
+Array[int]([4, 3]): SubResource("Resource_ggmt1"),
+Array[int]([5, 4]): SubResource("Resource_84f1q"),
+Array[int]([6, 5]): SubResource("Resource_cdw2q"),
+Array[int]([7, 5]): SubResource("Resource_l48ap"),
+Array[int]([7, 12]): SubResource("Resource_4em40"),
+Array[int]([12, 4]): SubResource("Resource_imlxn"),
+Array[int]([12, 14]): SubResource("Resource_28igr"),
+Array[int]([14, 4]): SubResource("Resource_sk0cj"),
+Array[int]([18, 28]): SubResource("Resource_2tu4v"),
+Array[int]([19, 18]): SubResource("Resource_gtjbq"),
+Array[int]([20, 19]): SubResource("Resource_ig08l"),
+Array[int]([21, 20]): SubResource("Resource_kh2vl"),
+Array[int]([21, 29]): SubResource("Resource_kkfms"),
+Array[int]([22, 21]): SubResource("Resource_4mok3"),
+Array[int]([22, 30]): SubResource("Resource_ilh23"),
+Array[int]([24, 23]): SubResource("Resource_k6nxu"),
+Array[int]([24, 31]): SubResource("Resource_2h0a0"),
+Array[int]([25, 24]): SubResource("Resource_vw5ip"),
+Array[int]([25, 32]): SubResource("Resource_mm03p"),
+Array[int]([26, 25]): SubResource("Resource_8c32p"),
+Array[int]([27, 26]): SubResource("Resource_5x4hh"),
+Array[int]([27, 33]): SubResource("Resource_3muic"),
+Array[int]([29, 20]): SubResource("Resource_i1v0e"),
+Array[int]([30, 21]): SubResource("Resource_dmeje"),
+Array[int]([31, 23]): SubResource("Resource_x280f"),
+Array[int]([32, 24]): SubResource("Resource_y6axb"),
+Array[int]([33, 26]): SubResource("Resource_qe6vx"),
+Array[int]([33, 34]): SubResource("Resource_4anhw"),
+Array[int]([34, 26]): SubResource("Resource_f6d3u")
+}
 
 [node name="BlueBox0" type="Node2D"]
 script = ExtResource("1_rdbi7")
-_points = SubResource("Resource_w130j")
+_points = SubResource("Resource_8avon")
 shape_material = ExtResource("3_wpphu")
+tessellation_stages = 3
+collision_size = 1.0
 collision_polygon_node_path = NodePath("Collider/Shape")
 is_unique = true
 metadata/_edit_group_ = true
@@ -38,10 +555,12 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -137.0
+offset_top = -146.0
 offset_right = 137.0
-offset_bottom = 128.0
+offset_bottom = -18.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1.56211, 1.56211)
 pivot_offset = Vector2(137, 64)
 size_flags_horizontal = 4
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)

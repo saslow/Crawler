@@ -5,7 +5,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_ue3py"]
 radius = 72.0
 
-[node name="JumpPad" type="Area2D"]
+[node name="JumpPad0" type="Area2D"]
 collision_layer = 0
 collision_mask = 6
 script = ExtResource("1_ng67e")
@@ -24,12 +24,12 @@ polygon = PackedVector2Array(0, -224, -158.578, -79.289, -63.4312, -79.289, -64,
 metadata/_edit_lock_ = true
 
 [node name="TargetPosition" type="Node2D" parent="."]
-position = Vector2(0, -128)
+position = Vector2(0, -240)
 scale = Vector2(0.252242, 0.252242)
 metadata/_edit_group_ = true
 
 [node name="Polygon2D2" type="Polygon2D" parent="TargetPosition"]
-position = Vector2(2.30761e-10, -222.009)
+position = Vector2(1.94289e-16, 95.1467)
 rotation = 3.14159
 color = Color(0.298039, 0.635294, 1, 1)
 polygon = PackedVector2Array(0, -224, -158.578, -79.289, -63.4312, -79.289, -64, 224, 64, 224, 63.4312, -79.289, 158.578, -79.289)

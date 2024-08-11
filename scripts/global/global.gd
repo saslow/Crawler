@@ -17,10 +17,16 @@ const HALF_DEFAULT_RESOLUTION_HEIGHT : int = 540
 
 signal player_respawned()
 signal background_level_changed(new_bg_level : int)
+signal players_rebound_max_height_reached()
+
+var last_player_target_rebound_position : Vector2
+var last_player_target_to : Layer2D
 
 func change_players_layer(reparent_to : Layer2D) -> void:
-	g.player.call_deferred("reparent", reparent_to.get_node("Players"))
-	g.second_player.call_deferred("reparent", reparent_to.get_node("Players"))
+	#g.player.call_deferred("reparent", reparent_to.get_node("Players"))
+	#g.second_player.call_deferred("reparent", reparent_to.get_node("Players"))
+	g.player.reparent(reparent_to.get_node("Players"))
+	g.second_player.reparent(reparent_to.get_node("Players"))
 	
 func get_viewports_folder() -> Node:
 	return get_node("/root/Level3D/Viewports")

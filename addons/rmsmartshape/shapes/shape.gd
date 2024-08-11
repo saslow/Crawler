@@ -172,9 +172,9 @@ func _make_unique_action(value: String) -> void:
 func _ready():
 	if Engine.is_editor_hint():
 		if !is_unique:
-			modulate = Color(1, 0, 1, 1)
+			modulate = Color(1, 0, 1, modulate.a)
 	else:
-		modulate = Color(1, 1, 1, 1)
+		modulate = Color(1, 1, 1, modulate.a)
 ## EDITED STOPS HERE (NAVERNOE, ANGLISKIY NE PONIMAU) ##
 
 func set_flip_edges(b: bool) -> void:

@@ -31,6 +31,6 @@ func _process(delta):
 func resize_gizmo() -> void:
 	if enabled:
 		if lastZoom <= 1:
-			scale = Vector2.ONE * (1 + (1 - lastZoom )) ** 3
+			scale = Vector2(0.35, 0.35) * (1 + (1 - lastZoom )) ** 3
 		else:
-			scale = Vector2.ONE
+			scale = Vector2(0.35, 0.35)
