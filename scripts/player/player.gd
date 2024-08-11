@@ -357,9 +357,9 @@ func physics_state_machine(delta : float) -> void:
 		sm.RUN_STOPPING:
 			pass
 		sm.REBOUND:
+			velocity = Vector2.ZERO
 			y_vel = Vector2.ZERO
 			x_vel = Vector2.ZERO
-			velocity = Vector2.ZERO
 			#$Shape.disabled = true
 		sm.DEBUG:
 			velocity = Input.get_vector("LEFT" + get_player_index(), "RIGHT" + get_player_index(), "UP" + get_player_index(), "DOWN" + get_player_index()) * 2000

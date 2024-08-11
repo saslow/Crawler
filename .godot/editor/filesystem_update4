@@ -18,3 +18,5 @@ res://scenes/level_parts/checkpoint.tscn
 res://scenes/levels/_level_template.tscn
 res://addons/LinkedCamera2D/linked_camera.tscn
 res://scenes/enemies/dagger_demon.tscn
+res://scripts/player/player.gd
+res://scripts/levels/_layer_template.gd

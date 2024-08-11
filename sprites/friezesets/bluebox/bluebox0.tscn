@@ -1,10 +1,12 @@
-[gd_scene load_steps=73 format=3 uid="uid://brnao33cbomgt"]
+[gd_scene load_steps=85 format=3 uid="uid://brnao33cbomgt"]
 
 [ext_resource type="Script" path="res://addons/rmsmartshape/shapes/shape.gd" id="1_rdbi7"]
 [ext_resource type="Script" path="res://addons/rmsmartshape/normal_range.gd" id="2_2dlks"]
 [ext_resource type="Script" path="res://addons/rmsmartshape/shapes/point_array.gd" id="2_w81ex"]
 [ext_resource type="Script" path="res://addons/rmsmartshape/materials/edge_material_metadata.gd" id="3_bbpp0"]
 [ext_resource type="Resource" uid="uid://bthev3f165hms" path="res://sprites/friezesets/bluebox/bluebox0_material.tres" id="3_wpphu"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/vertex_properties.gd" id="4_awdcq"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/shapes/point.gd" id="5_281cv"]
 [ext_resource type="Script" path="res://scripts/components/frieze_editor_label.gd" id="5_fht45"]
 [ext_resource type="Script" path="res://addons/rmsmartshape/shapes/shape_render.gd" id="11_lm6qx"]
 
@@ -488,12 +490,85 @@ z_index = 0
 z_as_relative = true
 offset = 0.0
 
+[sub_resource type="Resource" id="Resource_ivd2n"]
+script = ExtResource("4_awdcq")
+texture_idx = -8
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_lvf8a"]
+script = ExtResource("5_281cv")
+position = Vector2(112, 90.3838)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_ivd2n")
+
+[sub_resource type="Resource" id="Resource_ew5pb"]
+script = ExtResource("4_awdcq")
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_rjf2f"]
+script = ExtResource("5_281cv")
+position = Vector2(1044.76, 96.3245)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_ew5pb")
+
+[sub_resource type="Resource" id="Resource_fe0ag"]
+script = ExtResource("4_awdcq")
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_11vw1"]
+script = ExtResource("5_281cv")
+position = Vector2(1039.01, 368.964)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_fe0ag")
+
+[sub_resource type="Resource" id="Resource_gosbi"]
+script = ExtResource("4_awdcq")
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_gcngn"]
+script = ExtResource("5_281cv")
+position = Vector2(121.513, 366.845)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_gosbi")
+
+[sub_resource type="Resource" id="Resource_f6yii"]
+script = ExtResource("4_awdcq")
+texture_idx = -8
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_h1hbg"]
+script = ExtResource("5_281cv")
+position = Vector2(112, 90.3838)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_f6yii")
+
 [sub_resource type="Resource" id="Resource_8avon"]
 script = ExtResource("2_w81ex")
-_points = {}
-_point_order = Array[int]([])
-_constraints = {}
-_next_key = 36
+_points = {
+0: SubResource("Resource_h1hbg"),
+36: SubResource("Resource_lvf8a"),
+37: SubResource("Resource_rjf2f"),
+38: SubResource("Resource_11vw1"),
+39: SubResource("Resource_gcngn")
+}
+_point_order = Array[int]([36, 37, 38, 39, 0])
+_constraints = {
+Array[int]([36, 0]): 15
+}
+_next_key = 40
 _material_overrides = {
 Array[int]([0, 27]): SubResource("Resource_fg5vj"),
 Array[int]([2, 1]): SubResource("Resource_pjckn"),
@@ -546,6 +621,7 @@ script = ExtResource("11_lm6qx")
 
 [node name="Shape" type="CollisionPolygon2D" parent="Collider"]
 modulate = Color(1, 1, 1, 0.117647)
+polygon = PackedVector2Array(111.89, 90.2766, 1044.86, 96.2206, 1039.11, 369.066, 121.415, 366.945)
 
 [node name="Label" type="Label" parent="."]
 z_index = 256

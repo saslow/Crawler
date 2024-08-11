@@ -702,8 +702,8 @@ width = 1.0
 
 [sub_resource type="Resource" id="Resource_lopxv"]
 script = ExtResource("5_jsdm7")
-position = Vector2(3176, -1000)
-point_in = Vector2(16, 408)
+position = Vector2(3176, -904)
+point_in = Vector2(0, 312)
 point_out = Vector2(-4.63574, -224.311)
 properties = SubResource("Resource_3xpuv")
 
@@ -2337,7 +2337,7 @@ position = Vector2(32, -672)
 [node name="Friezes" type="Node2D" parent="Layers2D/Layer1"]
 position = Vector2(32, -672)
 
-[node name="BlueBox0" parent="Layers2D/Layer1/Friezes" instance=ExtResource("3_yupkd")]
+[node name="Platform0" parent="Layers2D/Layer1/Friezes" instance=ExtResource("3_yupkd")]
 position = Vector2(9088, -704)
 
 [node name="LevelParts" type="Node2D" parent="Layers2D/Layer1"]
@@ -2349,7 +2349,7 @@ to = NodePath("../../../Layer0")
 
 [node name="TargetPosition" parent="Layers2D/Layer1/LevelParts/JumpPad" index="2"]
 z_index = 1
-position = Vector2(-1, 400)
+position = Vector2(-5.96046e-08, 480)
 
 [node name="RoomChangers" type="Node2D" parent="Layers2D/Layer1"]
 position = Vector2(-4768, -736)
@@ -2368,11 +2368,8 @@ script = ExtResource("2_m4d47")
 position = Vector2(-32, -40)
 metadata/_edit_lock_ = true
 
-[node name="Player0" parent="Layers2D/Layer0/Players" instance=ExtResource("7_u2rs2")]
-position = Vector2(8695, 292)
-metadata/_edit_group_ = true
-
 [node name="Player1" parent="Layers2D/Layer0/Players" instance=ExtResource("7_u2rs2")]
+visible = false
 position = Vector2(6512, 113)
 collision_layer = 4
 last_true_axis = -1
@@ -2382,6 +2379,10 @@ metadata/_edit_group_ = true
 
 [node name="Sprite" parent="Layers2D/Layer0/Players/Player1" index="3"]
 self_modulate = Color(1, 0, 0, 1)
+
+[node name="Player0" parent="Layers2D/Layer0/Players" instance=ExtResource("7_u2rs2")]
+position = Vector2(8695, 292)
+metadata/_edit_group_ = true
 
 [node name="Friezes" type="Node2D" parent="Layers2D/Layer0"]
 
@@ -2418,7 +2419,7 @@ polygon = PackedVector2Array(-522.805, -365.962, -492.798, -366.171, -493.321, -
 disabled = true
 
 [node name="Label" parent="Layers2D/Layer0/Friezes/Secret0" index="2"]
-scale = Vector2(1.67449, 1.67449)
+scale = Vector2(1.92126, 1.92126)
 text = "Secret0"
 
 [node name="SecretPlatform0" parent="Layers2D/Layer0/Friezes" instance=ExtResource("3_yupkd")]
@@ -2435,7 +2436,7 @@ one_way_collision = true
 one_way_collision_margin = 8.0
 
 [node name="Label" parent="Layers2D/Layer0/Friezes/SecretPlatform0" index="2"]
-scale = Vector2(1.67449, 1.67449)
+scale = Vector2(1.92126, 1.92126)
 text = "SecretPlatform0"
 
 [node name="Platform0" parent="Layers2D/Layer0/Friezes" instance=ExtResource("3_yupkd")]
@@ -2474,14 +2475,14 @@ position = Vector2(9390, -873)
 to = NodePath("../../../Layer1")
 
 [node name="TargetPosition" parent="Layers2D/Layer0/LevelParts/JumpPad0" index="2"]
-position = Vector2(-15, -493)
+position = Vector2(-14, -407)
 
 [node name="JumpPad1" parent="Layers2D/Layer0/LevelParts" node_paths=PackedStringArray("to") instance=ExtResource("10_33x7d")]
 position = Vector2(10705, -826)
 to = NodePath("../..")
 
 [node name="TargetPosition" parent="Layers2D/Layer0/LevelParts/JumpPad1" index="2"]
-position = Vector2(957, -7.99999)
+position = Vector2(1007, 90)
 
 [node name="RoomChangers" type="Node2D" parent="Layers2D/Layer0"]
 position = Vector2(-4800, -64)
@@ -2494,12 +2495,12 @@ position_smoothing_speed = 20.0
 [node name="Viewports" type="Node" parent="."]
 
 [editable path="Layers2D/Layer1/LevelParts/JumpPad"]
-[editable path="Layers2D/Layer0/Players/Player0"]
-[editable path="Layers2D/Layer0/Players/Player0/Rotatable/AttackAreas/AttackArea"]
-[editable path="Layers2D/Layer0/Players/Player0/Rotatable/EntityComponentSystem"]
 [editable path="Layers2D/Layer0/Players/Player1"]
 [editable path="Layers2D/Layer0/Players/Player1/Rotatable/AttackAreas/AttackArea"]
 [editable path="Layers2D/Layer0/Players/Player1/Rotatable/EntityComponentSystem"]
+[editable path="Layers2D/Layer0/Players/Player0"]
+[editable path="Layers2D/Layer0/Players/Player0/Rotatable/AttackAreas/AttackArea"]
+[editable path="Layers2D/Layer0/Players/Player0/Rotatable/EntityComponentSystem"]
 [editable path="Layers2D/Layer0/Friezes/Secret0"]
 [editable path="Layers2D/Layer0/Friezes/SecretPlatform0"]
 [editable path="Layers2D/Layer0/LevelParts/JumpPad0"]
