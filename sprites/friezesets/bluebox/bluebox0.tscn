@@ -490,59 +490,7 @@ z_index = 0
 z_as_relative = true
 offset = 0.0
 
-[sub_resource type="Resource" id="Resource_ivd2n"]
-script = ExtResource("4_awdcq")
-texture_idx = -8
-flip = false
-width = 1.0
-
-[sub_resource type="Resource" id="Resource_lvf8a"]
-script = ExtResource("5_281cv")
-position = Vector2(112, 90.3838)
-point_in = Vector2(0, 0)
-point_out = Vector2(0, 0)
-properties = SubResource("Resource_ivd2n")
-
-[sub_resource type="Resource" id="Resource_ew5pb"]
-script = ExtResource("4_awdcq")
-texture_idx = 0
-flip = false
-width = 1.0
-
-[sub_resource type="Resource" id="Resource_rjf2f"]
-script = ExtResource("5_281cv")
-position = Vector2(1044.76, 96.3245)
-point_in = Vector2(0, 0)
-point_out = Vector2(0, 0)
-properties = SubResource("Resource_ew5pb")
-
-[sub_resource type="Resource" id="Resource_fe0ag"]
-script = ExtResource("4_awdcq")
-texture_idx = 0
-flip = false
-width = 1.0
-
-[sub_resource type="Resource" id="Resource_11vw1"]
-script = ExtResource("5_281cv")
-position = Vector2(1039.01, 368.964)
-point_in = Vector2(0, 0)
-point_out = Vector2(0, 0)
-properties = SubResource("Resource_fe0ag")
-
-[sub_resource type="Resource" id="Resource_gosbi"]
-script = ExtResource("4_awdcq")
-texture_idx = 0
-flip = false
-width = 1.0
-
-[sub_resource type="Resource" id="Resource_gcngn"]
-script = ExtResource("5_281cv")
-position = Vector2(121.513, 366.845)
-point_in = Vector2(0, 0)
-point_out = Vector2(0, 0)
-properties = SubResource("Resource_gosbi")
-
-[sub_resource type="Resource" id="Resource_f6yii"]
+[sub_resource type="Resource" id="Resource_hkrpp"]
 script = ExtResource("4_awdcq")
 texture_idx = -8
 flip = false
@@ -550,10 +498,62 @@ width = 1.0
 
 [sub_resource type="Resource" id="Resource_h1hbg"]
 script = ExtResource("5_281cv")
-position = Vector2(112, 90.3838)
+position = Vector2(-473.605, -230.076)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
-properties = SubResource("Resource_f6yii")
+properties = SubResource("Resource_hkrpp")
+
+[sub_resource type="Resource" id="Resource_7qdje"]
+script = ExtResource("4_awdcq")
+texture_idx = -8
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_lvf8a"]
+script = ExtResource("5_281cv")
+position = Vector2(-473.605, -230.076)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_7qdje")
+
+[sub_resource type="Resource" id="Resource_ibn0q"]
+script = ExtResource("4_awdcq")
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_rjf2f"]
+script = ExtResource("5_281cv")
+position = Vector2(459.151, -224.135)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_ibn0q")
+
+[sub_resource type="Resource" id="Resource_0nbjh"]
+script = ExtResource("4_awdcq")
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_11vw1"]
+script = ExtResource("5_281cv")
+position = Vector2(453.402, 48.5037)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_0nbjh")
+
+[sub_resource type="Resource" id="Resource_ncufn"]
+script = ExtResource("4_awdcq")
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_gcngn"]
+script = ExtResource("5_281cv")
+position = Vector2(-464.093, 46.3848)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_ncufn")
 
 [sub_resource type="Resource" id="Resource_8avon"]
 script = ExtResource("2_w81ex")
@@ -621,7 +621,7 @@ script = ExtResource("11_lm6qx")
 
 [node name="Shape" type="CollisionPolygon2D" parent="Collider"]
 modulate = Color(1, 1, 1, 0.117647)
-polygon = PackedVector2Array(111.89, 90.2766, 1044.86, 96.2206, 1039.11, 369.066, 121.415, 366.945)
+polygon = PackedVector2Array(-473.715, -230.183, 459.258, -224.239, 453.502, 48.6061, -464.19, 46.4854)
 
 [node name="Label" type="Label" parent="."]
 z_index = 256
@@ -636,7 +636,7 @@ offset_right = 137.0
 offset_bottom = -18.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1.56211, 1.56211)
+scale = Vector2(2.00661, 2.00661)
 pivot_offset = Vector2(137, 64)
 size_flags_horizontal = 4
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)

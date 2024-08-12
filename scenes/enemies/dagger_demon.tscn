@@ -10,7 +10,7 @@ size = Vector2(48, 160)
 size = Vector2(16, 16)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_3ypm5"]
-b = Vector2(0, 82)
+b = Vector2(0, 84)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nvjmh"]
 size = Vector2(80, 56)
@@ -94,7 +94,9 @@ process_callback = 0
 wait_time = 0.5
 one_shot = true
 
+[connection signal="body_entered" from="EnemyTemplate/Rotatable/LeftEdgeArea" to="." method="_on_left_edge_area_body_entered"]
 [connection signal="body_exited" from="EnemyTemplate/Rotatable/LeftEdgeArea" to="." method="_on_left_edge_area_body_exited"]
+[connection signal="body_entered" from="EnemyTemplate/Rotatable/RightEdgeArea" to="." method="_on_right_edge_area_body_entered"]
 [connection signal="body_exited" from="EnemyTemplate/Rotatable/RightEdgeArea" to="." method="_on_right_edge_area_body_exited"]
 [connection signal="timeout" from="Timers/IdleTimer" to="." method="_on_idle_timer_timeout"]
 

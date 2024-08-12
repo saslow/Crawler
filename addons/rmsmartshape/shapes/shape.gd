@@ -23,6 +23,24 @@ const TUP = preload("../lib/tuple.gd")
 
 ## EDITED ##
 ## UJE NOT EDITED ##
+@export_category("Added")
+
+@export var is_platform : bool = false :
+	set(value):
+		$Collider/Shape.one_way_collision = value
+		$Collider.set_collision_layer_value(g.ONE_WAY_SOLIDS_LAYER, value)
+		$Collider.set_collision_layer_value(1, !value)
+		is_platform = value
+		
+@export var can_collide : bool = true :
+	set(value):
+		$Collider/Shape.disabled = !value
+		can_collide = value
+		
+@export var is_transparent : bool = false
+
+
+@export_category("Vanilla")
 
 var _dirty: bool = false
 var _edges: Array[SS2D_Edge] = []

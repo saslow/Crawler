@@ -14,6 +14,7 @@ const MAX_FALLING_VEL_Y : int = 5000
 const MIN_FALLING_VEL_Y : int = -60000
 const DEFAULT_RESOLUTION : Vector2 = Vector2(1920, 1080)
 const HALF_DEFAULT_RESOLUTION_HEIGHT : int = 540
+const ONE_WAY_SOLIDS_LAYER : int = 9
 
 signal player_respawned()
 signal background_level_changed(new_bg_level : int)

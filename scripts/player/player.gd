@@ -443,7 +443,7 @@ func movement(delta : float, acc_mult : float = 1, fr_mult : float = 1) -> void:
 				x_vel = lerp(x_vel, Vector2.ZERO, FRICTION * fr_mult / 2)
 		
 func movement_in_air_state_when_running() -> void:
-	x_vel.x += last_true_axis * speed/8
+	x_vel.x += last_true_axis * speed/24
 		
 func running() -> void:
 	if Input.is_action_pressed("RUN" + get_player_index()) and ( (!($Rotatable/Casts/LeftCast.is_colliding() and last_true_axis == -1 and speed <= 700) and !($Rotatable/Casts/RightCast.is_colliding() and last_true_axis == 1 and speed <= 700)  ) or state == sm.WALL_SLIDING ):
@@ -650,13 +650,6 @@ func get_real_floor_angle( rad_to_deg : bool = false) -> float:
 	else:
 		return 0.0
 		
-		
-func input_is_moving_buttons_just_pressed() -> bool:
-	if Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) != 0:
-		return true
-	else:
-		return false
-		
 func stop_jump_timers() -> void:
 	$Timers/FirstJumpStateTimer.stop()
 	$Timers/SecondJumpStateTimer.stop()
@@ -735,6 +728,12 @@ func character_swapped_indicator():
 		
 func emit_players_rebound_max_height_reached():
 	g.players_rebound_max_height_reached.emit()
+	
+func input_is_run_and_direction_pressed() -> bool:
+	if Input.is_action_pressed("RUN" + get_player_index()) and Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) != 0:
+		return true
+	else:
+		return false
 
 func _on_turning_timer_timeout():
 	pass

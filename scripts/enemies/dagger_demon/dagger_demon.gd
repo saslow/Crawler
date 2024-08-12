@@ -129,13 +129,25 @@ func swap_view_area_direction() -> void:
 	if direction == 1:
 		$EnemyTemplate/Rotatable/DamageHitboxComponent/CollisionShape.position = $EnemyTemplate/Rotatable/RightEdgeArea.position
 		
-func _on_right_edge_area_body_exited(area):
-	$Timers/IdleTimer.start()
-	b.floor_constant_speed = false
-	state = sm.IDLE
+var l_counter : int = 0
+var r_counter : int = 0
 
 func _on_left_edge_area_body_exited(area):
-	$Timers/IdleTimer.start()
-	b.floor_constant_speed = false
-	state = sm.IDLE
-	
+	l_counter -= 1
+	if l_counter == 0:
+		$Timers/IdleTimer.start()
+		b.floor_constant_speed = false
+		state = sm.IDLE
+
+func _on_right_edge_area_body_exited(area):
+	r_counter -= 1
+	if r_counter == 0:
+		$Timers/IdleTimer.start()
+		b.floor_constant_speed = false
+		state = sm.IDLE
+
+func _on_left_edge_area_body_entered(body):
+	l_counter += 1
+
+func _on_right_edge_area_body_entered(body):
+	r_counter -= 1

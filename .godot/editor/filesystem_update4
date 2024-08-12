@@ -1,13 +1,8 @@
-res://sprites/friezesets/bluebox/bluebox0.tscn
-res://sprites/friezesets/bluebox/bluebox0_material.tres
-res://sprites/friezesets/leshy's_forest/leshy's_forest_friezeset0.tres
-res://materials/shaders/tv.gdshader
 res://scenes/levels/level_0r.tscn
+res://sprites/friezesets/bluebox/bluebox0_material.tres
+res://materials/shaders/tv.gdshader
 res://scenes/menus/main_menu.tscn
 res://scenes/player/player.tscn
-res://scenes/levels/level_0.tscn
-res://scenes/levels/level_1.tscn
-res://scenes/levels/level_2.tscn
 res://scenes/level_parts/jump_pad.tscn
 res://scenes/level_parts/grind_pipe.tscn
 res://scenes/enemies/enemy_template.tscn
@@ -15,8 +10,7 @@ res://scenes/enemies/flying_demon.tscn
 res://scenes/enemies/dagger_demon_2.tscn
 res://scenes/level_parts/releaser.tscn
 res://scenes/level_parts/checkpoint.tscn
+res://sprites/friezesets/bluebox/bluebox0.tscn
 res://scenes/levels/_level_template.tscn
 res://addons/LinkedCamera2D/linked_camera.tscn
 res://scenes/enemies/dagger_demon.tscn
-res://scripts/player/player.gd
-res://scripts/levels/_layer_template.gd
