@@ -1,5 +1,8 @@
+SS2D_Shape
 CollisionShape2D
 Node2D
+CollisionPolygon2D
+Area2D
 Panel
 Label
 Line2D
@@ -7,8 +10,5 @@ RayCast2D
 Sprite3D
 AnimationPlayer
 Polygon2D
-Area2D
 Camera2D
 SubViewport
-Layer2D
-SS2D_Shape

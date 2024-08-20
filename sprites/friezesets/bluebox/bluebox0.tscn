@@ -490,7 +490,7 @@ z_index = 0
 z_as_relative = true
 offset = 0.0
 
-[sub_resource type="Resource" id="Resource_hkrpp"]
+[sub_resource type="Resource" id="Resource_xscd6"]
 script = ExtResource("4_awdcq")
 texture_idx = -8
 flip = false
@@ -501,9 +501,9 @@ script = ExtResource("5_281cv")
 position = Vector2(-473.605, -230.076)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
-properties = SubResource("Resource_hkrpp")
+properties = SubResource("Resource_xscd6")
 
-[sub_resource type="Resource" id="Resource_7qdje"]
+[sub_resource type="Resource" id="Resource_jt56o"]
 script = ExtResource("4_awdcq")
 texture_idx = -8
 flip = false
@@ -514,9 +514,9 @@ script = ExtResource("5_281cv")
 position = Vector2(-473.605, -230.076)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
-properties = SubResource("Resource_7qdje")
+properties = SubResource("Resource_jt56o")
 
-[sub_resource type="Resource" id="Resource_ibn0q"]
+[sub_resource type="Resource" id="Resource_7h7td"]
 script = ExtResource("4_awdcq")
 texture_idx = 0
 flip = false
@@ -527,9 +527,9 @@ script = ExtResource("5_281cv")
 position = Vector2(459.151, -224.135)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
-properties = SubResource("Resource_ibn0q")
+properties = SubResource("Resource_7h7td")
 
-[sub_resource type="Resource" id="Resource_0nbjh"]
+[sub_resource type="Resource" id="Resource_b8jnn"]
 script = ExtResource("4_awdcq")
 texture_idx = 0
 flip = false
@@ -540,9 +540,9 @@ script = ExtResource("5_281cv")
 position = Vector2(453.402, 48.5037)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
-properties = SubResource("Resource_0nbjh")
+properties = SubResource("Resource_b8jnn")
 
-[sub_resource type="Resource" id="Resource_ncufn"]
+[sub_resource type="Resource" id="Resource_i23eg"]
 script = ExtResource("4_awdcq")
 texture_idx = 0
 flip = false
@@ -553,7 +553,7 @@ script = ExtResource("5_281cv")
 position = Vector2(-464.093, 46.3848)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
-properties = SubResource("Resource_ncufn")
+properties = SubResource("Resource_i23eg")
 
 [sub_resource type="Resource" id="Resource_8avon"]
 script = ExtResource("2_w81ex")
@@ -605,6 +605,7 @@ Array[int]([34, 26]): SubResource("Resource_f6d3u")
 }
 
 [node name="BlueBox0" type="Node2D"]
+texture_filter = 1
 script = ExtResource("1_rdbi7")
 _points = SubResource("Resource_8avon")
 shape_material = ExtResource("3_wpphu")
@@ -636,7 +637,7 @@ offset_right = 137.0
 offset_bottom = -18.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(2.00661, 2.00661)
+scale = Vector2(2.08475, 2.08475)
 pivot_offset = Vector2(137, 64)
 size_flags_horizontal = 4
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)

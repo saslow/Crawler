@@ -98,8 +98,10 @@ enum sm{
 	RUN_STOPPING = 4,
 	WALL_SLIDING = 5,
 	REBOUND = 6,
+	RING = 7,
+	V_ROPE = 8,
 	
-	DEBUG = 7,
+	DEBUG = 9,
 	
 }
 
@@ -194,7 +196,7 @@ func _physics_process(delta: float) -> void:
 
 	#if !Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()):
 		#x_vel = Vector2.ZERO
-	if state != sm.DEBUG and state != sm.REBOUND:
+	if state != sm.DEBUG and state != sm.REBOUND and state != sm.RING:
 		velocity = x_vel + y_vel
 	if state == sm.GROUND:
 		if (Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) != 0) or is_running:
@@ -357,10 +359,30 @@ func physics_state_machine(delta : float) -> void:
 		sm.RUN_STOPPING:
 			pass
 		sm.REBOUND:
-			velocity = Vector2.ZERO
 			y_vel = Vector2.ZERO
 			x_vel = Vector2.ZERO
+			velocity = Vector2.ZERO
 			#$Shape.disabled = true
+		sm.RING:
+			default_velocity()
+			running()
+			
+			
+			#if Input.is_action_pressed("RUN" + get_player_index()):
+				#is_running = true
+				#
+			#else:
+				#speed = NORMAL_SPEED
+			#last_true_axis = Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index())
+			
+			if Input.is_action_pressed("JUMP" + get_player_index()) and Input.is_action_pressed("RUN" + get_player_index()):
+				speed = MAX_SPEED
+			jump_start(delta)
+			last_true_axis = -1
+			#last_true_axis_changing()
+			#global_position = lerp(global_position, )
+		sm.V_ROPE:
+			default_velocity()
 		sm.DEBUG:
 			velocity = Input.get_vector("LEFT" + get_player_index(), "RIGHT" + get_player_index(), "UP" + get_player_index(), "DOWN" + get_player_index()) * 2000
 
@@ -447,7 +469,7 @@ func movement_in_air_state_when_running() -> void:
 		
 func running() -> void:
 	if Input.is_action_pressed("RUN" + get_player_index()) and ( (!($Rotatable/Casts/LeftCast.is_colliding() and last_true_axis == -1 and speed <= 700) and !($Rotatable/Casts/RightCast.is_colliding() and last_true_axis == 1 and speed <= 700)  ) or state == sm.WALL_SLIDING ):
-		if is_on_floor() or state == sm.WALL_SLIDING:
+		if is_on_floor() or state == sm.WALL_SLIDING or state == sm.RING:
 			is_running = true
 			if $Timers/TurningTimer.is_stopped():
 				speed = move_toward(speed, MAX_SPEED, 8)
@@ -691,6 +713,11 @@ func _on_grind_area_body_entered(body):
 func _on_grind_area_body_exited(body):
 	if body is GrindPipe:
 		is_on_grind_pipe = false
+		
+func default_velocity() -> void:
+	y_vel = Vector2.ZERO
+	x_vel = Vector2.ZERO
+	velocity = Vector2.ZERO
 		
 func properties_update() -> void:
 	state = sm.GROUND

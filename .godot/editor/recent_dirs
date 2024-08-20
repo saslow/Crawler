@@ -1,6 +1,9 @@
-C:/Program Files/Krita (x64)/bin
+res://sprites/friezesets/swamp/swamp_mud
+res://sprites/friezesets
+res://sprites/friezesets/swamp
 res://scripts/level_parts
 res://scenes/level_parts
+C:/Program Files/Krita (x64)/bin
 res://addons/LinkedCamera2D
 res://sprites/friezesets/bluebox
 res://scenes/levels
@@ -17,6 +20,3 @@ res://sprites/friezesets/leshy's_forest
 res://sprites/friezesets/leshy's_forest/scenes
 res://scripts/enemies/dagger_demon_2
 res://scenes/enemies
-res://scripts/enemies/dagger_demon
-res://scripts/enemies/flying_demon
-res://scripts/menus

@@ -4,9 +4,12 @@ class_name Layer2D
 
 @export var ss2d_material_shape : SS2D_Material_Shape :
 	set(material):
-		if get_node("Friezes").get_child_count() > 0:
-			for frieze : SS2D_Shape in get_node("Friezes").get_children():
-				frieze.shape_material = material
+		if Engine.is_editor_hint():
+			if material != null:
+				if get_node("Friezes").get_child_count() > 0:
+					for frieze : SS2D_Shape in get_node("Friezes").get_children():
+						if !frieze.is_platform:
+							frieze.shape_material = material
 		ss2d_material_shape = material
 
 @export_range(0, 64, 0.1) var z : float = 1

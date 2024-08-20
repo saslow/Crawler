@@ -1,5 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1723457864
+::res://::1723886982
 bugs.txt::TextFile::-1::1717439210::0::1::::<><>::
 export_presets.cfg::TextFile::-1::1713613882::0::1::::<><>::
 icon.svg::CompressedTexture2D::6460193829020417022::1711177445::1711177445::1::::<><>::
@@ -25,13 +25,13 @@ THIRDPARTY.txt::TextFile::-1::1711177444::0::1::::<><>::
 ::res://addons/godot-jolt/macos/godot-jolt_macos_editor.framework/::1711177444
 ::res://addons/godot-jolt/macos/godot-jolt_macos_editor.framework/Resources/::1711177444
 ::res://addons/godot-jolt/macos/godot-jolt_macos_editor.framework/_CodeSignature/::1711177444
-::res://addons/godot-jolt/windows/::1723457857
+::res://addons/godot-jolt/windows/::1723886976
 ::res://addons/godot-rapier2d/::1711177444
 godot-rapier2d.gdextension::GDExtension::-1::1711177444::0::1::::<><>::
 README.md::TextFile::-1::1711177444::0::1::::<><>::
 THIRDPARTY.txt::TextFile::-1::1711177444::0::1::::<><>::
 VERSION.txt::TextFile::-1::1711177444::0::1::::<><>::
-::res://addons/godot-rapier2d/bin/::1723457857
+::res://addons/godot-rapier2d/bin/::1723886976
 ::res://addons/godot-rapier2d/bin/libphysics_server_rapier2d.macos.template_debug.framework/::1711177444
 ::res://addons/godot-rapier2d/bin/libphysics_server_rapier2d.macos.template_debug.framework/Resources/::1711177444
 ::res://addons/godot-rapier2d/bin/libphysics_server_rapier2d.macos.template_debug.framework/_CodeSignature/::1711177444
@@ -58,9 +58,9 @@ level_editor.gd::GDScript::-1::1721492929::0::1::::<>EditorPlugin<>::
 level_editor.tscn::PackedScene::8175729311820538276::1720621052::0::1::::<><>::res://addons/LevelEditor/level_editor_interface.gd<>uid://bjh5ftt7uytxs::::res://materials/themes/light_panel_theme.tres
 level_editor_interface.gd::GDScript::-1::1721492675::0::1::::<>Control<>::
 plugin.cfg::TextFile::-1::1711177444::0::1::::<><>::
-::res://addons/LinkedCamera2D/::1723390109
+::res://addons/LinkedCamera2D/::1723887788
 linked_camera2D.gd::GDScript::-1::1721662546::0::1::::LinkedCamera2D<>Camera2D<>::
-linked_camera.tscn::PackedScene::4242499254871796778::1723390109::0::1::::<><>::res://addons/LinkedCamera2D/linked_camera2D.gd
+linked_camera.tscn::PackedScene::4242499254871796778::1723887788::0::1::::<><>::res://addons/LinkedCamera2D/linked_camera2D.gd
 ::res://addons/nklbdev.previewing_parallax_background/::1719590548
 icon.png::CompressedTexture2D::1475467086829607042::1719590548::1719590548::1::::<><>::
 plugin.cfg::TextFile::-1::1719590548::0::1::::<><>::
@@ -141,14 +141,14 @@ GUI_InfoPanel.gd::GDScript::-1::1711177445::0::1::::<>PanelContainer<>::
 GUI_InfoPanel.tscn::PackedScene::6430404396963951352::1711177445::0::1::::<><>::uid://dud4fe6fsicvm::::res://addons/rmsmartshape/assets/gui_theme.res<>res://addons/rmsmartshape/scenes/GUI_InfoPanel.gd
 SnapPopup.gd::GDScript::-1::1711177445::0::1::::<>Popup<>::
 SnapPopup.tscn::PackedScene::8984332128935894720::1711177445::0::1::::<><>::res://addons/rmsmartshape/scenes/SnapPopup.gd<>uid://dud4fe6fsicvm::::res://addons/rmsmartshape/assets/gui_theme.res
-::res://addons/rmsmartshape/shapes/::1723386362
+::res://addons/rmsmartshape/shapes/::1723829463
 edge.gd::GDScript::-1::1711177445::0::1::::SS2D_Edge<>RefCounted<>::
 index_map.gd::GDScript::-1::1711177445::0::1::::SS2D_IndexMap<>RefCounted<>::
 mesh.gd::GDScript::-1::1711177445::0::1::::SS2D_Mesh<>RefCounted<>::
 point.gd::GDScript::-1::1711177445::0::1::::SS2D_Point<>Resource<>::
 point_array.gd::GDScript::-1::1711177445::0::1::::SS2D_Point_Array<>Resource<>::
 quad.gd::GDScript::-1::1711177445::0::1::::SS2D_Quad<>RefCounted<>::
-shape.gd::GDScript::-1::1723386362::0::1::::SS2D_Shape<>Node2D<>res://addons/rmsmartshape/assets/closed_shape.png::
+shape.gd::GDScript::-1::1723829463::0::1::::SS2D_Shape<>Node2D<>res://addons/rmsmartshape/assets/closed_shape.png::
 shape_anchor.gd::GDScript::-1::1711177445::0::1::::SS2D_Shape_Anchor<>Node2D<>res://addons/rmsmartshape/assets/Anchor.svg::
 shape_closed.gd::GDScript::-1::1711177445::0::1::::SS2D_Shape_Closed<>SS2D_Shape<>res://addons/rmsmartshape/assets/closed_shape.png::
 shape_open.gd::GDScript::-1::1711177445::0::1::::SS2D_Shape_Open<>SS2D_Shape<>res://addons/rmsmartshape/assets/open_shape.png::
@@ -159,8 +159,8 @@ wiggly_appendage_2d.gd::GDScript::-1::1711177445::0::1::::WigglyAppendage2D<>Lin
 wiggly_appendage_2d_icon.svg::CompressedTexture2D::6385188881881799430::1711177445::1711177445::1::::<><>::
 wiggly_appendage_2d_plugin.gd::GDScript::-1::1711177445::0::1::::<>EditorPlugin<>::
 ::res://materials/::1720696002
-::res://materials/shaders/::1723400628
-tv.gdshader::Shader::-1::1723400628::0::1::::<><>::
+::res://materials/shaders/::1723888574
+tv.gdshader::Shader::-1::1723888574::0::1::::<><>::
 ::res://materials/shapes/::1720275763
 player_normal_collision_shape.tres::CircleShape2D::4083526840309291205::1716131856::0::1::::<><>::
 player_slide_collision_shape.tres::CircleShape2D::3493344588936232097::1715977686::0::1::::<><>::
@@ -175,36 +175,37 @@ normal.tres::Environment::5054961494168929419::1720028003::0::1::::<><>::
 ::res://scenes/::1721056928
 ::res://scenes/components/::1719582241
 entity_component_system.tscn::PackedScene::1597729894917477957::1719582241::0::1::::<><>::res://scripts/components/entity_component_system.gd
-::res://scenes/enemies/::1723390110
-dagger_demon.tscn::PackedScene::5465956195549537352::1723390110::0::1::::<><>::uid://cqmh4t4ov7mja::::res://scenes/enemies/enemy_template.tscn<>res://scripts/enemies/dagger_demon/dagger_demon.gd
-dagger_demon_2.tscn::PackedScene::8979731918544660686::1723390109::0::1::::<><>::res://scripts/enemies/dagger_demon_2/dagger_demon_2.gd<>uid://b21y1no60iugc::::res://sprites/entities/dagger_demon/attack/dagger demon attack.0008.png<>uid://c7gfb2mdl21e::::res://sprites/entities/dagger_demon/idle/dagger_demon_idle.0020.png<>uid://dhxxuymm1ni51::::res://sprites/entities/dagger_demon/idle/dagger_demon_idle.0025.png<>uid://3xuulcubas6m::::res://sprites/entities/dagger_demon/attack/dagger demon attack.0009.png<>uid://dnmqv3sg7awi1::::res://sprites/entities/dagger_demon/attack/dagger demon attack.0010.png<>uid://c4tenh0u8nto2::::res://sprites/entities/dagger_demon/idle/dagger_demon_idle.0022.png<>uid://blrt7s2eice1x::::res://sprites/entities/dagger_demon/attack/dagger demon attack.0011.png<>uid://cbesoypewsltg::::res://sprites/entities/dagger_demon/idle/dagger_demon_idle.0023.png<>uid://remyl8runuch::::res://sprites/entities/dagger_demon/idle/dagger_demon_idle.0024.png<>uid://bsvdb1pna1r3g::::res://sprites/entities/dagger_demon/idle/dagger_demon_idle.0026.png<>uid://cqmh4t4ov7mja::::res://scenes/enemies/enemy_template.tscn<>uid://w07m35qgysc0::::res://scenes/components/entity_component_system.tscn
-enemy_template.tscn::PackedScene::5921113249024456498::1723390109::0::1::::<><>::res://scripts/enemies/enemy_template.gd<>res://scripts/components/entity_component_system.gd<>uid://w07m35qgysc0::::res://scenes/components/entity_component_system.tscn
-flying_demon.tscn::PackedScene::6987032961625902348::1723390109::0::1::::<><>::uid://cqmh4t4ov7mja::::res://scenes/enemies/enemy_template.tscn<>res://scripts/enemies/flying_demon/flying_demon.gd<>uid://drdjets7cddnq::::res://sprites/entities/fly/fly wings/fly wings.0001.png<>uid://dfosv2cwy6rua::::res://sprites/entities/fly/fly wings/fly wings.0002.png<>uid://b37sn6qjwf8r2::::res://sprites/entities/fly/fly body.0001.png
+::res://scenes/enemies/::1723887787
+dagger_demon.tscn::PackedScene::5465956195549537352::1723458654::0::1::::<><>::uid://cqmh4t4ov7mja::::res://scenes/enemies/enemy_template.tscn<>res://scripts/enemies/dagger_demon/dagger_demon.gd
+dagger_demon_2.tscn::PackedScene::8979731918544660686::1723887787::0::1::::<><>::res://scripts/enemies/dagger_demon_2/dagger_demon_2.gd<>uid://b21y1no60iugc::::res://sprites/entities/dagger_demon/attack/dagger demon attack.0008.png<>uid://c7gfb2mdl21e::::res://sprites/entities/dagger_demon/idle/dagger_demon_idle.0020.png<>uid://dhxxuymm1ni51::::res://sprites/entities/dagger_demon/idle/dagger_demon_idle.0025.png<>uid://3xuulcubas6m::::res://sprites/entities/dagger_demon/attack/dagger demon attack.0009.png<>uid://dnmqv3sg7awi1::::res://sprites/entities/dagger_demon/attack/dagger demon attack.0010.png<>uid://c4tenh0u8nto2::::res://sprites/entities/dagger_demon/idle/dagger_demon_idle.0022.png<>uid://blrt7s2eice1x::::res://sprites/entities/dagger_demon/attack/dagger demon attack.0011.png<>uid://cbesoypewsltg::::res://sprites/entities/dagger_demon/idle/dagger_demon_idle.0023.png<>uid://remyl8runuch::::res://sprites/entities/dagger_demon/idle/dagger_demon_idle.0024.png<>uid://bsvdb1pna1r3g::::res://sprites/entities/dagger_demon/idle/dagger_demon_idle.0026.png<>uid://cqmh4t4ov7mja::::res://scenes/enemies/enemy_template.tscn<>uid://w07m35qgysc0::::res://scenes/components/entity_component_system.tscn
+enemy_template.tscn::PackedScene::5921113249024456498::1723887787::0::1::::<><>::res://scripts/enemies/enemy_template.gd<>res://scripts/components/entity_component_system.gd<>uid://w07m35qgysc0::::res://scenes/components/entity_component_system.tscn
+flying_demon.tscn::PackedScene::6987032961625902348::1723887787::0::1::::<><>::uid://cqmh4t4ov7mja::::res://scenes/enemies/enemy_template.tscn<>res://scripts/enemies/flying_demon/flying_demon.gd<>uid://drdjets7cddnq::::res://sprites/entities/fly/fly wings/fly wings.0001.png<>uid://dfosv2cwy6rua::::res://sprites/entities/fly/fly wings/fly wings.0002.png<>uid://b37sn6qjwf8r2::::res://sprites/entities/fly/fly body.0001.png
 ::res://scenes/global/::1720890268
 global.tscn::PackedScene::8450079662489832009::1719659409::0::1::::<><>::res://scripts/global/global.gd
 room_changer_singleton.tscn::PackedScene::2767310201716257954::1720890268::0::1::::<><>::res://scripts/global/room_changer_singleton.gd
-::res://scenes/levels/::1723390109
+::res://scenes/levels/::1723887788
 level_0.tscn::PackedScene::3841161566350503990::1723381410::0::1::::<><>::res://scripts/levels/_layer_template.gd<>uid://dhp71vl6av8ov::::res://scenes/player/player.tscn<>uid://brnao33cbomgt::::res://sprites/friezesets/bluebox/bluebox0.tscn<>res://addons/rmsmartshape/vertex_properties.gd<>uid://brhfbf6i2boia::::res://scenes/menus/pause_menu.tscn<>res://addons/rmsmartshape/shapes/point.gd<>res://addons/rmsmartshape/shapes/point_array.gd<>uid://7sgec55gmorl::::res://scenes/level_parts/releaser.tscn
-level_0r.tscn::PackedScene::8292190215880658861::1723390109::0::1::::<><>::res://scripts/levels/_level_template.gd<>res://scripts/levels/_layer_template.gd<>uid://b1pdlwm8mx8pq::::res://addons/LinkedCamera2D/linked_camera.tscn<>uid://brnao33cbomgt::::res://sprites/friezesets/bluebox/bluebox0.tscn<>res://addons/rmsmartshape/vertex_properties.gd<>res://addons/rmsmartshape/shapes/point.gd<>res://addons/rmsmartshape/shapes/point_array.gd<>uid://dhp71vl6av8ov::::res://scenes/player/player.tscn<>uid://7sgec55gmorl::::res://scenes/level_parts/releaser.tscn<>uid://dbl2ag2biwpjj::::res://scenes/level_parts/jump_pad.tscn<>res://addons/rmsmartshape/normal_range.gd<>res://addons/rmsmartshape/materials/edge_material_metadata.gd<>uid://cj40q87hg8j0k::::res://scenes/enemies/dagger_demon.tscn
+level_0r.tscn::PackedScene::8292190215880658861::1723887787::0::1::::<><>::res://scripts/levels/_level_template.gd<>res://scripts/levels/_layer_template.gd<>uid://b1pdlwm8mx8pq::::res://addons/LinkedCamera2D/linked_camera.tscn<>uid://brnao33cbomgt::::res://sprites/friezesets/bluebox/bluebox0.tscn<>res://addons/rmsmartshape/vertex_properties.gd<>res://addons/rmsmartshape/shapes/point.gd<>res://addons/rmsmartshape/shapes/point_array.gd<>uid://sikm4gfm58gb::::res://sprites/friezesets/swamp/moss/moss.tres<>uid://cvvd683uvfke2::::res://sprites/friezesets/swamp/swamp_mud/swamp_mud_material.tres<>uid://dhp71vl6av8ov::::res://scenes/player/player.tscn<>uid://7sgec55gmorl::::res://scenes/level_parts/releaser.tscn<>uid://dbl2ag2biwpjj::::res://scenes/level_parts/jump_pad.tscn<>res://addons/rmsmartshape/normal_range.gd<>res://addons/rmsmartshape/materials/edge_material_metadata.gd<>res://addons/rmsmartshape/shapes/shape.gd
 level_1.tscn::PackedScene::6746874893576368295::1723381410::0::1::::<><>::res://scripts/levels/_layer_template.gd<>res://scripts/_/global_camera.gd<>res://scripts/player/player_system.gd<>uid://dhp71vl6av8ov::::res://scenes/player/player.tscn<>res://addons/rmsmartshape/shapes/shape_open.gd<>res://addons/rmsmartshape/vertex_properties.gd<>res://addons/rmsmartshape/shapes/point.gd<>uid://brhfbf6i2boia::::res://scenes/menus/pause_menu.tscn<>res://addons/rmsmartshape/shapes/point_array.gd<>uid://cbnkuulgivlk0::::res://scenes/level_parts/checkpoint.tscn<>uid://jwvwqbnyerjo::::res://sprites/friezesets/leshy's_forest/leshy's_forest_friezeset0.tres<>uid://c6stoaluguydg::::res://scenes/enemies/flying_demon.tscn<>uid://cj40q87hg8j0k::::res://scenes/enemies/dagger_demon.tscn<>uid://w07m35qgysc0::::res://scenes/components/entity_component_system.tscn<>uid://d0634w5kelvba::::res://scenes/enemies/dagger_demon_2.tscn
 level_2.tscn::PackedScene::5399824257818459096::1723381410::0::1::::<><>::res://scripts/levels/_layer_template.gd<>res://scripts/_/global_camera.gd<>res://addons/rmsmartshape/shapes/shape.gd<>res://addons/rmsmartshape/materials/edge_material.gd<>res://addons/rmsmartshape/vertex_properties.gd<>uid://ct8pwmuk07ot::::res://sprites/friezesets/leshy's_forest/sprites/leshy's_forest_up.png<>res://addons/rmsmartshape/shapes/point.gd<>uid://bhixlhyy0sk5a::::res://sprites/friezesets/leshy's_forest/sprites/leshy's_forest_inner_corner.png<>res://addons/rmsmartshape/shapes/point_array.gd<>uid://c0byer154r8wp::::res://sprites/friezesets/leshy's_forest/sprites/leshy's_forest_outer_corner.png<>uid://jwvwqbnyerjo::::res://sprites/friezesets/leshy's_forest/leshy's_forest_friezeset0.tres<>res://addons/rmsmartshape/normal_range.gd<>res://addons/rmsmartshape/materials/edge_material_metadata.gd<>res://addons/rmsmartshape/materials/shape_material.gd<>uid://dhp71vl6av8ov::::res://scenes/player/player.tscn<>uid://brhfbf6i2boia::::res://scenes/menus/pause_menu.tscn<>res://addons/rmsmartshape/shapes/shape_render.gd<>uid://7sgec55gmorl::::res://scenes/level_parts/releaser.tscn
-_level_template.tscn::PackedScene::6271187091317858947::1723390109::0::1::::<><>::res://scripts/levels/_level_template.gd
-::res://scenes/level_parts/::1723390109
-checkpoint.tscn::PackedScene::4870511075376767297::1723390109::0::1::::<><>::res://scripts/_/editor_icon.gd<>res://scripts/level_parts/checkpoint.gd
-grind_pipe.tscn::PackedScene::5513430025172791691::1723390109::0::1::::<><>::res://scripts/level_parts/grind_pipe.gd<>res://addons/rmsmartshape/shapes/shape_open.gd<>res://addons/rmsmartshape/shapes/point_array.gd<>res://addons/rmsmartshape/materials/edge_material.gd<>res://addons/rmsmartshape/materials/shape_material.gd<>uid://dtqhbrtui8dt6::::res://sprites/_/grind_pipe_tile.png<>res://addons/rmsmartshape/normal_range.gd<>res://addons/rmsmartshape/materials/edge_material_metadata.gd
-jump_pad.tscn::PackedScene::7253798765723516167::1723390109::0::1::::<><>::res://scripts/level_parts/jump_pad.gd
-releaser.tscn::PackedScene::2283573393884732549::1723390109::0::1::::<><>::res://scripts/level_parts/releaser.gd<>uid://yoa67ngsooi6::::res://scenes/_/deleter.tscn
+_level_template.tscn::PackedScene::6271187091317858947::1723887788::0::1::::<><>::res://scripts/levels/_level_template.gd
+::res://scenes/level_parts/::1723887788
+checkpoint.tscn::PackedScene::4870511075376767297::1723887788::0::1::::<><>::res://scripts/_/editor_icon.gd<>res://scripts/level_parts/checkpoint.gd
+grind_pipe.tscn::PackedScene::5513430025172791691::1723887787::0::1::::<><>::res://scripts/level_parts/grind_pipe.gd<>res://addons/rmsmartshape/shapes/shape_open.gd<>res://addons/rmsmartshape/shapes/point_array.gd<>res://addons/rmsmartshape/materials/edge_material.gd<>res://addons/rmsmartshape/materials/shape_material.gd<>uid://dtqhbrtui8dt6::::res://sprites/_/grind_pipe_tile.png<>res://addons/rmsmartshape/normal_range.gd<>res://addons/rmsmartshape/materials/edge_material_metadata.gd
+jump_pad.tscn::PackedScene::7253798765723516167::1723887787::0::1::::<><>::res://scripts/level_parts/jump_pad.gd
+releaser.tscn::PackedScene::2283573393884732549::1723887787::0::1::::<><>::res://scripts/level_parts/releaser.gd<>uid://yoa67ngsooi6::::res://scenes/_/deleter.tscn
+ring.tscn::PackedScene::3489036520568766366::1723887787::0::1::::<><>::uid://cybmpiqssbdte::::res://icon.svg<>res://scripts/level_parts/ring.gd
 slide_area.tscn::PackedScene::1467752370926338752::1718394535::0::1::::<><>::res://scripts/level_parts/slide_area.gd
 ::res://scenes/level_parts/ladder/::1717069744
 ladder.tscn::PackedScene::8058635857722348385::1717069744::0::1::::<><>::res://scripts/level_parts/ladder/ladder.gd<>uid://dpsqnh0tlolfh::::res://scenes/level_parts/ladder/ladder_tile.tscn<>res://addons/rmsmartshape/shapes/shape_open.gd<>res://addons/rmsmartshape/vertex_properties.gd<>res://addons/rmsmartshape/shapes/point_array.gd<>res://addons/rmsmartshape/shapes/point.gd
 ladder_tile.tscn::PackedScene::8250248599589989277::1716831794::0::1::::<><>::
 ::res://scenes/level_parts/rooms/::1721056574
 room_changer.tscn::PackedScene::8100033921318388970::1721056574::0::1::::<><>::res://scripts/level_parts/rooms/room_changer.gd
-::res://scenes/menus/::1723390108
-main_menu.tscn::PackedScene::8943193309397430685::1723390108::0::1::::<><>::res://scripts/menus/main_menu.gd
+::res://scenes/menus/::1723887786
+main_menu.tscn::PackedScene::8943193309397430685::1723887786::0::1::::<><>::res://scripts/menus/main_menu.gd
 pause_menu.tscn::PackedScene::3594387351481115072::1718394535::0::1::::<><>::res://scripts/menus/pause_menu.gd
-::res://scenes/player/::1723390109
-player.tscn::PackedScene::7683540118659044413::1723390109::0::1::::<><>::res://scripts/player/player.gd<>uid://bhdqe7q3s6pvs::::res://sprites/entities/boy/boy_bump/boy bump.0001.png<>uid://hki1p52hblat::::res://sprites/entities/boy/boy_run/boy run.0001.png<>uid://ipsewu7im4a1::::res://sprites/entities/boy/boy_run_fast/boy run fast.0001.png<>uid://cmab0udvqjdpa::::res://sprites/entities/boy/boy_idle/boy idle .0001.png<>uid://bxya6spcdaboy::::res://sprites/entities/boy/boy_idle/boy idle .0002.png<>uid://d1btdy1brmsea::::res://scenes/player/player_debug.tscn<>uid://c8uxblx5sup1u::::res://sprites/entities/boy/boy_idle/boy idle .0003.png<>uid://oyg8164rc7e7::::res://sprites/entities/boy/boy_idle/boy idle .0013.png<>uid://dui171llmdtsx::::res://sprites/entities/boy/boy_idle/boy idle .0014.png<>uid://b5adeaqkgy0ao::::res://sprites/entities/boy/boy_idle/boy idle .0015.png<>uid://bcr6a8jj74r34::::res://sprites/entities/boy/boy_idle/boy idle .0016.png<>uid://cuvocx6tbxy5p::::res://sprites/entities/boy/boy_idle/boy idle .0018.png<>uid://b2tmm5wkbribi::::res://sprites/entities/boy/boy_idle/boy idle .0019.png<>uid://d2n30hwsyjlwq::::res://sprites/entities/boy/boy_idle/boy idle .0020.png<>uid://bhievx0h4bl6n::::res://sprites/entities/boy/boy_idle/boy idle .0021.png<>uid://bwu1d6e2vxdj6::::res://sprites/entities/boy/boy_idle/boy idle .0023.png<>uid://cqlm60xhp8e04::::res://sprites/entities/boy/boy_run_fast/boy run fast.0002.png<>uid://cguvkt15uhaku::::res://sprites/entities/boy/boy_run_fast/boy run fast.0003.png<>uid://cdw5r5puhsfag::::res://sprites/entities/boy/boy_run_fast/boy run fast.0004.png<>uid://b42bdl3uy0vjy::::res://sprites/entities/boy/boy_walk/boy walk.0002.png<>uid://dyoot10yb3nqy::::res://sprites/entities/boy/boy_walk/boy walk.0003.png<>uid://5ofjwlfb1840::::res://sprites/entities/boy/boy_walk/boy walk.0004.png<>uid://b2irebwkno5vn::::res://sprites/entities/boy/boy_walk/boy walk.0005.png<>uid://bieyf361gtd48::::res://sprites/entities/boy/boy_walk/boy walk.0006.png<>uid://bd00r4x362d7k::::res://sprites/entities/boy/boy_walk/boy walk.0007.png<>uid://p0ib21j42rnx::::res://sprites/entities/boy/boy_walk/boy walk.0008.png<>uid://b6wlnvj82fuui::::res://sprites/entities/boy/boy_walk/boy walk.0009.png<>uid://hhwhlxu28xby::::res://sprites/entities/boy/boy_walk/boy walk.0010.png<>uid://clygnlt6k51bm::::res://sprites/entities/boy/boy_bump/boy bump.0002.png<>uid://iat2vimd0l53::::res://sprites/entities/boy/boy_bump/boy bump.0003.png<>uid://c5f3e6jm7yrv6::::res://sprites/entities/boy/boy_run/boy run.0002.png<>uid://c3x1ty7ipgh42::::res://sprites/entities/boy/boy_run/boy run.0003.png<>uid://cgvyf08olafua::::res://sprites/entities/boy/boy_bump/boy bump.0004.png<>uid://1hr0kwnvnv87::::res://sprites/entities/boy/boy_bump/boy bump.0005.png<>uid://jxyupvcbcn4e::::res://sprites/entities/boy/boy_run/boy run.0004.png<>uid://beaf7sucgeu5d::::res://sprites/entities/boy/boy_bump/boy bump.0006.png<>uid://bygddctap0ysj::::res://materials/shapes/player_normal_collision_shape.tres<>uid://w07m35qgysc0::::res://scenes/components/entity_component_system.tscn
+::res://scenes/player/::1723888574
+player.tscn::PackedScene::7683540118659044413::1723888574::0::1::::<><>::res://scripts/player/player.gd<>uid://bhdqe7q3s6pvs::::res://sprites/entities/boy/boy_bump/boy bump.0001.png<>uid://hki1p52hblat::::res://sprites/entities/boy/boy_run/boy run.0001.png<>uid://ipsewu7im4a1::::res://sprites/entities/boy/boy_run_fast/boy run fast.0001.png<>uid://cmab0udvqjdpa::::res://sprites/entities/boy/boy_idle/boy idle .0001.png<>uid://bxya6spcdaboy::::res://sprites/entities/boy/boy_idle/boy idle .0002.png<>uid://d1btdy1brmsea::::res://scenes/player/player_debug.tscn<>uid://c8uxblx5sup1u::::res://sprites/entities/boy/boy_idle/boy idle .0003.png<>uid://oyg8164rc7e7::::res://sprites/entities/boy/boy_idle/boy idle .0013.png<>uid://dui171llmdtsx::::res://sprites/entities/boy/boy_idle/boy idle .0014.png<>uid://b5adeaqkgy0ao::::res://sprites/entities/boy/boy_idle/boy idle .0015.png<>uid://bcr6a8jj74r34::::res://sprites/entities/boy/boy_idle/boy idle .0016.png<>uid://cuvocx6tbxy5p::::res://sprites/entities/boy/boy_idle/boy idle .0018.png<>uid://b2tmm5wkbribi::::res://sprites/entities/boy/boy_idle/boy idle .0019.png<>uid://d2n30hwsyjlwq::::res://sprites/entities/boy/boy_idle/boy idle .0020.png<>uid://bhievx0h4bl6n::::res://sprites/entities/boy/boy_idle/boy idle .0021.png<>uid://bwu1d6e2vxdj6::::res://sprites/entities/boy/boy_idle/boy idle .0023.png<>uid://cqlm60xhp8e04::::res://sprites/entities/boy/boy_run_fast/boy run fast.0002.png<>uid://cguvkt15uhaku::::res://sprites/entities/boy/boy_run_fast/boy run fast.0003.png<>uid://cdw5r5puhsfag::::res://sprites/entities/boy/boy_run_fast/boy run fast.0004.png<>uid://b42bdl3uy0vjy::::res://sprites/entities/boy/boy_walk/boy walk.0002.png<>uid://dyoot10yb3nqy::::res://sprites/entities/boy/boy_walk/boy walk.0003.png<>uid://5ofjwlfb1840::::res://sprites/entities/boy/boy_walk/boy walk.0004.png<>uid://b2irebwkno5vn::::res://sprites/entities/boy/boy_walk/boy walk.0005.png<>uid://bieyf361gtd48::::res://sprites/entities/boy/boy_walk/boy walk.0006.png<>uid://bd00r4x362d7k::::res://sprites/entities/boy/boy_walk/boy walk.0007.png<>uid://p0ib21j42rnx::::res://sprites/entities/boy/boy_walk/boy walk.0008.png<>uid://b6wlnvj82fuui::::res://sprites/entities/boy/boy_walk/boy walk.0009.png<>uid://hhwhlxu28xby::::res://sprites/entities/boy/boy_walk/boy walk.0010.png<>uid://clygnlt6k51bm::::res://sprites/entities/boy/boy_bump/boy bump.0002.png<>uid://iat2vimd0l53::::res://sprites/entities/boy/boy_bump/boy bump.0003.png<>uid://c5f3e6jm7yrv6::::res://sprites/entities/boy/boy_run/boy run.0002.png<>uid://c3x1ty7ipgh42::::res://sprites/entities/boy/boy_run/boy run.0003.png<>uid://cgvyf08olafua::::res://sprites/entities/boy/boy_bump/boy bump.0004.png<>uid://1hr0kwnvnv87::::res://sprites/entities/boy/boy_bump/boy bump.0005.png<>uid://jxyupvcbcn4e::::res://sprites/entities/boy/boy_run/boy run.0004.png<>uid://beaf7sucgeu5d::::res://sprites/entities/boy/boy_bump/boy bump.0006.png<>uid://bygddctap0ysj::::res://materials/shapes/player_normal_collision_shape.tres<>uid://w07m35qgysc0::::res://scenes/components/entity_component_system.tscn
 player_debug.tscn::PackedScene::8987396644460446432::1718395352::0::1::::<><>::res://scripts/player/player_debug.gd
 ::res://scenes/_/::1721489015
 deleter.tscn::PackedScene::1713490596607561207::1719941612::0::1::::<><>::res://scripts/_/editor_icon.gd
@@ -228,14 +229,15 @@ flying_demon.gd::GDScript::-1::1719002322::0::1::::<>PathFollow2D<>::
 global.gd::GDScript::-1::1723384770::0::1::::<>Node<>::
 room_changer_singleton.gd::GDScript::-1::1720690874::0::1::::<>Node<>::
 save_system.gd::GDScript::-1::1717068288::0::1::::<>Node<>::
-::res://scripts/levels/::1723383888
-_layer_template.gd::GDScript::-1::1723383888::0::1::::Layer2D<>Node2D<>::
+::res://scripts/levels/::1723885391
+_layer_template.gd::GDScript::-1::1723885391::0::1::::Layer2D<>Node2D<>::
 _level_template.gd::GDScript::-1::1721901085::0::1::::Level3D<>Node3D<>::
-::res://scripts/level_parts/::1721937703
+::res://scripts/level_parts/::1723477423
 checkpoint.gd::GDScript::-1::1720626670::0::1::::Checkpoint<>Area2D<>::
 grind_pipe.gd::GDScript::-1::1717080890::0::1::::GrindPipe<>StaticBody2D<>::
 jump_pad.gd::GDScript::-1::1721937703::0::1::::<>Area2D<>::
 releaser.gd::GDScript::-1::1721819687::0::1::::<>Area2D<>::
+ring.gd::GDScript::-1::1723477423::0::1::::Ring<>Area2D<>::
 slide_area.gd::GDScript::-1::1718349118::0::1::::<>Area2D<>::
 ::res://scripts/level_parts/ladder/::1717069314
 ladder.gd::GDScript::-1::1717069314::0::1::::<>Node2D<>::
@@ -244,8 +246,8 @@ room_changer.gd::GDScript::-1::1720630088::0::1::::RoomChanger<>Area2D<>::
 ::res://scripts/menus/::1721727408
 main_menu.gd::GDScript::-1::1721727408::0::1::::<>Layer2D<>::
 pause_menu.gd::GDScript::-1::1719490491::0::1::::<>Control<>::
-::res://scripts/player/::1723386647
-player.gd::GDScript::-1::1723386647::0::1::::Player<>CharacterBody2D<>::
+::res://scripts/player/::1723552724
+player.gd::GDScript::-1::1723552724::0::1::::Player<>CharacterBody2D<>::
 player_debug.gd::GDScript::-1::1718392787::0::1::::<>Control<>::
 player_system.gd::GDScript::-1::1721206074::0::1::::<>Node2D<>::
 ::res://scripts/_/::1720532918
@@ -317,17 +319,17 @@ fly body.0001.png::CompressedTexture2D::4418886168257759241::1719001062::1719001
 ::res://sprites/entities/fly/fly wings/::1719001067
 fly wings.0001.png::CompressedTexture2D::8359220149505411086::1719001062::1719001067::1::::<><>::
 fly wings.0002.png::CompressedTexture2D::7540239387621053988::1719001062::1719001067::1::::<><>::
-::res://sprites/friezesets/::1720552385
+::res://sprites/friezesets/::1723828240
 tileset_test_sonic.png::CompressedTexture2D::8373173173817301572::1712409993::1719422405::1::::<><>::
-::res://sprites/friezesets/bluebox/::1723390109
-bluebox0.tscn::PackedScene::3606494451458196431::1723390109::0::1::::<><>::res://addons/rmsmartshape/shapes/shape.gd<>res://addons/rmsmartshape/normal_range.gd<>res://addons/rmsmartshape/shapes/point_array.gd<>res://addons/rmsmartshape/materials/edge_material_metadata.gd<>uid://bthev3f165hms::::res://sprites/friezesets/bluebox/bluebox0_material.tres<>res://addons/rmsmartshape/vertex_properties.gd<>res://addons/rmsmartshape/shapes/point.gd<>res://scripts/components/frieze_editor_label.gd<>res://addons/rmsmartshape/shapes/shape_render.gd
-bluebox0_material.tres::Resource/SS2D_Material_Shape::3734741206338964646::1723381124::0::1::::<><>::res://addons/rmsmartshape/materials/edge_material.gd<>uid://btmj5tssherxk::::res://sprites/friezesets/bluebox/bluebox_edge_top.png<>uid://fe80ru1a3gwm::::res://sprites/friezesets/bluebox/bluebox_edge_corner_inner.png<>uid://b8jo3givln2l::::res://sprites/friezesets/bluebox/bluebox_edge_corner_outer.png<>res://addons/rmsmartshape/normal_range.gd<>res://addons/rmsmartshape/materials/edge_material_metadata.gd<>uid://bpbph5uawf5ob::::res://sprites/friezesets/bluebox/bluebox_fill.png<>res://addons/rmsmartshape/materials/shape_material.gd
+::res://sprites/friezesets/bluebox/::1723887788
+bluebox0.tscn::PackedScene::3606494451458196431::1723887788::0::1::::<><>::res://addons/rmsmartshape/shapes/shape.gd<>res://addons/rmsmartshape/normal_range.gd<>res://addons/rmsmartshape/shapes/point_array.gd<>res://addons/rmsmartshape/materials/edge_material_metadata.gd<>uid://bthev3f165hms::::res://sprites/friezesets/bluebox/bluebox0_material.tres<>res://addons/rmsmartshape/vertex_properties.gd<>res://addons/rmsmartshape/shapes/point.gd<>res://scripts/components/frieze_editor_label.gd<>res://addons/rmsmartshape/shapes/shape_render.gd
+bluebox0_material.tres::Resource/SS2D_Material_Shape::3734741206338964646::1723887786::0::1::::<><>::res://addons/rmsmartshape/materials/edge_material.gd<>uid://btmj5tssherxk::::res://sprites/friezesets/bluebox/bluebox_edge_top.png<>uid://fe80ru1a3gwm::::res://sprites/friezesets/bluebox/bluebox_edge_corner_inner.png<>uid://b8jo3givln2l::::res://sprites/friezesets/bluebox/bluebox_edge_corner_outer.png<>res://addons/rmsmartshape/normal_range.gd<>res://addons/rmsmartshape/materials/edge_material_metadata.gd<>uid://bpbph5uawf5ob::::res://sprites/friezesets/bluebox/bluebox_fill.png<>res://addons/rmsmartshape/materials/shape_material.gd
 bluebox_edge_corner_inner.png::CompressedTexture2D::361250959790786736::1720692928::1720692932::1::::<><>::
 bluebox_edge_corner_outer.png::CompressedTexture2D::138886243886196989::1720692844::1720692932::1::::<><>::
 bluebox_edge_top.png::CompressedTexture2D::3745382299193980588::1720692638::1720692647::1::::<><>::
 bluebox_fill.png::CompressedTexture2D::3442242578092701533::1720552601::1721483538::1::::<><>::
 ::res://sprites/friezesets/leshy's_forest/::1723381124
-leshy's_forest_friezeset0.tres::Resource/SS2D_Material_Shape::678431090186926468::1723381124::0::1::::<><>::res://addons/rmsmartshape/materials/edge_material.gd<>uid://ct8pwmuk07ot::::res://sprites/friezesets/leshy's_forest/sprites/leshy's_forest_up.png<>uid://bhixlhyy0sk5a::::res://sprites/friezesets/leshy's_forest/sprites/leshy's_forest_inner_corner.png<>res://addons/rmsmartshape/normal_range.gd<>res://addons/rmsmartshape/materials/edge_material_metadata.gd<>uid://c0byer154r8wp::::res://sprites/friezesets/leshy's_forest/sprites/leshy's_forest_outer_corner.png<>res://addons/rmsmartshape/materials/shape_material.gd<>uid://b48f1dvy1oeqs::::res://sprites/friezesets/leshy's_forest/sprites/leshy's_forest_fill.png
+leshy's_forest_friezeset0.tres::Resource/Resource::678431090186926468::1723381124::0::1::::<><>::res://addons/rmsmartshape/materials/edge_material.gd<>uid://ct8pwmuk07ot::::res://sprites/friezesets/leshy's_forest/sprites/leshy's_forest_up.png<>uid://bhixlhyy0sk5a::::res://sprites/friezesets/leshy's_forest/sprites/leshy's_forest_inner_corner.png<>res://addons/rmsmartshape/normal_range.gd<>res://addons/rmsmartshape/materials/edge_material_metadata.gd<>uid://c0byer154r8wp::::res://sprites/friezesets/leshy's_forest/sprites/leshy's_forest_outer_corner.png<>res://addons/rmsmartshape/materials/shape_material.gd<>uid://b48f1dvy1oeqs::::res://sprites/friezesets/leshy's_forest/sprites/leshy's_forest_fill.png
 leshy's_forest_friezeset1_tree.tres::Resource/Resource::6211870178564981627::1720275763::0::1::::<><>::res://addons/rmsmartshape/materials/edge_material.gd<>res://addons/rmsmartshape/materials/shape_material.gd<>uid://d06w4yn4wiwse::::res://sprites/friezesets/leshy's_forest/sprites/tree/tree_up.png<>uid://bde6nt0aiqsmh::::res://sprites/friezesets/leshy's_forest/sprites/tree/tree_outer_corner.png<>res://addons/rmsmartshape/normal_range.gd<>res://addons/rmsmartshape/materials/edge_material_metadata.gd<>uid://k0vq47lscjcl::::res://sprites/friezesets/leshy's_forest/sprites/tree/tree_fill.png
 leshy's_forest_friezeset2_tree_moss.tres::Resource/Resource::6587926913042567589::1720275763::0::1::::<><>::res://addons/rmsmartshape/materials/edge_material.gd<>uid://bfolhtc542ey5::::res://sprites/friezesets/leshy's_forest/sprites/tree/tree_moss_down_edge.png<>uid://dfjkplyo4stro::::res://sprites/friezesets/leshy's_forest/sprites/tree/tree_moss_left_taper.png<>uid://dclhsqft2biq::::res://sprites/friezesets/leshy's_forest/sprites/tree/tree_moss_right_taper.png<>res://addons/rmsmartshape/normal_range.gd<>res://addons/rmsmartshape/materials/edge_material_metadata.gd<>res://addons/rmsmartshape/materials/shape_material.gd
 ::res://sprites/friezesets/leshy's_forest/scenes/::1719481434
@@ -346,6 +348,20 @@ tree_moss_left_taper.png::CompressedTexture2D::7529420241399978428::1720122570::
 tree_moss_right_taper.png::CompressedTexture2D::215376644290785484::1720122610::1720122613::1::::<><>::
 tree_outer_corner.png::CompressedTexture2D::2607151204295065255::1720121475::1720121541::1::::<><>::
 tree_up.png::CompressedTexture2D::8979367696260298048::1720121410::1720121541::1::::<><>::
+::res://sprites/friezesets/swamp/::1723844561
+::res://sprites/friezesets/swamp/moss/::1723887786
+corner_inner.png::CompressedTexture2D::4470414516561598326::1723841576::1723842904::1::::<><>::
+corner_outer.png::CompressedTexture2D::7841351549823386208::1723841689::1723842904::1::::<><>::
+edge.png::CompressedTexture2D::7387351864443045847::1723841468::1723842904::1::::<><>::
+moss.tres::Resource/SS2D_Material_Shape::1280544339661995809::1723887786::0::1::::<><>::res://addons/rmsmartshape/materials/edge_material.gd<>uid://ddiquuomlpxj8::::res://sprites/friezesets/swamp/moss/edge.png<>uid://b4xrcrqu1byha::::res://sprites/friezesets/swamp/moss/corner_inner.png<>uid://djyn6dbf8512c::::res://sprites/friezesets/swamp/moss/corner_outer.png<>uid://cq72t53t5pqb0::::res://sprites/friezesets/swamp/moss/taper_left.png<>uid://dssefeb2oq7kx::::res://sprites/friezesets/swamp/moss/taper_right.png<>res://addons/rmsmartshape/normal_range.gd<>res://addons/rmsmartshape/materials/edge_material_metadata.gd<>res://addons/rmsmartshape/materials/shape_material.gd
+taper_left.png::CompressedTexture2D::5963597862472519859::1723841436::1723842904::1::::<><>::
+taper_right.png::CompressedTexture2D::8460072045961888747::1723841855::1723842904::1::::<><>::
+::res://sprites/friezesets/swamp/swamp_mud/::1723890905
+swamp_mud.png::CompressedTexture2D::2166276894809688047::1723887297::1723887302::1::::<><>::
+swamp_mud_fill.png::CompressedTexture2D::6551541622554336333::1723890905::1723890907::1::::<><>::
+swamp_mud_ic.png::CompressedTexture2D::1993527835322062280::1723890396::1723890445::1::::<><>::
+swamp_mud_material.tres::Resource/SS2D_Material_Shape::6290398304671546819::1723887786::0::1::::<><>::res://addons/rmsmartshape/materials/edge_material.gd<>res://addons/rmsmartshape/materials/shape_material.gd<>uid://54mi8ex6ip2n::::res://sprites/friezesets/swamp/swamp_mud/swamp_mud.png<>uid://3nxd2xreipi3::::res://sprites/friezesets/swamp/swamp_mud/swamp_mud_ic.png<>uid://dm01ui6dt5vqe::::res://sprites/friezesets/swamp/swamp_mud/swamp_mud_oc.png<>res://addons/rmsmartshape/normal_range.gd<>res://addons/rmsmartshape/materials/edge_material_metadata.gd<>uid://c0lu6y6wfrojl::::res://sprites/friezesets/swamp/swamp_mud/swamp_mud_fill.png
+swamp_mud_oc.png::CompressedTexture2D::8054752444515850808::1723890435::1723890445::1::::<><>::
 ::res://sprites/level_parts/::1716493974
 ladder_tile.png::CompressedTexture2D::855143583404703816::1716493970::1716493974::1::::<><>::
 ::res://sprites/_/::1719479838

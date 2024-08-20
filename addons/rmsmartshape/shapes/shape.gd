@@ -22,7 +22,6 @@ const TUP = preload("../lib/tuple.gd")
 ################
 
 ## EDITED ##
-## UJE NOT EDITED ##
 @export_category("Added")
 
 @export var is_platform : bool = false :
@@ -34,7 +33,10 @@ const TUP = preload("../lib/tuple.gd")
 		
 @export var can_collide : bool = true :
 	set(value):
-		$Collider/Shape.disabled = !value
+		#$Collider/Shape.disabled = !value
+		if !Engine.is_editor_hint():
+			if !value:
+				$Collider.queue_free()
 		can_collide = value
 		
 @export var is_transparent : bool = false
