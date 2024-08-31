@@ -1,11 +1,15 @@
-res://scenes/menus/main_menu.tscn
+res://scenes/levels/level_0r.tscn
 res://sprites/friezesets/bluebox/bluebox0_material.tres
 res://sprites/friezesets/swamp/moss/moss.tres
 res://sprites/friezesets/swamp/swamp_mud/swamp_mud_material.tres
 res://materials/shaders/tv.gdshader
+res://sprites/friezesets/swamp/trees/thick_tree/thick_tree_material.tres
+res://sprites/friezesets/swamp/trees/tree_thin/thin_tree_material.tres
+res://addons/rmsmartshape/shapes/shape.gd
+res://scripts/levels/_layer_template.gd
+res://scenes/menus/main_menu.tscn
 res://scenes/player/player.tscn
 res://scenes/level_parts/jump_pad.tscn
-res://scenes/levels/level_0r.tscn
 res://scenes/level_parts/ring.tscn
 res://scenes/level_parts/grind_pipe.tscn
 res://scenes/enemies/enemy_template.tscn
@@ -16,3 +20,4 @@ res://scenes/level_parts/checkpoint.tscn
 res://sprites/friezesets/bluebox/bluebox0.tscn
 res://scenes/levels/_level_template.tscn
 res://addons/LinkedCamera2D/linked_camera.tscn
+res://scripts/player/player.gd

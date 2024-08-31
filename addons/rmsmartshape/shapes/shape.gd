@@ -24,6 +24,8 @@ const TUP = preload("../lib/tuple.gd")
 ## EDITED ##
 @export_category("Added")
 
+@export var ignore_global_material_change : bool = false
+
 @export var is_platform : bool = false :
 	set(value):
 		$Collider/Shape.one_way_collision = value

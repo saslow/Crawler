@@ -37,7 +37,6 @@
 [ext_resource type="Texture2D" uid="uid://1hr0kwnvnv87" path="res://sprites/entities/boy/boy_bump/boy bump.0005.png" id="47_44hlb"]
 [ext_resource type="Texture2D" uid="uid://jxyupvcbcn4e" path="res://sprites/entities/boy/boy_run/boy run.0004.png" id="47_qxxjn"]
 [ext_resource type="Texture2D" uid="uid://beaf7sucgeu5d" path="res://sprites/entities/boy/boy_bump/boy bump.0006.png" id="48_eclcl"]
-[ext_resource type="Shape2D" uid="uid://bygddctap0ysj" path="res://materials/shapes/player_normal_collision_shape.tres" id="59_syb2e"]
 [ext_resource type="PackedScene" uid="uid://w07m35qgysc0" path="res://scenes/components/entity_component_system.tscn" id="61_lv68y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fuixc"]
@@ -312,6 +311,10 @@ _data = {
 "walk_to_run": SubResource("Animation_0jd3j")
 }
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hw3s6"]
+radius = 40.0
+height = 80.0
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("component_system")]
 z_index = 1
 collision_layer = 2
@@ -349,7 +352,6 @@ text = "TEST"
 
 [node name="Sprite" type="Sprite2D" parent="."]
 y_sort_enabled = true
-texture_filter = 1
 scale = Vector2(2, 2)
 texture = ExtResource("2_jehxh")
 offset = Vector2(12, -30)
@@ -397,7 +399,7 @@ polygon = PackedVector2Array(0, -28, -8, -4, 0, 28, 8, -4)
 [node name="Casts" type="Node2D" parent="Rotatable"]
 
 [node name="LeftTargetNormalPos" type="Node2D" parent="Rotatable/Casts"]
-position = Vector2(-41, -39)
+position = Vector2(-42, -39)
 
 [node name="RightTargetNormalPos" type="Node2D" parent="Rotatable/Casts"]
 position = Vector2(42, -39)
@@ -433,7 +435,7 @@ collision_mask = 129
 
 [node name="LeftCast" type="RayCast2D" parent="Rotatable/Casts"]
 position = Vector2(0, -39)
-target_position = Vector2(-41, 0)
+target_position = Vector2(-42, 0)
 collision_mask = 129
 
 [node name="RightCast" type="RayCast2D" parent="Rotatable/Casts"]
@@ -475,8 +477,7 @@ libraries = {
 }
 
 [node name="Shape" type="CollisionShape2D" parent="."]
-shape = ExtResource("59_syb2e")
-metadata/_edit_lock_ = true
+shape = SubResource("CapsuleShape2D_hw3s6")
 
 [node name="PlayerDebug" parent="." instance=ExtResource("4_76pis")]
 visible = true

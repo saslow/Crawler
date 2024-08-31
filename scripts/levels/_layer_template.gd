@@ -8,7 +8,7 @@ class_name Layer2D
 			if material != null:
 				if get_node("Friezes").get_child_count() > 0:
 					for frieze : SS2D_Shape in get_node("Friezes").get_children():
-						if !frieze.is_platform:
+						if !frieze.is_platform and !frieze.ignore_global_material_change:
 							frieze.shape_material = material
 		ss2d_material_shape = material
 

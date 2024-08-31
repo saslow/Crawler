@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="SS2D_Material_Shape" load_steps=2 format=3 uid="uid://c55p0j8mj0dvn"]
+
+[ext_resource type="Script" path="res://addons/rmsmartshape/materials/shape_material.gd" id="1_63ml8"]
+
+[resource]
+script = ExtResource("1_63ml8")
+_edge_meta_materials = Array[Resource("res://addons/rmsmartshape/materials/edge_material_metadata.gd")]([])
+fill_textures = Array[Texture2D]([])
+fill_texture_z_index = -10
+fill_texture_show_behind_parent = false
+fill_texture_scale = 1.0
+fill_texture_absolute_position = false
+fill_texture_absolute_rotation = false
+fill_texture_offset = Vector2(0, 0)
+fill_texture_angle_offset = 0.0
+fill_mesh_offset = 0.0
+render_offset = 0.0

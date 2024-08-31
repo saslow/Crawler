@@ -66,6 +66,7 @@ script = ExtResource("1_r72hc")
 [node name="Shape" type="Node2D" parent="."]
 modulate = Color(1, 0, 1, 1)
 script = ExtResource("2_bfqfb")
+ignore_global_material_change = null
 _points = SubResource("Resource_6mxvv")
 shape_material = SubResource("Resource_xjk2j")
 tessellation_stages = 2

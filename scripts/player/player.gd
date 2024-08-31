@@ -348,14 +348,14 @@ func physics_state_machine(delta : float) -> void:
 		sm.HURT:
 			pass
 		sm.BUMPED:
-			speed = NORMAL_SPEED
-			is_running = false
+			#sprite_leveling(1)
 			floor_max_angle = PI/4
-			x_vel = Vector2.ZERO
+			is_running = false
+			speed = NORMAL_SPEED
 			y_vel = Vector2.ZERO
+			x_vel = Vector2.ZERO
 			velocity = Vector2.ZERO
 			$Anim.play("bump")
-			#sprite_leveling(1)
 		sm.RUN_STOPPING:
 			pass
 		sm.REBOUND:
@@ -642,7 +642,7 @@ func get_real_wall_angle( rad_to_deg : bool = false) -> float:
 		if rad_to_deg:
 			return rad_to_deg( Vector2.UP.angle_to( get_wall_normal() ) )
 		else:
-			return Vector2.UP.angle_to( get_wall_normal() ) 
+			return Vector2.UP.angle_to( get_wall_normal() )
 	else:
 		return 0.0
 
