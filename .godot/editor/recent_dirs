@@ -1,3 +1,5 @@
+res://scenes/menus
+res://scripts/menus
 res://sprites/friezesets/swamp/trees/tree
 res://sprites/friezesets/swamp/swamp_mud
 res://sprites/friezesets
@@ -18,5 +20,3 @@ res://scenes/level_parts/rooms
 res://scripts/_
 res://scenes/_
 res://sprites/friezesets/leshy's_forest
-res://sprites/friezesets/leshy's_forest/scenes
-res://scripts/enemies/dagger_demon_2

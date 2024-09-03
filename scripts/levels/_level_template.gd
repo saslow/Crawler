@@ -15,6 +15,7 @@ const DEFAULT_MC_TRANSITION_TIME : float = 2.1
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if !Engine.is_editor_hint():
+		ss.temp_level_save = self
 		mc = $MainCamera
 		g.current_level = self
 		if $Layers2D.get_child_count() != 0:

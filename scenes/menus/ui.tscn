@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3 uid="uid://duijkcxgyfmh0"]
+
+[ext_resource type="Script" path="res://scripts/menus/ui.gd" id="1_65mp0"]
+
+[node name="UI" type="CanvasLayer"]
+follow_viewport_enabled = true
+script = ExtResource("1_65mp0")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 256.0
+offset_top = 336.0
+offset_right = 296.0
+offset_bottom = 376.0
+
+[node name="save_score" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = -256.0
+offset_right = 259.0
+offset_bottom = -208.0
+text = "save scene"
+
+[node name="load scene" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 288.0
+offset_top = -256.0
+offset_right = 483.0
+offset_bottom = -208.0
+text = "load scene"
+
+[connection signal="pressed" from="UI/save_score" to="." method="_on_save_score_pressed"]
+[connection signal="pressed" from="UI/load scene" to="." method="_on_load_scene_pressed"]

@@ -17,14 +17,16 @@ class_name Layer2D
 
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	if !Engine.is_editor_hint():
+
+#func _ready() -> void:
+	#if !Engine.is_editor_hint():
 		#g.current_layer = self
 		
-		if $Players.get_child_count() > 0:
-			g.player = get_player(0)
-		if $Players.get_child_count() > 1:
-			g.second_player = get_player(1)
+		#if $Players.get_child_count() > 0:
+			#g.player = get_player(0)
+		#if $Players.get_child_count() > 1:
+			#g.second_player = get_player(1)
+			
 	
 #func get_room_changer(id : int) -> RoomChanger:
 	#return get_folder_of_room_changers().get_child(id)

@@ -24,3 +24,4 @@ func debug(delta) -> void:
 	$Debug/MonitorsContainer/Hp/Label.text = "   HP: " + str( player.component_system.hit_points )
 	$Debug/MonitorsContainer/Sliding/Label.text = "   IS_SLIDING: " + str( player.is_sliding )
 	
+################################### TEST

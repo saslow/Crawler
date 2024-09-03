@@ -65,6 +65,7 @@ enum ORIENTATION { COLINEAR, CLOCKWISE, C_CLOCKWISE }
 ###########
 #-EXPORTS-#
 ###########
+@export var shape_material := SS2D_Material_Shape.new() : set = _set_material
 
 # Execute to refresh shape rendered geometry and textures.
 @warning_ignore("unused_private_class_variable")
@@ -101,7 +102,7 @@ enum ORIENTATION { COLINEAR, CLOCKWISE, C_CLOCKWISE }
 @export_group("Materials")
 
 ## Contains textures and data on how to visualize the shape.
-@export var shape_material := SS2D_Material_Shape.new() : set = _set_material
+#@export var shape_material := SS2D_Material_Shape.new() : set = _set_material
 
 # Dictionary of (Array of 2 keys) to (SS2D_Material_Edge_Metadata)
 # Deprecated, exists for Support of older versions
@@ -191,12 +192,13 @@ func _make_unique_action(value: String) -> void:
 		modulate = Color(1, 1, 1, 1)
 		emit_signal("make_unique_pressed", self)
 
-func _ready():
-	if Engine.is_editor_hint():
-		if !is_unique:
-			modulate = Color(1, 0, 1, modulate.a)
-	else:
-		modulate = Color(1, 1, 1, modulate.a)
+#func _ready():
+	#pass
+	#if Engine.is_editor_hint():
+		#if !is_unique:
+			#modulate = Color(1, 0, 1, modulate.a)
+	#else:
+		#modulate = Color(1, 1, 1, modulate.a)
 ## EDITED STOPS HERE (NAVERNOE, ANGLISKIY NE PONIMAU) ##
 
 func set_flip_edges(b: bool) -> void:

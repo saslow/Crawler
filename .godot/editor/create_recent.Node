@@ -1,3 +1,7 @@
+Label
+Button
+Control
+CanvasLayer
 CollisionPolygon2D
 StaticBody2D
 Node2D
@@ -8,7 +12,3 @@ Sprite2D
 CollisionShape2D
 Area2D
 Panel
-Label
-Line2D
-RayCast2D
-Sprite3D

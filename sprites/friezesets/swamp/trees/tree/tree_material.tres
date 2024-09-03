@@ -1,10 +1,43 @@
-[gd_resource type="Resource" script_class="SS2D_Material_Shape" load_steps=2 format=3 uid="uid://c55p0j8mj0dvn"]
+[gd_resource type="Resource" script_class="SS2D_Material_Shape" load_steps=10 format=3 uid="uid://c55p0j8mj0dvn"]
 
+[ext_resource type="Script" path="res://addons/rmsmartshape/materials/edge_material.gd" id="1_0opo3"]
 [ext_resource type="Script" path="res://addons/rmsmartshape/materials/shape_material.gd" id="1_63ml8"]
+[ext_resource type="Texture2D" uid="uid://db8h7pqify7up" path="res://sprites/friezesets/swamp/trees/tree/tree_norm.png" id="2_276sb"]
+[ext_resource type="Texture2D" uid="uid://d1dxe54o678bo" path="res://sprites/friezesets/swamp/trees/tree/tree_norm_no_eto_drugoi.png" id="3_d11eq"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/normal_range.gd" id="4_lmujr"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/materials/edge_material_metadata.gd" id="5_pcr05"]
+
+[sub_resource type="Resource" id="Resource_c04uj"]
+script = ExtResource("1_0opo3")
+textures = Array[Texture2D]([ExtResource("2_276sb"), ExtResource("3_d11eq")])
+textures_corner_outer = Array[Texture2D]([])
+textures_corner_inner = Array[Texture2D]([])
+textures_taper_left = Array[Texture2D]([])
+textures_taper_right = Array[Texture2D]([])
+randomize_texture = true
+use_corner_texture = true
+use_taper_texture = true
+fit_mode = 0
+
+[sub_resource type="Resource" id="Resource_pkm1p"]
+script = ExtResource("4_lmujr")
+begin = 0.0
+distance = 360.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_0jeb7"]
+script = ExtResource("5_pcr05")
+edge_material = SubResource("Resource_c04uj")
+normal_range = SubResource("Resource_pkm1p")
+weld = true
+render = true
+z_index = 0
+z_as_relative = true
+offset = 0.0
 
 [resource]
 script = ExtResource("1_63ml8")
-_edge_meta_materials = Array[Resource("res://addons/rmsmartshape/materials/edge_material_metadata.gd")]([])
+_edge_meta_materials = Array[ExtResource("5_pcr05")]([SubResource("Resource_0jeb7")])
 fill_textures = Array[Texture2D]([])
 fill_texture_z_index = -10
 fill_texture_show_behind_parent = false

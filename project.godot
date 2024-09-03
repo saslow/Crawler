@@ -36,6 +36,8 @@ instance_dock/scenes=[{
 "name": "friezes",
 "scenes": [{
 "scene": "res://sprites/friezesets/bluebox/bluebox0.tscn"
+}, {
+"scene": "res://sprites/friezesets/bluebox/decobox0.tscn"
 }],
 "scroll": 0
 }, {

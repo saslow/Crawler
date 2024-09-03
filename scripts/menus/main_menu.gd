@@ -1,5 +1,8 @@
 extends Layer2D
 
+func _ready():
+	ss.load_data()
+
 func _on_level_1_pressed():
 	rc.change_current_level_to_file("res://scenes/levels/level_0r.tscn")
 

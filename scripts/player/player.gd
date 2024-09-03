@@ -115,7 +115,13 @@ enum characters_IDs{
 	GIRL = 1
 }
 
+func define_players() -> void:
+	match player_index:
+		0: g.player = self
+		_: g.second_player = self
+
 func _ready() -> void:
+	define_players()
 	#Engine.time_scale = 0.1
 	g.background_level_changed.connect(_on_background_level_changed)
 	last_checkpoint_position = position
@@ -487,6 +493,8 @@ func running() -> void:
 					else:
 						$Timers/BumpTimer.start(0.4)
 					state = sm.BUMPED
+				#if $Rotatable/Casts/LeftCast.is_colliding():
+					#pass
 			floor_max_angle = PI
 		else:
 			if is_running:

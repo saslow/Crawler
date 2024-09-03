@@ -15,6 +15,12 @@ offset_bottom = 96.0
 text = "Level1"
 metadata/_edit_use_anchors_ = true
 
+[node name="Label" type="Label" parent="Buttons/Level1"]
+layout_mode = 0
+offset_left = 280.0
+offset_right = 536.0
+offset_bottom = 64.0
+
 [node name="Level2" type="Button" parent="Buttons"]
 offset_left = 64.0
 offset_top = 128.0

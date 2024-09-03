@@ -20,7 +20,7 @@ textures_taper_right = Array[Texture2D]([ExtResource("6_tbpbm")])
 randomize_texture = false
 use_corner_texture = true
 use_taper_texture = true
-fit_mode = 1
+fit_mode = 0
 
 [sub_resource type="Resource" id="Resource_ft3bk"]
 script = ExtResource("7_34uj5")
