@@ -21,11 +21,12 @@ func _ready() -> void:
 		if $Layers2D.get_child_count() != 0:
 			for i : Layer2D in $Layers2D.get_children():
 				var svp : SubViewport = SubViewport.new()
-				set_svp_custom_properties(svp, i.transparent, g.DEFAULT_RESOLUTION * i.z, "SVP" + str(i.get_index()))
+				#set_svp_custom_properties(svp, i.transparent, g.DEFAULT_RESOLUTION * i.z, "SVP" + str(i.get_index())) ##
+				set_svp_custom_properties(svp, i.transparent, g.DEFAULT_RESOLUTION, "SVP" + str(i.get_index())) ##
 				$Viewports.add_child(svp)
 				var h : Sprite3D = Sprite3D.new()
+				h.scale = Vector3(i.z, i.z, 1) ##
 				set_svp_holder_custom_properties(h, svp, i.z, i.name)
-				
 				$Layers3D.add_child(h)
 				
 				i.reparent(svp)

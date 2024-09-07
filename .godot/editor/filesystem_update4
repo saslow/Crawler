@@ -22,3 +22,4 @@ res://scenes/player/player_debug.tscn
 res://scenes/enemies/enemy_template.tscn
 res://scenes/global/global.tscn
 res://addons/LinkedCamera2D/linked_camera2D.gd
+res://scripts/levels/_level_template.gd
