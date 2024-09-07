@@ -26,6 +26,11 @@ func _ready() -> void:
 				$Viewports.add_child(svp)
 				var h : Sprite3D = Sprite3D.new()
 				h.scale = Vector3(i.z, i.z, 1) ##
+				h.double_sided = false
+				h.no_depth_test = true
+				h.texture_filter = BaseMaterial3D.TEXTURE_FILTER_NEAREST
+				h.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+				#h.transparent = false
 				set_svp_holder_custom_properties(h, svp, i.z, i.name)
 				$Layers3D.add_child(h)
 				

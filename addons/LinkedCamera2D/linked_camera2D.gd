@@ -8,8 +8,17 @@ func _ready():
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	pos_changing()
+	
+func pos_changing_vertical() -> void:
+	position.y = g.player.global_position.y
+	
+func pos_changing_hoizontal() -> void:
 	position.x = g.player.global_position.x
 	
-func position_changing_snapped() -> void:
+func pos_changing() -> void:
+	position = g.player.global_position
+	
+func pos_changing_snapped() -> void:
 	position.x = snappedf(g.player.global_position.x, 1)
 	position.y = snappedf(g.player.global_position.y, 1)
