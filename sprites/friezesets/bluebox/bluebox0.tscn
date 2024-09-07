@@ -11,7 +11,7 @@ script = ExtResource("2_w81ex")
 _points = {}
 _point_order = Array[int]([])
 _constraints = {}
-_next_key = 2
+_next_key = 4
 _material_overrides = {}
 
 [node name="BlueBox0" type="Node2D"]
@@ -31,7 +31,8 @@ script = ExtResource("11_lm6qx")
 [node name="Collider" type="StaticBody2D" parent="."]
 
 [node name="Shape" type="CollisionPolygon2D" parent="Collider"]
-modulate = Color(1, 1, 1, 0.117647)
+modulate = Color(1, 1, 1, 0.690196)
+z_index = 100
 
 [node name="Label" type="Label" parent="."]
 z_index = 256

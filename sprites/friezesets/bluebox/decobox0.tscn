@@ -6,19 +6,19 @@
 [ext_resource type="Script" path="res://addons/rmsmartshape/shapes/shape_render.gd" id="6_lsd0l"]
 [ext_resource type="Script" path="res://scripts/components/frieze_editor_label.gd" id="7_y0l7i"]
 
-[sub_resource type="Resource" id="Resource_cqkt6"]
+[sub_resource type="Resource" id="Resource_ji4ac"]
 script = ExtResource("4_3bdi6")
 _points = {}
 _point_order = Array[int]([])
 _constraints = {}
-_next_key = 0
+_next_key = 6
 _material_overrides = {}
 
 [node name="DecoBox0" type="Node2D"]
 texture_filter = 1
 script = ExtResource("1_q3sou")
 shape_material = ExtResource("5_dcpel")
-_points = SubResource("Resource_cqkt6")
+_points = SubResource("Resource_ji4ac")
 tessellation_stages = 2
 collision_size = 1.0
 is_unique = true
@@ -40,7 +40,7 @@ offset_right = 137.0
 offset_bottom = -18.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1.61927, 1.61927)
+scale = Vector2(2.18926, 2.18926)
 pivot_offset = Vector2(137, 64)
 size_flags_horizontal = 4
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)

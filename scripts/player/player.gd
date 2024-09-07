@@ -83,7 +83,8 @@ const FRICTION : float = 0.1 # 0 - 1
 const NORMAL_LEFT_AND_RIGHT_RAYS_LENGHT : int = 45
 
 
-signal injured()
+signal injured
+signal death
 
 # SAVING
 
@@ -100,8 +101,9 @@ enum sm{
 	REBOUND = 6,
 	RING = 7,
 	V_ROPE = 8,
+	GHOST = 9,
 	
-	DEBUG = 9,
+	DEBUG = 10,
 	
 }
 
@@ -202,7 +204,7 @@ func _physics_process(delta: float) -> void:
 
 	#if !Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()):
 		#x_vel = Vector2.ZERO
-	if state != sm.DEBUG and state != sm.REBOUND and state != sm.RING:
+	if state != sm.DEBUG and state != sm.REBOUND and state != sm.RING and state != sm.GHOST:
 		velocity = x_vel + y_vel
 	if state == sm.GROUND:
 		if (Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) != 0) or is_running:
@@ -389,6 +391,8 @@ func physics_state_machine(delta : float) -> void:
 			#global_position = lerp(global_position, )
 		sm.V_ROPE:
 			default_velocity()
+		sm.GHOST:
+			velocity = lerp(velocity, Input.get_vector("LEFT" + get_player_index(), "RIGHT" + get_player_index(), "UP" + get_player_index(), "DOWN" + get_player_index()) * 2000, 0.1)
 		sm.DEBUG:
 			velocity = Input.get_vector("LEFT" + get_player_index(), "RIGHT" + get_player_index(), "UP" + get_player_index(), "DOWN" + get_player_index()) * 2000
 
@@ -625,7 +629,7 @@ func grinding() -> void:
 		#modulate = Color(0, 0, 0, 1)
 		
 func attack() -> void:
-	if Input.is_action_just_pressed("1ACTION" + get_player_index()) and $Timers/AttackTimers/AttackTimer.time_left < $Timers/AttackTimers/AttackTimer.wait_time/2:
+	if Input.is_action_just_pressed("1ACTION" + get_player_index()) and $Timers/AttackTimers/AttackTimer.time_left < $Timers/AttackTimers/AttackTimer.wait_time/2 and state != sm.GHOST:
 		#$Rotatable/AttackAreas/AttackArea/Shape.disabled = false
 		$Rotatable/AttackAreas/AttackArea.monitoring = true
 		$Rotatable/AttackAreas/AttackArea/CollisionShape.set_deferred("debug_color", Color(1, 0, 0, 0.3))
@@ -785,12 +789,11 @@ func _on_entity_component_system_area_entered(area):
 
 func _on_injured():
 	component_system.hit_points -= 1
-	if component_system.hit_points == 0:
-		position = last_checkpoint_position
-		component_system.hit_points = 1
+	if component_system.hit_points <= 0:
+		#position = last_checkpoint_position
+		g.death_counter += 1
+		#state = sm.GHOST
 		properties_update()
-		g.player_respawned.emit()
-		g.player_respawned.emit()
 
 func _on_attack_timer_timeout():
 	#$Rotatable/AttackAreas/AttackArea/Shape.disabled = true

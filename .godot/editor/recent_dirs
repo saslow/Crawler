@@ -1,11 +1,13 @@
+res://scripts/level_parts
+res://scenes/level_parts
+res://scripts/enemies
+res://scenes/enemies
 res://scenes/menus
 res://scripts/menus
 res://sprites/friezesets/swamp/trees/tree
 res://sprites/friezesets/swamp/swamp_mud
 res://sprites/friezesets
 res://sprites/friezesets/swamp
-res://scripts/level_parts
-res://scenes/level_parts
 C:/Program Files/Krita (x64)/bin
 res://addons/LinkedCamera2D
 res://sprites/friezesets/bluebox
@@ -18,5 +20,3 @@ res://scripts/global
 res://scripts/level_parts/rooms
 res://scenes/level_parts/rooms
 res://scripts/_
-res://scenes/_
-res://sprites/friezesets/leshy's_forest

@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://dhp71vl6av8ov"]
+[gd_scene load_steps=57 format=3 uid="uid://dhp71vl6av8ov"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_wfvhb"]
 [ext_resource type="Texture2D" uid="uid://bhdqe7q3s6pvs" path="res://sprites/entities/boy/boy_bump/boy bump.0001.png" id="2_4i5rq"]
@@ -27,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://bieyf361gtd48" path="res://sprites/entities/boy/boy_walk/boy walk.0006.png" id="36_wxy6f"]
 [ext_resource type="Texture2D" uid="uid://bd00r4x362d7k" path="res://sprites/entities/boy/boy_walk/boy walk.0007.png" id="37_lfwn3"]
 [ext_resource type="Texture2D" uid="uid://p0ib21j42rnx" path="res://sprites/entities/boy/boy_walk/boy walk.0008.png" id="38_kc3mu"]
+[ext_resource type="PackedScene" uid="uid://h3rgfqtcimmq" path="res://scenes/level_parts/checkpoint.tscn" id="39_5t6tl"]
 [ext_resource type="Texture2D" uid="uid://b6wlnvj82fuui" path="res://sprites/entities/boy/boy_walk/boy walk.0009.png" id="39_inccq"]
 [ext_resource type="Texture2D" uid="uid://hhwhlxu28xby" path="res://sprites/entities/boy/boy_walk/boy walk.0010.png" id="40_vwrdl"]
 [ext_resource type="Texture2D" uid="uid://clygnlt6k51bm" path="res://sprites/entities/boy/boy_bump/boy bump.0002.png" id="44_nnvhy"]
@@ -554,6 +555,10 @@ one_shot = true
 process_callback = 0
 wait_time = 0.3
 one_shot = true
+
+[node name="Checkpoint" parent="." instance=ExtResource("39_5t6tl")]
+visible = false
+position = Vector2(16, 16)
 
 [connection signal="injured" from="." to="." method="_on_injured"]
 [connection signal="area_entered" from="CrushingArea" to="." method="_on_crushing_area_area_entered"]

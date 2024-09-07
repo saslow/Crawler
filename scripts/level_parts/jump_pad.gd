@@ -37,13 +37,13 @@ func _on_body_entered(body):
 				#g.player.position.y -= g.HALF_DEFAULT_RESOLUTION_HEIGHT + 64
 				#g.player.set_deferred("position", target_position)
 				#g.second_player.set_deferred("position", g.player.position)
-				g.second_player.visible = false
+				#g.second_player.visible = false
 				g.player.state = Player.sm.REBOUND
-				g.second_player.state = Player.sm.REBOUND
+				#g.second_player.state = Player.sm.REBOUND
 				
 				g.player.get_node("Anim").play("rebound")
-				g.second_player.get_node("Anim").play("rebound")
+				#g.second_player.get_node("Anim").play("rebound")
 				await g.players_rebound_max_height_reached
 				g.change_players_layer(to)
 				g.player.global_position = g.last_player_target_rebound_position
-				g.second_player.global_position = g.last_player_target_rebound_position
+				#g.second_player.global_position = g.last_player_target_rebound_position

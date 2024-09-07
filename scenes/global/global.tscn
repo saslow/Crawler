@@ -4,3 +4,5 @@
 
 [node name="Global" type="Node"]
 script = ExtResource("1_ystlk")
+
+[connection signal="lose" from="." to="." method="_on_lose"]

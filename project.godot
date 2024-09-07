@@ -26,11 +26,7 @@ instance_dock/scenes=[{
 "scroll": 0
 }, {
 "name": "enemies",
-"scenes": [{
-"scene": "res://scenes/enemies/dagger_demon_2.tscn"
-}, {
-"scene": "res://scenes/enemies/flying_demon.tscn"
-}],
+"scenes": [],
 "scroll": 0
 }, {
 "name": "friezes",
@@ -51,7 +47,7 @@ instance_dock/mjpeg_quality=1.0
 
 [application]
 
-config/name="Platformer"
+config/name="CabraMayhem"
 config/tags=PackedStringArray("2d")
 run/main_scene="res://scenes/menus/main_menu.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
