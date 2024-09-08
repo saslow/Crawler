@@ -61,6 +61,7 @@ config/icon="res://icon.svg"
 g="*res://scenes/global/global.tscn"
 ss="*res://scripts/global/save_system.gd"
 rc="*res://scenes/global/room_changer_singleton.tscn"
+ch="*res://scenes/global/camera_host.tscn"
 
 [display]
 

@@ -1,3 +1,5 @@
+res://scenes/global
+res://scripts/global
 res://scripts/level_parts
 res://scenes/level_parts
 res://scripts/enemies
@@ -15,8 +17,6 @@ res://scenes/levels
 res://scripts/levels
 res://sprites/entities/boy/boy_walk
 res://materials/shaders
-res://scenes/global
-res://scripts/global
 res://scripts/level_parts/rooms
 res://scenes/level_parts/rooms
 res://scripts/_
