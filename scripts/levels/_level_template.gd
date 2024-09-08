@@ -1,5 +1,5 @@
 @tool
-extends Node3D
+extends Node2D
 class_name Level3D
 
 #@export var _relocate_layers : bool = false :
@@ -7,7 +7,7 @@ class_name Level3D
 		#_relocate_layers = false
 var player_current_layer_id : int = 0
 const SVP_HOLDER_PIXEL_SIZE : float = 0.0083
-var mc : Camera3D
+var mc : Camera2D
 var is_mc_transitioning : bool
 var target_transition_z : float
 const DEFAULT_MC_TRANSITION_TIME : float = 2.1
@@ -20,24 +20,27 @@ func _ready() -> void:
 		g.current_level = self
 		if $Layers2D.get_child_count() != 0:
 			for i : Layer2D in $Layers2D.get_children():
+				var svp_holder : SubViewportContainer = SubViewportContainer.new()
 				var svp : SubViewport = SubViewport.new()
 				#set_svp_custom_properties(svp, i.transparent, g.DEFAULT_RESOLUTION * i.z, "SVP" + str(i.get_index())) ##
 				set_svp_custom_properties(svp, i.transparent, g.DEFAULT_RESOLUTION, "SVP" + str(i.get_index())) ##
-				$Viewports.add_child(svp)
-				var h : Sprite3D = Sprite3D.new()
-				h.scale = Vector3(i.z, i.z, 1) ##
-				h.double_sided = false
-				h.no_depth_test = true
-				h.texture_filter = BaseMaterial3D.TEXTURE_FILTER_NEAREST
-				h.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+				$Viewports.add_child(svp_holder)
+				svp_holder.add_child(svp)
+				var h : Sprite2D = Sprite2D.new()
+				h.scale = Vector2(i.z, i.z) ##
+				#h.double_sided = false
+				#h.no_depth_test = true
+				h.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+				#h.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 				#h.transparent = false
-				set_svp_holder_custom_properties(h, svp, i.z, i.name)
+				#set_svp_holder_custom_properties(h, svp, i.z, i.name)
 				$Layers3D.add_child(h)
 				
 				i.reparent(svp)
 				
 func _physics_process(delta) -> void:
-	mc_transitioning_process()
+	#mc_transitioning_process()
+	pass
 
 func set_svp_custom_properties(svp : SubViewport, transparent : bool, size : Vector2, name : String) -> void:
 	svp.name = name
@@ -47,6 +50,7 @@ func set_svp_custom_properties(svp : SubViewport, transparent : bool, size : Vec
 	svp.transparent_bg = transparent
 	svp.positional_shadow_atlas_size = 0
 	svp.canvas_item_default_texture_repeat = Viewport.DEFAULT_CANVAS_ITEM_TEXTURE_REPEAT_ENABLED
+	svp.render_target_update_mode = SubViewport.UPDATE_ALWAYS
 	svp.render_target_clear_mode = SubViewport.CLEAR_MODE_ALWAYS
 	
 func set_svp_holder_custom_properties(h : Sprite3D, svp : SubViewport, z : float, name : String) -> void:
@@ -62,12 +66,12 @@ func set_svp_holder_custom_properties(h : Sprite3D, svp : SubViewport, z : float
 	#h.texture = texture
 	h.texture = svp.get_texture()
 	
-func mc_transitioning_process():
-	if is_mc_transitioning:
-		mc.position.z = lerpf(mc.position.z, target_transition_z, 0.1)
-
-func start_mc_transition(to_z : float, time : float = DEFAULT_MC_TRANSITION_TIME) -> void:
-	is_mc_transitioning = true
-	target_transition_z = -((to_z - 1) * 13)
-	await get_tree().create_timer(time).timeout
-	is_mc_transitioning = false
+#func mc_transitioning_process():
+	#if is_mc_transitioning:
+		#mc.position.z = lerpf(mc.position.z, target_transition_z, 0.1)
+#
+#func start_mc_transition(to_z : float, time : float = DEFAULT_MC_TRANSITION_TIME) -> void:
+	#is_mc_transitioning = true
+	#target_transition_z = -((to_z - 1) * 13)
+	#await get_tree().create_timer(time).timeout
+	#is_mc_transitioning = false

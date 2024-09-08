@@ -46,6 +46,8 @@ var last_checkpoint : Vector2
 var last_checpoint_depth : float
 var checkpointed_layer : Layer2D
 
+var layers_relocating : bool = false
+
 func change_players_layer(reparent_to : Layer2D) -> void:
 	#g.player.call_deferred("reparent", reparent_to.get_node("Players"))
 	#g.second_player.call_deferred("reparent", reparent_to.get_node("Players"))

@@ -15,7 +15,11 @@ class_name Layer2D
 @export_range(0, 64, 0.1) var z : float = 1
 @export var transparent : bool = true
 
-
+func _process(delta):
+	pass
+	#if global_position.x > 0:
+		#global_position.x = 0
+		
 # Called when the node enters the scene tree for the first time.
 
 #func _ready() -> void:

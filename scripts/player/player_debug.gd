@@ -23,5 +23,7 @@ func debug(delta) -> void:
 	$Debug/MonitorsContainer/XVel/Label.text = "   LTA: " + str( player.last_true_axis ) 
 	$Debug/MonitorsContainer/Hp/Label.text = "   HP: " + str( player.component_system.hit_points )
 	$Debug/MonitorsContainer/Sliding/Label.text = "   IS_SLIDING: " + str( player.is_sliding )
+	$Debug/MonitorsContainer/Position/Label.text = "    POS_X: " + str(player.position.x)
+	$Debug/MonitorsContainer/Position2/Label.text = "    POS_X_G: " + str(player.global_position.x)
 	
 ################################### TEST

@@ -1,4 +1,7 @@
+Camera2D
 SubViewport
+Node2D
+Level3D
 AnimatedSprite3D
 CollisionPolygon2D
 StaticBody2D
@@ -9,7 +12,3 @@ Area2D
 PathFollow2D
 Label
 Button
-Control
-CanvasLayer
-Node2D
-SS2D_Shape
