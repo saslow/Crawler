@@ -14,8 +14,6 @@ func _ready():
 		if to == null:
 			modulate = Color(0, 0 , 0, 0.5)
 		else:
-			#g.players_rebound_max_height_reached.connect(_on_players_rebound_max_height_reached)
-			#g.second_player.rebound_max_height.connect(_on_players_rebound_max_height_reached)
 			$TargetPosition.call_deferred("reparent", to)
 			#target_position = target_position_node.global_position
 		#var grounding_position_ray : RayCast2D = RayCast2D.new()
@@ -33,6 +31,7 @@ func _on_body_entered(body):
 		if body is Player:
 			if !g.current_level.is_mc_transitioning:
 				g.last_player_target_rebound_position = target_position_node.global_position
+				g.player.global_position = global_position
 				#g.current_level.start_mc_transition(to.z)
 				#g.player.position.y -= g.HALF_DEFAULT_RESOLUTION_HEIGHT + 64
 				#g.player.set_deferred("position", target_position)
@@ -44,6 +43,7 @@ func _on_body_entered(body):
 				g.player.get_node("Anim").play("rebound")
 				#g.second_player.get_node("Anim").play("rebound")
 				await g.players_rebound_max_height_reached
+				ch.current_player_level = to.z
 				g.change_players_layer(to)
 				g.player.global_position = g.last_player_target_rebound_position
 				#g.second_player.global_position = g.last_player_target_rebound_position

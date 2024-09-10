@@ -74,9 +74,9 @@ var slide_collision_shape : = preload("res://materials/shapes/player_slide_colli
 var was_running : bool = false
 # Anim ----
 
-const NORMAL_SPEED : int = 700
+const NORMAL_SPEED : int = 650
 const SLIDE_MAX_SPEED  : int = 1000
-const MAX_SPEED : int = 1400
+const MAX_SPEED : int = 1350
 const JUMP_FORCE : int = 700
 const ACCELERATION : float = 0.3 # 0 - 1
 const FRICTION : float = 0.1 # 0 - 1
@@ -123,42 +123,14 @@ func define_players() -> void:
 		_: g.second_player = self
 
 func _ready() -> void:
+	ch.current_player_level = get_parent().get_parent().z
 	define_players()
 	#Engine.time_scale = 0.1
 	g.background_level_changed.connect(_on_background_level_changed)
 	last_checkpoint_position = position
 	
-func _process(delta: float) -> void:
-	#$Label.text = str($Casts/XVel.get_collision_point().distance_to(position))
-
-	character_swapped_indicator()
-	
-	if state != sm.BUMPED:
-		if is_running:
-			if last_true_axis > 0:
-				$Sprite.scale.x = 2
-			else:
-				$Sprite.scale.x = -2
-		elif is_on_floor():
-			if Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) > 0:
-				$Sprite.scale.x = 2
-			if Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) < 0:
-				$Sprite.scale.x = -2
-
-	#if is_running:
-		#if last_true_axis > 0:
-			#$Sprite.flip_h = false
-		#else:
-			#$Sprite.flip_h = true
-	#elif is_on_floor():
-		#if Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) > 0:
-			#$Sprite.flip_h = false
-		#if Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) < 0:
-			#$Sprite.flip_h = true
-		
-	state_machine(delta)
-	
 func _physics_process(delta: float) -> void:
+	
 	if is_on_floor():
 		last_x_vel_y = x_vel.y
 		
@@ -227,6 +199,32 @@ func _physics_process(delta: float) -> void:
 			#is_releasing = true
 		#else:
 			#is_releasing = false
+	
+func _process(delta: float) -> void:
+	#var fps = Engine.get_frames_per_second()
+	#var lerp_interval = velocity / fps
+	#var lerp_position = global_transform.origin + lerp_interval
+	#
+	#if fps > 60:
+		#global_transform.origin = lerp(global_transform.origin, lerp_position, 20 * delta)
+
+	character_swapped_indicator()
+	
+	if state != sm.BUMPED:
+		if is_running:
+			if last_true_axis > 0:
+				$Sprite.scale.x = 2
+			else:
+				$Sprite.scale.x = -2
+		elif is_on_floor():
+			if Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) > 0:
+				$Sprite.scale.x = 2
+			if Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) < 0:
+				$Sprite.scale.x = -2
+
+	state_machine(delta)
+	
+
 	
 func physics_state_machine(delta : float) -> void:
 	

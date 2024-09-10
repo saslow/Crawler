@@ -1,24 +1,29 @@
-[gd_scene load_steps=2 format=3 uid="uid://dnnym0185m5as"]
+[gd_scene load_steps=4 format=3 uid="uid://dnnym0185m5as"]
 
 [ext_resource type="Script" path="res://scripts/level_parts/rooms/room_changer.gd" id="1_ueuom"]
 
-[node name="RoomChanger" type="Area2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d03a6"]
+size = Vector2(20, 448)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nbvku"]
+size = Vector2(192, 448)
+
+[node name="RoomChanger0" type="Area2D"]
+process_mode = 3
 collision_layer = 0
 collision_mask = 6
 script = ExtResource("1_ueuom")
+metadata/_edit_vertical_guides_ = [384.0]
 
 [node name="Shape" type="CollisionShape2D" parent="."]
+position = Vector2(0, -224)
+shape = SubResource("RectangleShape2D_d03a6")
+debug_color = Color(0, 0.639216, 0.356863, 0.419608)
 
-[node name="NewPlayerPositions" type="Node2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.490196)
+position = Vector2(0, -224)
+shape = SubResource("RectangleShape2D_nbvku")
+disabled = true
 
-[node name="0" type="Marker2D" parent="NewPlayerPositions"]
-position = Vector2(32, 0)
-gizmo_extents = 160.0
-
-[node name="1" type="Marker2D" parent="NewPlayerPositions"]
-self_modulate = Color(0, 0, 1, 1)
-position = Vector2(64, 0)
-gizmo_extents = 160.0
-
-[connection signal="body_entered" from="." to="." method="_on_player_entered"]
-[connection signal="body_exited" from="." to="." method="_on_player_exited"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

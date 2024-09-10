@@ -23,4 +23,3 @@ func _on_body_entered(body):
 		modulate.a = 0.4
 		set_deferred("monitoring", false)
 		
-		

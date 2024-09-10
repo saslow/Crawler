@@ -3,4 +3,10 @@
 [ext_resource type="Script" path="res://scripts/global/camera_host.gd" id="1_7oe4p"]
 
 [node name="CameraHost" type="Camera2D"]
+enabled = false
+zoom = Vector2(0.5, 0.5)
+process_callback = 0
+limit_smoothed = true
+position_smoothing_enabled = true
+position_smoothing_speed = 15.0
 script = ExtResource("1_7oe4p")

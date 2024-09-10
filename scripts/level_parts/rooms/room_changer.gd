@@ -1,46 +1,64 @@
 extends Area2D
 class_name RoomChanger
 
-#@export var target_level : PackedScene
-#@export var target_room_changer_id : int
-#@export var mode : modes = modes.NORMAL
-#enum modes{
-	#NORMAL = 0,
-	#GATES = 1,
-#}
-#@export var built_in_checkpoint : bool = true
-#var is_checkpoint_active : bool = true
-#
-#var first_pos : Vector2
-#var second_pos : Vector2
-#var is_player_entered : bool = false
+const PLAYER_OFFSET : int = 320
+@export var layers_offset_x : int = 10000
+@export var level_offset : Vector2
 
-## Called when the node enters the scene tree for the first time.
-#func _ready():
-	#rc.room_changed_to_room_at_id.connect(_on_room_changed)
-	#first_pos = $"NewPlayerPositions/0".global_position
-	#second_pos = $"NewPlayerPositions/1".global_position
-#
-#func activate() -> void:
-	#is_player_entered = false
-	#rc.change_current_level_to_packed(target_level, target_room_changer_id)
+@export_category("BACKWARD")
+@export var backward_camera_BG : LinkedCamera2D
+@export var backward_camera_FG : LinkedCamera2D
+
+@export_category("FORWARD")
+@export var forward_camera_BG : LinkedCamera2D
+@export var forward_camera_FG : LinkedCamera2D
+
+func _on_body_entered(body):
+	if !Engine.is_editor_hint():
+		if body is Player:
+			if body.global_position > global_position:
+				transition_backward()
+			else:
+				transition_forward()
+
+func transition_forward() -> void:
+	g.current_level.UI.anim.play("fade")
+	print("forward")
+	ch.force_cameras.emit()
+	
+	get_tree().paused = true
+	await get_tree().create_timer(0.10).timeout
+	get_tree().paused = false
+	await get_tree().create_timer(0.05).timeout
+	forward_camera_BG.make_current()
+	forward_camera_FG.make_current()
+	get_layer_from_level(0).global_position.x -= layers_offset_x
+	get_layer_from_level(1).global_position.x -= layers_offset_x
+	g.player.global_position.x = global_position.x + PLAYER_OFFSET
+	g.player.global_position.y = global_position.y
+	ch.room_changed.emit(-layers_offset_x, 0)
+	ch.force_cameras.emit()
+	
+	
+func transition_backward() -> void:
+	g.current_level.UI.anim.play("fade")
+	print("backward")
+	ch.force_cameras.emit()
 	#
-#func set_checkpoints() -> void:
-	#g.player.last_checkpoint_position = first_pos
-	#g.second_player.last_checkpoint_position = second_pos
-	#
-#func _on_player_entered(body):
-	#if body is Player:
-		#is_player_entered = true
-		#activate()
-	#
-#func _on_player_exited(body):
-	#if body is Player:
-		#is_player_entered = false
-		#
-#func _on_room_changed(id : int) -> void:
-	#if get_index() == id:
-		#rc.change_players_positions_to_room_changer(id)
-		#
-#func get_new_player_pos(id : int) -> Vector2:
-	#return $NewPlayerPositions.get_child(id).global_position
+	get_tree().paused = true
+	await get_tree().create_timer(0.10).timeout
+	get_tree().paused = false
+	await get_tree().create_timer(0.05).timeout
+	backward_camera_BG.make_current()
+	backward_camera_FG.make_current()
+	get_layer_from_level(0).global_position.x += layers_offset_x
+	get_layer_from_level(1).global_position.x += layers_offset_x
+	g.player.global_position.x = global_position.x - PLAYER_OFFSET
+	g.player.global_position.y = global_position.y
+	ch.room_changed.emit(layers_offset_x, 0)
+	ch.force_cameras.emit()
+	
+	
+
+func get_layer_from_level(layer : int = 0) -> Layer2D:
+	return g.current_level.get_node("Viewports").get_child(layer).get_child(0).get_child(0)

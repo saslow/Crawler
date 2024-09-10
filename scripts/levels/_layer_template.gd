@@ -15,8 +15,10 @@ class_name Layer2D
 @export_range(0, 64, 0.1) var z : float = 1
 @export var transparent : bool = true
 
-func _process(delta):
-	pass
+#func _process(delta):
+	#if !Engine.is_editor_hint():
+		#if Input.is_action_just_pressed("UP0"):
+			#global_position.x -= 10000
 	#if global_position.x > 0:
 		#global_position.x = 0
 		

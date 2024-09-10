@@ -12,6 +12,8 @@ var is_mc_transitioning : bool
 var target_transition_z : float
 const DEFAULT_MC_TRANSITION_TIME : float = 2.1
 
+@export var UI : UI
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if !Engine.is_editor_hint():
