@@ -1,4 +1,4 @@
-[gd_scene load_steps=806 format=3 uid="uid://caqd3v2cv3e0v"]
+[gd_scene load_steps=805 format=3 uid="uid://caqd3v2cv3e0v"]
 
 [ext_resource type="Script" path="res://scripts/levels/_level_template.gd" id="1_f5vud"]
 [ext_resource type="PackedScene" uid="uid://duijkcxgyfmh0" path="res://scenes/menus/ui.tscn" id="2_ylurl"]
@@ -16,7 +16,6 @@
 [ext_resource type="Resource" uid="uid://c55p0j8mj0dvn" path="res://sprites/friezesets/swamp/trees/tree/tree_material.tres" id="14_1i2q2"]
 [ext_resource type="Resource" uid="uid://dpj66l0lnefow" path="res://sprites/friezesets/swamp/trees/tree_thin/thin_tree_material.tres" id="15_s2qd5"]
 [ext_resource type="PackedScene" uid="uid://w07m35qgysc0" path="res://scenes/components/entity_component_system.tscn" id="16_2826c"]
-[ext_resource type="PackedScene" uid="uid://dnnym0185m5as" path="res://scenes/level_parts/rooms/room_changer.tscn" id="17_kvask"]
 [ext_resource type="PackedScene" uid="uid://b1pdlwm8mx8pq" path="res://addons/LinkedCamera2D/linked_camera.tscn" id="17_vkhim"]
 [ext_resource type="PackedScene" uid="uid://dhp71vl6av8ov" path="res://scenes/player/player.tscn" id="18_s5lmt"]
 [ext_resource type="Texture2D" uid="uid://bym01ywkp8uy7" path="res://sprites/friezesets/swamp/trees/suk1.png" id="19_4wge1"]
@@ -2251,9 +2250,9 @@ Array[int]([6, 0]): 15
 _next_key = 15
 _material_overrides = {}
 
-[sub_resource type="Resource" id="Resource_6yq3l"]
+[sub_resource type="Resource" id="Resource_2lej5"]
 script = ExtResource("6_qrynv")
-texture_idx = 0
+texture_idx = -5
 flip = false
 width = 1.0
 
@@ -2262,7 +2261,7 @@ script = ExtResource("7_4tdah")
 position = Vector2(-570.48, 45.3123)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
-properties = SubResource("Resource_6yq3l")
+properties = SubResource("Resource_2lej5")
 
 [sub_resource type="Resource" id="Resource_47q40"]
 script = ExtResource("6_qrynv")
@@ -2290,9 +2289,9 @@ point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
 properties = SubResource("Resource_i4jcr")
 
-[sub_resource type="Resource" id="Resource_y8dau"]
+[sub_resource type="Resource" id="Resource_vlw6p"]
 script = ExtResource("6_qrynv")
-texture_idx = -9
+texture_idx = -19
 flip = false
 width = 1.0
 
@@ -2301,7 +2300,7 @@ script = ExtResource("7_4tdah")
 position = Vector2(357.521, 333.312)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
-properties = SubResource("Resource_y8dau")
+properties = SubResource("Resource_vlw6p")
 
 [sub_resource type="Resource" id="Resource_nk1xi"]
 script = ExtResource("6_qrynv")
@@ -2316,9 +2315,9 @@ point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
 properties = SubResource("Resource_nk1xi")
 
-[sub_resource type="Resource" id="Resource_abyyx"]
+[sub_resource type="Resource" id="Resource_88522"]
 script = ExtResource("6_qrynv")
-texture_idx = 0
+texture_idx = -1
 flip = false
 width = 1.0
 
@@ -2327,11 +2326,11 @@ script = ExtResource("7_4tdah")
 position = Vector2(-154.465, 173.312)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
-properties = SubResource("Resource_abyyx")
+properties = SubResource("Resource_88522")
 
-[sub_resource type="Resource" id="Resource_ax7ew"]
+[sub_resource type="Resource" id="Resource_1a4n2"]
 script = ExtResource("6_qrynv")
-texture_idx = -17
+texture_idx = -22
 flip = false
 width = 1.0
 
@@ -2340,7 +2339,7 @@ script = ExtResource("7_4tdah")
 position = Vector2(-458.484, 85.3122)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
-properties = SubResource("Resource_ax7ew")
+properties = SubResource("Resource_1a4n2")
 
 [sub_resource type="Resource" id="Resource_cs8hi"]
 script = ExtResource("8_b65c4")
@@ -5586,7 +5585,8 @@ _material_overrides = {}
 [node name="Level" type="Node2D" node_paths=PackedStringArray("UI")]
 script = ExtResource("1_f5vud")
 UI = NodePath("UI")
-metadata/_edit_horizontal_guides_ = [768.0, 1088.0]
+metadata/_edit_horizontal_guides_ = [768.0]
+metadata/_edit_vertical_guides_ = [-16000.0, 16000.0]
 
 [node name="MainCamera" type="Camera2D" parent="."]
 enabled = false
@@ -5600,7 +5600,7 @@ position_smoothing_speed = 15.0
 [node name="Layers2D" type="Node2D" parent="."]
 
 [node name="Layer1" type="Node2D" parent="Layers2D"]
-position = Vector2(-11648, 64)
+position = Vector2(-8704, -288)
 script = ExtResource("3_jx1cm")
 z = 1.5
 
@@ -5913,22 +5913,6 @@ shape = SubResource("WorldBoundaryShape2D_ka1pi")
 [node name="CollisionPolygon" parent="Layers2D/Layer1/LevelParts/Waterline" index="1"]
 position = Vector2(0, 48)
 
-[node name="RoomChanger" parent="Layers2D/Layer1/LevelParts" node_paths=PackedStringArray("backward_camera_BG", "backward_camera_FG", "forward_camera_BG", "forward_camera_FG") instance=ExtResource("17_kvask")]
-position = Vector2(14520, 288)
-layers_offset_x = 22000
-backward_camera_BG = NodePath("../../LinkedCamera")
-backward_camera_FG = NodePath("../../../Layer0/LinkedCamera")
-forward_camera_BG = NodePath("../../LinkedCamera2")
-forward_camera_FG = NodePath("../../../Layer0/LinkedCamera2")
-
-[node name="RoomChanger2" parent="Layers2D/Layer1/LevelParts" node_paths=PackedStringArray("backward_camera_BG", "backward_camera_FG", "forward_camera_BG", "forward_camera_FG") instance=ExtResource("17_kvask")]
-position = Vector2(26712, 720)
-layers_offset_x = 11984
-backward_camera_BG = NodePath("../../LinkedCamera2")
-backward_camera_FG = NodePath("../../../Layer0/LinkedCamera2")
-forward_camera_BG = NodePath("../../LinkedCamera3")
-forward_camera_FG = NodePath("../../../Layer0/LinkedCamera3")
-
 [node name="RoomChangers" type="Node2D" parent="Layers2D/Layer1"]
 position = Vector2(-2200, -736)
 
@@ -5942,42 +5926,13 @@ scroll_offset = Vector2(607, 279)
 z_index = 20
 position = Vector2(15600, -832)
 process_callback = 0
-limit_left = -18816
-limit_top = -1072
-limit_right = 5376
-limit_bottom = 1088
-limit_smoothed = true
-position_smoothing_enabled = true
-position_smoothing_speed = 15.0
-editor_draw_limits = true
-
-[node name="LinkedCamera2" parent="Layers2D/Layer1" instance=ExtResource("17_vkhim")]
-z_index = 20
-position = Vector2(15600, -832)
-process_callback = 0
-limit_left = 5568
-limit_top = -1072
-limit_right = 17568
-limit_bottom = 1088
-limit_smoothed = true
-position_smoothing_enabled = true
-position_smoothing_speed = 15.0
-editor_draw_limits = true
-
-[node name="LinkedCamera3" parent="Layers2D/Layer1" instance=ExtResource("17_vkhim")]
-z_index = 20
-position = Vector2(15600, -832)
-process_callback = 0
-limit_left = 17760
-limit_top = -1792
-limit_bottom = 1088
 limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 15.0
 editor_draw_limits = true
 
 [node name="Layer0" type="Node2D" parent="Layers2D"]
-position = Vector2(-15120, -224)
+position = Vector2(-12176, -576)
 script = ExtResource("3_jx1cm")
 
 [node name="Enemies" type="Node2D" parent="Layers2D/Layer0"]
@@ -6262,38 +6217,9 @@ scroll_offset = Vector2(607, 279)
 [node name="LinkedCamera" parent="Layers2D/Layer0" instance=ExtResource("17_vkhim")]
 position = Vector2(1, 232)
 process_callback = 0
-limit_left = -18816
-limit_top = -1072
-limit_right = 5376
-limit_bottom = 1088
 limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 15.0
-
-[node name="LinkedCamera2" parent="Layers2D/Layer0" instance=ExtResource("17_vkhim")]
-z_index = 20
-position = Vector2(15600, -832)
-process_callback = 0
-limit_left = 5568
-limit_top = -1072
-limit_right = 17568
-limit_bottom = 1088
-limit_smoothed = true
-position_smoothing_enabled = true
-position_smoothing_speed = 15.0
-editor_draw_limits = true
-
-[node name="LinkedCamera3" parent="Layers2D/Layer0" instance=ExtResource("17_vkhim")]
-z_index = 20
-position = Vector2(15600, -832)
-process_callback = 0
-limit_left = 17760
-limit_top = -1792
-limit_bottom = 1088
-limit_smoothed = true
-position_smoothing_enabled = true
-position_smoothing_speed = 15.0
-editor_draw_limits = true
 
 [node name="Viewports" type="Node2D" parent="."]
 

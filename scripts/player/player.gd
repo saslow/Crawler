@@ -80,7 +80,7 @@ const MAX_SPEED : int = 1350
 const JUMP_FORCE : int = 700
 const ACCELERATION : float = 0.3 # 0 - 1
 const FRICTION : float = 0.1 # 0 - 1
-const NORMAL_LEFT_AND_RIGHT_RAYS_LENGHT : int = 45
+const NORMAL_LEFT_AND_RIGHT_RAYS_LENGHT : int = 90
 
 
 signal injured

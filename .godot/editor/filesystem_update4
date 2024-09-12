@@ -24,3 +24,4 @@ res://scenes/global/global.tscn
 res://scenes/global/camera_host.tscn
 res://scripts/player/player_debug.gd
 res://scripts/player/player.gd
+res://scripts/level_parts/rooms/room_changer.gd
