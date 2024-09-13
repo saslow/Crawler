@@ -22,6 +22,8 @@ instance_dock/scenes=[{
 "scene": "res://scenes/level_parts/jump_pad.tscn"
 }, {
 "scene": "res://addons/LinkedCamera2D/linked_camera.tscn"
+}, {
+"scene": "res://scenes/level_parts/rooms/room_changer.tscn"
 }],
 "scroll": 0
 }, {
