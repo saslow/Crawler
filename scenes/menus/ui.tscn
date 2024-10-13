@@ -1,8 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://duijkcxgyfmh0"]
+[gd_scene load_steps=8 format=3 uid="uid://duijkcxgyfmh0"]
 
 [ext_resource type="Script" path="res://scripts/menus/ui.gd" id="1_65mp0"]
 [ext_resource type="PackedScene" uid="uid://d1btdy1brmsea" path="res://scenes/player/player_debug.tscn" id="2_i63fk"]
+[ext_resource type="Shader" path="res://scenes/menus/fisheye.gdshader" id="2_reujc"]
 [ext_resource type="Script" path="res://scripts/menus/UI/escape_timer.gd" id="3_idoch"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vgscs"]
+shader = ExtResource("2_reujc")
 
 [sub_resource type="Animation" id="Animation_6jm53"]
 resource_name = "fade"
@@ -39,6 +43,7 @@ offset_bottom = 1080.0
 mouse_filter = 1
 
 [node name="ColorRect" type="ColorRect" parent="UI"]
+material = SubResource("ShaderMaterial_vgscs")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -120,6 +125,7 @@ grow_horizontal = 2
 script = ExtResource("3_idoch")
 
 [node name="TimeLeft" type="Label" parent="UI/EscapeTimer"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

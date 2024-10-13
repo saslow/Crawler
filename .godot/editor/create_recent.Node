@@ -1,3 +1,5 @@
+WorldEnvironment
+CanvasModulate
 Timer
 Label
 Control
@@ -10,6 +12,3 @@ ColorRect
 Line2D
 CollisionPolygon2D
 Camera2D
-GraphEdit
-GraphNode
-AnimationPlayer

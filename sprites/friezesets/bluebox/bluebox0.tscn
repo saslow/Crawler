@@ -9,20 +9,23 @@
 [sub_resource type="Resource" id="Resource_5vw4p"]
 script = ExtResource("2_w81ex")
 _points = {}
-_point_order = Array[int]([])
+_point_order = PackedInt32Array()
 _constraints = {}
 _next_key = 4
 _material_overrides = {}
+tessellation_stages = 2
+tessellation_tolerance = 6.0
+curve_bake_interval = 20.0
 
 [node name="BlueBox0" type="Node2D"]
 texture_filter = 1
 script = ExtResource("1_rdbi7")
-shape_material = ExtResource("3_wpphu")
 _points = SubResource("Resource_5vw4p")
+shape_material = ExtResource("3_wpphu")
 tessellation_stages = 2
+collision_update_mode = 2
 collision_size = 2.0
 collision_polygon_node_path = NodePath("Collider/Shape")
-is_unique = true
 metadata/_edit_group_ = true
 
 [node name="_SS2D_RENDER" type="Node2D" parent="."]
@@ -47,7 +50,7 @@ offset_right = 137.0
 offset_bottom = -18.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1.92126, 1.92126)
+scale = Vector2(2.08475, 2.08475)
 pivot_offset = Vector2(137, 64)
 size_flags_horizontal = 4
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)

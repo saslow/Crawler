@@ -503,6 +503,7 @@ func movement_in_air_state_when_running() -> void:
 func running() -> void:
 	if Input.is_action_pressed("RUN" + get_player_index()) and ( (!($Rotatable/Casts/LeftCast.is_colliding() and last_true_axis == -1 and speed <= 700) and !($Rotatable/Casts/RightCast.is_colliding() and last_true_axis == 1 and speed <= 700)  ) or state == sm.WALL_SLIDING ):
 		if is_on_floor() or state == sm.WALL_SLIDING or state == sm.RING:
+			Input.start_joy_vibration(player_index, 3, 3)
 			is_running = true
 			if $Timers/TurningTimer.is_stopped():
 				speed = move_toward(speed, MAX_SPEED, 8)
@@ -527,6 +528,7 @@ func running() -> void:
 			if is_running:
 				floor_max_angle = (3*PI)/4.5
 	else:
+		#Input.stop_joy_vibration(player_index)
 		if is_on_floor():
 			is_running = false
 			speed = NORMAL_SPEED
@@ -581,6 +583,7 @@ func jumping(delta : float) -> void:
 		
 func jump_start(delta : float) -> void:
 	if ( Input.is_action_just_pressed("JUMP" + get_player_index())) or (!$Timers/JumpInputBuffer.is_stopped() ) and is_sliding == false:# and get_floor_angle() > PI/2):
+		#Input.start_joy_vibration(player_index, 0.05, 0.05)
 		y_vel = Vector2.ZERO
 		is_releasing = false
 		is_on_grind_pipe = false
@@ -735,6 +738,7 @@ func _on_run_stop_timer_timeout() -> void: # $Timers/RunStopTimer
 
 func _on_first_jump_state_timer_timeout() -> void:
 	is_jump_to_fall_transition = true
+	#Input.stop_joy_vibration(player_index)
 	if (can_jump == true or Input.is_action_pressed("JUMP" + get_player_index()) ):# and (last_floor_angle < PI/2):
 		$Timers/SecondJumpStateTimer.start()
 		

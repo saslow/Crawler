@@ -561,6 +561,7 @@ height = 80.0
 size = Vector2(960, 2160)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("component_system")]
+physics_interpolation_mode = 1
 z_index = 1
 collision_layer = 2
 collision_mask = 401
