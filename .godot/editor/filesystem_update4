@@ -9,3 +9,4 @@ res://materials/shaders/tv.gdshader
 res://shaders/player.gdshader
 res://scenes/player/player.gdshader
 res://addons/rmsmartshape/shapes/shape.gd
+res://addons/rmsmartshape/plugin.gd

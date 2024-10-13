@@ -3268,9 +3268,9 @@ point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
 properties = SubResource("Resource_xkuv2")
 
-[sub_resource type="Resource" id="Resource_2a2sy"]
+[sub_resource type="Resource" id="Resource_j8fa5"]
 script = ExtResource("6_qrynv")
-texture_idx = -2
+texture_idx = -6
 flip = false
 width = 1.0
 
@@ -3279,7 +3279,7 @@ script = ExtResource("7_4tdah")
 position = Vector2(-600.011, -284.984)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
-properties = SubResource("Resource_2a2sy")
+properties = SubResource("Resource_j8fa5")
 
 [sub_resource type="Resource" id="Resource_wm263"]
 script = ExtResource("6_qrynv")
@@ -3307,9 +3307,9 @@ point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
 properties = SubResource("Resource_rjn8w")
 
-[sub_resource type="Resource" id="Resource_a5bsp"]
+[sub_resource type="Resource" id="Resource_pkow8"]
 script = ExtResource("6_qrynv")
-texture_idx = -4
+texture_idx = -6
 flip = false
 width = 1.0
 
@@ -3318,7 +3318,7 @@ script = ExtResource("7_4tdah")
 position = Vector2(2124.48, -588.984)
 point_in = Vector2(-448, 0)
 point_out = Vector2(470, 64)
-properties = SubResource("Resource_a5bsp")
+properties = SubResource("Resource_pkow8")
 
 [sub_resource type="Resource" id="Resource_lv5qx"]
 script = ExtResource("6_qrynv")
@@ -3435,7 +3435,7 @@ _point_order = Array[int]([38, 56, 57, 58, 59, 39, 42, 43, 53, 44, 45, 52, 54, 4
 _constraints = {
 Array[int]([38, 0]): 15
 }
-_next_key = 62
+_next_key = 65
 _material_overrides = {}
 
 [sub_resource type="Resource" id="Resource_sm4ff"]
@@ -4187,7 +4187,7 @@ _point_order = Array[int]([0, 45, 55, 50, 56, 54, 46, 47, 44, 52, 53, 43, 42, 48
 _constraints = {
 Array[int]([41, 0]): 15
 }
-_next_key = 58
+_next_key = 59
 _material_overrides = {}
 
 [sub_resource type="Resource" id="Resource_iymff"]
@@ -5646,18 +5646,18 @@ position = Vector2(32, -672)
 
 [node name="Ground0" parent="Layers2D/Layer1/Friezes" instance=ExtResource("4_m3h3g")]
 position = Vector2(16512, 1008)
-shape_material = ExtResource("5_fjx7a")
 _points = SubResource("Resource_n084s")
+shape_material = ExtResource("5_fjx7a")
 
 [node name="DecoBox0" parent="Layers2D/Layer1/Friezes/Ground0" instance=ExtResource("9_jt64p")]
 position = Vector2(677, -466)
-shape_material = ExtResource("10_xrdtq")
 _points = SubResource("Resource_8o8uq")
+shape_material = ExtResource("10_xrdtq")
 
 [node name="DecoBox1" parent="Layers2D/Layer1/Friezes/Ground0" instance=ExtResource("9_jt64p")]
 position = Vector2(677, -466)
-shape_material = ExtResource("10_xrdtq")
 _points = SubResource("Resource_vyiig")
+shape_material = ExtResource("10_xrdtq")
 
 [node name="0" parent="Layers2D/Layer1/Friezes/Ground0" instance=ExtResource("11_yjne1")]
 position = Vector2(4124, -613)
@@ -5671,18 +5671,18 @@ position = Vector2(-3444, -352)
 [node name="Ground1" parent="Layers2D/Layer1/Friezes" instance=ExtResource("4_m3h3g")]
 z_index = 1
 position = Vector2(22984.9, 1210.58)
-shape_material = ExtResource("5_fjx7a")
 _points = SubResource("Resource_og5ln")
+shape_material = ExtResource("5_fjx7a")
 
 [node name="DecoBox0" parent="Layers2D/Layer1/Friezes/Ground1" instance=ExtResource("9_jt64p")]
 position = Vector2(-433.844, -381.162)
-shape_material = ExtResource("10_xrdtq")
 _points = SubResource("Resource_100d8")
+shape_material = ExtResource("10_xrdtq")
 
 [node name="DecoBox1" parent="Layers2D/Layer1/Friezes/Ground1" instance=ExtResource("9_jt64p")]
 position = Vector2(799.078, -218.581)
-shape_material = ExtResource("10_xrdtq")
 _points = SubResource("Resource_vyn4o")
+shape_material = ExtResource("10_xrdtq")
 
 [node name="Penek0" type="Sprite2D" parent="Layers2D/Layer1/Friezes/Ground1"]
 position = Vector2(887.078, -513.08)
@@ -5711,14 +5711,13 @@ position = Vector2(-800.9, -570.58)
 [node name="Log0" parent="Layers2D/Layer1/Friezes" instance=ExtResource("9_jt64p")]
 z_index = 1
 position = Vector2(2852, -112)
-ignore_global_material_change = true
-shape_material = ExtResource("13_rgkbm")
 _points = SubResource("Resource_xcp4i")
+shape_material = ExtResource("13_rgkbm")
 
 [node name="DecoBox0" parent="Layers2D/Layer1/Friezes/Log0" instance=ExtResource("9_jt64p")]
-shape_material = ExtResource("10_xrdtq")
 _points = SubResource("Resource_khwsa")
 flip_edges = true
+shape_material = ExtResource("10_xrdtq")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Layers2D/Layer1/Friezes/Log0"]
 
@@ -5730,7 +5729,6 @@ position = Vector2(23040, 1472)
 
 [node name="Plank0" parent="Layers2D/Layer1/Friezes" instance=ExtResource("4_m3h3g")]
 position = Vector2(26782, 1280)
-ignore_global_material_change = true
 _points = SubResource("Resource_gx0dq")
 
 [node name="7" parent="Layers2D/Layer1/Friezes/Plank0" instance=ExtResource("11_yjne1")]
@@ -5744,8 +5742,6 @@ skew = -0.0610867
 [node name="Plank1" parent="Layers2D/Layer1/Friezes" instance=ExtResource("4_m3h3g")]
 position = Vector2(27461, 317)
 rotation = 1.59564
-ignore_global_material_change = true
-is_platform = true
 _points = SubResource("Resource_nnh2f")
 
 [node name="9" parent="Layers2D/Layer1/Friezes/Plank1" instance=ExtResource("11_yjne1")]
@@ -5757,36 +5753,35 @@ skew = -0.0610867
 z_index = 1
 position = Vector2(28243.7, 350.838)
 rotation = 0.628762
-ignore_global_material_change = true
 _points = SubResource("Resource_bt6qc")
 
 [node name="Ground2" parent="Layers2D/Layer1/Friezes" instance=ExtResource("4_m3h3g")]
 position = Vector2(29845.7, 1100.9)
-shape_material = ExtResource("5_fjx7a")
 _points = SubResource("Resource_pvjhj")
+shape_material = ExtResource("5_fjx7a")
 
 [node name="DecoBox0" parent="Layers2D/Layer1/Friezes/Ground2" instance=ExtResource("9_jt64p")]
 position = Vector2(-795.34, -145.802)
-shape_material = ExtResource("10_xrdtq")
 _points = SubResource("Resource_x7nci")
+shape_material = ExtResource("10_xrdtq")
 
 [node name="DecoBox1" parent="Layers2D/Layer1/Friezes/Ground2" instance=ExtResource("9_jt64p")]
 position = Vector2(594.33, -924.901)
-shape_material = ExtResource("10_xrdtq")
 _points = SubResource("Resource_7sbyw")
+shape_material = ExtResource("10_xrdtq")
 
 [node name="DecoBox2" parent="Layers2D/Layer1/Friezes/Ground2" instance=ExtResource("9_jt64p")]
 position = Vector2(-1165.67, 267.099)
-shape_material = ExtResource("10_xrdtq")
 _points = SubResource("Resource_lrc45")
+shape_material = ExtResource("10_xrdtq")
 
 [node name="Bg0" parent="Layers2D/Layer1/Friezes/Ground2" instance=ExtResource("9_jt64p")]
 modulate = Color(0.627451, 0.627451, 0.627451, 1)
 show_behind_parent = true
 z_index = -1
 position = Vector2(-200, -704)
-shape_material = ExtResource("5_fjx7a")
 _points = SubResource("Resource_8i1oq")
+shape_material = ExtResource("5_fjx7a")
 
 [node name="11" parent="Layers2D/Layer1/Friezes/Ground2" instance=ExtResource("11_yjne1")]
 position = Vector2(1138.33, -1180.9)
@@ -5796,9 +5791,8 @@ skew = -0.0610867
 position = Vector2(28324, 883.999)
 rotation = 1.33642
 skew = -0.0610867
-ignore_global_material_change = true
-shape_material = ExtResource("13_rgkbm")
 _points = SubResource("Resource_cs8hi")
+shape_material = ExtResource("13_rgkbm")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Layers2D/Layer1/Friezes/Log1"]
 position = Vector2(-22483.5, -1163.69)
@@ -5814,8 +5808,8 @@ skew = -0.115429
 
 [node name="BlueBox0" parent="Layers2D/Layer1/Friezes" instance=ExtResource("4_m3h3g")]
 position = Vector2(29577.5, -775.242)
-shape_material = ExtResource("5_fjx7a")
 _points = SubResource("Resource_v2ds6")
+shape_material = ExtResource("5_fjx7a")
 
 [node name="10" parent="Layers2D/Layer1/Friezes/BlueBox0" instance=ExtResource("11_yjne1")]
 position = Vector2(-193.541, 983.242)
@@ -5826,8 +5820,6 @@ position = Vector2(-801.541, 871.242)
 [node name="Plank3" parent="Layers2D/Layer1/Friezes" instance=ExtResource("4_m3h3g")]
 position = Vector2(32899, 303.001)
 rotation = -0.197498
-ignore_global_material_change = true
-is_platform = true
 _points = SubResource("Resource_nnh2f")
 
 [node name="9" parent="Layers2D/Layer1/Friezes/Plank3" instance=ExtResource("11_yjne1")]
@@ -5844,25 +5836,24 @@ skew = -0.0610867
 modulate = Color(0.764706, 0.764706, 0.764706, 1)
 show_behind_parent = true
 position = Vector2(-230.643, 92.5436)
-shape_material = ExtResource("14_1i2q2")
 _points = SubResource("Resource_l8b0l")
+shape_material = ExtResource("14_1i2q2")
 
 [node name="Tree0" parent="Layers2D/Layer1/Friezes" instance=ExtResource("9_jt64p")]
 modulate = Color(0.756863, 0.756863, 0.756863, 1)
 position = Vector2(35814.6, -2972.06)
 rotation = -0.0021272
 scale = Vector2(1.6, 1.6)
-shape_material = ExtResource("15_s2qd5")
 _points = SubResource("Resource_u2egv")
+shape_material = ExtResource("15_s2qd5")
 
 [node name="Log2" parent="Layers2D/Layer1/Friezes" instance=ExtResource("9_jt64p")]
 position = Vector2(35415, 1623)
 rotation = 2.94813
 scale = Vector2(1.4, 1)
 skew = -0.282744
-ignore_global_material_change = true
-shape_material = ExtResource("13_rgkbm")
 _points = SubResource("Resource_cs8hi")
+shape_material = ExtResource("13_rgkbm")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Layers2D/Layer1/Friezes/Log2"]
 position = Vector2(-22483.5, -1163.69)
@@ -5885,8 +5876,6 @@ skew = -0.115429
 [node name="Plank4" parent="Layers2D/Layer1/Friezes" instance=ExtResource("4_m3h3g")]
 position = Vector2(36264, 368)
 rotation = -4.70394
-ignore_global_material_change = true
-is_platform = true
 _points = SubResource("Resource_ciuwo")
 flip_edges = true
 
@@ -5896,7 +5885,6 @@ position = Vector2(401.879, 220.617)
 [node name="Plank5" parent="Layers2D/Layer1/Friezes" instance=ExtResource("4_m3h3g")]
 position = Vector2(35764, -625)
 rotation = -0.00999697
-ignore_global_material_change = true
 _points = SubResource("Resource_jurk8")
 
 [node name="0" parent="Layers2D/Layer1/Friezes/Plank5" instance=ExtResource("11_yjne1")]
@@ -5905,7 +5893,6 @@ position = Vector2(253.812, 220.548)
 [node name="Plank6" parent="Layers2D/Layer1/Friezes" instance=ExtResource("4_m3h3g")]
 position = Vector2(35718, -2221)
 rotation = -0.0518502
-ignore_global_material_change = true
 _points = SubResource("Resource_a8t6j")
 
 [node name="0" parent="Layers2D/Layer1/Friezes/Plank6" instance=ExtResource("11_yjne1")]
@@ -5914,13 +5901,13 @@ position = Vector2(241.565, 226.825)
 [node name="SecretGround0" parent="Layers2D/Layer1/Friezes" instance=ExtResource("4_m3h3g")]
 position = Vector2(11647, 988)
 scale = Vector2(-1, 1)
-shape_material = ExtResource("5_fjx7a")
 _points = SubResource("Resource_vdegg")
+shape_material = ExtResource("5_fjx7a")
 
 [node name="DecoBox0" parent="Layers2D/Layer1/Friezes/SecretGround0" instance=ExtResource("9_jt64p")]
 position = Vector2(0.859375, -306.168)
-shape_material = ExtResource("10_xrdtq")
 _points = SubResource("Resource_tydcf")
+shape_material = ExtResource("10_xrdtq")
 
 [node name="0" parent="Layers2D/Layer1/Friezes/SecretGround0" instance=ExtResource("11_yjne1")]
 position = Vector2(-592, -464)
@@ -6057,10 +6044,9 @@ metadata/_edit_group_ = true
 [node name="StartTree0" parent="Layers2D/Layer0/Friezes" instance=ExtResource("4_m3h3g")]
 texture_filter = 2
 position = Vector2(-2864, -864)
-ignore_global_material_change = true
-shape_material = ExtResource("13_rgkbm")
 _points = SubResource("Resource_xsgt0")
 flip_edges = true
+shape_material = ExtResource("13_rgkbm")
 collision_offset = 86.0
 
 [node name="Suk1" type="Sprite2D" parent="Layers2D/Layer0/Friezes/StartTree0"]
@@ -6100,8 +6086,8 @@ scale = Vector2(0.526316, 0.243902)
 
 [node name="Ground0" parent="Layers2D/Layer0/Friezes" instance=ExtResource("4_m3h3g")]
 position = Vector2(2291.52, 908.984)
-shape_material = ExtResource("5_fjx7a")
 _points = SubResource("Resource_ymv8g")
+shape_material = ExtResource("5_fjx7a")
 
 [node name="1" parent="Layers2D/Layer0/Friezes/Ground0" instance=ExtResource("11_yjne1")]
 position = Vector2(620.479, -588.984)
@@ -6114,18 +6100,18 @@ position = Vector2(3829.48, -99.984)
 
 [node name="DecoBox0" parent="Layers2D/Layer0/Friezes/Ground0" instance=ExtResource("9_jt64p")]
 position = Vector2(-3187.52, -572.984)
-shape_material = ExtResource("10_xrdtq")
 _points = SubResource("Resource_u8l1p")
+shape_material = ExtResource("10_xrdtq")
 
 [node name="DecoBox1" parent="Layers2D/Layer0/Friezes/Ground0" instance=ExtResource("9_jt64p")]
 position = Vector2(45.0525, -355.937)
-shape_material = ExtResource("10_xrdtq")
 _points = SubResource("Resource_o85h6")
+shape_material = ExtResource("10_xrdtq")
 
 [node name="DecoBox2" parent="Layers2D/Layer0/Friezes/Ground0" instance=ExtResource("9_jt64p")]
 position = Vector2(1896.36, -371.014)
-shape_material = ExtResource("10_xrdtq")
 _points = SubResource("Resource_8q8ln")
+shape_material = ExtResource("10_xrdtq")
 
 [node name="Robert" type="Sprite2D" parent="Layers2D/Layer0/Friezes/Ground0"]
 position = Vector2(1644.48, -716.984)
@@ -6146,24 +6132,24 @@ texture = ExtResource("23_rnpxo")
 
 [node name="Ground1" parent="Layers2D/Layer0/Friezes" instance=ExtResource("4_m3h3g")]
 position = Vector2(8352, 656)
-shape_material = ExtResource("5_fjx7a")
 _points = SubResource("Resource_ou6ne")
+shape_material = ExtResource("5_fjx7a")
 
 [node name="DecoBox0" parent="Layers2D/Layer0/Friezes/Ground1" instance=ExtResource("9_jt64p")]
 position = Vector2(-1090.83, -27.4641)
-shape_material = ExtResource("10_xrdtq")
 _points = SubResource("Resource_fl02o")
 flip_edges = true
+shape_material = ExtResource("10_xrdtq")
 
 [node name="DecoBox1" parent="Layers2D/Layer0/Friezes/Ground1" instance=ExtResource("9_jt64p")]
 position = Vector2(-123.215, -622.147)
-shape_material = ExtResource("10_xrdtq")
 _points = SubResource("Resource_f5mdl")
+shape_material = ExtResource("10_xrdtq")
 
 [node name="DecoBox2" parent="Layers2D/Layer0/Friezes/Ground1" instance=ExtResource("9_jt64p")]
 position = Vector2(817.252, -428.501)
-shape_material = ExtResource("10_xrdtq")
 _points = SubResource("Resource_n6v5l")
+shape_material = ExtResource("10_xrdtq")
 
 [node name="4" parent="Layers2D/Layer0/Friezes/Ground1" instance=ExtResource("11_yjne1")]
 position = Vector2(-1344, 176)
@@ -6179,9 +6165,8 @@ position = Vector2(1280, -336)
 
 [node name="Ground2" parent="Layers2D/Layer0/Friezes" instance=ExtResource("4_m3h3g")]
 position = Vector2(11933.6, 855.427)
-can_collide = false
-shape_material = ExtResource("5_fjx7a")
 _points = SubResource("Resource_4vgbp")
+shape_material = ExtResource("5_fjx7a")
 tessellation_stages = 1
 
 [node name="8" parent="Layers2D/Layer0/Friezes/Ground2" instance=ExtResource("11_yjne1")]
@@ -6194,13 +6179,13 @@ scale = Vector2(1.25575, 0.156199)
 [node name="DecoBox1" parent="Layers2D/Layer0/Friezes" instance=ExtResource("9_jt64p")]
 z_index = 1
 position = Vector2(11137.6, 112)
-shape_material = ExtResource("10_xrdtq")
 _points = SubResource("Resource_wsi32")
+shape_material = ExtResource("10_xrdtq")
 
 [node name="DecoBox0" parent="Layers2D/Layer0/Friezes" instance=ExtResource("9_jt64p")]
 position = Vector2(5152, 912.674)
-shape_material = ExtResource("10_xrdtq")
 _points = SubResource("Resource_d18a4")
+shape_material = ExtResource("10_xrdtq")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="Layers2D/Layer0/Friezes/DecoBox0"]
 
@@ -6222,8 +6207,8 @@ one_way_collision = true
 [node name="Log0" parent="Layers2D/Layer0/Friezes" instance=ExtResource("9_jt64p")]
 position = Vector2(10720.4, 1795.34)
 rotation = 0.125703
-shape_material = ExtResource("14_1i2q2")
 _points = SubResource("Resource_lshue")
+shape_material = ExtResource("14_1i2q2")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="Layers2D/Layer0/Friezes/Log0"]
 position = Vector2(-5914.39, -647.061)
@@ -6238,30 +6223,30 @@ position = Vector2(-409, -575)
 [node name="Ground3" parent="Layers2D/Layer0/Friezes" instance=ExtResource("4_m3h3g")]
 z_index = 1
 position = Vector2(13375.5, 1124.4)
-shape_material = ExtResource("5_fjx7a")
 _points = SubResource("Resource_8islp")
+shape_material = ExtResource("5_fjx7a")
 
 [node name="DecoBox0" parent="Layers2D/Layer0/Friezes/Ground3" instance=ExtResource("9_jt64p")]
 position = Vector2(-1137.75, 49.0432)
-shape_material = ExtResource("10_xrdtq")
 _points = SubResource("Resource_sjvjk")
+shape_material = ExtResource("10_xrdtq")
 
 [node name="DecoBox1" parent="Layers2D/Layer0/Friezes/Ground3" instance=ExtResource("9_jt64p")]
 position = Vector2(-61.4004, -852.398)
-shape_material = ExtResource("10_xrdtq")
 _points = SubResource("Resource_3yf01")
+shape_material = ExtResource("10_xrdtq")
 
 [node name="DecoBox2" parent="Layers2D/Layer0/Friezes/Ground3" instance=ExtResource("9_jt64p")]
 position = Vector2(512.522, -388.398)
-shape_material = ExtResource("10_xrdtq")
 _points = SubResource("Resource_a42td")
 flip_edges = true
+shape_material = ExtResource("10_xrdtq")
 
 [node name="DecoBox3" parent="Layers2D/Layer0/Friezes/Ground3" instance=ExtResource("9_jt64p")]
 position = Vector2(512.522, -388.398)
-shape_material = ExtResource("10_xrdtq")
 _points = SubResource("Resource_ri3fc")
 flip_edges = true
+shape_material = ExtResource("10_xrdtq")
 
 [node name="11" parent="Layers2D/Layer0/Friezes/Ground3" instance=ExtResource("11_yjne1")]
 position = Vector2(448.522, -996.398)
@@ -6279,9 +6264,9 @@ position = Vector2(4490.5, -318.4)
 [node name="SecretPlatform" parent="Layers2D/Layer0/Friezes" instance=ExtResource("9_jt64p")]
 z_index = 1
 position = Vector2(12896, 160)
-shape_material = ExtResource("15_s2qd5")
 _points = SubResource("Resource_ngsjs")
 flip_edges = true
+shape_material = ExtResource("15_s2qd5")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Layers2D/Layer0/Friezes/SecretPlatform"]
 collision_layer = 256

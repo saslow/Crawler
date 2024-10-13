@@ -21,31 +21,6 @@ const TUP = preload("../lib/tuple.gd")
 #-DECLARATIONS-#
 ################
 
-## EDITED ##
-@export_category("Added")
-
-@export var ignore_global_material_change : bool = false
-
-@export var is_platform : bool = false :
-	set(value):
-		$Collider/Shape.one_way_collision = value
-		$Collider.set_collision_layer_value(g.ONE_WAY_SOLIDS_LAYER, value)
-		$Collider.set_collision_layer_value(1, !value)
-		is_platform = value
-		
-@export var can_collide : bool = true :
-	set(value):
-		#$Collider/Shape.disabled = !value
-		if !Engine.is_editor_hint():
-			if !value:
-				$Collider.queue_free()
-		can_collide = value
-		
-@export var is_transparent : bool = false
-
-
-@export_category("Vanilla")
-
 var _dirty: bool = false
 var _edges: Array[SS2D_Edge] = []
 var _meshes: Array[SS2D_Mesh] = []
@@ -65,7 +40,6 @@ enum ORIENTATION { COLINEAR, CLOCKWISE, C_CLOCKWISE }
 ###########
 #-EXPORTS-#
 ###########
-@export var shape_material := SS2D_Material_Shape.new() : set = _set_material
 
 # Execute to refresh shape rendered geometry and textures.
 @warning_ignore("unused_private_class_variable")
@@ -102,7 +76,7 @@ enum ORIENTATION { COLINEAR, CLOCKWISE, C_CLOCKWISE }
 @export_group("Materials")
 
 ## Contains textures and data on how to visualize the shape.
-#@export var shape_material := SS2D_Material_Shape.new() : set = _set_material
+@export var shape_material := SS2D_Material_Shape.new() : set = _set_material
 
 # Dictionary of (Array of 2 keys) to (SS2D_Material_Edge_Metadata)
 # Deprecated, exists for Support of older versions
@@ -133,11 +107,9 @@ var collision_offset: float = 0.0 : set = set_collision_offset
 ## NodePath to CollisionPolygon2D node for which polygon data will be generated.
 @export_node_path("CollisionPolygon2D") var collision_polygon_node_path: NodePath : set = set_collision_polygon_node_path
 
-@export var is_unique : bool = false
 #####################
 #-SETTERS / GETTERS-#
 #####################
-
 
 func set_collision_polygon_node_path(value: NodePath) -> void:
 	collision_polygon_node_path = value
@@ -185,21 +157,11 @@ func _refresh_action(value: String) -> void:
 	if value.length() > 0:
 		_points_modified()
 
-## EDITED ##
+
 func _make_unique_action(value: String) -> void:
 	if value.length() > 0:
-		is_unique = true
-		modulate = Color(1, 1, 1, 1)
 		emit_signal("make_unique_pressed", self)
 
-#func _ready():
-	#pass
-	#if Engine.is_editor_hint():
-		#if !is_unique:
-			#modulate = Color(1, 0, 1, modulate.a)
-	#else:
-		#modulate = Color(1, 1, 1, modulate.a)
-## EDITED STOPS HERE (NAVERNOE, ANGLISKIY NE PONIMAU) ##
 
 func set_flip_edges(b: bool) -> void:
 	flip_edges = b
@@ -985,8 +947,8 @@ func _build_fill_mesh(points: PackedVector2Array, s_mat: SS2D_Material_Shape) ->
 
 
 func _get_uv_points(
-	points: PackedVector2Array, 
-	s_material: SS2D_Material_Shape, 
+	points: PackedVector2Array,
+	s_material: SS2D_Material_Shape,
 	tex_size: Vector2
 ) -> PackedVector2Array:
 	var transformation: Transform2D = global_transform
@@ -1000,7 +962,7 @@ func _get_uv_points(
 	transformation = transformation.scaled(Vector2(tex_scale, tex_scale))
 
 	# If relative rotation ... undo rotation from global_transform
-	if not s_material.fill_texture_absolute_rotation: 
+	if not s_material.fill_texture_absolute_rotation:
 		transformation = transformation.rotated(-global_rotation)
 
 	# Rotate the desired extra amount
@@ -1008,10 +970,10 @@ func _get_uv_points(
 
 	# Shift the desired amount (adjusted so it's scale independent)
 	transformation = transformation.translated(-s_material.fill_texture_offset / s_material.fill_texture_scale)
-	
+
 	# Convert local space to UV
 	transformation = transformation.scaled(Vector2(1 / tex_size.x, 1 / tex_size.y))
-	
+
 	return transformation * points
 
 
