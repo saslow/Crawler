@@ -28,9 +28,11 @@ func _on_area_entered(area : Area2D):
 	if ( area is EntityComponentSystem ) and (entity_type == entity_types.PROJECTILE or entity_type == entity_types.ENEMY) and (contact_damage == true):
 		if area.entity_type == EntityComponentSystem.entity_types.CHARACTER:
 			area.get_parent().get_parent().injured.emit()
-	if (area is EntityComponentSystem) and (entity_type == entity_types.PROJECTILE) and (character_attack == true):
+			print("char_died. RIP. Press F")
+	if (area is EntityComponentSystem) and (entity_type == entity_types.PROJECTILE ) and (character_attack == true):
 		if area.entity_type == EntityComponentSystem.entity_types.ENEMY:
-			area.get_parent().get_parent().injured.emit()
+			area.get_parent().death.emit()
+			print("enemy died. RIP")
 	
 func _on_body_entered(body):
 	pass

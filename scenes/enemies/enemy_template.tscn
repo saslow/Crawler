@@ -8,3 +8,5 @@ script = ExtResource("1_40kip")
 [node name="Marker" type="Polygon2D" parent="."]
 color = Color(1, 0, 0, 0.662745)
 polygon = PackedVector2Array(0, 0, -32, -128, 0, -96, 32, -128)
+
+[node name="UBM" type="Node2D" parent="."]

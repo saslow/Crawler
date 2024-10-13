@@ -27,7 +27,12 @@ const ONE_WAY_SOLIDS_LAYER : int = 9
 signal player_respawned()
 signal background_level_changed(new_bg_level : int)
 signal players_rebound_max_height_reached()
-signal lose
+signal lose()
+signal escape_sequence_started()
+signal times_up()
+
+var is_escape : bool = false
+
 var death_counter : int = 0 :
 	set(value):
 		death_counter = value
@@ -45,8 +50,17 @@ var last_player_target_to : Layer2D
 var last_checkpoint : Vector2
 var last_checpoint_depth : float
 var checkpointed_layer : Layer2D
+var last_general_checkpoint : Vector2
+var last_general_checpoint_depth : float
+var general_checkpointed_layer : Layer2D
 
 var layers_relocating : bool = false
+
+func _ready() -> void:
+	times_up.connect(_on_times_up)
+	
+func _on_times_up() -> void:
+	escape_sequence_started.emit() # ИЗМЕНИТЬ ПОТОМ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 func change_players_layer(reparent_to : Layer2D) -> void:
 	#g.player.call_deferred("reparent", reparent_to.get_node("Players"))

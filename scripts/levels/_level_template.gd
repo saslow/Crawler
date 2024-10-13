@@ -13,6 +13,9 @@ var target_transition_z : float
 const DEFAULT_MC_TRANSITION_TIME : float = 2.1
 
 @export var UI : UI
+@export_category("Escape Timer")
+@export var mins : int = 1
+@export var secs : int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

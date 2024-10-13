@@ -7,7 +7,8 @@ func _process(delta):
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
-		body.is_releasing = true
+		if body.state == Player.sm.GROUND:
+			body.is_releasing = true
 		
 func _on_body_exited(body: Node2D) -> void:
 	if body is Player:

@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://ca6mekv4o5fgq"]
+
+[ext_resource type="Script" path="res://scripts/entities/entity_shadow.gd" id="1_vaahs"]
+
+[node name="ShadowRoot" type="Node2D"]
+script = ExtResource("1_vaahs")
+
+[node name="ShadowRay" type="RayCast2D" parent="."]
+target_position = Vector2(0, 321)
+collision_mask = 257
+
+[node name="Polygon2D" type="Polygon2D" parent="ShadowRay"]
+position = Vector2(0, 1)
+color = Color(0, 0, 0, 0.298039)
+offset = Vector2(0, -40)
+polygon = PackedVector2Array(0, 24, -8, 24, -16, 24, -24, 25, -32, 26, -40, 28, -46, 34, -48, 40, -46, 47, -40, 52, -32, 54, -24, 55, -15.6336, 56, -8, 56, 0, 56, 8, 56, 16, 56, 24, 55, 32, 54, 40, 52, 46, 47, 48, 40, 46, 33, 40, 28, 32, 26, 24, 25, 16, 24, 8, 24)

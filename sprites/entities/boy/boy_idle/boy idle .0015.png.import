@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b5adeaqkgy0ao"
-path.s3tc="res://.godot/imported/boy idle .0015.png-50f934ab28123be6700bb3d1b4610a1b.s3tc.ctex"
+path="res://.godot/imported/boy idle .0015.png-50f934ab28123be6700bb3d1b4610a1b.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://sprites/entities/boy/boy_idle/boy idle .0015.png"
-dest_files=["res://.godot/imported/boy idle .0015.png-50f934ab28123be6700bb3d1b4610a1b.s3tc.ctex"]
+dest_files=["res://.godot/imported/boy idle .0015.png-50f934ab28123be6700bb3d1b4610a1b.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

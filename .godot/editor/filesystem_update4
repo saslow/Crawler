@@ -1,4 +1,4 @@
-res://scenes/levels/leshy's_swamp.tscn
+res://scenes/menus/ui.tscn
 res://sprites/friezesets/bluebox/bluebox0_material.tres
 res://sprites/friezesets/swamp/swamp_mud/swamp_mud_material.tres
 res://sprites/friezesets/swamp/moss/moss.tres
@@ -6,12 +6,17 @@ res://sprites/friezesets/swamp/trees/thick_tree/thick_tree_material.tres
 res://sprites/friezesets/swamp/trees/tree/tree_material.tres
 res://sprites/friezesets/swamp/trees/tree_thin/thin_tree_material.tres
 res://materials/shaders/tv.gdshader
+res://shaders/player.gdshader
+res://scenes/player/player.gdshader
+res://scripts/levels/_layer_template.gd
+res://scripts/menus/main_menu.gd
+res://scripts/player/player.gd
 res://scripts/level_parts/rooms/room_changer.gd
 res://scenes/menus/main_menu.tscn
 res://scenes/player/player.tscn
+res://scenes/levels/leshy's_swamp.tscn
 res://scenes/level_parts/jump_pad.tscn
 res://scenes/levels/_level_template.tscn
-res://scenes/menus/ui.tscn
 res://scenes/player/player_debug.tscn
 res://scenes/level_parts/rooms/room_changer.tscn
 res://scenes/level_parts/checkpoint.tscn
@@ -24,4 +29,6 @@ res://scenes/enemies/enemy_template.tscn
 res://scenes/global/global.tscn
 res://scenes/global/camera_host.tscn
 res://addons/LinkedCamera2D/linked_camera.tscn
-res://addons/LinkedCamera2D/linked_camera2D.gd
+res://scenes/entities/shadow.tscn
+res://scenes/level_parts/end_gate.tscn
+res://scenes/level_parts/escape_sequence_starter.tscn

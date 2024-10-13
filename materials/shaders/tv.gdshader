@@ -1,4 +1,4 @@
-//shader_type canvas_item;
+shader_type canvas_item;
 //uniform float shake: hint_range(0, 10) = 0.015;
 //uniform float noiseQuality: hint_range(0.1, 250,0.1) = 250;
 //uniform float noiseIntensity: hint_range(0, 0.05,0.001) = 0.001;

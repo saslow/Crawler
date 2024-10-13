@@ -37,7 +37,7 @@ class_name Player
 			x_vel = Vector2.ZERO
 			$Anim.play("rebound")
 		state = new_state
-var speed : float = NORMAL_SPEED
+@export var speed : float = NORMAL_SPEED
 var last_x_vel_y : float
 var last_floor_angle : float
 var last_real_floor_angle : float
@@ -57,6 +57,7 @@ var is_dead : bool = false
 var is_bumping : bool = false
 var is_sliding : bool = false
 var is_releasing : bool
+var is_releasing_vertically : bool
 var is_jumping : bool = false
 var is_axis_changing_delayed : bool = false
 var is_on_grind_pipe : bool = false
@@ -64,6 +65,7 @@ var is_in_slide_area : bool = false
 var is_grinding : bool = false
 var is_coyote_jump_allowed : bool = false
 var _debug_mode : bool = false
+var is_cj_allowed: bool = false
 
 var can_jump : bool = true
 
@@ -116,6 +118,12 @@ enum characters_IDs{
 	BOY = 0,
 	GIRL = 1
 }
+
+# transitions #
+@export_category("ANIMATION VARIABLES")
+@export var is_movement_blocked : bool = false
+@export var is_jump_to_fall_transition : bool
+###############
 
 func define_players() -> void:
 	match player_index:
@@ -208,7 +216,7 @@ func _process(delta: float) -> void:
 	#if fps > 60:
 		#global_transform.origin = lerp(global_transform.origin, lerp_position, 20 * delta)
 
-	character_swapped_indicator()
+	#character_swapped_indicator()
 	
 	if state != sm.BUMPED:
 		if is_running:
@@ -225,188 +233,196 @@ func _process(delta: float) -> void:
 	state_machine(delta)
 	
 
-	
+
 func physics_state_machine(delta : float) -> void:
-	
-	match state:
-		sm.GROUND:
-			#if ( Input.is_action_just_released("LEFT" + get_player_index()) and !Input.is_action_pressed("RIGHT" + get_player_index()) ) or ( Input.is_action_just_released("RIGHT" + get_player_index()) and !Input.is_action_pressed("LEFT" + get_player_index()) ): 
-				#$Timers/StabilityTimer.start()
-			
+	if !is_movement_blocked:
+		match state:
+			sm.GROUND:
+					#if ( Input.is_action_just_released("LEFT" + get_player_index()) and !Input.is_action_pressed("RIGHT" + get_player_index()) ) or ( Input.is_action_just_released("RIGHT" + get_player_index()) and !Input.is_action_pressed("LEFT" + get_player_index()) ): 
+						#$Timers/StabilityTimer.start()
+				is_releasing_vertically = false
+
+				if is_axis_changing_delayed and get_floor_angle() > deg_to_rad(45):
+					last_true_axis = -last_true_axis
+					$Timers/TurningTimer.stop()
 				
-			if is_axis_changing_delayed and get_floor_angle() > deg_to_rad(45):
-				last_true_axis = -last_true_axis
-				$Timers/TurningTimer.stop()
-			
-			is_axis_changing_delayed = false
-			
-			last_wall_angle = 0.0
-			last_real_wall_angle = 0.0
-			last_wall_normal = Vector2.ZERO
-			$Timers/FloorStickBlockingTimer.stop()
-			stop_jump_timers()
-			if !is_axis_changing_delayed and !is_sliding:
-				last_true_axis_changing()
-			movement(delta)
-			if (!$Rotatable/Casts/UpCast0.is_colliding() and !$Rotatable/Casts/UpCast1.is_colliding()):
-				jump_start(delta)
-			floor_detaching()
-			sprite_leveling()
-			rotatable_leveling()
-			
-			#
-			
-			attack()
-			
-			grinding()
-			slide_dash_start()
-			slide_dash()
+				is_axis_changing_delayed = false
 				
-			#
-				
-			running()
-			
-			if is_releasing:
-				y_vel = Vector2(0, 0)
-			else:
-				y_vel = -get_floor_normal() * speed
-		sm.AIR:
-			#is_sliding = false
-			$Timers/SlideDashTimer.paused = true
-			#slide_dash()
-			running()
-			sprite_rotation_reset()
-			rotatable_rotation_reset()
-			jump_input_buffering()
-			#last_true_axis_changing()
-			floor_attaching()
-			#slide_dash_start()
-			attack()
-			
-			if $Timers/FirstJumpStateTimer.is_stopped() and $Timers/SecondJumpStateTimer.is_stopped():
-				if !is_running:
-					movement(delta, 0.5, 0.5)
-				else:
-					if is_releasing:
-						if velocity.x < (speed - 150) and velocity.x > -(speed + 150):
-							movement_in_air_state_when_running()
-				wall_attaching()
-				is_jumping = false
-				falling(delta)
-			else:
-				movement(delta, 0.5, 0.5)
-				is_jumping = true
-				jump_ceiling_blocker()
-				jumping(delta)
-		sm.WALL_SLIDING:
-			is_sliding = false
-			$Timers/SlideDashTimer.paused = false
-			$Timers/SlideDashTimer.stop()
-			if is_on_wall():
-				last_wall_angle = get_wall_angle()
-				last_real_wall_angle = get_real_wall_angle()
-				last_wall_normal = get_wall_normal()
-				
-			#x_vel = Vector2.ZERO
-			
-			if Input.is_action_just_pressed("JUMP" + get_player_index()):
-				x_vel.x = Vector2(get_wall_normal().x, 0).normalized().x
-			else:
-				x_vel.x = Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index())
-			x_vel.y = 0
-			
-			sprite_rotation_reset()
-			rotatable_rotation_reset()
-			running()
-			stop_jump_timers()
-			if get_wall_angle() > PI/4:
-				if is_on_floor():
-					if get_real_floor_angle() > 0:
-						if Input.is_action_pressed("DOWN" + get_player_index()):
-							y_vel = lerp(y_vel, last_wall_normal.rotated(PI/2) * (1400 * $Timers/WallSlidingGroundingBlockingTimer.time_left * 5), 0.04)
-						else:
-							y_vel = lerp(y_vel, last_wall_normal.rotated(PI/2) * (700 * $Timers/WallSlidingGroundingBlockingTimer.time_left * 5), 0.02)
-					else:
-						if Input.is_action_pressed("DOWN" + get_player_index()):
-							y_vel = lerp(y_vel, last_wall_normal.rotated(-PI/2) * (1400 * $Timers/WallSlidingGroundingBlockingTimer.time_left * 5), 0.04)
-						else:
-							y_vel = lerp(y_vel, last_wall_normal.rotated(-PI/2) * (700 * $Timers/WallSlidingGroundingBlockingTimer.time_left * 5), 0.02)
-				else:
-					if get_real_wall_angle() > 0:
-						if Input.is_action_pressed("DOWN" + get_player_index()):
-							y_vel = lerp(y_vel, get_wall_normal().rotated(PI/2) * 1400, 0.04)
-						else:
-							y_vel = lerp(y_vel, get_wall_normal().rotated(PI/2) * 700, 0.02)
-					else:
-						if Input.is_action_pressed("DOWN" + get_player_index()):
-							y_vel = lerp(y_vel, get_wall_normal().rotated(-PI/2) * 1400, 0.04)
-						else:
-							y_vel = lerp(y_vel, get_wall_normal().rotated(-PI/2) * 700, 0.02)
-			else:
-				falling(delta)
-				floor_attaching()
+				last_wall_angle = 0.0
+				last_real_wall_angle = 0.0
+				last_wall_normal = Vector2.ZERO
+				$Timers/FloorStickBlockingTimer.stop()
+				stop_jump_timers()
+				if !is_axis_changing_delayed and !is_sliding:
+					last_true_axis_changing()
+				movement(delta)
+				if (!$Rotatable/Casts/UpCast0.is_colliding() and !$Rotatable/Casts/UpCast1.is_colliding()):
+					jump_start(delta)
 				floor_detaching()
+				sprite_leveling()
+				rotatable_leveling()
 				
-			if is_on_wall() and is_on_floor():
-				if get_floor_angle() + get_wall_angle() < rad_to_deg(136):
-					state = sm.GROUND
-			
-		sm.HURT:
-			pass
-		sm.BUMPED:
-			#sprite_leveling(1)
-			floor_max_angle = PI/4
-			is_running = false
-			speed = NORMAL_SPEED
-			y_vel = Vector2.ZERO
-			x_vel = Vector2.ZERO
-			velocity = Vector2.ZERO
-			$Anim.play("bump")
-		sm.RUN_STOPPING:
-			pass
-		sm.REBOUND:
-			y_vel = Vector2.ZERO
-			x_vel = Vector2.ZERO
-			velocity = Vector2.ZERO
-			#$Shape.disabled = true
-		sm.RING:
-			default_velocity()
-			running()
-			
-			
-			#if Input.is_action_pressed("RUN" + get_player_index()):
-				#is_running = true
 				#
-			#else:
-				#speed = NORMAL_SPEED
-			#last_true_axis = Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index())
-			
-			if Input.is_action_pressed("JUMP" + get_player_index()) and Input.is_action_pressed("RUN" + get_player_index()):
-				speed = MAX_SPEED
-			jump_start(delta)
-			last_true_axis = -1
-			#last_true_axis_changing()
-			#global_position = lerp(global_position, )
-		sm.V_ROPE:
-			default_velocity()
-		sm.GHOST:
-			velocity = lerp(velocity, Input.get_vector("LEFT" + get_player_index(), "RIGHT" + get_player_index(), "UP" + get_player_index(), "DOWN" + get_player_index()) * 2000, 0.1)
-		sm.DEBUG:
-			velocity = Input.get_vector("LEFT" + get_player_index(), "RIGHT" + get_player_index(), "UP" + get_player_index(), "DOWN" + get_player_index()) * 2000
+				
+				attack()
+				
+				grinding()
+				slide_dash_start()
+				slide_dash()
+					
+				#
+					
+				running()
+				
+				if is_releasing:
+					y_vel = Vector2(0, 0)
+				else:
+					y_vel = -get_floor_normal() * speed
+			sm.AIR:
+				#is_releasing = false
+				#is_sliding = false
+				$Timers/SlideDashTimer.paused = true
+				#slide_dash()
+				running()
+				sprite_rotation_reset()
+				rotatable_rotation_reset()
+				jump_input_buffering()
+				#last_true_axis_changing()
+				floor_attaching()
+				#slide_dash_start()
+				attack()
+				
+				if $Timers/FirstJumpStateTimer.is_stopped() and $Timers/SecondJumpStateTimer.is_stopped():
+					if !is_running:
+						movement(delta, 0.5, 0.5)
+					else:
+						if is_releasing:
+							if velocity.x < (speed - 150) and velocity.x > -(speed + 150):
+								movement_in_air_state_when_running()
+					wall_attaching()
+					is_jumping = false
+					#if is_cj_allowed:
+					if is_releasing and !is_releasing_vertically:
+						jump_start(delta)
+					falling(delta)
+				else:
+					movement(delta, 0.5, 0.5)
+					is_jumping = true
+					jump_ceiling_blocker()
+					jumping(delta)
+			sm.WALL_SLIDING:
+				is_sliding = false
+				$Timers/SlideDashTimer.paused = false
+				$Timers/SlideDashTimer.stop()
+				if is_on_wall():
+					last_wall_angle = get_wall_angle()
+					last_real_wall_angle = get_real_wall_angle()
+					last_wall_normal = get_wall_normal()
+					
+				#x_vel = Vector2.ZERO
+				
+				if Input.is_action_just_pressed("JUMP" + get_player_index()):
+					x_vel.x = Vector2(get_wall_normal().x, 0).normalized().x
+				else:
+					x_vel.x = Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index())
+				x_vel.y = 0
+				
+				sprite_rotation_reset()
+				rotatable_rotation_reset()
+				running()
+				stop_jump_timers()
+				if get_wall_angle() > PI/4:
+					if is_on_floor():
+						if get_real_floor_angle() > 0:
+							if Input.is_action_pressed("DOWN" + get_player_index()):
+								y_vel = lerp(y_vel, last_wall_normal.rotated(PI/2) * (1400 * $Timers/WallSlidingGroundingBlockingTimer.time_left * 5), 0.04)
+							else:
+								y_vel = lerp(y_vel, last_wall_normal.rotated(PI/2) * (1400 * $Timers/WallSlidingGroundingBlockingTimer.time_left * 5), 0.02)
+						else:
+							if Input.is_action_pressed("DOWN" + get_player_index()):
+								y_vel = lerp(y_vel, last_wall_normal.rotated(-PI/2) * (1400 * $Timers/WallSlidingGroundingBlockingTimer.time_left * 5), 0.04)
+							else:
+								y_vel = lerp(y_vel, last_wall_normal.rotated(-PI/2) * (1400 * $Timers/WallSlidingGroundingBlockingTimer.time_left * 5), 0.02)
+					else:
+						if get_real_wall_angle() > 0:
+							if Input.is_action_pressed("DOWN" + get_player_index()):
+								y_vel = lerp(y_vel, get_wall_normal().rotated(PI/2) * 1400, 0.04)
+							else:
+								y_vel = lerp(y_vel, get_wall_normal().rotated(PI/2) * 1400, 0.02)
+						else:
+							if Input.is_action_pressed("DOWN" + get_player_index()):
+								y_vel = lerp(y_vel, get_wall_normal().rotated(-PI/2) * 1400, 0.04)
+							else:
+								y_vel = lerp(y_vel, get_wall_normal().rotated(-PI/2) * 1400, 0.02)
+				else:
+					falling(delta)
+					floor_attaching()
+					floor_detaching()
+					
+				if is_on_wall() and is_on_floor():
+					if get_floor_angle() + get_wall_angle() < rad_to_deg(136):
+						state = sm.GROUND
+				
+			sm.HURT:
+				pass
+			sm.BUMPED:
+				#sprite_leveling(1)
+				floor_max_angle = PI/4
+				is_running = false
+				speed = NORMAL_SPEED
+				y_vel = Vector2.ZERO
+				x_vel = Vector2.ZERO
+				velocity = Vector2.ZERO
+				$Anim.play("bump")
+			sm.RUN_STOPPING:
+				pass
+			sm.REBOUND:
+				y_vel = Vector2.ZERO
+				x_vel = Vector2.ZERO
+				velocity = Vector2.ZERO
+				#$Shape.disabled = true
+			sm.RING:
+				default_velocity()
+				running()
+				
+				
+				#if Input.is_action_pressed("RUN" + get_player_index()):
+					#is_running = true
+					#
+				#else:
+					#speed = NORMAL_SPEED
+				#last_true_axis = Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index())
+				
+				if Input.is_action_pressed("JUMP" + get_player_index()) and Input.is_action_pressed("RUN" + get_player_index()):
+					speed = MAX_SPEED
+				jump_start(delta)
+				last_true_axis = -1
+				#last_true_axis_changing()
+				#global_position = lerp(global_position, )
+			sm.V_ROPE:
+				default_velocity()
+			sm.GHOST:
+				velocity = lerp(velocity, Input.get_vector("LEFT" + get_player_index(), "RIGHT" + get_player_index(), "UP" + get_player_index(), "DOWN" + get_player_index()) * 2000, 0.1)
+			sm.DEBUG:
+				velocity = Input.get_vector("LEFT" + get_player_index(), "RIGHT" + get_player_index(), "UP" + get_player_index(), "DOWN" + get_player_index()) * 2000
 
 			#if Input.is_action_just_pressed("DEBUG_MODE"):
 				#_debug_mode = false
 				#state = sm.AIR
 			
+
 func state_machine(delta : float):
 	match state:
 		sm.GROUND:
+			is_jump_to_fall_transition = false
 			if $Anim.current_animation != "rebound":
 				if get_real_velocity().length() < 100 and !(is_running or Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) != 0):
 					$Anim.play("idle")
 				else:
 					if is_running:
-						if speed < MAX_SPEED - 10:
+						if !$Timers/SlideDashTimer.is_stopped():
+							$Anim.play("slide")
+						elif speed < MAX_SPEED - 10:
 							$Anim.play("walk_to_run")
 						else:
 							$Anim.play("run")
@@ -416,7 +432,15 @@ func state_machine(delta : float):
 						else:
 							$Anim.play("walk")
 		sm.AIR:
-			pass
+			if !is_running and !is_releasing:# or is_releasing:
+				if $Timers/FirstJumpStateTimer.is_stopped() and $Timers/SecondJumpStateTimer.is_stopped():
+					if is_jump_to_fall_transition:
+						$Anim.play("jump_to_fall")
+					else:
+						$Anim.play("fall")
+					
+				else:
+					$Anim.play("jump")
 		sm.HURT:
 			pass
 		sm.BUMPED:
@@ -473,6 +497,7 @@ func movement(delta : float, acc_mult : float = 1, fr_mult : float = 1) -> void:
 				x_vel = lerp(x_vel, Vector2.ZERO, FRICTION * fr_mult / 2)
 		
 func movement_in_air_state_when_running() -> void:
+	is_releasing_vertically = true
 	x_vel.x += last_true_axis * speed/24
 		
 func running() -> void:
@@ -557,6 +582,7 @@ func jumping(delta : float) -> void:
 func jump_start(delta : float) -> void:
 	if ( Input.is_action_just_pressed("JUMP" + get_player_index())) or (!$Timers/JumpInputBuffer.is_stopped() ) and is_sliding == false:# and get_floor_angle() > PI/2):
 		y_vel = Vector2.ZERO
+		is_releasing = false
 		is_on_grind_pipe = false
 		$Timers/JumpInputBuffer.stop()
 		$Timers/SlideDashTimer.stop()
@@ -606,12 +632,12 @@ func slide_dash() -> void:
 	if is_sliding:
 		floor_max_angle = PI
 		#$Rotatable/GrindArea.position = $Rotatable/GrindAreaPos1.position
-		$Sprite.scale.y = 1 # TEST
+		#$Sprite.scale.y = 1 # TEST
 		#$Shape.scale = Vector2(0.5, 0.5)
 		$Rotatable/EntityComponentSystem/CollisionShape.scale.y = 0.5
 	else:
 		#$Rotatable/GrindArea.position = $Rotatable/GrindAreaPos0.position
-		$Sprite.scale.y = 2 # TEST
+		#$Sprite.scale.y = 2 # TEST
 		#$Shape.scale = Vector2.ONE
 		$Rotatable/EntityComponentSystem/CollisionShape.scale.y = 1
 		
@@ -704,11 +730,16 @@ func enable_slide_area_blockers_collision() -> void:
 		
 func _on_run_stop_timer_timeout() -> void: # $Timers/RunStopTimer
 	if !is_running:
+		
 		$Timers/SlideTimer.start()
 
 func _on_first_jump_state_timer_timeout() -> void:
+	is_jump_to_fall_transition = true
 	if (can_jump == true or Input.is_action_pressed("JUMP" + get_player_index()) ):# and (last_floor_angle < PI/2):
 		$Timers/SecondJumpStateTimer.start()
+		
+func _on_second_jump_state_timer_timeout():
+	is_jump_to_fall_transition = true
 
 func _on_bump_timer_timeout() -> void:
 	if is_on_floor():

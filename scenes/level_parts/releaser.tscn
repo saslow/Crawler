@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://yoa67ngsooi6" path="res://scenes/_/deleter.tscn" id="2_26hln"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p3xve"]
-size = Vector2(80, 80)
+size = Vector2(176, 176)
 
 [node name="0" type="Area2D"]
 editor_description = "Костыль для разработки"
@@ -26,7 +26,7 @@ offset_right = 15.0
 offset_bottom = 8.0
 scale = Vector2(4, 4)
 pivot_offset = Vector2(10.25, 11)
-text = "R"
+text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 

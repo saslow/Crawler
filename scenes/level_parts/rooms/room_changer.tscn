@@ -13,7 +13,7 @@ process_mode = 3
 collision_layer = 0
 collision_mask = 6
 script = ExtResource("1_ueuom")
-metadata/_edit_vertical_guides_ = [384.0]
+metadata/_edit_vertical_guides_ = [0.0]
 
 [node name="Shape" type="CollisionShape2D" parent="."]
 position = Vector2(0, -224)
@@ -25,6 +25,14 @@ self_modulate = Color(1, 1, 1, 0.490196)
 position = Vector2(0, -224)
 shape = SubResource("RectangleShape2D_nbvku")
 disabled = true
+
+[node name="Line2D" type="Line2D" parent="."]
+visible = false
+points = PackedVector2Array(-16000, -16000, 16000, -16000, 16000, 16000, -16000, 16000)
+closed = true
+width = 50.0
+default_color = Color(1, 0, 0, 0.215686)
+metadata/_edit_lock_ = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

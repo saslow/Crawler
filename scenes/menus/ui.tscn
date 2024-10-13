@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://duijkcxgyfmh0"]
+[gd_scene load_steps=6 format=3 uid="uid://duijkcxgyfmh0"]
 
 [ext_resource type="Script" path="res://scripts/menus/ui.gd" id="1_65mp0"]
 [ext_resource type="PackedScene" uid="uid://d1btdy1brmsea" path="res://scenes/player/player_debug.tscn" id="2_i63fk"]
+[ext_resource type="Script" path="res://scripts/menus/UI/escape_timer.gd" id="3_idoch"]
 
 [sub_resource type="Animation" id="Animation_6jm53"]
 resource_name = "fade"
@@ -90,7 +91,6 @@ offset_right = 317.0
 offset_bottom = 692.0
 mouse_filter = 1
 position_offset = Vector2(-187, 24)
-resizable = true
 slot/0/left_enabled = false
 slot/0/left_type = 0
 slot/0/left_color = Color(1, 1, 1, 1)
@@ -103,8 +103,39 @@ slot/0/draw_stylebox = true
 
 [node name="PlayerDebug" parent="UI/GraphEdit/GraphNode" instance=ExtResource("2_i63fk")]
 layout_mode = 2
+size_flags_horizontal = 0
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
+
+[node name="EscapeTimer" type="Control" parent="UI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -216.0
+offset_top = 35.0
+offset_right = 216.0
+offset_bottom = 149.0
+grow_horizontal = 2
+script = ExtResource("3_idoch")
+
+[node name="TimeLeft" type="Label" parent="UI/EscapeTimer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 11
+theme_override_constants/outline_size = 25
+theme_override_font_sizes/font_size = 80
+text = "00:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="UI/EscapeTimer"]
+process_callback = 0
 
 [node name="Anim" type="AnimationPlayer" parent="."]
 callback_mode_process = 0
@@ -114,3 +145,4 @@ libraries = {
 
 [connection signal="pressed" from="UI/save_score" to="." method="_on_save_score_pressed"]
 [connection signal="pressed" from="UI/load scene" to="." method="_on_load_scene_pressed"]
+[connection signal="timeout" from="UI/EscapeTimer/Timer" to="UI/EscapeTimer" method="_on_timer_timeout"]

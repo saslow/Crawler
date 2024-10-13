@@ -1,9 +1,12 @@
-res://scenes/global
-res://scripts/global
+res://scripts/menus/UI
 res://scripts/level_parts
 res://scenes/level_parts
-res://scripts/enemies
 res://scenes/enemies
+res://scenes/entities
+res://shaders
+res://scenes/global
+res://scripts/global
+res://scripts/enemies
 res://scenes/menus
 res://scripts/menus
 res://sprites/friezesets/swamp/trees/tree
@@ -17,6 +20,3 @@ res://scenes/levels
 res://scripts/levels
 res://sprites/entities/boy/boy_walk
 res://materials/shaders
-res://scripts/level_parts/rooms
-res://scenes/level_parts/rooms
-res://scripts/_

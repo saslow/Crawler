@@ -4,8 +4,79 @@
 
 [node name="LinkedCamera" type="Camera2D"]
 zoom = Vector2(0.5, 0.5)
+limit_smoothed = true
+position_smoothing_enabled = true
+editor_draw_limits = true
 script = ExtResource("1_6pd5n")
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="LeftTop" type="Node2D" parent="."]
+position = Vector2(-1920, -1080)
+metadata/_edit_group_ = true
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Node2D"]
+[node name="Arrow" type="Polygon2D" parent="LeftTop"]
+color = Color(1, 0, 1, 1)
+offset = Vector2(1920, 1080)
+polygon = PackedVector2Array(-1920, -1080, -2102, -1080, -1974, -1138, -1920, -1262)
+
+[node name="PosX" type="Label" parent="LeftTop"]
+offset_left = -179.0
+offset_bottom = 72.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 52
+text = "-1920"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PosY" type="Label" parent="LeftTop"]
+offset_top = -72.0
+offset_right = 179.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 52
+text = "-1080"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RightBottom" type="Node2D" parent="."]
+position = Vector2(1920, 1080)
+metadata/_edit_group_ = true
+
+[node name="Arrow" type="Polygon2D" parent="RightBottom"]
+rotation = 3.14159
+color = Color(0.345098, 0.729412, 0, 1)
+offset = Vector2(1920, 1080)
+polygon = PackedVector2Array(-1920, -1080, -2102, -1080, -1974, -1138, -1920, -1262)
+
+[node name="PosX" type="Label" parent="RightBottom"]
+offset_top = -72.0
+offset_right = 179.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 52
+text = "1920"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PosY" type="Label" parent="RightBottom"]
+offset_left = -179.0
+offset_bottom = 72.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 52
+text = "1080"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LimitsForeground" type="Line2D" parent="."]
+visible = false
+closed = true
+width = 5.0
+default_color = Color(1, 1, 1, 0.360784)
+metadata/_edit_lock_ = true
+
+[node name="Limits" type="Line2D" parent="."]
+points = PackedVector2Array(1920, 1080, -1920, 1080, -1920, -1080, 1920, -1080)
+closed = true
+default_color = Color(1, 0.882353, 0, 0.584314)
+metadata/_edit_lock_ = true

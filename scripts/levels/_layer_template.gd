@@ -43,4 +43,3 @@ func get_player(ID : int) -> CharacterBody2D:
 func has_child(id : int = 0) -> bool:
 	return get_child(id) != null
 	
-

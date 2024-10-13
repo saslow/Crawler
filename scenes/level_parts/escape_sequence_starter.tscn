@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://dqvwby7xo2hdt"]
+
+[ext_resource type="PackedScene" uid="uid://cglchcskg706i" path="res://scenes/enemies/enemy_template.tscn" id="1_063x8"]
+[ext_resource type="PackedScene" uid="uid://w07m35qgysc0" path="res://scenes/components/entity_component_system.tscn" id="1_le6il"]
+[ext_resource type="Script" path="res://scripts/level_parts/escape_sequence_starter.gd" id="3_05k4y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_coxqv"]
+size = Vector2(384, 512)
+
+[node name="EnemyTemplate" instance=ExtResource("1_063x8")]
+type = 1
+
+[node name="EntityComponentSystem" parent="." index="0" instance=ExtResource("1_le6il")]
+collision_layer = 8
+contact_damage = false
+
+[node name="CollisionShape" parent="EntityComponentSystem" index="0"]
+position = Vector2(0, -256)
+shape = SubResource("RectangleShape2D_coxqv")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="UBM" parent="." index="2"]
+script = ExtResource("3_05k4y")
+
+[editable path="EntityComponentSystem"]
