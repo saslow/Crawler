@@ -1,11 +1,12 @@
+res://scripts/global
+res://sprites/backgrounds/test
+res://shaders
 res://scripts/menus/UI
 res://scripts/level_parts
 res://scenes/level_parts
 res://scenes/enemies
 res://scenes/entities
-res://shaders
 res://scenes/global
-res://scripts/global
 res://scripts/enemies
 res://scenes/menus
 res://scripts/menus
@@ -19,4 +20,3 @@ res://sprites/friezesets/bluebox
 res://scenes/levels
 res://scripts/levels
 res://sprites/entities/boy/boy_walk
-res://materials/shaders

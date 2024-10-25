@@ -128,5 +128,3 @@ static func snap_position(
 	var pos_global_snapped := (local_t.affine_inverse() * Vector2(x, y)) + snap_offset
 	#print ("%s | %s | %s | %s" % [pos_global, pos_local, Vector2(x,y), pos_global_snapped])
 	return pos_global_snapped
-
-

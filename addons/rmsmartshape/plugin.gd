@@ -1465,8 +1465,9 @@ func _input_motion_move_width_handle(mouse_position: Vector2, scale: Vector2) ->
 		var key: int = current_action.keys[i]
 		var from_width: float = current_action.starting_width[i]
 		var from_position: Vector2 = current_action.starting_positions[i]
-		width_scaling = from_position.distance_to(mouse_position) / WIDTH_HANDLE_OFFSET * scale.x
-		shape.set_point_width(key, roundf(from_width * width_scaling * 10.0) / 10.0)
+		#width_scaling = from_position.distance_to(mouse_position) / WIDTH_HANDLE_OFFSET * scale.x
+		width_scaling = from_position.distance_to(mouse_position) /  (WIDTH_HANDLE_OFFSET)
+		shape.set_point_width(key, roundf(from_width * width_scaling * 10.0) / 500.0)
 		update_overlays()
 	return true
 

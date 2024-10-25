@@ -1,0 +1,11 @@
+res://scenes/enemies/enemy_template.tscn
+res://shaders/blur.gdshader
+res://sprites/friezesets/bluebox/bluebox0_material.tres
+res://sprites/friezesets/swamp/swamp_mud/swamp_mud_material.tres
+res://sprites/friezesets/swamp/moss/moss.tres
+res://sprites/friezesets/swamp/trees/thick_tree/thick_tree_material.tres
+res://sprites/friezesets/swamp/trees/tree/tree_material.tres
+res://sprites/friezesets/swamp/trees/tree_thin/thin_tree_material.tres
+res://materials/shaders/tv.gdshader
+res://shaders/noise.gdshader
+res://scenes/level_parts/escape_sequence_starter.tscn

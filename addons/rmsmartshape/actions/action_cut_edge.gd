@@ -38,4 +38,3 @@ func do() -> void:
 
 func undo() -> void:
 	_action.undo()
-

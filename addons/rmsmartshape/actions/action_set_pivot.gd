@@ -41,4 +41,3 @@ func _set_pivot(shape_position: Vector2) -> void:
 
 	_shape.enable_constraints()
 	_shape.end_update()
-

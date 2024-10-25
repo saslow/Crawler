@@ -2,11 +2,13 @@
 
 [ext_resource type="Script" path="res://scripts/menus/ui.gd" id="1_65mp0"]
 [ext_resource type="PackedScene" uid="uid://d1btdy1brmsea" path="res://scenes/player/player_debug.tscn" id="2_i63fk"]
-[ext_resource type="Shader" path="res://scenes/menus/fisheye.gdshader" id="2_reujc"]
+[ext_resource type="Shader" path="res://shaders/blur.gdshader" id="2_reujc"]
 [ext_resource type="Script" path="res://scripts/menus/UI/escape_timer.gd" id="3_idoch"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vgscs"]
 shader = ExtResource("2_reujc")
+shader_parameter/blur = 3.0
+shader_parameter/alpha = 0.3
 
 [sub_resource type="Animation" id="Animation_6jm53"]
 resource_name = "fade"
@@ -15,7 +17,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("UI/ColorRect:color")
+tracks/0/path = NodePath("UI/BlurEffect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -42,7 +44,7 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 mouse_filter = 1
 
-[node name="ColorRect" type="ColorRect" parent="UI"]
+[node name="BlurEffect" type="ColorRect" parent="UI"]
 material = SubResource("ShaderMaterial_vgscs")
 layout_mode = 1
 anchors_preset = 15
@@ -53,23 +55,15 @@ grow_vertical = 2
 mouse_filter = 1
 color = Color(0, 0, 0, 0)
 
-[node name="save_score" type="Button" parent="UI"]
-visible = false
-layout_mode = 0
-offset_left = 204.0
-offset_top = 1.0
-offset_right = 399.0
-offset_bottom = 49.0
-text = "Layer -1"
-
-[node name="load scene" type="Button" parent="UI"]
-visible = false
-layout_mode = 0
-offset_left = 205.0
-offset_top = 55.0
-offset_right = 400.0
-offset_bottom = 103.0
-text = "Layer +1"
+[node name="ColorEffect" type="ColorRect" parent="UI/BlurEffect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0.752131, 0.433199, 5.77569e-07, 0.0156863)
 
 [node name="GraphEdit" type="GraphEdit" parent="UI"]
 self_modulate = Color(1, 1, 1, 0)
@@ -111,6 +105,24 @@ layout_mode = 2
 size_flags_horizontal = 0
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
+
+[node name="save_score" type="Button" parent="UI"]
+visible = false
+layout_mode = 0
+offset_left = 204.0
+offset_top = 1.0
+offset_right = 399.0
+offset_bottom = 49.0
+text = "Layer -1"
+
+[node name="load scene" type="Button" parent="UI"]
+visible = false
+layout_mode = 0
+offset_left = 205.0
+offset_top = 55.0
+offset_right = 400.0
+offset_bottom = 103.0
+text = "Layer +1"
 
 [node name="EscapeTimer" type="Control" parent="UI"]
 layout_mode = 1

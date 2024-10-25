@@ -1,11 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://dqvwby7xo2hdt"]
+[gd_scene load_steps=12 format=3 uid="uid://dqvwby7xo2hdt"]
 
 [ext_resource type="PackedScene" uid="uid://cglchcskg706i" path="res://scenes/enemies/enemy_template.tscn" id="1_063x8"]
 [ext_resource type="PackedScene" uid="uid://w07m35qgysc0" path="res://scenes/components/entity_component_system.tscn" id="1_le6il"]
-[ext_resource type="Script" path="res://scripts/level_parts/escape_sequence_starter.gd" id="3_05k4y"]
+[ext_resource type="Texture2D" uid="uid://tmnvvrdq44uo" path="res://sprites/level_parts/the_button/pipe.png" id="4_0oqx1"]
+[ext_resource type="Texture2D" uid="uid://chdh2eho1nuib" path="res://sprites/level_parts/the_button/bottom_layer.png" id="5_8yy1k"]
+[ext_resource type="Texture2D" uid="uid://g1f4oet4pwex" path="res://sprites/level_parts/the_button/top_layer.png" id="6_jo6vq"]
+[ext_resource type="Texture2D" uid="uid://c3hgakmwq45sx" path="res://sprites/level_parts/the_button/button_line.png" id="6_oeah8"]
+[ext_resource type="Texture2D" uid="uid://cmngh5l6vvpa1" path="res://sprites/level_parts/the_button/button_color_side.png" id="7_j1aef"]
+[ext_resource type="Texture2D" uid="uid://2mmep6i2hse3" path="res://sprites/level_parts/the_button/electric_box.png" id="7_qmr2b"]
+[ext_resource type="Texture2D" uid="uid://dgfspo2nnp5lg" path="res://sprites/level_parts/the_button/button_color_top.png" id="8_pvlpy"]
+[ext_resource type="Texture2D" uid="uid://pqwrxy1gg07n" path="res://sprites/level_parts/the_button/button_shine.png" id="9_godi6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_coxqv"]
-size = Vector2(384, 512)
+size = Vector2(70, 445.5)
 
 [node name="EnemyTemplate" instance=ExtResource("1_063x8")]
 type = 1
@@ -15,11 +22,52 @@ collision_layer = 8
 contact_damage = false
 
 [node name="CollisionShape" parent="EntityComponentSystem" index="0"]
-position = Vector2(0, -256)
+position = Vector2(-211, -234.25)
 shape = SubResource("RectangleShape2D_coxqv")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
-[node name="UBM" parent="." index="2"]
-script = ExtResource("3_05k4y")
+[node name="Marker" parent="." index="1"]
+visible = false
+
+[node name="Behavior" parent="." index="2"]
+scale = Vector2(2, 2)
+metadata/_edit_group_ = true
+
+[node name="Pipe" type="Sprite2D" parent="Behavior" index="0"]
+position = Vector2(-24, -339)
+texture = ExtResource("4_0oqx1")
+
+[node name="BottomLayer" type="Sprite2D" parent="Behavior" index="1"]
+position = Vector2(-94.5, -125)
+texture = ExtResource("5_8yy1k")
+
+[node name="Button" type="Node2D" parent="Behavior" index="2"]
+position = Vector2(-75.5, 3.5)
+
+[node name="ButtonColorSide" type="Sprite2D" parent="Behavior/Button" index="0"]
+position = Vector2(-16, -120)
+texture = ExtResource("7_j1aef")
+
+[node name="ButtonColorTop" type="Sprite2D" parent="Behavior/Button" index="1"]
+position = Vector2(-32, -120)
+texture = ExtResource("8_pvlpy")
+
+[node name="ButtonLine" type="Sprite2D" parent="Behavior/Button" index="2"]
+position = Vector2(-24, -120)
+texture = ExtResource("6_oeah8")
+
+[node name="ButtonShine" type="Sprite2D" parent="Behavior/Button" index="3"]
+visible = false
+position = Vector2(-31.5, -142.5)
+scale = Vector2(2.1, 1)
+texture = ExtResource("9_godi6")
+
+[node name="TopLayer" type="Sprite2D" parent="Behavior" index="3"]
+position = Vector2(-3, -119)
+texture = ExtResource("6_jo6vq")
+
+[node name="ElectricBox" type="Sprite2D" parent="Behavior" index="4"]
+position = Vector2(-1.5, -62)
+texture = ExtResource("7_qmr2b")
 
 [editable path="EntityComponentSystem"]

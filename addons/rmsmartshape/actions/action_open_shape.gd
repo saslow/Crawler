@@ -28,4 +28,3 @@ func undo() -> void:
 	_shape.begin_update()
 	_shape.undo_open_shape_at_edge(_cut_idx, _closing_key)
 	_shape.end_update()
-

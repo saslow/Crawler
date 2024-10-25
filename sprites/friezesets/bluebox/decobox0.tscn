@@ -1,28 +1,100 @@
-[gd_scene load_steps=7 format=3 uid="uid://cofgtl0uci2lf"]
+[gd_scene load_steps=19 format=3 uid="uid://cofgtl0uci2lf"]
 
 [ext_resource type="Script" path="res://addons/rmsmartshape/shapes/shape.gd" id="1_q3sou"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/vertex_properties.gd" id="2_pe2it"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/shapes/point.gd" id="3_7nes8"]
 [ext_resource type="Script" path="res://addons/rmsmartshape/shapes/point_array.gd" id="4_3bdi6"]
 [ext_resource type="Resource" uid="uid://bthev3f165hms" path="res://sprites/friezesets/bluebox/bluebox0_material.tres" id="5_dcpel"]
 [ext_resource type="Script" path="res://addons/rmsmartshape/shapes/shape_render.gd" id="6_lsd0l"]
 [ext_resource type="Script" path="res://scripts/components/frieze_editor_label.gd" id="7_y0l7i"]
 
-[sub_resource type="Resource" id="Resource_ji4ac"]
+[sub_resource type="Resource" id="Resource_hiu5q"]
+script = ExtResource("2_pe2it")
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_254q2"]
+script = ExtResource("3_7nes8")
+position = Vector2(-315.026, -102.282)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_hiu5q")
+
+[sub_resource type="Resource" id="Resource_u3h00"]
+script = ExtResource("2_pe2it")
+texture_idx = -10
+flip = false
+width = 1.81
+
+[sub_resource type="Resource" id="Resource_hoo2j"]
+script = ExtResource("3_7nes8")
+position = Vector2(-187.147, -88.4186)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_u3h00")
+
+[sub_resource type="Resource" id="Resource_3vwt3"]
+script = ExtResource("2_pe2it")
+texture_idx = 5
+flip = false
+width = 1.636
+
+[sub_resource type="Resource" id="Resource_mqioe"]
+script = ExtResource("3_7nes8")
+position = Vector2(20.269, -77.0748)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_3vwt3")
+
+[sub_resource type="Resource" id="Resource_2t01l"]
+script = ExtResource("2_pe2it")
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_i5k24"]
+script = ExtResource("3_7nes8")
+position = Vector2(242.717, -82.0461)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_2t01l")
+
+[sub_resource type="Resource" id="Resource_3fxpx"]
+script = ExtResource("2_pe2it")
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_adg1h"]
+script = ExtResource("3_7nes8")
+position = Vector2(150.99, -80.6218)
+point_in = Vector2(0, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_3fxpx")
+
+[sub_resource type="Resource" id="Resource_7s3eq"]
 script = ExtResource("4_3bdi6")
-_points = {}
-_point_order = PackedInt32Array()
+_points = {
+0: SubResource("Resource_254q2"),
+2: SubResource("Resource_hoo2j"),
+3: SubResource("Resource_mqioe"),
+4: SubResource("Resource_i5k24"),
+5: SubResource("Resource_adg1h")
+}
+_point_order = PackedInt32Array(0, 2, 3, 5, 4)
 _constraints = {}
 _next_key = 6
 _material_overrides = {}
-tessellation_stages = 2
+tessellation_stages = 3
 tessellation_tolerance = 6.0
 curve_bake_interval = 20.0
 
 [node name="DecoBox0" type="Node2D"]
 texture_filter = 1
 script = ExtResource("1_q3sou")
-_points = SubResource("Resource_ji4ac")
+_points = SubResource("Resource_7s3eq")
 shape_material = ExtResource("5_dcpel")
-tessellation_stages = 2
 collision_size = 1.0
 metadata/_edit_group_ = true
 
@@ -42,7 +114,7 @@ offset_right = 137.0
 offset_bottom = -18.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(2.531, 2.531)
+scale = Vector2(1.96486, 1.96486)
 pivot_offset = Vector2(137, 64)
 size_flags_horizontal = 4
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
