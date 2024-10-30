@@ -1,10 +1,12 @@
-[gd_resource type="Resource" script_class="SS2D_Material_Shape" load_steps=10 format=3 uid="uid://dpj66l0lnefow"]
+[gd_resource type="Resource" script_class="SS2D_Material_Shape" load_steps=12 format=3 uid="uid://dpj66l0lnefow"]
 
 [ext_resource type="Script" path="res://addons/rmsmartshape/materials/edge_material.gd" id="1_omved"]
 [ext_resource type="Texture2D" uid="uid://blot4pdeipe4e" path="res://sprites/friezesets/swamp/trees/tree_thin/tree_thin0.png" id="2_4qujc"]
 [ext_resource type="Texture2D" uid="uid://cv70sd5segisk" path="res://sprites/friezesets/swamp/trees/tree_thin/tree_thin1.png" id="3_imho7"]
 [ext_resource type="Script" path="res://addons/rmsmartshape/normal_range.gd" id="4_gqak2"]
 [ext_resource type="Script" path="res://addons/rmsmartshape/materials/edge_material_metadata.gd" id="5_0asyg"]
+[ext_resource type="Texture2D" uid="uid://dhl6fik6uqate" path="res://sprites/friezesets/swamp/trees/tree_thin/tree_thin_left.png" id="5_afu76"]
+[ext_resource type="Texture2D" uid="uid://ce2fh7yuw3njt" path="res://sprites/friezesets/swamp/trees/tree_thin/tree_thin_right.png" id="6_4o2r4"]
 [ext_resource type="Script" path="res://addons/rmsmartshape/materials/shape_material.gd" id="6_sy58s"]
 
 [sub_resource type="Resource" id="Resource_wyb3g"]
@@ -12,8 +14,8 @@ script = ExtResource("1_omved")
 textures = Array[Texture2D]([ExtResource("2_4qujc"), ExtResource("3_imho7")])
 textures_corner_outer = Array[Texture2D]([])
 textures_corner_inner = Array[Texture2D]([])
-textures_taper_left = Array[Texture2D]([])
-textures_taper_right = Array[Texture2D]([])
+textures_taper_left = Array[Texture2D]([ExtResource("5_afu76")])
+textures_taper_right = Array[Texture2D]([ExtResource("6_4o2r4")])
 textures_taper_corner_left = Array[Texture2D]([])
 textures_taper_corner_right = Array[Texture2D]([])
 randomize_texture = false

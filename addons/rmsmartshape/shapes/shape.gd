@@ -18,6 +18,13 @@ class_name SS2D_Shape
 #-DECLARATIONS-#
 ################
 
+@export var shape_material := SS2D_Material_Shape.new() : set = _set_material
+@export_placeholder("ActionProperty") var _make_unique: String = "" : set = _make_unique_action
+@export var _points: SS2D_Point_Array : set = set_point_array
+
+#   ActionProperty will add a button to inspector to execute this action.
+#   When non-empty string is passed into setter, action is considerd executed.
+
 var _dirty: bool = false
 var _edges: Array[SS2D_Edge] = []
 var _meshes: Array[SS2D_Mesh] = []
@@ -65,6 +72,8 @@ enum CollisionUpdateMode {
 @export_placeholder("ActionProperty") var _refresh: String = "" : set = _refresh_action
 #   ActionProperty will add a button to inspector to execute this action.
 #   When non-empty string is passed into setter, action is considerd executed.
+@export var flip_edges: bool = false : set = set_flip_edges
+
 
 ## Visualize generated quads and edges.
 @export var editor_debug: bool = false : set = _set_editor_debug
@@ -81,16 +90,12 @@ enum CollisionUpdateMode {
 
 # Execute to make shape point geometry unique (not materials).
 @warning_ignore("unused_private_class_variable")
-@export_placeholder("ActionProperty") var _make_unique: String = "" : set = _make_unique_action
-#   ActionProperty will add a button to inspector to execute this action.
-#   When non-empty string is passed into setter, action is considerd executed.
+
 
 ## Resource that holds shape point geometry (aka point array).
-@export var _points: SS2D_Point_Array : set = set_point_array
 
 @export_group("Edges")
 
-@export var flip_edges: bool = false : set = set_flip_edges
 
 ## Enable/disable rendering of the edges.
 @export var render_edges: bool = true : set = set_render_edges
@@ -98,7 +103,7 @@ enum CollisionUpdateMode {
 @export_group("Materials")
 
 ## Contains textures and data on how to visualize the shape.
-@export var shape_material := SS2D_Material_Shape.new() : set = _set_material
+
 
 ## Dictionary of (Array of 2 keys) to (SS2D_Material_Edge_Metadata)
 ## Deprecated, exists for Support of older versions

@@ -17,7 +17,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("UI/BlurEffect:color")
+tracks/0/path = NodePath("UI/Fade:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -44,7 +44,7 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 mouse_filter = 1
 
-[node name="BlurEffect" type="ColorRect" parent="UI"]
+[node name="ColorEffect" type="ColorRect" parent="UI"]
 material = SubResource("ShaderMaterial_vgscs")
 layout_mode = 1
 anchors_preset = 15
@@ -53,9 +53,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-color = Color(0, 0, 0, 0)
 
-[node name="ColorEffect" type="ColorRect" parent="UI/BlurEffect"]
+[node name="Fade" type="ColorRect" parent="UI"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -63,7 +62,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-color = Color(0.752131, 0.433199, 5.77569e-07, 0.0156863)
+color = Color(0, 0, 0, 0)
 
 [node name="GraphEdit" type="GraphEdit" parent="UI"]
 self_modulate = Color(1, 1, 1, 0)

@@ -1,0 +1,54 @@
+[gd_resource type="Resource" script_class="SS2D_Material_Shape" load_steps=11 format=3 uid="uid://dsf1lt8m4b8o7"]
+
+[ext_resource type="Script" path="res://addons/rmsmartshape/materials/edge_material_metadata.gd" id="1_l2k6f"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/materials/shape_material.gd" id="2_0dmsm"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/materials/edge_material.gd" id="2_qogyf"]
+[ext_resource type="Texture2D" uid="uid://b76nvq3sy4164" path="res://sprites/friezesets/swamp/plank/plank_edge.png" id="3_8munx"]
+[ext_resource type="Texture2D" uid="uid://cwj5unn3qx3a0" path="res://sprites/friezesets/swamp/plank/plank_taper_left.png" id="4_4gjtn"]
+[ext_resource type="Texture2D" uid="uid://dfhkedoq2o3ja" path="res://sprites/friezesets/swamp/plank/plank_taper_right.png" id="5_qa6fc"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/normal_range.gd" id="6_tq5b8"]
+
+[sub_resource type="Resource" id="Resource_4ymof"]
+script = ExtResource("2_qogyf")
+textures = Array[Texture2D]([ExtResource("3_8munx")])
+textures_corner_outer = Array[Texture2D]([])
+textures_corner_inner = Array[Texture2D]([])
+textures_taper_left = Array[Texture2D]([ExtResource("4_4gjtn")])
+textures_taper_right = Array[Texture2D]([ExtResource("5_qa6fc")])
+textures_taper_corner_left = Array[Texture2D]([])
+textures_taper_corner_right = Array[Texture2D]([])
+randomize_texture = false
+use_corner_texture = true
+use_taper_texture = true
+fit_mode = 0
+
+[sub_resource type="Resource" id="Resource_xxjky"]
+script = ExtResource("6_tq5b8")
+begin = 0.0
+distance = 360.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_ds5sd"]
+script = ExtResource("1_l2k6f")
+edge_material = SubResource("Resource_4ymof")
+normal_range = SubResource("Resource_xxjky")
+weld = true
+taper_sharp_corners = false
+render = true
+z_index = 0
+z_as_relative = true
+offset = 0.0
+
+[resource]
+script = ExtResource("2_0dmsm")
+_edge_meta_materials = Array[ExtResource("1_l2k6f")]([SubResource("Resource_ds5sd")])
+fill_textures = Array[Texture2D]([])
+fill_texture_z_index = -10
+fill_texture_show_behind_parent = false
+fill_texture_scale = 1.0
+fill_texture_absolute_position = false
+fill_texture_absolute_rotation = false
+fill_texture_offset = Vector2(0, 0)
+fill_texture_angle_offset = 0.0
+fill_mesh_offset = 0.0
+render_offset = 0.0

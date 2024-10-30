@@ -1,3 +1,4 @@
+res://sprites/friezesets/swamp/plank
 res://scripts/global
 res://sprites/backgrounds/test
 res://shaders
@@ -19,4 +20,3 @@ res://addons/LinkedCamera2D
 res://sprites/friezesets/bluebox
 res://scenes/levels
 res://scripts/levels
-res://sprites/entities/boy/boy_walk
