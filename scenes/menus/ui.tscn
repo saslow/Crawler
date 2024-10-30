@@ -154,6 +154,16 @@ vertical_alignment = 1
 [node name="Timer" type="Timer" parent="UI/EscapeTimer"]
 process_callback = 0
 
+[node name="Scrap" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = 48.0
+offset_right = 169.0
+offset_bottom = 45.0
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "SCRAP"
+horizontal_alignment = 1
+
 [node name="Anim" type="AnimationPlayer" parent="."]
 callback_mode_process = 0
 libraries = {

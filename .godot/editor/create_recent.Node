@@ -1,3 +1,7 @@
+Label
+Button
+VBoxContainer
+Control
 Node2D
 SS2D_Shape
 AnimationPlayer
@@ -8,7 +12,3 @@ CanvasLayer
 WorldEnvironment
 CanvasModulate
 Timer
-Label
-Control
-CollisionShape2D
-Area2D

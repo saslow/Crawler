@@ -3,52 +3,86 @@
 [ext_resource type="Script" path="res://scripts/menus/main_menu.gd" id="1_nbqq7"]
 
 [node name="MainMenu" type="Node2D"]
+scale = Vector2(2, 2)
 script = ExtResource("1_nbqq7")
 
-[node name="Buttons" type="Node2D" parent="."]
+[node name="LevelButtons" type="VBoxContainer" parent="."]
+visible = false
+offset_left = 640.0
+offset_top = 240.0
+offset_right = 896.0
+offset_bottom = 341.0
+alignment = 1
 
-[node name="Level1" type="Button" parent="Buttons"]
-offset_left = 64.0
-offset_top = 32.0
-offset_right = 320.0
-offset_bottom = 96.0
+[node name="Level1" type="Button" parent="LevelButtons"]
+layout_mode = 2
 text = "Level1"
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="Buttons/Level1"]
+[node name="Label" type="Label" parent="LevelButtons/Level1"]
 layout_mode = 0
 offset_left = 280.0
 offset_right = 536.0
 offset_bottom = 64.0
 
-[node name="Level2" type="Button" parent="Buttons"]
-offset_left = 64.0
-offset_top = 128.0
-offset_right = 320.0
-offset_bottom = 192.0
+[node name="Level2" type="Button" parent="LevelButtons"]
+layout_mode = 2
 text = "Level2"
 metadata/_edit_use_anchors_ = true
 
-[node name="Level3" type="Button" parent="Buttons"]
-offset_left = 64.0
-offset_top = 224.0
-offset_right = 320.0
-offset_bottom = 288.0
+[node name="Level3" type="Button" parent="LevelButtons"]
+layout_mode = 2
 text = "Level3
 "
 metadata/_edit_use_anchors_ = true
 
-[node name="Quit" type="Button" parent="Buttons"]
+[node name="FileButtons" type="VBoxContainer" parent="."]
+visible = false
+offset_left = 352.0
+offset_top = 240.0
+offset_right = 608.0
+offset_bottom = 344.0
+alignment = 1
+
+[node name="1" type="Button" parent="FileButtons"]
+layout_mode = 2
+text = "1"
+
+[node name="2" type="Button" parent="FileButtons"]
+layout_mode = 2
+text = "2"
+
+[node name="3" type="Button" parent="FileButtons"]
+layout_mode = 2
+text = "3"
+
+[node name="MainButtons" type="VBoxContainer" parent="."]
 offset_left = 64.0
-offset_top = 320.0
+offset_top = 240.0
 offset_right = 320.0
-offset_bottom = 384.0
+offset_bottom = 344.0
+alignment = 1
+
+[node name="Play" type="Button" parent="MainButtons"]
+layout_mode = 2
+text = "Play"
+
+[node name="Button" type="Button" parent="MainButtons"]
+layout_mode = 2
+text = "Options"
+
+[node name="Quit" type="Button" parent="MainButtons"]
+layout_mode = 2
 text = "Quit"
 metadata/_edit_use_anchors_ = true
 
 [node name="Players" type="Node2D" parent="."]
 
-[connection signal="pressed" from="Buttons/Level1" to="." method="_on_level_1_pressed"]
-[connection signal="pressed" from="Buttons/Level2" to="." method="_on_level_2_pressed"]
-[connection signal="pressed" from="Buttons/Level3" to="." method="_on_level_3_pressed"]
-[connection signal="pressed" from="Buttons/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="LevelButtons/Level1" to="." method="_on_level_1_pressed"]
+[connection signal="pressed" from="LevelButtons/Level2" to="." method="_on_level_2_pressed"]
+[connection signal="pressed" from="LevelButtons/Level3" to="." method="_on_level_3_pressed"]
+[connection signal="pressed" from="FileButtons/1" to="." method="_on_file_first_pressed"]
+[connection signal="pressed" from="FileButtons/2" to="." method="_on_file_second_pressed"]
+[connection signal="pressed" from="FileButtons/3" to="." method="_on_file_third_pressed"]
+[connection signal="pressed" from="MainButtons/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MainButtons/Quit" to="." method="_on_quit_pressed"]

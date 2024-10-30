@@ -11,7 +11,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	$UI/Scrap.text = str(ss.points)
 	
 func _on_save_score_pressed():
 	pass
