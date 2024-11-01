@@ -20,6 +20,7 @@ const DEFAULT_MC_TRANSITION_TIME : float = 2.1
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if !Engine.is_editor_hint():
+		
 		#ss.temp_level_save = self
 		mc = $MainCamera
 		g.current_level = self
@@ -70,7 +71,7 @@ func set_svp_holder_custom_properties(h : Sprite3D, svp : SubViewport, z : float
 	#texture.viewport_path = get_path_to(svp)
 	#h.texture = texture
 	h.texture = svp.get_texture()
-	
+
 #func mc_transitioning_process():
 	#if is_mc_transitioning:
 		#mc.position.z = lerpf(mc.position.z, target_transition_z, 0.1)

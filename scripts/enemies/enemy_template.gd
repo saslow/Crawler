@@ -15,6 +15,7 @@ signal death
 signal respawn
 
 func _ready():
+	#death.connect(connect_lose)
 	if type == types.NORMAL:
 		default_progress_ratio = progress_ratio
 		default_progress = progress

@@ -31,7 +31,7 @@ func _on_area_entered(area : Area2D):
 			print("char_died. RIP. Press F")
 	if (area is EntityComponentSystem) and (entity_type == entity_types.PROJECTILE ) and (character_attack == true):
 		if area.entity_type == EntityComponentSystem.entity_types.ENEMY:
-			area.get_parent().death.emit()
+			area.get_parent().emit_signal("death")
 			print("enemy died. RIP")
 	
 func _on_body_entered(body):

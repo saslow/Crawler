@@ -420,6 +420,8 @@ func state_machine(delta : float):
 					$Anim.play("idle")
 				else:
 					if is_running:
+						if is_on_floor():
+							dust_paticle_emitters_start_emitting()
 						if !$Timers/SlideDashTimer.is_stopped():
 							$Anim.play("slide")
 						elif speed < MAX_SPEED - 10:
@@ -427,11 +429,13 @@ func state_machine(delta : float):
 						else:
 							$Anim.play("run")
 					else:
+						dust_paticle_emitters_stop_emitting()
 						if get_real_velocity().length() < 100:
 							$Anim.play("idle")
 						else:
 							$Anim.play("walk")
 		sm.AIR:
+			dust_paticle_emitters_stop_emitting()
 			if !is_running and !is_releasing:# or is_releasing:
 				if $Timers/FirstJumpStateTimer.is_stopped() and $Timers/SecondJumpStateTimer.is_stopped():
 					if is_jump_to_fall_transition:
@@ -443,8 +447,10 @@ func state_machine(delta : float):
 					$Anim.play("jump")
 		sm.HURT:
 			pass
+		sm.REBOUND:
+			dust_paticle_emitters_stop_emitting()
 		sm.BUMPED:
-			pass
+			dust_paticle_emitters_stop_emitting()
 		sm.RUN_STOPPING:
 			pass
 		sm.DEBUG:
@@ -503,8 +509,9 @@ func movement_in_air_state_when_running() -> void:
 func running() -> void:
 	if Input.is_action_pressed("RUN" + get_player_index()) and ( (!($Rotatable/Casts/LeftCast.is_colliding() and last_true_axis == -1 and speed <= 700) and !($Rotatable/Casts/RightCast.is_colliding() and last_true_axis == 1 and speed <= 700)  ) or state == sm.WALL_SLIDING ):
 		if is_on_floor() or state == sm.WALL_SLIDING or state == sm.RING:
-			Input.start_joy_vibration(player_index, 3, 3)
+			#Input.start_joy_vibration(player_index, 3, 3)
 			is_running = true
+			
 			if $Timers/TurningTimer.is_stopped():
 				speed = move_toward(speed, MAX_SPEED, 8)
 				if ( $Rotatable/Casts/DownCast0.is_colliding() or $Rotatable/Casts/DownCast1.is_colliding() ) and (($Rotatable/Casts/RightCast.is_colliding() and last_true_axis == 1) or ($Rotatable/Casts/LeftCast.is_colliding() and last_true_axis == -1)):
@@ -806,6 +813,14 @@ func input_is_run_and_direction_pressed() -> bool:
 		return true
 	else:
 		return false
+
+func dust_paticle_emitters_start_emitting() -> void:
+	$Sprite/DustParticleEmitter0.emitting = true
+	$Sprite/DustParticleEmitter1.emitting = true
+	
+func dust_paticle_emitters_stop_emitting() -> void:
+	$Sprite/DustParticleEmitter0.emitting = false
+	$Sprite/DustParticleEmitter1.emitting = false
 
 func _on_turning_timer_timeout():
 	pass

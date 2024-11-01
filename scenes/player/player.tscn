@@ -1,4 +1,4 @@
-[gd_scene load_steps=86 format=3 uid="uid://dhp71vl6av8ov"]
+[gd_scene load_steps=91 format=3 uid="uid://dhp71vl6av8ov"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_wfvhb"]
 [ext_resource type="Texture2D" uid="uid://bhdqe7q3s6pvs" path="res://sprites/entities/boy/boy_bump/boy bump.0001.png" id="2_4i5rq"]
@@ -63,6 +63,8 @@
 [ext_resource type="Texture2D" uid="uid://dbpq7wr5iv42" path="res://sprites/entities/boy/boy_slide/boy_slide0002.png" id="60_5urih"]
 [ext_resource type="PackedScene" uid="uid://w07m35qgysc0" path="res://scenes/components/entity_component_system.tscn" id="61_lv68y"]
 [ext_resource type="Texture2D" uid="uid://ciaeaqifci3km" path="res://sprites/entities/boy/boy_slide/boy_slide0003.png" id="61_ssnn4"]
+[ext_resource type="Texture2D" uid="uid://ccsnd5gl4aljw" path="res://sprites/particles/dust/dust_particle_outline.png" id="62_mbjov"]
+[ext_resource type="Texture2D" uid="uid://hd6kxj0dm3vu" path="res://sprites/particles/dust/dust_particle_color.png" id="63_vu8ds"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fuixc"]
 size = Vector2(1200, 206)
@@ -540,6 +542,20 @@ _data = {
 "walk_to_run": SubResource("Animation_0jd3j")
 }
 
+[sub_resource type="Curve" id="Curve_fd8ee"]
+bake_resolution = 10
+_data = [Vector2(0, 0.486792), 0.0, 29.6694, 0, 0, Vector2(0.0662393, 0.984906), 0.0, 0.0, 0, 0, Vector2(0.613248, 0.620377), -2.52357, -2.52357, 0, 0, Vector2(0.972222, 0.0407548), -0.522553, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_nknwo"]
+curve = SubResource("Curve_fd8ee")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8b5vi"]
+particle_flag_disable_z = true
+inherit_velocity_ratio = 0.719
+spread = 0.0
+scale_curve = SubResource("CurveTexture_nknwo")
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xiuep"]
 size = Vector2(122, 12)
 
@@ -563,6 +579,7 @@ size = Vector2(960, 2160)
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("component_system")]
 physics_interpolation_mode = 1
 z_index = 1
+texture_filter = 2
 collision_layer = 2
 collision_mask = 401
 wall_min_slide_angle = 0.523599
@@ -610,6 +627,31 @@ scale = Vector2(2, 2)
 texture = ExtResource("2_jehxh")
 offset = Vector2(12, -30)
 metadata/_edit_lock_ = true
+
+[node name="DustParticleEmitter0" type="GPUParticles2D" parent="Sprite"]
+modulate = Color(1, 1, 1, 0.65098)
+position = Vector2(-18, 0)
+emitting = false
+amount = 24
+process_material = SubResource("ParticleProcessMaterial_8b5vi")
+texture = ExtResource("62_mbjov")
+fixed_fps = 24
+
+[node name="DustParticleEmitter1" type="GPUParticles2D" parent="Sprite"]
+clip_children = 1
+position = Vector2(-18, 0)
+emitting = false
+amount = 24
+process_material = SubResource("ParticleProcessMaterial_8b5vi")
+texture = ExtResource("63_vu8ds")
+fixed_fps = 24
+
+[node name="ColorRect" type="ColorRect" parent="Sprite/DustParticleEmitter1"]
+offset_left = -1328.0
+offset_top = -1304.0
+offset_right = 1373.0
+offset_bottom = 963.0
+color = Color(0.444607, 0.484704, 0.572917, 1)
 
 [node name="CrushingArea" type="Area2D" parent="."]
 collision_layer = 0

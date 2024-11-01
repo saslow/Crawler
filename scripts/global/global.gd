@@ -30,6 +30,7 @@ signal players_rebound_max_height_reached()
 signal lose()
 signal escape_sequence_started()
 signal times_up()
+signal escape_sequence_restarted()
 
 var is_escape : bool = false
 
@@ -58,10 +59,17 @@ var layers_relocating : bool = false
 
 func _ready() -> void:
 	times_up.connect(_on_times_up)
+	escape_sequence_restarted.connect(_on_escape_sequence_restarted)
 	
-func _on_times_up() -> void:
-	escape_sequence_started.emit() # ИЗМЕНИТЬ ПОТОМ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
+func _on_times_up():
+	checkpointed_layer = general_checkpointed_layer
+	last_checkpoint = last_general_checkpoint
+	
+func _on_escape_sequence_restarted() -> void:
+	escape_sequence_started.emit()
+	call_deferred("change_players_layer", general_checkpointed_layer)
+	player.set_deferred("global_position", last_general_checkpoint)
+	
 func change_players_layer(reparent_to : Layer2D) -> void:
 	#g.player.call_deferred("reparent", reparent_to.get_node("Players"))
 	#g.second_player.call_deferred("reparent", reparent_to.get_node("Players"))
@@ -77,3 +85,4 @@ func _on_player_injured():
 func _on_lose():
 	call_deferred("change_players_layer", checkpointed_layer)
 	player.set_deferred("global_position", last_checkpoint)
+	

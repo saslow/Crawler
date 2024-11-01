@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://bltkm6kg3i6nq"]
+
+[ext_resource type="Script" path="res://scripts/level_parts/collectibles/collectible_template.gd" id="1_0111y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w2ki7"]
+size = Vector2(90, 90)
+
+[node name="CollectibleTemplate" type="Area2D"]
+rotation = 0.785398
+collision_layer = 0
+collision_mask = 6
+monitorable = false
+script = ExtResource("1_0111y")
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_w2ki7")
+debug_color = Color(0, 1, 1, 1)
+
+[node name="Label" type="Label" parent="."]
+offset_left = -45.2548
+offset_top = -70.7107
+offset_right = -5.25482
+offset_bottom = -47.7107
+text = "SCRAP 1"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

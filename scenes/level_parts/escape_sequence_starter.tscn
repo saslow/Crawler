@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://dqvwby7xo2hdt"]
+[gd_scene load_steps=13 format=3 uid="uid://dqvwby7xo2hdt"]
 
 [ext_resource type="PackedScene" uid="uid://cglchcskg706i" path="res://scenes/enemies/enemy_template.tscn" id="1_063x8"]
 [ext_resource type="PackedScene" uid="uid://w07m35qgysc0" path="res://scenes/components/entity_component_system.tscn" id="1_le6il"]
+[ext_resource type="Script" path="res://scripts/level_parts/escape_sequence_starter.gd" id="3_5m37k"]
 [ext_resource type="Texture2D" uid="uid://tmnvvrdq44uo" path="res://sprites/level_parts/the_button/pipe.png" id="4_0oqx1"]
 [ext_resource type="Texture2D" uid="uid://chdh2eho1nuib" path="res://sprites/level_parts/the_button/bottom_layer.png" id="5_8yy1k"]
 [ext_resource type="Texture2D" uid="uid://g1f4oet4pwex" path="res://sprites/level_parts/the_button/top_layer.png" id="6_jo6vq"]
@@ -31,6 +32,7 @@ visible = false
 
 [node name="Behavior" parent="." index="2"]
 scale = Vector2(2, 2)
+script = ExtResource("3_5m37k")
 metadata/_edit_group_ = true
 
 [node name="Pipe" type="Sprite2D" parent="Behavior" index="0"]
@@ -49,18 +51,19 @@ position = Vector2(-16, -120)
 texture = ExtResource("7_j1aef")
 
 [node name="ButtonColorTop" type="Sprite2D" parent="Behavior/Button" index="1"]
+clip_children = 2
 position = Vector2(-32, -120)
 texture = ExtResource("8_pvlpy")
+
+[node name="ButtonShine" type="Sprite2D" parent="Behavior/Button/ButtonColorTop" index="0"]
+position = Vector2(-4, -28)
+rotation = -0.405656
+scale = Vector2(2.09651, 0.947059)
+texture = ExtResource("9_godi6")
 
 [node name="ButtonLine" type="Sprite2D" parent="Behavior/Button" index="2"]
 position = Vector2(-24, -120)
 texture = ExtResource("6_oeah8")
-
-[node name="ButtonShine" type="Sprite2D" parent="Behavior/Button" index="3"]
-visible = false
-position = Vector2(-31.5, -142.5)
-scale = Vector2(2.1, 1)
-texture = ExtResource("9_godi6")
 
 [node name="TopLayer" type="Sprite2D" parent="Behavior" index="3"]
 position = Vector2(-3, -119)

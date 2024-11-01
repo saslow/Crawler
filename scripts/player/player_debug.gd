@@ -20,7 +20,7 @@ func debug(delta) -> void:
 	$Debug/MonitorsContainer/JumpBufferIsStopped/Label.text = "   J_B_stopped: " + str(player.jump_buffer_timer.is_stopped())
 	$Debug/MonitorsContainer/Vel/Label.text = "   Vel: " + str( player.velocity ) 
 	$Debug/MonitorsContainer/YVel/Label.text = "   YVel: " + str( player.y_vel ) 
-	$Debug/MonitorsContainer/XVel/Label.text = "   LTA: " + str( player.last_true_axis ) 
+	$Debug/MonitorsContainer/XVel/Label.text = "   is_on_floor(): " + str( player.is_on_floor() ) 
 	$Debug/MonitorsContainer/Hp/Label.text = "   HP: " + str( player.component_system.hit_points )
 	$Debug/MonitorsContainer/Sliding/Label.text = "   IS_REL_V: " + str( player.is_releasing_vertically )
 	$Debug/MonitorsContainer/Position/Label.text = "    POS_X: " + str(player.position.x)

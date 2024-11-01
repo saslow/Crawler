@@ -44,26 +44,6 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 mouse_filter = 1
 
-[node name="ColorEffect" type="ColorRect" parent="UI"]
-material = SubResource("ShaderMaterial_vgscs")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-
-[node name="Fade" type="ColorRect" parent="UI"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-color = Color(0, 0, 0, 0)
-
 [node name="GraphEdit" type="GraphEdit" parent="UI"]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
@@ -71,6 +51,7 @@ offset_left = -66.0
 offset_top = -41.0
 offset_right = 1949.0
 offset_bottom = 1145.0
+mouse_filter = 1
 scroll_offset = Vector2(-299, -40)
 show_grid = false
 snapping_enabled = false
@@ -105,6 +86,65 @@ size_flags_horizontal = 0
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
+[node name="MissionFailedScreen" type="Control" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="UI/MissionFailedScreen"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -252.5
+offset_bottom = -164.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "MISSION FAILED"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="UI/MissionFailedScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -158.0
+offset_right = 320.0
+offset_bottom = 158.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "START AGAIN"
+
+[node name="ColorEffect" type="ColorRect" parent="UI"]
+material = SubResource("ShaderMaterial_vgscs")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Fade" type="ColorRect" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
 [node name="save_score" type="Button" parent="UI"]
 visible = false
 layout_mode = 0
@@ -112,6 +152,7 @@ offset_left = 204.0
 offset_top = 1.0
 offset_right = 399.0
 offset_bottom = 49.0
+mouse_filter = 2
 text = "Layer -1"
 
 [node name="load scene" type="Button" parent="UI"]
@@ -121,6 +162,7 @@ offset_left = 205.0
 offset_top = 55.0
 offset_right = 400.0
 offset_bottom = 103.0
+mouse_filter = 2
 text = "Layer +1"
 
 [node name="EscapeTimer" type="Control" parent="UI"]
@@ -133,21 +175,24 @@ offset_top = 35.0
 offset_right = 216.0
 offset_bottom = 149.0
 grow_horizontal = 2
+mouse_filter = 1
 script = ExtResource("3_idoch")
 
 [node name="TimeLeft" type="Label" parent="UI/EscapeTimer"]
-visible = false
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 14
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.5
+offset_top = -55.0
+offset_bottom = 55.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_y = 11
 theme_override_constants/outline_size = 25
 theme_override_font_sizes/font_size = 80
-text = "00:00"
+text = "time left"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -170,6 +215,7 @@ libraries = {
 "": SubResource("AnimationLibrary_k1p5p")
 }
 
+[connection signal="pressed" from="UI/MissionFailedScreen/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="UI/save_score" to="." method="_on_save_score_pressed"]
 [connection signal="pressed" from="UI/load scene" to="." method="_on_load_scene_pressed"]
 [connection signal="timeout" from="UI/EscapeTimer/Timer" to="UI/EscapeTimer" method="_on_timer_timeout"]

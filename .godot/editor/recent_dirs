@@ -1,3 +1,5 @@
+res://scenes/level_parts/collectibles
+res://scripts/level_parts/collectibles
 res://sprites/friezesets/swamp/plank
 res://scripts/global
 res://sprites/backgrounds/test
@@ -18,5 +20,3 @@ res://sprites/friezesets/swamp
 C:/Program Files/Krita (x64)/bin
 res://addons/LinkedCamera2D
 res://sprites/friezesets/bluebox
-res://scenes/levels
-res://scripts/levels

@@ -1,18 +1,20 @@
 extends Node
 
-var path0 : String = "user://data0.cfg"
-var path1 : String = "user://data1.cfg"
-var path2 : String = "user://data2.cfg"
+var path0 : String = "user://save0.giraffacamelopardalistippelskirchi"
+var path1 : String = "user://save1.giraffacamelopardalistippelskirchi"
+var path2 : String = "user://save2.giraffacamelopardalistippelskirchi"
 var file = ConfigFile.new()
 
 var current_path : String
-var points : int = 0
+var current_score : int = 0
+var current_treasure_count : int = 0
 
 func _ready():
 	pass
 
 func save() -> void:
 	file.save(current_path)
+	print("file saved at ", current_path)
 	pass
 	
 func load_file() -> void:
