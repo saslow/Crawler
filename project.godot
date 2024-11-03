@@ -66,12 +66,13 @@ g="*res://scenes/global/global.tscn"
 ss="*res://scripts/global/save_system.gd"
 rc="*res://scenes/global/room_changer_singleton.tscn"
 ch="*res://scenes/global/camera_host.tscn"
+EmbedGameAutoload="*res://addons/fabimakesgames.embed_game/embed_game_autoload.gd"
+RuntimeDebugTools="*res://addons/runtime_debug_tools/scenes/remote_inspector.tscn"
 
 [display]
 
 window/size/viewport_width=960
 window/size/viewport_height=540
-window/size/mode=4
 window/size/initial_position_type=2
 window/size/initial_position=Vector2i(0, -200)
 window/stretch/mode="viewport"
@@ -83,7 +84,7 @@ movie_writer/mjpeg_quality=1.0
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/InstanceDock/plugin.cfg", "res://addons/nklbdev.previewing_parallax_background/plugin.cfg", "res://addons/rmsmartshape/plugin.cfg", "res://addons/wiggly_appendage_2d/plugin.cfg")
+enabled=PackedStringArray("res://addons/InstanceDock/plugin.cfg", "res://addons/fabimakesgames.embed_game/plugin.cfg", "res://addons/nklbdev.previewing_parallax_background/plugin.cfg", "res://addons/rmsmartshape/plugin.cfg", "res://addons/runtime_debug_tools/plugin.cfg", "res://addons/wiggly_appendage_2d/plugin.cfg")
 
 [file_customization]
 

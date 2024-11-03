@@ -18,6 +18,9 @@ class_name SS2D_Shape
 #-DECLARATIONS-#
 ################
 
+func _process(delta):
+	emit_changed()
+
 @export var shape_material := SS2D_Material_Shape.new() : set = _set_material
 @export_placeholder("ActionProperty") var _make_unique: String = "" : set = _make_unique_action
 @export var _points: SS2D_Point_Array : set = set_point_array
@@ -154,6 +157,7 @@ var collision_offset: float = 0.0 : set = set_collision_offset
 func set_collision_polygon_node_path(value: NodePath) -> void:
 	collision_polygon_node_path = value
 	set_as_dirty()
+	emit_changed()
 
 	if not is_inside_tree():
 		return
@@ -190,11 +194,13 @@ func set_point_array(a: SS2D_Point_Array) -> void:
 	clear_cached_data()
 	set_as_dirty()
 	notify_property_list_changed()
+	emit_changed()
 
 
 func _refresh_action(value: String) -> void:
 	if value.length() > 0:
 		_points_modified()
+		emit_changed()
 
 
 func _make_unique_action(value: String) -> void:
@@ -206,34 +212,40 @@ func set_flip_edges(b: bool) -> void:
 	flip_edges = b
 	set_as_dirty()
 	notify_property_list_changed()
+	emit_changed()
 
 
 func set_render_edges(b: bool) -> void:
 	render_edges = b
 	set_as_dirty()
 	notify_property_list_changed()
+	emit_changed()
 
 
 func set_collision_generation_method(value: CollisionGenerationMethod) -> void:
 	collision_generation_method = value
 	set_as_dirty()
+	emit_changed()
 
 
 func set_collision_update_mode(value: CollisionUpdateMode) -> void:
 	collision_update_mode = value
 	set_as_dirty()
+	emit_changed()
 
 
 func set_collision_size(s: float) -> void:
 	collision_size = s
 	set_as_dirty()
 	notify_property_list_changed()
+	emit_changed()
 
 
 func set_collision_offset(s: float) -> void:
 	collision_offset = s
 	set_as_dirty()
 	notify_property_list_changed()
+	emit_changed()
 
 
 # FIXME: Only used by unit test.
@@ -302,18 +314,21 @@ func update_render_nodes() -> void:
 ## @deprecated
 func set_tessellation_stages(value: int) -> void:
 	_points.tessellation_stages = value
+	emit_changed()
 
 
 ## Deprecated. Use get_point_array().tessellation_tolerance instead.
 ## @deprecated
 func set_tessellation_tolerence(value: float) -> void:
 	_points.tessellation_tolerance = value
+	emit_changed()
 
 
 ## Deprecated. Use get_point_array().curve_bake_interval instead.
 ## @deprecated
 func set_curve_bake_interval(f: float) -> void:
 	_points.curve_bake_interval = f
+	emit_changed()
 
 
 func set_color_encoding(i: SS2D_Edge.COLOR_ENCODING) -> void:
@@ -393,6 +408,7 @@ func add_points(verts: PackedVector2Array, starting_index: int = -1, key: int = 
 		else:
 			keys.push_back(_points.add_point(v, starting_index, key))
 	_points.end_update()
+	
 	return keys
 
 
@@ -512,6 +528,7 @@ func is_index_in_range(idx: int) -> bool:
 ## @deprecated
 func set_point_position(key: int, pos: Vector2) -> void:
 	_points.set_point_position(key, pos)
+	emit_changed()
 
 
 ## Deprecated. Use respective function in get_point_array() instead.
@@ -581,12 +598,14 @@ func get_point_index(key: int) -> int:
 ## @deprecated
 func set_point_in(key: int, v: Vector2) -> void:
 	_points.set_point_in(key, v)
+	emit_changed()
 
 
 ## Deprecated. Use respective function in get_point_array() instead.
 ## @deprecated
 func set_point_out(key: int, v: Vector2) -> void:
 	_points.set_point_out(key, v)
+	emit_changed()
 
 
 ## Deprecated. Use respective function in get_point_array() instead.
@@ -667,18 +686,22 @@ func get_point_constraint(key1: int, key2: int) -> SS2D_Point_Array.CONSTRAINT:
 ## @deprecated
 func set_constraint(key1: int, key2: int, c: SS2D_Point_Array.CONSTRAINT) -> void:
 	_points.set_constraint(key1, key2, c)
+	emit_changed()
 
 
 ## Deprecated. Use respective function in get_point_array() instead.
 ## @deprecated
 func set_point(key: int, value: SS2D_Point) -> void:
 	_points.set_point(key, value)
+	emit_changed()
+	emit_changed()
 
 
 ## Deprecated. Use respective property in get_point_array().get_point_properties() instead.
 ## @deprecated
 func set_point_width(key: int, w: float) -> void:
 	_points.get_point_properties(key).width = w
+	emit_changed()
 
 
 ## Deprecated. Use respective property in get_point_array().get_point_properties() instead.
@@ -691,6 +714,7 @@ func get_point_width(key: int) -> float:
 ## @deprecated
 func set_point_texture_index(key: int, tex_idx: int) -> void:
 	_points.get_point_properties(key).texture_idx = tex_idx
+	emit_changed()
 
 
 ## Deprecated. Use respective property in get_point_array().get_point_properties() instead.
@@ -703,6 +727,7 @@ func get_point_texture_index(key: int) -> int:
 ## @deprecated
 func set_point_texture_flip(key: int, flip: bool) -> void:
 	_points.get_point_properties(key).flip = flip
+	emit_changed()
 
 
 ## Deprecated. Use respective property in get_point_array().get_point_properties() instead.
@@ -721,6 +746,7 @@ func get_point_properties(key: int) -> SS2D_VertexProperties:
 ## @deprecated
 func set_point_properties(key: int, properties: SS2D_VertexProperties) -> void:
 	_points.set_point_properties(key, properties)
+	emit_changed()
 
 
 #########
@@ -1890,3 +1916,8 @@ func _taper_quad(
 
 func _build_edge_with_material_thread_wrapper(args: Array) -> SS2D_Edge:
 	return _build_edge_with_material(args[0], args[1], args[2])
+
+# SASLOW EDITED THIS! #
+
+func emit_changed() -> void:
+	_points.emit_changed()

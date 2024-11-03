@@ -11,7 +11,6 @@ class_name SS2D_Point
 # Signal is only emitted when data is actually changed
 # If assigned data is the same as the existing data, no signal is emitted
 
-
 func _init(pos: Vector2 = Vector2(0, 0)) -> void:
 	position = pos
 	point_in = Vector2(0, 0)

@@ -391,6 +391,10 @@ func _changed() -> void:
 		_changed_during_update = true
 	else:
 		update_finished.emit()
+		
+	#for i in _points:
+		#_points[i].emit_changed()
+	emit_changed()
 
 ###############
 # CONSTRAINTS #

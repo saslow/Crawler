@@ -1,4 +1,5 @@
 res://scenes/levels/leshy's_swamp.tscn
+res://addons/fabimakesgames.embed_game/config/embed_shortcut.tres
 res://shaders/blur.gdshader
 res://sprites/friezesets/bluebox/bluebox0_material.tres
 res://sprites/friezesets/swamp/swamp_mud/swamp_mud_material.tres
@@ -32,8 +33,8 @@ res://scenes/level_parts/end_gate.tscn
 res://sprites/backgrounds/test/forest_bg.tscn
 res://scenes/components/entity_component_system.tscn
 res://scenes/level_parts/collectibles/collectible_template.tscn
-res://scripts/level_parts/collectibles/collectible_template.gd
-res://scripts/player/player.gd
-res://scripts/global/camera_host.gd
-res://scripts/global/save_system.gd
-res://addons/LinkedCamera2D/linked_camera2D.gd
+res://addons/rmsmartshape/shapes/shape.gd
+res://addons/rmsmartshape/shapes/edge.gd
+res://addons/rmsmartshape/shapes/point_array.gd
+res://addons/rmsmartshape/shapes/point.gd
+res://addons/runtime_debug_tools/scripts/debug_runtime_interaction_2d.gd
