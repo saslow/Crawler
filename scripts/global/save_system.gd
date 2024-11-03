@@ -19,3 +19,8 @@ func save() -> void:
 	
 func load_file() -> void:
 	pass
+
+# OPTIONS VARIABLES #
+
+var screen_shake_mult : int = 2
+const SCREEN_SHAKE_MULT : int = 2

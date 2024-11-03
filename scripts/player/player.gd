@@ -131,6 +131,7 @@ func define_players() -> void:
 		_: g.second_player = self
 
 func _ready() -> void:
+	is_movement_blocked = false
 	ch.current_player_level = get_parent().get_parent().z
 	define_players()
 	#Engine.time_scale = 0.1
@@ -420,14 +421,18 @@ func state_machine(delta : float):
 					$Anim.play("idle")
 				else:
 					if is_running:
-						if is_on_floor():
-							dust_paticle_emitters_start_emitting()
 						if !$Timers/SlideDashTimer.is_stopped():
 							$Anim.play("slide")
+							if speed < MAX_SPEED - 10:
+								dust_paticle_emitters_start_emitting(0.25)
+							else:
+								dust_paticle_emitters_start_emitting(0.5)
 						elif speed < MAX_SPEED - 10:
 							$Anim.play("walk_to_run")
+							dust_paticle_emitters_start_emitting(0.25)
 						else:
 							$Anim.play("run")
+							dust_paticle_emitters_start_emitting(0.5)
 					else:
 						dust_paticle_emitters_stop_emitting()
 						if get_real_velocity().length() < 100:
@@ -665,6 +670,7 @@ func grinding() -> void:
 func attack() -> void:
 	if Input.is_action_just_pressed("1ACTION" + get_player_index()) and $Timers/AttackTimers/AttackTimer.time_left < $Timers/AttackTimers/AttackTimer.wait_time/2 and state != sm.GHOST:
 		#$Rotatable/AttackAreas/AttackArea/Shape.disabled = false
+		ch.start_screen_shake()
 		$Rotatable/AttackAreas/AttackArea.monitoring = true
 		$Rotatable/AttackAreas/AttackArea/CollisionShape.set_deferred("debug_color", Color(1, 0, 0, 0.3))
 		$Timers/AttackTimers/AttackTimer.start()
@@ -740,7 +746,6 @@ func enable_slide_area_blockers_collision() -> void:
 		
 func _on_run_stop_timer_timeout() -> void: # $Timers/RunStopTimer
 	if !is_running:
-		
 		$Timers/SlideTimer.start()
 
 func _on_first_jump_state_timer_timeout() -> void:
@@ -814,13 +819,15 @@ func input_is_run_and_direction_pressed() -> bool:
 	else:
 		return false
 
-func dust_paticle_emitters_start_emitting() -> void:
-	$Sprite/DustParticleEmitter0.emitting = true
-	$Sprite/DustParticleEmitter1.emitting = true
+func dust_paticle_emitters_start_emitting(lifetime : float = 1.0) -> void:
+	$Rotatable/DustParticleEmitter0.emitting = true
+	$Rotatable/DustParticleEmitter1.emitting = true
+	$Rotatable/DustParticleEmitter0.lifetime = lifetime
+	$Rotatable/DustParticleEmitter1.lifetime = lifetime
 	
 func dust_paticle_emitters_stop_emitting() -> void:
-	$Sprite/DustParticleEmitter0.emitting = false
-	$Sprite/DustParticleEmitter1.emitting = false
+	$Rotatable/DustParticleEmitter0.emitting = false
+	$Rotatable/DustParticleEmitter1.emitting = false
 
 func _on_turning_timer_timeout():
 	pass

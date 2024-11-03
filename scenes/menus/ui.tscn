@@ -44,48 +44,6 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 mouse_filter = 1
 
-[node name="GraphEdit" type="GraphEdit" parent="UI"]
-self_modulate = Color(1, 1, 1, 0)
-layout_mode = 0
-offset_left = -66.0
-offset_top = -41.0
-offset_right = 1949.0
-offset_bottom = 1145.0
-mouse_filter = 1
-scroll_offset = Vector2(-299, -40)
-show_grid = false
-snapping_enabled = false
-minimap_enabled = false
-show_menu = false
-show_zoom_buttons = false
-show_grid_buttons = false
-show_minimap_button = false
-show_arrange_button = false
-
-[node name="GraphNode" type="GraphNode" parent="UI/GraphEdit"]
-layout_mode = 1
-offset_left = 112.0
-offset_top = 64.0
-offset_right = 317.0
-offset_bottom = 692.0
-mouse_filter = 1
-position_offset = Vector2(-187, 24)
-slot/0/left_enabled = false
-slot/0/left_type = 0
-slot/0/left_color = Color(1, 1, 1, 1)
-slot/0/left_icon = null
-slot/0/right_enabled = false
-slot/0/right_type = 0
-slot/0/right_color = Color(1, 1, 1, 1)
-slot/0/right_icon = null
-slot/0/draw_stylebox = true
-
-[node name="PlayerDebug" parent="UI/GraphEdit/GraphNode" instance=ExtResource("2_i63fk")]
-layout_mode = 2
-size_flags_horizontal = 0
-metadata/_edit_lock_ = true
-metadata/_edit_group_ = true
-
 [node name="MissionFailedScreen" type="Control" parent="UI"]
 layout_mode = 1
 anchors_preset = 15
@@ -144,6 +102,47 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
+
+[node name="GraphEdit" type="GraphEdit" parent="UI"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = -66.0
+offset_top = -41.0
+offset_right = 1949.0
+offset_bottom = 1145.0
+mouse_filter = 1
+scroll_offset = Vector2(-299, -40)
+show_grid = false
+minimap_enabled = false
+show_menu = false
+show_zoom_buttons = false
+show_grid_buttons = false
+show_minimap_button = false
+show_arrange_button = false
+
+[node name="GraphNode" type="GraphNode" parent="UI/GraphEdit"]
+layout_mode = 1
+offset_left = 112.0
+offset_top = 64.0
+offset_right = 317.0
+offset_bottom = 692.0
+mouse_filter = 1
+position_offset = Vector2(-187, 24)
+slot/0/left_enabled = false
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+
+[node name="PlayerDebug" parent="UI/GraphEdit/GraphNode" instance=ExtResource("2_i63fk")]
+layout_mode = 2
+size_flags_horizontal = 0
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="save_score" type="Button" parent="UI"]
 visible = false

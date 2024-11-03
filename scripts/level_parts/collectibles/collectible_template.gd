@@ -43,12 +43,13 @@ func _update_label() -> void:
 func _on_body_entered(body):
 	if !Engine.is_editor_hint():
 		if body is Player:
+			if !$Shape.disabled:
+				match type:
+					types.SCRAP:
+						ss.current_score += 1 * mult
+					types.TREASURE:
+						ss.current_treasure_count += 1
+						monitoring = false
+					types.BLOOD:
+						monitoring = false
 			$Shape.disabled = true
-			match type:
-				types.SCRAP:
-					ss.current_score += 1 * mult
-				types.TREASURE:
-					ss.current_treasure_count += 1
-					monitoring = false
-				types.BLOOD:
-					monitoring = false

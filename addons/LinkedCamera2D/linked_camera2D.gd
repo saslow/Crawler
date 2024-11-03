@@ -54,6 +54,7 @@ func _ready():
 		reset_smoothing()
 		
 func _process(delta):
+	offset = ch.offset
 	if !Engine.is_editor_hint():
 		match movement:
 			movement_types.NORMAL:

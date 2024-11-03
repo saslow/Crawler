@@ -10,3 +10,8 @@ limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 15.0
 script = ExtResource("1_7oe4p")
+
+[node name="ShakeTimer" type="Timer" parent="."]
+process_callback = 0
+
+[connection signal="timeout" from="ShakeTimer" to="." method="_on_shake_timer_timeout"]

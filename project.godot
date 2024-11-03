@@ -72,8 +72,8 @@ ch="*res://scenes/global/camera_host.tscn"
 window/size/viewport_width=960
 window/size/viewport_height=540
 window/size/mode=4
+window/size/initial_position_type=2
 window/size/initial_position=Vector2i(0, -200)
-window/size/initial_screen=1
 window/stretch/mode="viewport"
 window/stretch/scale=0.5
 
