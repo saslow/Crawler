@@ -15,7 +15,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_coxqv"]
 size = Vector2(70, 445.5)
 
-[node name="EnemyTemplate" instance=ExtResource("1_063x8")]
+[node name="EscapeSequenceStarter0" instance=ExtResource("1_063x8")]
 type = 1
 
 [node name="EntityComponentSystem" parent="." index="0" instance=ExtResource("1_le6il")]

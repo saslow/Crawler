@@ -25,6 +25,7 @@ class_name Player
 
 #I dont know (._ . )   (what this line means?)
 @onready var jump_buffer_timer : Timer = $Timers/JumpInputBuffer
+@onready var sprite : Sprite2D = $Sprite
 
 ##Represents player state. 
 @export var state : sm = sm.GROUND :
@@ -282,6 +283,7 @@ func physics_state_machine(delta : float) -> void:
 			sm.AIR:
 				#is_releasing = false
 				#is_sliding = false
+				#wall_attaching()
 				$Timers/SlideDashTimer.paused = true
 				#slide_dash()
 				running()
@@ -300,7 +302,7 @@ func physics_state_machine(delta : float) -> void:
 						if is_releasing:
 							if velocity.x < (speed - 150) and velocity.x > -(speed + 150):
 								movement_in_air_state_when_running()
-					wall_attaching()
+					#wall_attaching()
 					is_jumping = false
 					#if is_cj_allowed:
 					if is_releasing and !is_releasing_vertically:
@@ -308,6 +310,8 @@ func physics_state_machine(delta : float) -> void:
 					falling(delta)
 				else:
 					movement(delta, 0.5, 0.5)
+					#wall_attaching()
+					
 					is_jumping = true
 					jump_ceiling_blocker()
 					jumping(delta)
@@ -328,9 +332,9 @@ func physics_state_machine(delta : float) -> void:
 					x_vel.x = Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index())
 				x_vel.y = 0
 				
-				sprite_rotation_reset()
-				rotatable_rotation_reset()
-				running()
+				#sprite_rotation_reset()
+				#rotatable_rotation_reset()
+				#running()
 				stop_jump_timers()
 				if get_wall_angle() > PI/4:
 					if is_on_floor():
@@ -435,7 +439,7 @@ func state_machine(delta : float):
 							dust_paticle_emitters_start_emitting(0.5)
 					else:
 						dust_paticle_emitters_stop_emitting()
-						if get_real_velocity().length() < 100:
+						if (get_real_velocity().length() < 100 and Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) == 0) or is_on_wall():
 							$Anim.play("idle")
 						else:
 							$Anim.play("walk")
@@ -513,25 +517,31 @@ func movement_in_air_state_when_running() -> void:
 		
 func running() -> void:
 	if Input.is_action_pressed("RUN" + get_player_index()) and ( (!($Rotatable/Casts/LeftCast.is_colliding() and last_true_axis == -1 and speed <= 700) and !($Rotatable/Casts/RightCast.is_colliding() and last_true_axis == 1 and speed <= 700)  ) or state == sm.WALL_SLIDING ):
-		if is_on_floor() or state == sm.WALL_SLIDING or state == sm.RING:
+		if is_on_floor() or is_on_wall() or state == sm.RING:
 			#Input.start_joy_vibration(player_index, 3, 3)
 			is_running = true
 			
 			if $Timers/TurningTimer.is_stopped():
 				speed = move_toward(speed, MAX_SPEED, 8)
 				if ( $Rotatable/Casts/DownCast0.is_colliding() or $Rotatable/Casts/DownCast1.is_colliding() ) and (($Rotatable/Casts/RightCast.is_colliding() and last_true_axis == 1) or ($Rotatable/Casts/LeftCast.is_colliding() and last_true_axis == -1)):
-					speed = NORMAL_SPEED
-					is_running = false
 					floor_max_angle = PI/4
-					x_vel = Vector2.ZERO
-					y_vel = Vector2.ZERO
-					velocity = Vector2.ZERO
-					$Shape.scale = Vector2.ONE
+					is_running = false
+					#x_vel = Vector2.ZERO
+					#y_vel = Vector2.ZERO
+					#velocity = Vector2.ZERO
+					#$Shape.scale = Vector2.ONE
 					$Rotatable/EntityComponentSystem/CollisionShape.scale.y = 1
 					if speed > MAX_SPEED - 10:
-						$Timers/BumpTimer.start(1)
+						$Timers/BumpTimer.start(0.8)
+						$BumpParticleEmitter0.emitting = true
+						$BumpParticleEmitter1.emitting = true
+						ch.start_screen_shake_axis( 0.4, 0.4 )
 					else:
 						$Timers/BumpTimer.start(0.4)
+						$BumpParticleEmitter0.emitting = true
+						ch.start_screen_shake_axis( 0.2, 0.1 )
+					
+					speed = NORMAL_SPEED
 					state = sm.BUMPED
 				#if $Rotatable/Casts/LeftCast.is_colliding():
 					#pass
@@ -544,6 +554,19 @@ func running() -> void:
 		if is_on_floor():
 			is_running = false
 			speed = NORMAL_SPEED
+		if state == sm.AIR and is_running:
+			if ($Rotatable/Casts/RightCast.is_colliding() and last_true_axis == 1) or ($Rotatable/Casts/LeftCast.is_colliding() and last_true_axis == -1):
+				if speed > MAX_SPEED - 10:
+					$Timers/BumpTimer.start(0.8)
+					ch.start_screen_shake_axis( 0.4, 0.4 )
+					$BumpParticleEmitter0.emitting = true
+					$BumpParticleEmitter1.emitting = true
+				else:
+					$Timers/BumpTimer.start(0.4)
+					ch.start_screen_shake_axis( 0.2, 0.1 )
+					$BumpParticleEmitter0.emitting = true
+				speed = NORMAL_SPEED
+				state = sm.BUMPED
 		if !is_sliding:
 			floor_max_angle = PI/4
 
@@ -820,14 +843,16 @@ func input_is_run_and_direction_pressed() -> bool:
 		return false
 
 func dust_paticle_emitters_start_emitting(lifetime : float = 1.0) -> void:
-	$Rotatable/DustParticleEmitter0.emitting = true
-	$Rotatable/DustParticleEmitter1.emitting = true
-	$Rotatable/DustParticleEmitter0.lifetime = lifetime
-	$Rotatable/DustParticleEmitter1.lifetime = lifetime
+	if $Timers/FloorStickBlockingTimer.is_stopped():
+		$Rotatable/DustParticleEmitter0.emitting = true
+		$Rotatable/DustParticleEmitter1.emitting = true
+		$Rotatable/DustParticleEmitter0.lifetime = lifetime
+		$Rotatable/DustParticleEmitter1.lifetime = lifetime
 	
 func dust_paticle_emitters_stop_emitting() -> void:
-	$Rotatable/DustParticleEmitter0.emitting = false
-	$Rotatable/DustParticleEmitter1.emitting = false
+	if $Timers/FloorStickBlockingTimer.is_stopped():
+		$Rotatable/DustParticleEmitter0.emitting = false
+		$Rotatable/DustParticleEmitter1.emitting = false
 
 func _on_turning_timer_timeout():
 	pass
@@ -846,8 +871,8 @@ func _on_injured():
 	component_system.hit_points -= 1
 	if component_system.hit_points <= 0:
 		#position = last_checkpoint_position
-		g.death_counter += 1
 		#state = sm.GHOST
+		g.death_counter += 1
 		properties_update()
 
 func _on_attack_timer_timeout():

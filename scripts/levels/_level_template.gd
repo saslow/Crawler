@@ -8,6 +8,8 @@ class_name Level3D
 var player_current_layer_id : int = 0
 const SVP_HOLDER_PIXEL_SIZE : float = 0.0083
 var mc : Camera2D
+var bg_holder : CanvasLayer
+var ui : CanvasLayer
 var is_mc_transitioning : bool
 var target_transition_z : float
 const DEFAULT_MC_TRANSITION_TIME : float = 2.1
@@ -21,8 +23,12 @@ const DEFAULT_MC_TRANSITION_TIME : float = 2.1
 func _ready() -> void:
 	if !Engine.is_editor_hint():
 		
-		#ss.temp_level_save = self
 		mc = $MainCamera
+		bg_holder = $BGHolder
+		ui = $UI
+		
+		mc.offset = Vector2(960, 540)
+		#ss.temp_level_save = self
 		g.current_level = self
 		if $Layers2D.get_child_count() != 0:
 			for i : Layer2D in $Layers2D.get_children():
@@ -34,6 +40,8 @@ func _ready() -> void:
 				svp_holder.add_child(svp)
 				var h : Sprite2D = Sprite2D.new()
 				h.scale = Vector2(i.z, i.z) ##
+				#svp_holder.pivot_offset = Vector2(960, 540)
+				svp_holder.size = Vector2(1920, 1080)
 				#h.double_sided = false
 				#h.no_depth_test = true
 				h.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
@@ -44,9 +52,14 @@ func _ready() -> void:
 				
 				i.reparent(svp)
 				
-func _physics_process(delta) -> void:
-	#mc_transitioning_process()
-	pass
+#func _process(delta) -> void:
+	#if !Engine.is_editor_hint():
+		#mc.zoom = ch.zoom
+		#bg_holder.scale.x = 1/ch.zoom.x
+		#ui.scale.x = 1/ch.zoom.x
+		#bg_holder.scale.y = 1/ch.zoom.y
+		#ui.scale.y = 1/ch.zoom.y
+	#pass
 
 func set_svp_custom_properties(svp : SubViewport, transparent : bool, size : Vector2, name : String) -> void:
 	svp.name = name

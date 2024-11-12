@@ -20,7 +20,7 @@ func debug(delta) -> void:
 	$Debug/MonitorsContainer/JumpBufferIsStopped/Label.text = "   J_B_stopped: " + str(player.jump_buffer_timer.is_stopped())
 	$Debug/MonitorsContainer/Vel/Label.text = "   Vel: " + str( player.velocity ) 
 	$Debug/MonitorsContainer/YVel/Label.text = "   YVel: " + str( player.y_vel ) 
-	$Debug/MonitorsContainer/XVel/Label.text = "   is_on_floor(): " + str( player.is_on_floor() ) 
+	$Debug/MonitorsContainer/XVel/Label.text = "   is_on_floor(): " + str( player.is_running ) 
 	$Debug/MonitorsContainer/Hp/Label.text = "   HP: " + str( player.component_system.hit_points )
 	$Debug/MonitorsContainer/Sliding/Label.text = "   IS_REL_V: " + str( player.is_releasing_vertically )
 	$Debug/MonitorsContainer/Position/Label.text = "    POS_X: " + str(player.position.x)
@@ -28,3 +28,54 @@ func debug(delta) -> void:
 	$Debug/MonitorsContainer/GlobalX/Label.text = "    GlobX: " + str(get_parent().get_parent().get_parent().get_parent().border.limit_left)
 	
 ################################### TEST
+
+
+func _on_button_pressed():
+	var tree := get_tree()
+	tree.debug_collisions_hint = not tree.debug_collisions_hint
+
+	# Traverse tree to call queue_redraw on instances of
+	# CollisionShape2D and CollisionPolygon2D.
+	var node_stack: Array[Node] = [tree.get_root()]
+	while not node_stack.is_empty():
+		var node: Node = node_stack.pop_back()
+		if is_instance_valid(node):
+			if node is CollisionShape2D or node is CollisionPolygon2D:
+				node.queue_redraw()
+			node_stack.append_array(node.get_children())
+	#_showing_collision_shapes = on
+#
+	#var tree := get_tree()
+	#if tree.debug_collisions_hint == on:
+		#return
+#
+	#tree.debug_collisions_hint = on
+#
+	## Traverse tree to call queue_redraw on instances of CollisionShape2D and CollisionPolygon2D.
+	#var node_stack: Array[Node] = [tree.get_root()]
+	#while not node_stack.is_empty():
+		#var node: Node = node_stack.pop_back()
+		#if is_instance_valid(node):
+			#if node is CollisionShape2D or node is CollisionPolygon2D:
+				#node.queue_redraw()
+			#elif node is RayCast3D \
+				#or node is GridMap \
+				#or node is CollisionShape3D \
+				#or node is CollisionPolygon3D \
+				#or node is CollisionObject3D \
+				#or node is GPUParticlesCollision3D \
+				#or node is GPUParticlesCollisionBox3D \
+				#or node is GPUParticlesCollisionHeightField3D \
+				#or node is GPUParticlesCollisionSDF3D \
+				#or node is GPUParticlesCollisionSphere3D:
+				## remove and re-add the node to the tree to force a redraw
+				## https://github.com/godotengine/godot/blob/26b1fd0d842fa3c2f090ead47e8ea7cd2d6515e1/scene/3d/collision_object_3d.cpp#L39
+				#var parent: Node = node.get_parent()
+				#if parent:
+					#var was_blocking = parent.is_blocking_signals()
+					#parent.set_block_signals(true)
+					#parent.remove_child(node)
+					#parent.add_child(node)
+					#parent.set_block_signals(was_blocking)
+#
+			#node_stack.append_array(node.get_children()) 

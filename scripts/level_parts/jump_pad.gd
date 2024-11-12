@@ -44,6 +44,10 @@ func _on_body_entered(body):
 				#g.second_player.get_node("Anim").play("rebound")
 				await g.players_rebound_max_height_reached
 				g.player.speed = g.player.NORMAL_SPEED
+				if to.z == 1:
+					ch.zoom_out()
+				else:
+					ch.zoom_in()
 				ch.current_player_level = to.z
 				g.change_players_layer(to)
 				g.player.global_position = g.last_player_target_rebound_position

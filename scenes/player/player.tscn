@@ -1,4 +1,4 @@
-[gd_scene load_steps=91 format=3 uid="uid://dhp71vl6av8ov"]
+[gd_scene load_steps=96 format=3 uid="uid://dhp71vl6av8ov"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_wfvhb"]
 [ext_resource type="Texture2D" uid="uid://bhdqe7q3s6pvs" path="res://sprites/entities/boy/boy_bump/boy bump.0001.png" id="2_4i5rq"]
@@ -63,6 +63,7 @@
 [ext_resource type="Texture2D" uid="uid://dbpq7wr5iv42" path="res://sprites/entities/boy/boy_slide/boy_slide0002.png" id="60_5urih"]
 [ext_resource type="PackedScene" uid="uid://w07m35qgysc0" path="res://scenes/components/entity_component_system.tscn" id="61_lv68y"]
 [ext_resource type="Texture2D" uid="uid://ciaeaqifci3km" path="res://sprites/entities/boy/boy_slide/boy_slide0003.png" id="61_ssnn4"]
+[ext_resource type="Texture2D" uid="uid://b365w8rv8k8ft" path="res://sprites/entities/boy/boy_rebound/rebound_start0000.png" id="62_dmb1l"]
 [ext_resource type="Texture2D" uid="uid://ccsnd5gl4aljw" path="res://sprites/particles/dust/dust_particle_outline.png" id="62_mbjov"]
 [ext_resource type="Texture2D" uid="uid://hd6kxj0dm3vu" path="res://sprites/particles/dust/dust_particle_color.png" id="63_vu8ds"]
 
@@ -74,6 +75,18 @@ size = Vector2(1200, 134)
 
 [sub_resource type="Animation" id="Animation_qfl5w"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("29_xply5")]
+}
 
 [sub_resource type="Animation" id="Animation_uxgy7"]
 resource_name = "bump"
@@ -244,9 +257,9 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.583333, 1.08334, 1.75),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"transitions": PackedFloat32Array(0.5, 1, 1, 2),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, -4000), Vector2(0, -4000), Vector2(0, 0)]
+"values": [Vector2(0, 0), Vector2(0, -3000), Vector2(0, -3000), Vector2(0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -305,10 +318,10 @@ tracks/5/path = NodePath("Sprite:texture")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(1.75, 1.83334, 1.91667, 2, 2.08334, 2.16667, 2.25, 2.33334, 2.41667, 2.5, 2.58334, 2.66667, 2.75, 2.83334),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.833333, 1.75, 1.83334, 1.91667, 2, 2.08334, 2.16667, 2.25, 2.33334, 2.41667, 2.5, 2.58334, 2.66667, 2.75, 2.83334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [ExtResource("29_xply5"), ExtResource("30_1f4v0"), ExtResource("31_4ihkf"), ExtResource("32_3o6he"), ExtResource("33_uncnf"), ExtResource("34_m6c08"), ExtResource("35_mknxn"), ExtResource("36_umhrw"), ExtResource("37_nij8x"), ExtResource("38_87ies"), ExtResource("39_dlfcu"), ExtResource("40_aiamj"), ExtResource("41_nuge8"), ExtResource("42_yc6ca")]
+"values": [ExtResource("62_dmb1l"), ExtResource("29_xply5"), ExtResource("29_xply5"), ExtResource("30_1f4v0"), ExtResource("31_4ihkf"), ExtResource("32_3o6he"), ExtResource("33_uncnf"), ExtResource("34_m6c08"), ExtResource("35_mknxn"), ExtResource("36_umhrw"), ExtResource("37_nij8x"), ExtResource("38_87ies"), ExtResource("39_dlfcu"), ExtResource("40_aiamj"), ExtResource("41_nuge8"), ExtResource("42_yc6ca")]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -542,6 +555,33 @@ _data = {
 "walk_to_run": SubResource("Animation_0jd3j")
 }
 
+[sub_resource type="Curve" id="Curve_uvxci"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.442308, 0.516981), -2.90573e-07, -2.90573e-07, 0, 0, Vector2(0.745726, 0.516981), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_3832s"]
+curve = SubResource("Curve_uvxci")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_erueo"]
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 720.0
+spread = 180.0
+initial_velocity_min = 277.57
+initial_velocity_max = 479.09
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_3832s")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_34i2u"]
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 720.0
+spread = 180.0
+initial_velocity_min = 277.57
+initial_velocity_max = 479.09
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_3832s")
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xiuep"]
 size = Vector2(122, 12)
 
@@ -577,7 +617,7 @@ height = 80.0
 size = Vector2(960, 2160)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("component_system")]
-physics_interpolation_mode = 1
+physics_interpolation_mode = 2
 z_index = 1
 texture_filter = 2
 collision_layer = 2
@@ -628,6 +668,26 @@ scale = Vector2(2, 2)
 texture = ExtResource("29_xply5")
 offset = Vector2(12, -30)
 metadata/_edit_lock_ = true
+
+[node name="BumpParticleEmitter0" type="GPUParticles2D" parent="."]
+position = Vector2(0, -30)
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_erueo")
+texture = ExtResource("63_vu8ds")
+lifetime = 0.35
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 24
+
+[node name="BumpParticleEmitter1" type="GPUParticles2D" parent="."]
+position = Vector2(0, -30)
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_34i2u")
+texture = ExtResource("63_vu8ds")
+lifetime = 0.35
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 24
 
 [node name="CrushingArea" type="Area2D" parent="."]
 collision_layer = 0

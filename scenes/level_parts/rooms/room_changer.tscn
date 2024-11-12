@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" path="res://scripts/level_parts/rooms/room_changer.gd" id="1_ueuom"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_d03a6"]
-size = Vector2(20, 448)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1qerp"]
+size = Vector2(1088, 448)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nbvku"]
-size = Vector2(192, 448)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qg0xw"]
+size = Vector2(1344, 448)
 
 [node name="RoomChanger0" type="Area2D"]
 process_mode = 3
@@ -17,13 +17,13 @@ metadata/_edit_vertical_guides_ = [0.0]
 
 [node name="Shape" type="CollisionShape2D" parent="."]
 position = Vector2(0, -224)
-shape = SubResource("RectangleShape2D_d03a6")
+shape = SubResource("RectangleShape2D_1qerp")
 debug_color = Color(0, 0.639216, 0.356863, 0.419608)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 self_modulate = Color(1, 1, 1, 0.490196)
 position = Vector2(0, -224)
-shape = SubResource("RectangleShape2D_nbvku")
+shape = SubResource("RectangleShape2D_qg0xw")
 disabled = true
 
 [node name="Line2D" type="Line2D" parent="."]

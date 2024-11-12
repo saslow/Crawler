@@ -59,6 +59,7 @@ var layers_relocating : bool = false
 
 func _ready() -> void:
 	times_up.connect(_on_times_up)
+	#player.injured.connect(_on_player_injured)
 	escape_sequence_restarted.connect(_on_escape_sequence_restarted)
 	
 func _on_times_up():

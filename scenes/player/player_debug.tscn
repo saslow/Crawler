@@ -291,3 +291,18 @@ mouse_filter = 1
 theme_override_font_sizes/font_size = 30
 text = "Pos:"
 vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="Debug/MonitorsContainer"]
+custom_minimum_size = Vector2(400, 75)
+layout_mode = 2
+
+[node name="Button" type="CheckButton" parent="Debug/MonitorsContainer/Panel"]
+custom_minimum_size = Vector2(400, 75)
+layout_mode = 1
+offset_right = 400.0
+offset_bottom = 75.0
+theme_override_constants/outline_size = 18
+theme_override_font_sizes/font_size = 20
+text = "VISIBLE COLLISION SHAPES"
+
+[connection signal="pressed" from="Debug/MonitorsContainer/Panel/Button" to="." method="_on_button_pressed"]

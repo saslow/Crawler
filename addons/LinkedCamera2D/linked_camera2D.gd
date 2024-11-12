@@ -12,6 +12,13 @@ enum movement_types{
 	HORIZONTAL = 1,
 	VERTICAL = 2,
 }
+
+@onready var rb_handle : Node2D = $RightBottom
+@onready var lt_handle : Node2D = $LeftTop
+
+
+const X_OFFSET : int = 1080
+const Y_OFFSET : int = 772
 #var _editor_left_top_limit : Vector2 :
 	#set(value):
 		#if Engine.is_editor_hint():
@@ -46,16 +53,17 @@ func _ready():
 		#limit_left *= get_parent().z
 		#limit_right *= get_parent().z
 		if get_parent().z > 1:
-			limit_left -= 960 * get_parent().z
-			limit_right += 960 * get_parent().z
+			limit_left -= X_OFFSET/2 * get_parent().z
+			limit_right += X_OFFSET/2 * get_parent().z
 
 		limit_top *= get_parent().z
 		limit_bottom *= get_parent().z
 		reset_smoothing()
 		
 func _process(delta):
-	offset = ch.offset
 	if !Engine.is_editor_hint():
+		offset = ch.offset
+		
 		match movement:
 			movement_types.NORMAL:
 				global_position.x = ch.global_position.x
@@ -65,8 +73,12 @@ func _process(delta):
 			movement_types.VERTICAL:
 				global_position.y = ch.global_position.y * (get_parent().z / ch.current_player_level )
 	else:
+		if linked_camera != null:
+			linked_camera.rb_handle.global_position = rb_handle.global_position
+			linked_camera.lt_handle.global_position = lt_handle.global_position
+		
 		if background_limits_offsetted:
-			$LimitsForeground.points = [Vector2($RightBottom.position.x + 1920, $RightBottom.position.y), Vector2($LeftTop.position.x - 1920, $RightBottom.position.y), Vector2($LeftTop.position.x - 1920, $LeftTop.position.y), Vector2($RightBottom.position.x + 1920, $LeftTop.position.y)]
+			$LimitsForeground.points = [Vector2($RightBottom.position.x + X_OFFSET, $RightBottom.position.y + Y_OFFSET), Vector2($LeftTop.position.x - X_OFFSET, $RightBottom.position.y + Y_OFFSET), Vector2($LeftTop.position.x - X_OFFSET, $LeftTop.position.y - Y_OFFSET), Vector2($RightBottom.position.x + X_OFFSET, $LeftTop.position.y - Y_OFFSET)]
 			$LimitsForeground.visible = true
 		else:
 			$LimitsForeground.visible = false

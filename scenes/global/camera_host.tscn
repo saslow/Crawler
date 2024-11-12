@@ -1,10 +1,61 @@
-[gd_scene load_steps=2 format=3 uid="uid://bu08y2r800mb6"]
+[gd_scene load_steps=6 format=3 uid="uid://bu08y2r800mb6"]
 
 [ext_resource type="Script" path="res://scripts/global/camera_host.gd" id="1_7oe4p"]
 
+[sub_resource type="Animation" id="Animation_6yis1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5fen1"]
+resource_name = "zoom_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:zoom")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.5, 0),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(2, 2)]
+}
+
+[sub_resource type="Animation" id="Animation_0qv58"]
+resource_name = "zoom_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5opur"]
+_data = {
+"RESET": SubResource("Animation_6yis1"),
+"zoom_in": SubResource("Animation_5fen1"),
+"zoom_out": SubResource("Animation_0qv58")
+}
+
 [node name="CameraHost" type="Camera2D"]
 enabled = false
-zoom = Vector2(0.5, 0.5)
 process_callback = 0
 limit_smoothed = true
 position_smoothing_enabled = true
@@ -14,4 +65,13 @@ script = ExtResource("1_7oe4p")
 [node name="ShakeTimer" type="Timer" parent="."]
 process_callback = 0
 
+[node name="ShakeTimerAxis" type="Timer" parent="."]
+process_callback = 0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5opur")
+}
+
 [connection signal="timeout" from="ShakeTimer" to="." method="_on_shake_timer_timeout"]
+[connection signal="timeout" from="ShakeTimerAxis" to="." method="_on_shake_timer_axis_timeout"]

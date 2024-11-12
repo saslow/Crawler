@@ -24,6 +24,7 @@ res://scenes/level_parts/releaser.tscn
 res://sprites/friezesets/bluebox/bluebox0.tscn
 res://sprites/friezesets/bluebox/decobox0.tscn
 res://scenes/enemies/enemy_template.tscn
+res://scenes/enemies/trash_demon/trash_demon.tscn
 res://scenes/level_parts/escape_sequence_starter.tscn
 res://scenes/global/global.tscn
 res://scenes/global/camera_host.tscn
@@ -33,8 +34,3 @@ res://scenes/level_parts/end_gate.tscn
 res://sprites/backgrounds/test/forest_bg.tscn
 res://scenes/components/entity_component_system.tscn
 res://scenes/level_parts/collectibles/collectible_template.tscn
-res://addons/rmsmartshape/shapes/shape.gd
-res://addons/rmsmartshape/shapes/edge.gd
-res://addons/rmsmartshape/shapes/point_array.gd
-res://addons/rmsmartshape/shapes/point.gd
-res://addons/runtime_debug_tools/scripts/debug_runtime_interaction_2d.gd

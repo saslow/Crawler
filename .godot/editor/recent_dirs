@@ -1,3 +1,6 @@
+res://scripts/enemies/trash_demon
+res://scenes/enemies/trash_demon
+res://scenes/enemies
 C:/Programs/godot/projects/Crawler/addons/rmsmartshape/shapes
 res://scenes/level_parts/collectibles
 res://scripts/level_parts/collectibles
@@ -8,7 +11,6 @@ res://shaders
 res://scripts/menus/UI
 res://scripts/level_parts
 res://scenes/level_parts
-res://scenes/enemies
 res://scenes/entities
 res://scenes/global
 res://scripts/enemies
@@ -19,5 +21,3 @@ res://sprites/friezesets/swamp/swamp_mud
 res://sprites/friezesets
 res://sprites/friezesets/swamp
 C:/Program Files/Krita (x64)/bin
-res://addons/LinkedCamera2D
-res://sprites/friezesets/bluebox

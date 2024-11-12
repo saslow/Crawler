@@ -17,6 +17,9 @@ class_name Layer2D
 
 #func _process(delta):
 	#if !Engine.is_editor_hint():
+		#if z == 1:
+			#visible = ch.zoomed
+	#if !Engine.is_editor_hint():
 		#if Input.is_action_just_pressed("UP0"):
 			#global_position.x -= 10000
 	#if global_position.x > 0:
