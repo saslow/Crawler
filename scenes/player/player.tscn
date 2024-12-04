@@ -1,4 +1,4 @@
-[gd_scene load_steps=96 format=3 uid="uid://dhp71vl6av8ov"]
+[gd_scene load_steps=110 format=3 uid="uid://dhp71vl6av8ov"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_wfvhb"]
 [ext_resource type="Texture2D" uid="uid://bhdqe7q3s6pvs" path="res://sprites/entities/boy/boy_bump/boy bump.0001.png" id="2_4i5rq"]
@@ -65,7 +65,20 @@
 [ext_resource type="Texture2D" uid="uid://ciaeaqifci3km" path="res://sprites/entities/boy/boy_slide/boy_slide0003.png" id="61_ssnn4"]
 [ext_resource type="Texture2D" uid="uid://b365w8rv8k8ft" path="res://sprites/entities/boy/boy_rebound/rebound_start0000.png" id="62_dmb1l"]
 [ext_resource type="Texture2D" uid="uid://ccsnd5gl4aljw" path="res://sprites/particles/dust/dust_particle_outline.png" id="62_mbjov"]
+[ext_resource type="Texture2D" uid="uid://pgsrt6qfxtdd" path="res://sprites/entities/boy/boy_walljump/walljump0000.png" id="63_5o238"]
+[ext_resource type="Texture2D" uid="uid://34vkej6p32lg" path="res://sprites/particles/dust/dust_particle.png" id="63_j0i8q"]
 [ext_resource type="Texture2D" uid="uid://hd6kxj0dm3vu" path="res://sprites/particles/dust/dust_particle_color.png" id="63_vu8ds"]
+[ext_resource type="Texture2D" uid="uid://d0ff0r6y2n0tu" path="res://sprites/particles/dust/dust_small_particle.png" id="64_evo3n"]
+[ext_resource type="Texture2D" uid="uid://cjdrlir4xorpu" path="res://sprites/entities/boy/boy_walljump/walljump0001.png" id="64_sg0hj"]
+[ext_resource type="Texture2D" uid="uid://ds0gmot3ovoeq" path="res://sprites/entities/boy/boy_walljump/walljump0002.png" id="65_e6lfk"]
+[ext_resource type="Texture2D" uid="uid://5ddqpvgkx3ox" path="res://sprites/entities/boy/boy_walljump/walljump0003.png" id="66_mgm85"]
+[ext_resource type="Texture2D" uid="uid://dwbil1620x4tf" path="res://sprites/entities/boy/boy_walljump/walljump0004.png" id="67_pg2ww"]
+[ext_resource type="Texture2D" uid="uid://ddqsr83ljwtka" path="res://sprites/entities/boy/boy_walljump/walljump0005.png" id="68_t6arr"]
+[ext_resource type="Texture2D" uid="uid://d1c0wc2vwag1x" path="res://sprites/entities/boy/boy_walljump/walljump_end0000.png" id="69_nj5fv"]
+[ext_resource type="Texture2D" uid="uid://bs68v8byec114" path="res://sprites/entities/boy/boy_slide/slide_start/slide_start0002.png" id="71_mb7dn"]
+[ext_resource type="Texture2D" uid="uid://cial2whkonjuh" path="res://sprites/entities/boy/boy_slide/slide_start/slide_start0003.png" id="72_nf4ao"]
+[ext_resource type="Texture2D" uid="uid://cx16lxxvql3l5" path="res://sprites/entities/boy/boy_slide/slide_start/slide_start0004.png" id="73_2slxt"]
+[ext_resource type="Texture2D" uid="uid://dsvepbmtujlgh" path="res://sprites/entities/boy/boy_slide/slide_start/slide_start0005.png" id="74_sjjc8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fuixc"]
 size = Vector2(1200, 206)
@@ -86,6 +99,42 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [ExtResource("29_xply5")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Rotatable:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:offset")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(12, -25)]
 }
 
 [sub_resource type="Animation" id="Animation_uxgy7"]
@@ -280,11 +329,14 @@ tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(1.08333),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(1.08333, 1.75),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
 "method": &"emit_players_rebound_max_height_reached"
+}, {
+"args": [],
+"method": &"_remote_ch_screen_shake"
 }]
 }
 tracks/3/type = "value"
@@ -370,6 +422,17 @@ tracks/9/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, -2500), Vector2(0, -2500), Vector2(0, 0)]
+}
+tracks/10/type = "method"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath(".")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
 }
 
 [sub_resource type="Animation" id="Animation_xx3p6"]
@@ -478,6 +541,49 @@ tracks/1/keys = {
 "values": [Vector2(12, -25), Vector2(12, -25)]
 }
 
+[sub_resource type="Animation" id="Animation_47kv3"]
+resource_name = "slide_start"
+length = 0.416675
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("71_mb7dn"), ExtResource("72_nf4ao"), ExtResource("73_2slxt"), ExtResource("74_sjjc8")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(12, -25), Vector2(12, -25)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Anim")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.333333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"slide", -1, 1.0, false],
+"method": &"play"
+}]
+}
+
 [sub_resource type="Animation" id="Animation_xdvwl"]
 resource_name = "walk"
 length = 0.750008
@@ -538,6 +644,47 @@ tracks/1/keys = {
 "values": [Vector2(5, -37), Vector2(5, -37)]
 }
 
+[sub_resource type="Animation" id="Animation_kdas7"]
+resource_name = "walljump"
+length = 0.583342
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("63_5o238"), ExtResource("64_sg0hj"), ExtResource("65_e6lfk"), ExtResource("66_mgm85"), ExtResource("67_pg2ww"), ExtResource("68_t6arr"), ExtResource("69_nj5fv")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Rotatable:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jpkbe"]
 _data = {
 "RESET": SubResource("Animation_qfl5w"),
@@ -551,8 +698,10 @@ _data = {
 "run": SubResource("Animation_ahvci"),
 "run_to_idle": SubResource("Animation_joimf"),
 "slide": SubResource("Animation_lbjnp"),
+"slide_start": SubResource("Animation_47kv3"),
 "walk": SubResource("Animation_xdvwl"),
-"walk_to_run": SubResource("Animation_0jd3j")
+"walk_to_run": SubResource("Animation_0jd3j"),
+"walljump": SubResource("Animation_kdas7")
 }
 
 [sub_resource type="Curve" id="Curve_uvxci"]
@@ -570,6 +719,8 @@ spread = 180.0
 initial_velocity_min = 277.57
 initial_velocity_max = 479.09
 gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 2.0
 scale_curve = SubResource("CurveTexture_3832s")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_34i2u"]
@@ -577,13 +728,23 @@ particle_flag_disable_z = true
 angle_min = -720.0
 angle_max = 720.0
 spread = 180.0
-initial_velocity_min = 277.57
-initial_velocity_max = 479.09
+initial_velocity_min = 380.23
+initial_velocity_max = 612.17
 gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_3832s")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xiuep"]
 size = Vector2(122, 12)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o1n1h"]
+radius = 48.0
+height = 304.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jkgb2"]
+size = Vector2(32, 136.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g63mw"]
+size = Vector2(6, 40.5)
 
 [sub_resource type="Curve" id="Curve_fd8ee"]
 bake_resolution = 10
@@ -599,20 +760,6 @@ inherit_velocity_ratio = 0.117
 gravity = Vector3(0, -250, 0)
 scale_curve = SubResource("CurveTexture_nknwo")
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o1n1h"]
-radius = 48.0
-height = 304.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jkgb2"]
-size = Vector2(32, 136.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_g63mw"]
-size = Vector2(6, 40.5)
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hw3s6"]
-radius = 40.0
-height = 80.0
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kjfdk"]
 size = Vector2(960, 2160)
 
@@ -627,7 +774,6 @@ floor_snap_length = 2.0
 script = ExtResource("1_wfvhb")
 component_system = NodePath("Rotatable/EntityComponentSystem")
 speed = 300.0
-is_movement_blocked = true
 is_jump_to_fall_transition = true
 
 [node name="ShadowRoot" parent="." instance=ExtResource("2_5ay5d")]
@@ -666,24 +812,26 @@ libraries = {
 y_sort_enabled = true
 scale = Vector2(2, 2)
 texture = ExtResource("29_xply5")
-offset = Vector2(12, -30)
+offset = Vector2(12, -25)
 metadata/_edit_lock_ = true
 
 [node name="BumpParticleEmitter0" type="GPUParticles2D" parent="."]
+show_behind_parent = true
 position = Vector2(0, -30)
 emitting = false
 process_material = SubResource("ParticleProcessMaterial_erueo")
-texture = ExtResource("63_vu8ds")
+texture = ExtResource("63_j0i8q")
 lifetime = 0.35
 one_shot = true
 explosiveness = 1.0
 fixed_fps = 24
 
 [node name="BumpParticleEmitter1" type="GPUParticles2D" parent="."]
+show_behind_parent = true
 position = Vector2(0, -30)
 emitting = false
 process_material = SubResource("ParticleProcessMaterial_34i2u")
-texture = ExtResource("63_vu8ds")
+texture = ExtResource("64_evo3n")
 lifetime = 0.35
 one_shot = true
 explosiveness = 1.0
@@ -698,29 +846,7 @@ position = Vector2(0, 42)
 shape = SubResource("RectangleShape2D_xiuep")
 
 [node name="Rotatable" type="Node2D" parent="."]
-
-[node name="DustParticleEmitter0" type="GPUParticles2D" parent="Rotatable"]
 show_behind_parent = true
-position = Vector2(-36, 38)
-scale = Vector2(2, 2)
-emitting = false
-amount = 24
-process_material = SubResource("ParticleProcessMaterial_8b5vi")
-texture = ExtResource("62_mbjov")
-fixed_fps = 24
-interpolate = false
-
-[node name="DustParticleEmitter1" type="GPUParticles2D" parent="Rotatable"]
-modulate = Color(0.609375, 0.57843, 0.533203, 1)
-show_behind_parent = true
-position = Vector2(-36, 38)
-scale = Vector2(2, 2)
-emitting = false
-amount = 24
-process_material = SubResource("ParticleProcessMaterial_8b5vi")
-texture = ExtResource("63_vu8ds")
-fixed_fps = 24
-interpolate = false
 
 [node name="AttackAreas" type="Node2D" parent="Rotatable"]
 
@@ -827,8 +953,31 @@ position = Vector2(0, 20.25)
 shape = SubResource("RectangleShape2D_g63mw")
 debug_color = Color(0.796078, 0.423529, 0, 1)
 
-[node name="Shape" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_hw3s6")
+[node name="DustParticleEmitter0" type="GPUParticles2D" parent="Rotatable"]
+show_behind_parent = true
+position = Vector2(-36, 38)
+scale = Vector2(2, 2)
+emitting = false
+amount = 24
+process_material = SubResource("ParticleProcessMaterial_8b5vi")
+texture = ExtResource("62_mbjov")
+fixed_fps = 24
+interpolate = false
+
+[node name="DustParticleEmitter1" type="GPUParticles2D" parent="Rotatable"]
+modulate = Color(0.609375, 0.57843, 0.533203, 1)
+show_behind_parent = true
+position = Vector2(-36, 38)
+scale = Vector2(2, 2)
+emitting = false
+amount = 24
+process_material = SubResource("ParticleProcessMaterial_8b5vi")
+texture = ExtResource("63_vu8ds")
+fixed_fps = 24
+interpolate = false
+
+[node name="Shape" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(8, -40, 24, -32, 32, -24, 40, -8, 40, 8, 32, 24, 24, 32, 8, 40, -8, 40, -24, 32, -32, 24, -40, 8, -40, -8, -32, -24, -24, -32, -8, -40)
 
 [node name="Timers" type="Node" parent="."]
 

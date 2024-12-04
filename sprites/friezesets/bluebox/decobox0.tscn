@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://addons/rmsmartshape/shapes/shape_render.gd" id="6_lsd0l"]
 [ext_resource type="Script" path="res://scripts/components/frieze_editor_label.gd" id="7_y0l7i"]
 
-[sub_resource type="Resource" id="Resource_vxomb"]
+[sub_resource type="Resource" id="Resource_r1lmk"]
 script = ExtResource("2_pe2it")
 texture_idx = 0
 flip = false
@@ -19,7 +19,7 @@ script = ExtResource("3_7nes8")
 position = Vector2(-315.026, -102.282)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
-properties = SubResource("Resource_vxomb")
+properties = SubResource("Resource_r1lmk")
 
 [sub_resource type="Resource" id="Resource_u3h00"]
 script = ExtResource("2_pe2it")
@@ -47,7 +47,7 @@ point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
 properties = SubResource("Resource_3vwt3")
 
-[sub_resource type="Resource" id="Resource_al7jk"]
+[sub_resource type="Resource" id="Resource_vm8qn"]
 script = ExtResource("2_pe2it")
 texture_idx = 0
 flip = false
@@ -58,9 +58,9 @@ script = ExtResource("3_7nes8")
 position = Vector2(242.717, -82.0461)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
-properties = SubResource("Resource_al7jk")
+properties = SubResource("Resource_vm8qn")
 
-[sub_resource type="Resource" id="Resource_nj0sx"]
+[sub_resource type="Resource" id="Resource_1g0y6"]
 script = ExtResource("2_pe2it")
 texture_idx = 0
 flip = false
@@ -71,7 +71,7 @@ script = ExtResource("3_7nes8")
 position = Vector2(150.99, -80.6218)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
-properties = SubResource("Resource_nj0sx")
+properties = SubResource("Resource_1g0y6")
 
 [sub_resource type="Resource" id="Resource_7s3eq"]
 script = ExtResource("4_3bdi6")
@@ -91,7 +91,7 @@ tessellation_tolerance = 6.0
 curve_bake_interval = 20.0
 
 [node name="DecoBox0" type="Node2D"]
-texture_filter = 1
+texture_filter = 2
 script = ExtResource("1_q3sou")
 shape_material = ExtResource("5_dcpel")
 _points = SubResource("Resource_7s3eq")
@@ -113,7 +113,7 @@ offset_right = 137.0
 offset_bottom = -18.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1.04242, 1.04242)
+scale = Vector2(1.96486, 1.96486)
 pivot_offset = Vector2(137, 64)
 size_flags_horizontal = 4
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)

@@ -96,6 +96,7 @@ _data = {
 
 [node name="BG" type="Sprite2D"]
 z_index = -4000
+texture_filter = 2
 texture = ExtResource("1_qqrbj")
 centered = false
 
@@ -149,6 +150,7 @@ texture_mode = 1
 joint_mode = 2
 
 [node name="Trees" type="Sprite2D" parent="."]
+texture_filter = 2
 texture = ExtResource("3_i1cul")
 centered = false
 

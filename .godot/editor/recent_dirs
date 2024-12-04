@@ -1,3 +1,9 @@
+res://scenes/level_parts/water_ripple
+res://scripts/level_parts/waterline
+res://scenes/level_parts/waterline
+C:/Programs/godot/projects/Builds/NotRel/UnzipThatFileEldar
+res://sprites/entities/trash_demon/sit
+C:/Programs/godot
 res://scripts/enemies/trash_demon
 res://scenes/enemies/trash_demon
 res://scenes/enemies
@@ -14,10 +20,3 @@ res://scenes/level_parts
 res://scenes/entities
 res://scenes/global
 res://scripts/enemies
-res://scenes/menus
-res://scripts/menus
-res://sprites/friezesets/swamp/trees/tree
-res://sprites/friezesets/swamp/swamp_mud
-res://sprites/friezesets
-res://sprites/friezesets/swamp
-C:/Program Files/Krita (x64)/bin

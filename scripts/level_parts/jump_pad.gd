@@ -6,7 +6,8 @@ extends Area2D
 	set(value):
 		modulate = Color(1, 1, 1, 1)
 		to = value
-@onready var target_position_node : Node2D = $TargetPosition
+#@export var auto_target_x : bool = false
+@onready var target_position_node : Node2D = $JumpPos
 #@export var target_position : Vector2
 
 func _ready():
@@ -14,7 +15,9 @@ func _ready():
 		if to == null:
 			modulate = Color(0, 0 , 0, 0.5)
 		else:
-			$TargetPosition.call_deferred("reparent", to)
+			$JumpPos.call_deferred("reparent", to)
+			#if auto_target_x:
+				#target_position_node.position.x /= to.z
 			#target_position = target_position_node.global_position
 		#var grounding_position_ray : RayCast2D = RayCast2D.new()
 		#grounding_position_ray.target_position.y = -2160

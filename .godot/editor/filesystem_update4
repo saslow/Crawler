@@ -1,4 +1,4 @@
-res://scenes/levels/leshy's_swamp.tscn
+res://scenes/menus/ui.tscn
 res://addons/fabimakesgames.embed_game/config/embed_shortcut.tres
 res://shaders/blur.gdshader
 res://sprites/friezesets/bluebox/bluebox0_material.tres
@@ -10,9 +10,9 @@ res://sprites/friezesets/swamp/trees/tree_thin/thin_tree_material.tres
 res://sprites/friezesets/swamp/plank/plank.tres
 res://materials/shaders/tv.gdshader
 res://shaders/noise.gdshader
+res://scenes/levels/leshy's_swamp.tscn
 res://scenes/menus/main_menu.tscn
 res://scenes/player/player.tscn
-res://scenes/menus/ui.tscn
 res://scenes/level_parts/jump_pad.tscn
 res://scenes/levels/_level_template.tscn
 res://scenes/player/player_debug.tscn
@@ -34,3 +34,6 @@ res://scenes/level_parts/end_gate.tscn
 res://sprites/backgrounds/test/forest_bg.tscn
 res://scenes/components/entity_component_system.tscn
 res://scenes/level_parts/collectibles/collectible_template.tscn
+res://scenes/_/deleter.tscn
+res://scenes/level_parts/waterline/swamp_waterline.tscn
+res://scripts/player/player.gd

@@ -1,5 +1,25 @@
+@tool
 extends CharacterBody2D
 class_name Player
+
+@export_category("DEBUG")
+
+#@export var change_layer : Array[bool]:
+	#set(v):
+		#update_layer_switches()
+		#change_layer = v
+		#
+#@export var switch_layers : Array[Layer2D] = [] :
+	#set(v):
+		#switch_layers = v
+		#update_layer_switches()
+		
+#func update_layer_switches() -> void:
+	#for i in switch_layers:
+		##if i is Layer2D:
+		#change_layer.append(false)
+
+@export_category("NE DEBUG")
 
 ##In the inspector menu represents player looking direction on scene load. Only -1(left) or 1(right). | В инспекторе значение этой переменной влияет на направления взгляда игрока при загрузке уровня. Только -1(лево) или 1(право).
 @export_range(-1, 1, 2) var last_true_axis : int = 1 :
@@ -30,14 +50,15 @@ class_name Player
 ##Represents player state. 
 @export var state : sm = sm.GROUND :
 	set(new_state):
-		if new_state == sm.GROUND and new_state != state:
-			x_vel.y = 0
-		if new_state == sm.REBOUND and new_state != state:
-			velocity = Vector2.ZERO
-			y_vel = Vector2.ZERO
-			x_vel = Vector2.ZERO
-			$Anim.play("rebound")
-		state = new_state
+		if !Engine.is_editor_hint():
+			if new_state == sm.GROUND and new_state != state:
+				x_vel.y = 0
+			if new_state == sm.REBOUND and new_state != state:
+				velocity = Vector2.ZERO
+				y_vel = Vector2.ZERO
+				x_vel = Vector2.ZERO
+				$Anim.play("rebound")
+			state = new_state
 @export var speed : float = NORMAL_SPEED
 var last_x_vel_y : float
 var last_floor_angle : float
@@ -132,108 +153,101 @@ func define_players() -> void:
 		_: g.second_player = self
 
 func _ready() -> void:
-	is_movement_blocked = false
-	ch.current_player_level = get_parent().get_parent().z
-	define_players()
-	#Engine.time_scale = 0.1
-	g.background_level_changed.connect(_on_background_level_changed)
-	last_checkpoint_position = position
+	if !Engine.is_editor_hint():
+		is_movement_blocked = false
+		ch.current_player_level = get_parent().get_parent().z
+		define_players()
+		#Engine.time_scale = 0.1
+		g.background_level_changed.connect(_on_background_level_changed)
+		last_checkpoint_position = position
 	
 func _physics_process(delta: float) -> void:
-	
-	if is_on_floor():
-		last_x_vel_y = x_vel.y
-		
-	if Input.is_action_just_pressed("DEBUG_MODE"):
-		if state != sm.DEBUG:
-			_debug_mode = true
-			$Shape.disabled = true
-			velocity = Vector2.ZERO
-			x_vel = Vector2.ZERO
-			y_vel = Vector2.ZERO
-			state = sm.DEBUG
+	if !Engine.is_editor_hint():
+		if is_on_floor():
+			last_x_vel_y = x_vel.y
+			
+		if Input.is_action_just_pressed("DEBUG_MODE"):
+			if state != sm.DEBUG:
+				_debug_mode = true
+				$Shape.disabled = true
+				velocity = Vector2.ZERO
+				x_vel = Vector2.ZERO
+				y_vel = Vector2.ZERO
+				state = sm.DEBUG
+			else:
+				_debug_mode = false
+				$Shape.disabled = false
+				velocity = Vector2.ZERO
+				x_vel = Vector2.ZERO
+				y_vel = Vector2.ZERO
+				state = sm.AIR
+			
+		if last_true_axis > 0:
+			$Rotatable/AttackAreas/AttackArea.position = $Rotatable/AttackAreas/AreaRightPos.position
 		else:
-			_debug_mode = false
-			$Shape.disabled = false
-			velocity = Vector2.ZERO
-			x_vel = Vector2.ZERO
-			y_vel = Vector2.ZERO
-			state = sm.AIR
+			$Rotatable/AttackAreas/AttackArea.position = $Rotatable/AttackAreas/AreaLeftPos.position
 		
-	if last_true_axis > 0:
-		$Rotatable/AttackAreas/AttackArea.position = $Rotatable/AttackAreas/AreaRightPos.position
-	else:
-		$Rotatable/AttackAreas/AttackArea.position = $Rotatable/AttackAreas/AreaLeftPos.position
-	
-	#if state != sm.BUMPED:
-		#if is_running:
-			#if last_true_axis > 0:
-				#$Rotatable/Casts/SideCast.target_position = $Rotatable/Casts/RightTargetNormalPos.position
-			#else:
-				#$Rotatable/Casts/SideCast.target_position = $Rotatable/Casts/LeftTargetNormalPos.position
-		#elif is_on_floor():
-			#if Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) > 0:
-				#$Rotatable/Casts/SideCast.target_position = $Rotatable/Casts/RightTargetNormalPos.position
-			#if Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) < 0:
-				#$Rotatable/Casts/SideCast.target_position = $Rotatable/Casts/LeftTargetNormalPos.position
-	#$Casts/YVel.target_position = y_vel
-	#$Casts/XVel.target_position = velocity
-	physics_state_machine(delta)
-	if is_on_floor():
-		last_floor_normal = get_floor_normal()
-		last_floor_angle = get_floor_angle()
-		last_real_floor_angle = get_real_floor_angle()
+		#if state != sm.BUMPED:
+			#if is_running:
+				#if last_true_axis > 0:
+					#$Rotatable/Casts/SideCast.target_position = $Rotatable/Casts/RightTargetNormalPos.position
+				#else:
+					#$Rotatable/Casts/SideCast.target_position = $Rotatable/Casts/LeftTargetNormalPos.position
+			#elif is_on_floor():
+				#if Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) > 0:
+					#$Rotatable/Casts/SideCast.target_position = $Rotatable/Casts/RightTargetNormalPos.position
+				#if Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) < 0:
+					#$Rotatable/Casts/SideCast.target_position = $Rotatable/Casts/LeftTargetNormalPos.position
+		#$Casts/YVel.target_position = y_vel
+		#$Casts/XVel.target_position = velocity
+		physics_state_machine(delta)
+		if is_on_floor():
+			last_floor_normal = get_floor_normal()
+			last_floor_angle = get_floor_angle()
+			last_real_floor_angle = get_real_floor_angle()
 
-	#if !Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()):
-		#x_vel = Vector2.ZERO
-	if state != sm.DEBUG and state != sm.REBOUND and state != sm.RING and state != sm.GHOST:
-		velocity = x_vel + y_vel
-	if state == sm.GROUND:
-		if (Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) != 0) or is_running:
-			$Timers/StabilityTimer.start()
-					
-	if $Timers/StabilityTimer.is_stopped() and state == sm.GROUND:
-		velocity = Vector2.ZERO
-	
-	move_and_slide()
-	
-	
-	#if state == sm.GROUND:
-		#match last_true_axis:
-			#-1:
-				#$Rotatable/Casts/ReleaseCast.position = $Rotatable/Casts/ReleaseCastLeftPos.position
-			#1:
-				#$Rotatable/Casts/ReleaseCast.position = $Rotatable/Casts/ReleaseCastRightPos.position
-			#
-		#if !$Rotatable/Casts/ReleaseCast.is_colliding():
-			#is_releasing = true
-		#else:
-			#is_releasing = false
+		#if !Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()):
+			#x_vel = Vector2.ZERO
+		if state != sm.DEBUG and state != sm.REBOUND and state != sm.RING and state != sm.GHOST:
+			velocity = x_vel + y_vel
+		if state == sm.GROUND:
+			if (Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) != 0) or is_running:
+				$Timers/StabilityTimer.start()
+						
+		if $Timers/StabilityTimer.is_stopped() and state == sm.GROUND:
+			velocity = Vector2.ZERO
+		
+		move_and_slide()
+		
+		
+		#if state == sm.GROUND:
+			#match last_true_axis:
+				#-1:
+					#$Rotatable/Casts/ReleaseCast.position = $Rotatable/Casts/ReleaseCastLeftPos.position
+				#1:
+					#$Rotatable/Casts/ReleaseCast.position = $Rotatable/Casts/ReleaseCastRightPos.position
+				#
+			#if !$Rotatable/Casts/ReleaseCast.is_colliding():
+				#is_releasing = true
+			#else:
+				#is_releasing = false
 	
 func _process(delta: float) -> void:
-	#var fps = Engine.get_frames_per_second()
-	#var lerp_interval = velocity / fps
-	#var lerp_position = global_transform.origin + lerp_interval
-	#
-	#if fps > 60:
-		#global_transform.origin = lerp(global_transform.origin, lerp_position, 20 * delta)
+	if !Engine.is_editor_hint():
+		if state != sm.BUMPED:
+			if is_running:
+				if last_true_axis > 0:
+					$Sprite.scale.x = 2
+				else:
+					$Sprite.scale.x = -2
+			elif is_on_floor():
+				if Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) > 0:
+					$Sprite.scale.x = 2
+				if Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) < 0:
+					$Sprite.scale.x = -2
 
-	#character_swapped_indicator()
-	
-	if state != sm.BUMPED:
-		if is_running:
-			if last_true_axis > 0:
-				$Sprite.scale.x = 2
-			else:
-				$Sprite.scale.x = -2
-		elif is_on_floor():
-			if Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) > 0:
-				$Sprite.scale.x = 2
-			if Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) < 0:
-				$Sprite.scale.x = -2
-
-	state_machine(delta)
-	
+		state_machine(delta)
+		
 
 
 func physics_state_machine(delta : float) -> void:
@@ -264,20 +278,16 @@ func physics_state_machine(delta : float) -> void:
 				sprite_leveling()
 				rotatable_leveling()
 				
-				#
-				
 				attack()
 				
 				grinding()
 				slide_dash_start()
 				slide_dash()
 					
-				#
-					
 				running()
 				
 				if is_releasing:
-					y_vel = Vector2(0, 0)
+					y_vel = Vector2(0, 100)
 				else:
 					y_vel = -get_floor_normal() * speed
 			sm.AIR:
@@ -302,15 +312,13 @@ func physics_state_machine(delta : float) -> void:
 						if is_releasing:
 							if velocity.x < (speed - 150) and velocity.x > -(speed + 150):
 								movement_in_air_state_when_running()
-					#wall_attaching()
+					
 					is_jumping = false
-					#if is_cj_allowed:
-					if is_releasing and !is_releasing_vertically:
+					if is_releasing and $Rotatable.rotation < deg_to_rad(135):
 						jump_start(delta)
 					falling(delta)
 				else:
 					movement(delta, 0.5, 0.5)
-					#wall_attaching()
 					
 					is_jumping = true
 					jump_ceiling_blocker()
@@ -367,7 +375,6 @@ func physics_state_machine(delta : float) -> void:
 				if is_on_wall() and is_on_floor():
 					if get_floor_angle() + get_wall_angle() < rad_to_deg(136):
 						state = sm.GROUND
-				
 			sm.HURT:
 				pass
 			sm.BUMPED:
@@ -426,7 +433,7 @@ func state_machine(delta : float):
 				else:
 					if is_running:
 						if !$Timers/SlideDashTimer.is_stopped():
-							$Anim.play("slide")
+
 							if speed < MAX_SPEED - 10:
 								dust_paticle_emitters_start_emitting(0.25)
 							else:
@@ -503,8 +510,10 @@ func movement(delta : float, acc_mult : float = 1, fr_mult : float = 1) -> void:
 			if is_running:
 				x_vel = lerp(x_vel, Vector2.ZERO, FRICTION * fr_mult / 2)
 			else:
-				x_vel = lerp(x_vel, Vector2.ZERO, FRICTION * fr_mult)
-
+				if get_floor_angle() > deg_to_rad(40):
+					y_vel.x = 10 * get_real_floor_angle() / get_floor_angle()
+				else:
+					x_vel = lerp(x_vel, Vector2.ZERO, FRICTION * fr_mult)
 		else:
 			if is_running:
 				x_vel = lerp(x_vel, Vector2.ZERO, FRICTION * fr_mult)
@@ -513,7 +522,7 @@ func movement(delta : float, acc_mult : float = 1, fr_mult : float = 1) -> void:
 		
 func movement_in_air_state_when_running() -> void:
 	is_releasing_vertically = true
-	x_vel.x += last_true_axis * speed/24
+	x_vel.x += last_true_axis * speed/16
 		
 func running() -> void:
 	if Input.is_action_pressed("RUN" + get_player_index()) and ( (!($Rotatable/Casts/LeftCast.is_colliding() and last_true_axis == -1 and speed <= 700) and !($Rotatable/Casts/RightCast.is_colliding() and last_true_axis == 1 and speed <= 700)  ) or state == sm.WALL_SLIDING ):
@@ -539,6 +548,7 @@ func running() -> void:
 					else:
 						$Timers/BumpTimer.start(0.4)
 						$BumpParticleEmitter0.emitting = true
+						$BumpParticleEmitter1.emitting = true
 						ch.start_screen_shake_axis( 0.2, 0.1 )
 					
 					speed = NORMAL_SPEED
@@ -564,6 +574,7 @@ func running() -> void:
 				else:
 					$Timers/BumpTimer.start(0.4)
 					ch.start_screen_shake_axis( 0.2, 0.1 )
+					$BumpParticleEmitter1.emitting = true
 					$BumpParticleEmitter0.emitting = true
 				speed = NORMAL_SPEED
 				state = sm.BUMPED
@@ -631,10 +642,15 @@ func jump_start(delta : float) -> void:
 				last_true_axis = -last_true_axis
 			else:
 				is_axis_changing_delayed = true
+				
+			if get_floor_angle() > PI/4 and state == sm.GROUND:
+				$Anim.play("walljump")
+			
 			if get_floor_angle() > (3*PI)/4:
 				$Timers/FirstJumpStateTimer.start(0.15)
 			else:
 				$Timers/FirstJumpStateTimer.start(0.3)
+			#if abs($Rotatable.rotation) < deg_to_rad(135) and abs($Rotatable.rotation) > deg_to_rad(45):
 			#if get_real_floor_angle() > 0 and velocity.y < 40:
 				#last_true_axis = -last_true_axis
 			#if get_real_floor_angle() < 0 and velocity.y > 40:
@@ -663,7 +679,12 @@ func slide_dash_start() -> void:
 		#$Timers/SlideDashTimer.start()
 		#is_sliding = true
 	if (Input.is_action_pressed("3ACTION" + get_player_index()) and is_running) or is_in_slide_area == true:
+		if $Timers/SlideDashTimer.is_stopped():
+			$Anim.play("slide_start")
+		#elif $Anim.:
+			#$Anim.play("slide")
 		$Timers/SlideDashTimer.start()
+			
 		is_sliding = true
 		
 func slide_dash() -> void:
@@ -708,6 +729,9 @@ func rotatable_leveling() -> void:
 	
 func sprite_rotation_reset() -> void:
 	$Sprite.rotation = lerp_angle($Sprite.rotation, 0.0, 0.1)
+	
+func sprite_rotation_reset_immidiate() -> void:
+	$Sprite.rotation = 0
 	
 func rotatable_rotation_reset() -> void:
 	$Rotatable.rotation = 0
@@ -872,6 +896,7 @@ func _on_injured():
 	if component_system.hit_points <= 0:
 		#position = last_checkpoint_position
 		#state = sm.GHOST
+		dust_paticle_emitters_stop_emitting()
 		g.death_counter += 1
 		properties_update()
 
@@ -901,3 +926,6 @@ func _on_background_level_changed(new_bg_level : int) -> void:
 		g.current_bg_zoom = Vector2.ONE
 		reparent($"../../../../../Players")
 		scale = Vector2.ONE
+		
+func _remote_ch_screen_shake(force : float = 0.4, time : float = 0.2) -> void:
+	ch.start_screen_shake(force, time)

@@ -1,14 +1,14 @@
+AnimationPlayer
+Line2D
+CollisionPolygon2D
 Timer
 AnimatedSprite2D
-AnimationPlayer
 Sprite2D
 Node2D
 Node
 Camera2D
 GPUParticles2D
-Line2D
 Panel
 CheckButton
 Button
 ColorRect
-Label

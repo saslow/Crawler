@@ -44,6 +44,7 @@ func _on_body_entered(body):
 	if !Engine.is_editor_hint():
 		if body is Player:
 			if !$Shape.disabled:
+				visible = false
 				match type:
 					types.SCRAP:
 						ss.current_score += 1 * mult

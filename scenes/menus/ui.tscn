@@ -8,7 +8,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vgscs"]
 shader = ExtResource("2_reujc")
 shader_parameter/blur = 3.0
-shader_parameter/alpha = 0.3
+shader_parameter/alpha = 0.4
 
 [sub_resource type="Animation" id="Animation_6jm53"]
 resource_name = "fade"

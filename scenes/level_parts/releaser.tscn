@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://yoa67ngsooi6" path="res://scenes/_/deleter.tscn" id="2_26hln"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p3xve"]
-size = Vector2(176, 176)
+size = Vector2(176, 80)
 
 [node name="0" type="Area2D"]
 editor_description = "Костыль для разработки"
@@ -14,16 +14,17 @@ script = ExtResource("1_08i2d")
 
 [node name="Shape" type="CollisionShape2D" parent="."]
 z_index = 20
+position = Vector2(88, 0)
 shape = SubResource("RectangleShape2D_p3xve")
 debug_color = Color(0, 0, 0, 0)
 
 [node name="UpDirection" type="Label" parent="."]
 self_modulate = Color(0, 0, 0, 1)
 z_index = 20
-offset_left = -5.0
-offset_top = -15.0
-offset_right = 15.0
-offset_bottom = 8.0
+offset_left = 78.0
+offset_top = -11.0
+offset_right = 98.0
+offset_bottom = 12.0
 scale = Vector2(4, 4)
 pivot_offset = Vector2(10.25, 11)
 text = "0"

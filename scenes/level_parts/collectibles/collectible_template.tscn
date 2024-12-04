@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bltkm6kg3i6nq"]
+[gd_scene load_steps=4 format=3 uid="uid://bltkm6kg3i6nq"]
 
 [ext_resource type="Script" path="res://scripts/level_parts/collectibles/collectible_template.gd" id="1_0111y"]
+[ext_resource type="Texture2D" uid="uid://dtqhbrtui8dt6" path="res://sprites/_/grind_pipe_tile.png" id="2_2c6p1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w2ki7"]
 size = Vector2(90, 90)
@@ -22,5 +23,10 @@ offset_top = -70.7107
 offset_right = -5.25482
 offset_bottom = -47.7107
 text = "SCRAP 1"
+
+[node name="GrindPipeTile" type="Sprite2D" parent="."]
+position = Vector2(-0.656998, -0.18486)
+scale = Vector2(0.950308, 4.4656)
+texture = ExtResource("2_2c6p1")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

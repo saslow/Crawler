@@ -41,7 +41,7 @@ func _ready() -> void:
 				var h : Sprite2D = Sprite2D.new()
 				h.scale = Vector2(i.z, i.z) ##
 				#svp_holder.pivot_offset = Vector2(960, 540)
-				svp_holder.size = Vector2(1920, 1080)
+				#svp_holder.size = Vector2(1920, 1080)
 				#h.double_sided = false
 				#h.no_depth_test = true
 				h.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
