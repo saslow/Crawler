@@ -80,6 +80,7 @@ var is_bumping : bool = false
 var is_sliding : bool = false
 var is_releasing : bool
 var is_releasing_vertically : bool
+var at_ledge : bool
 var is_jumping : bool = false
 var is_axis_changing_delayed : bool = false
 var is_on_grind_pipe : bool = false
@@ -182,10 +183,10 @@ func _physics_process(delta: float) -> void:
 				y_vel = Vector2.ZERO
 				state = sm.AIR
 			
-		if last_true_axis > 0:
-			$Rotatable/AttackAreas/AttackArea.position = $Rotatable/AttackAreas/AreaRightPos.position
-		else:
-			$Rotatable/AttackAreas/AttackArea.position = $Rotatable/AttackAreas/AreaLeftPos.position
+		#if last_true_axis > 0:
+			#$Rotatable/AttackAreas/AttackArea.position = $Rotatable/AttackAreas/AreaRightPos.position
+		#else:
+			#$Rotatable/AttackAreas/AttackArea.position = $Rotatable/AttackAreas/AreaLeftPos.position
 		
 		#if state != sm.BUMPED:
 			#if is_running:
@@ -201,6 +202,7 @@ func _physics_process(delta: float) -> void:
 		#$Casts/YVel.target_position = y_vel
 		#$Casts/XVel.target_position = velocity
 		physics_state_machine(delta)
+		
 		if is_on_floor():
 			last_floor_normal = get_floor_normal()
 			last_floor_angle = get_floor_angle()
@@ -238,13 +240,25 @@ func _process(delta: float) -> void:
 			if is_running:
 				if last_true_axis > 0:
 					$Sprite.scale.x = 2
+					if $Timers/AttackTimers/AttackTimer.is_stopped():
+						$Rotatable/AttackSprite.scale.x = 1.5
+						$Rotatable/AttackAreas/AttackAreaRemotePosition.position.x = 196
 				else:
 					$Sprite.scale.x = -2
+					if $Timers/AttackTimers/AttackTimer.is_stopped():
+						$Rotatable/AttackSprite.scale.x = -1.5
+						$Rotatable/AttackAreas/AttackAreaRemotePosition.position.x = -196
 			elif is_on_floor():
 				if Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) > 0:
 					$Sprite.scale.x = 2
+					if $Timers/AttackTimers/AttackTimer.is_stopped():
+						$Rotatable/AttackSprite.scale.x = 1.5
+						$Rotatable/AttackAreas/AttackAreaRemotePosition.position.x = 196
 				if Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) < 0:
 					$Sprite.scale.x = -2
+					if $Timers/AttackTimers/AttackTimer.is_stopped():
+						$Rotatable/AttackSprite.scale.x = -1.5
+						$Rotatable/AttackAreas/AttackAreaRemotePosition.position.x = -196
 
 		state_machine(delta)
 		
@@ -268,6 +282,7 @@ func physics_state_machine(delta : float) -> void:
 				last_real_wall_angle = 0.0
 				last_wall_normal = Vector2.ZERO
 				$Timers/FloorStickBlockingTimer.stop()
+				running()
 				stop_jump_timers()
 				if !is_axis_changing_delayed and !is_sliding:
 					last_true_axis_changing()
@@ -284,7 +299,6 @@ func physics_state_machine(delta : float) -> void:
 				slide_dash_start()
 				slide_dash()
 					
-				running()
 				
 				if is_releasing:
 					y_vel = Vector2(0, 100)
@@ -424,53 +438,62 @@ func physics_state_machine(delta : float) -> void:
 			
 
 func state_machine(delta : float):
-	match state:
-		sm.GROUND:
-			is_jump_to_fall_transition = false
-			if $Anim.current_animation != "rebound":
-				if get_real_velocity().length() < 100 and !(is_running or Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) != 0):
-					$Anim.play("idle")
-				else:
-					if is_running:
-						if !$Timers/SlideDashTimer.is_stopped():
+		#$Sprite.visible = !$Rotatable/AttackSprite/AttackAnim.is_playing()
+		if $Rotatable/AttackSprite/AttackAnim.is_playing():
+			$Sprite.self_modulate.a = 0
+		else:
+			$Sprite.self_modulate.a = 1
+			
+		match state:
+			sm.GROUND:
+				is_jump_to_fall_transition = false
+				if $Anim.current_animation != "rebound":
+					if get_real_velocity().length() < 100 and !(is_running or Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) != 0):
+						$Anim.play("idle")
+					else:
+						if is_running:
+							if !$Timers/SlideDashTimer.is_stopped():
 
-							if speed < MAX_SPEED - 10:
+								if speed < MAX_SPEED - 10:
+									dust_paticle_emitters_start_emitting(0.25)
+								else:
+									dust_paticle_emitters_start_emitting(0.5)
+							elif speed < MAX_SPEED - 10:
+								$Anim.play("walk_to_run")
 								dust_paticle_emitters_start_emitting(0.25)
 							else:
+								$Anim.play("run")
 								dust_paticle_emitters_start_emitting(0.5)
-						elif speed < MAX_SPEED - 10:
-							$Anim.play("walk_to_run")
-							dust_paticle_emitters_start_emitting(0.25)
 						else:
-							$Anim.play("run")
-							dust_paticle_emitters_start_emitting(0.5)
-					else:
-						dust_paticle_emitters_stop_emitting()
-						if (get_real_velocity().length() < 100 and Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) == 0) or is_on_wall():
-							$Anim.play("idle")
+							dust_paticle_emitters_stop_emitting()
+							if (get_real_velocity().length() < 100 and Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) == 0) or is_on_wall():
+								#if at_ledge:
+									#$Anim.play("at_ledge")
+								#else:
+								$Anim.play("idle")
+							else:
+								$Anim.play("walk")
+			sm.AIR:
+				dust_paticle_emitters_stop_emitting()
+				if !is_running and !is_releasing:# or is_releasing:
+					if $Timers/FirstJumpStateTimer.is_stopped() and $Timers/SecondJumpStateTimer.is_stopped():
+						if is_jump_to_fall_transition:
+							$Anim.play("jump_to_fall")
 						else:
-							$Anim.play("walk")
-		sm.AIR:
-			dust_paticle_emitters_stop_emitting()
-			if !is_running and !is_releasing:# or is_releasing:
-				if $Timers/FirstJumpStateTimer.is_stopped() and $Timers/SecondJumpStateTimer.is_stopped():
-					if is_jump_to_fall_transition:
-						$Anim.play("jump_to_fall")
+							$Anim.play("fall")
+						
 					else:
-						$Anim.play("fall")
-					
-				else:
-					$Anim.play("jump")
-		sm.HURT:
-			pass
-		sm.REBOUND:
-			dust_paticle_emitters_stop_emitting()
-		sm.BUMPED:
-			dust_paticle_emitters_stop_emitting()
-		sm.RUN_STOPPING:
-			pass
-		sm.DEBUG:
-			pass
+						$Anim.play("jump")
+			sm.HURT:
+				pass
+			sm.REBOUND:
+				dust_paticle_emitters_stop_emitting()
+			sm.BUMPED:
+				dust_paticle_emitters_stop_emitting()
+			sm.RUN_STOPPING:
+				pass
+			sm.DEBUG:
+				pass
 
 func _on_anim_animation_changed(old_name, new_name) -> void:
 	pass
@@ -552,6 +575,11 @@ func running() -> void:
 						ch.start_screen_shake_axis( 0.2, 0.1 )
 					
 					speed = NORMAL_SPEED
+					
+					if get_floor_angle() > PI/4:
+						$Sprite.rotation = -PI/2
+					else:
+						$Sprite.rotation = 0
 					state = sm.BUMPED
 				#if $Rotatable/Casts/LeftCast.is_colliding():
 					#pass
@@ -637,7 +665,8 @@ func jump_start(delta : float) -> void:
 		$Timers/SlideDashTimer.stop()
 		$Timers/FloorStickBlockingTimer.start()
 		
-		if ( get_floor_angle() > deg_to_rad(45) ) and is_sliding == false:
+		if ( last_floor_angle > deg_to_rad(45) ) and is_sliding == false:
+		#if ( get_floor_angle() > deg_to_rad(45) ) and is_sliding == false:
 			if x_vel.y < 0:
 				last_true_axis = -last_true_axis
 			else:
@@ -712,12 +741,29 @@ func grinding() -> void:
 		#modulate = Color(0, 0, 0, 1)
 		
 func attack() -> void:
-	if Input.is_action_just_pressed("1ACTION" + get_player_index()) and $Timers/AttackTimers/AttackTimer.time_left < $Timers/AttackTimers/AttackTimer.wait_time/2 and state != sm.GHOST:
+	if Input.is_action_just_pressed("1ACTION" + get_player_index()) and $Timers/AttackTimers/AttackTimer.time_left < $Timers/AttackTimers/AttackTimer.wait_time/3 and state != sm.GHOST and $Timers/TurningTimer.is_stopped():
 		#$Rotatable/AttackAreas/AttackArea/Shape.disabled = false
-		ch.start_screen_shake()
+		play_random_attack_animation()
 		$Rotatable/AttackAreas/AttackArea.monitoring = true
 		$Rotatable/AttackAreas/AttackArea/CollisionShape.set_deferred("debug_color", Color(1, 0, 0, 0.3))
 		$Timers/AttackTimers/AttackTimer.start()
+		
+		
+var last_attack_anim_name : String = ''
+func play_random_attack_animation() -> void:
+	var names = ["0", "1", "2"]
+	
+	match last_attack_anim_name:
+		'0':
+			last_attack_anim_name = ["1", "2"].pick_random()
+		'1':
+			last_attack_anim_name = ["0", "2"].pick_random()
+		'2':
+			last_attack_anim_name = ["0", "1"].pick_random()
+		_:
+			last_attack_anim_name = names.pick_random()
+			
+	$Rotatable/AttackSprite/AttackAnim.play(last_attack_anim_name)
 		
 func sprite_leveling(weight : float = 0.2) -> void:
 	#if !is_releasing:
@@ -725,7 +771,7 @@ func sprite_leveling(weight : float = 0.2) -> void:
 	if $Anim.current_animation != "rebound":
 		$Sprite.rotation = lerp_angle($Sprite.rotation, get_real_floor_angle(), weight)
 func rotatable_leveling() -> void:
-	$Rotatable.rotation = get_real_floor_angle()
+	$Rotatable.rotation = lerp_angle($Sprite.rotation, get_real_floor_angle(), 0.05)
 	
 func sprite_rotation_reset() -> void:
 	$Sprite.rotation = lerp_angle($Sprite.rotation, 0.0, 0.1)
@@ -872,11 +918,17 @@ func dust_paticle_emitters_start_emitting(lifetime : float = 1.0) -> void:
 		$Rotatable/DustParticleEmitter1.emitting = true
 		$Rotatable/DustParticleEmitter0.lifetime = lifetime
 		$Rotatable/DustParticleEmitter1.lifetime = lifetime
+		#$Sprite/DustParticleEmitter0.emitting = true
+		#$Sprite/DustParticleEmitter1.emitting = true
+		#$Sprite/DustParticleEmitter0.lifetime = lifetime
+		#$Sprite/DustParticleEmitter1.lifetime = lifetime
 	
 func dust_paticle_emitters_stop_emitting() -> void:
 	if $Timers/FloorStickBlockingTimer.is_stopped():
 		$Rotatable/DustParticleEmitter0.emitting = false
 		$Rotatable/DustParticleEmitter1.emitting = false
+		#$Sprite/DustParticleEmitter0.emitting = false
+		#$Sprite/DustParticleEmitter1.emitting = false
 
 func _on_turning_timer_timeout():
 	pass

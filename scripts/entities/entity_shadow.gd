@@ -12,7 +12,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	#print(str(get_ray_lenght()) + " " + str(get_ray_lenght()/321))
-	
+	ray.global_rotation = 0
 	if ray.is_colliding():
 		shadow.global_position = ray.get_collision_point()
 		shadow.rotation = lerp(shadow.rotation, Vector2.UP.angle_to(ray.get_collision_normal()), 0.2)

@@ -28,7 +28,9 @@ instance_dock/scenes=[{
 "scroll": 0
 }, {
 "name": "enemies",
-"scenes": [],
+"scenes": [{
+"scene": "res://scenes/enemies/trash_demon/trash_demon.tscn"
+}],
 "scroll": 0
 }, {
 "name": "friezes",

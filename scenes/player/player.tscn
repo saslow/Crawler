@@ -1,4 +1,4 @@
-[gd_scene load_steps=110 format=3 uid="uid://dhp71vl6av8ov"]
+[gd_scene load_steps=129 format=3 uid="uid://dhp71vl6av8ov"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_wfvhb"]
 [ext_resource type="Texture2D" uid="uid://bhdqe7q3s6pvs" path="res://sprites/entities/boy/boy_bump/boy bump.0001.png" id="2_4i5rq"]
@@ -78,7 +78,19 @@
 [ext_resource type="Texture2D" uid="uid://bs68v8byec114" path="res://sprites/entities/boy/boy_slide/slide_start/slide_start0002.png" id="71_mb7dn"]
 [ext_resource type="Texture2D" uid="uid://cial2whkonjuh" path="res://sprites/entities/boy/boy_slide/slide_start/slide_start0003.png" id="72_nf4ao"]
 [ext_resource type="Texture2D" uid="uid://cx16lxxvql3l5" path="res://sprites/entities/boy/boy_slide/slide_start/slide_start0004.png" id="73_2slxt"]
+[ext_resource type="Texture2D" uid="uid://vjm1lfgju3m1" path="res://sprites/entities/boy/boy_attack/boy_attack0/boy_attack0_0000.png" id="74_s3wrp"]
 [ext_resource type="Texture2D" uid="uid://dsvepbmtujlgh" path="res://sprites/entities/boy/boy_slide/slide_start/slide_start0005.png" id="74_sjjc8"]
+[ext_resource type="Texture2D" uid="uid://ciodmiflfhid3" path="res://sprites/entities/boy/boy_attack/boy_attack0/boy_attack0_0001.png" id="75_ahysd"]
+[ext_resource type="Texture2D" uid="uid://dsro5h4jpgk2w" path="res://sprites/entities/boy/boy_attack/boy_attack0/boy_attack0_0002.png" id="76_eicqh"]
+[ext_resource type="Texture2D" uid="uid://dd8ta41e5mv18" path="res://sprites/entities/boy/boy_attack/boy_attack1/boy_attack1_0000.png" id="77_il6ok"]
+[ext_resource type="Texture2D" uid="uid://cc4wil16l8l3n" path="res://sprites/entities/boy/boy_attack/boy_attack1/boy_attack1_0001.png" id="78_d4w4l"]
+[ext_resource type="Texture2D" uid="uid://c486ru0n4rb0f" path="res://sprites/entities/boy/boy_attack/boy_attack1/boy_attack1_0002.png" id="79_v80xt"]
+[ext_resource type="Texture2D" uid="uid://ct278hkg2v84o" path="res://sprites/entities/boy/boy_attack/boy_attack2/boy_attack2_0000.png" id="80_nhv5c"]
+[ext_resource type="Texture2D" uid="uid://bl7t0vioj3ya2" path="res://sprites/entities/boy/boy_attack/boy_attack0/boy_attack0_0005.png" id="81_5uykb"]
+[ext_resource type="Texture2D" uid="uid://deu1nvb3qg2sn" path="res://sprites/entities/boy/boy_attack/boy_attack2/boy_attack2_0001.png" id="81_s4kah"]
+[ext_resource type="Texture2D" uid="uid://bt21t5tilc750" path="res://sprites/entities/boy/boy_attack/boy_attack2/boy_attack2_0002.png" id="82_6a0pu"]
+[ext_resource type="Texture2D" uid="uid://df6amk1yo4av5" path="res://sprites/entities/boy/boy_attack/boy_attack1/boy_attack1_0005.png" id="85_r100s"]
+[ext_resource type="Texture2D" uid="uid://cewqmx4ovv54d" path="res://sprites/entities/boy/boy_attack/boy_attack2/boy_attack2_0005.png" id="89_at7u5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fuixc"]
 size = Vector2(1200, 206)
@@ -98,7 +110,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("29_xply5")]
+"values": [ExtResource("2_jehxh")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -137,6 +149,23 @@ tracks/3/keys = {
 "values": [Vector2(12, -25)]
 }
 
+[sub_resource type="Animation" id="Animation_nmghk"]
+resource_name = "at_ledge"
+length = 0.0833417
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("42_cp7mm")]
+}
+
 [sub_resource type="Animation" id="Animation_uxgy7"]
 resource_name = "bump"
 length = 0.60001
@@ -164,6 +193,9 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(25, -28), Vector2(25, -28)]
 }
+
+[sub_resource type="Animation" id="Animation_hfj6v"]
+resource_name = "death0"
 
 [sub_resource type="Animation" id="Animation_ed8bc"]
 resource_name = "fall"
@@ -688,7 +720,9 @@ tracks/2/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jpkbe"]
 _data = {
 "RESET": SubResource("Animation_qfl5w"),
+"at_ledge": SubResource("Animation_nmghk"),
 "bump": SubResource("Animation_uxgy7"),
+"death0": SubResource("Animation_hfj6v"),
 "fall": SubResource("Animation_ed8bc"),
 "idle": SubResource("Animation_oqob7"),
 "jump": SubResource("Animation_mapvx"),
@@ -736,9 +770,81 @@ scale_curve = SubResource("CurveTexture_3832s")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xiuep"]
 size = Vector2(122, 12)
 
+[sub_resource type="Animation" id="Animation_s6a2m"]
+resource_name = "0"
+length = 0.16667
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Rotatable/AttackSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.133333, 0.166667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("74_s3wrp"), ExtResource("75_ahysd"), ExtResource("76_eicqh"), ExtResource("81_5uykb"), null]
+}
+
+[sub_resource type="Animation" id="Animation_f0mpt"]
+resource_name = "1"
+length = 0.16667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Rotatable/AttackSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.133333, 0.166667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("77_il6ok"), ExtResource("78_d4w4l"), ExtResource("79_v80xt"), ExtResource("85_r100s"), null]
+}
+
+[sub_resource type="Animation" id="Animation_fjpla"]
+resource_name = "2"
+length = 0.16667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Rotatable/AttackSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.133333, 0.166667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("80_nhv5c"), ExtResource("81_s4kah"), ExtResource("82_6a0pu"), ExtResource("89_at7u5"), null]
+}
+
+[sub_resource type="Animation" id="Animation_aehsr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Rotatable/AttackSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7p874"]
+_data = {
+"0": SubResource("Animation_s6a2m"),
+"1": SubResource("Animation_f0mpt"),
+"2": SubResource("Animation_fjpla"),
+"RESET": SubResource("Animation_aehsr")
+}
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o1n1h"]
-radius = 48.0
-height = 304.0
+radius = 80.0
+height = 264.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jkgb2"]
 size = Vector2(32, 136.5)
@@ -809,9 +915,8 @@ libraries = {
 }
 
 [node name="Sprite" type="Sprite2D" parent="."]
-y_sort_enabled = true
 scale = Vector2(2, 2)
-texture = ExtResource("29_xply5")
+texture = ExtResource("2_jehxh")
 offset = Vector2(12, -25)
 metadata/_edit_lock_ = true
 
@@ -848,16 +953,25 @@ shape = SubResource("RectangleShape2D_xiuep")
 [node name="Rotatable" type="Node2D" parent="."]
 show_behind_parent = true
 
+[node name="AttackSprite" type="Sprite2D" parent="Rotatable"]
+scale = Vector2(1.5, 1.75)
+offset = Vector2(60, -50)
+
+[node name="AttackAnim" type="AnimationPlayer" parent="Rotatable/AttackSprite"]
+root_node = NodePath("../../..")
+libraries = {
+"": SubResource("AnimationLibrary_7p874")
+}
+speed_scale = 0.8
+
 [node name="AttackAreas" type="Node2D" parent="Rotatable"]
 
-[node name="AreaRightPos" type="Node2D" parent="Rotatable/AttackAreas"]
-position = Vector2(152, -16)
-
-[node name="AreaLeftPos" type="Node2D" parent="Rotatable/AttackAreas"]
-position = Vector2(-152, -16)
+[node name="AttackAreaRemotePosition" type="RemoteTransform2D" parent="Rotatable/AttackAreas"]
+position = Vector2(196, -60)
+remote_path = NodePath("../AttackArea")
 
 [node name="AttackArea" parent="Rotatable/AttackAreas" instance=ExtResource("61_lv68y")]
-position = Vector2(152, -16)
+position = Vector2(196, -60)
 collision_layer = 32
 collision_mask = 8
 monitoring = false
@@ -977,7 +1091,7 @@ fixed_fps = 24
 interpolate = false
 
 [node name="Shape" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(8, -40, 24, -32, 32, -24, 40, -8, 40, 8, 32, 24, 24, 32, 8, 40, -8, 40, -24, 32, -32, 24, -40, 8, -40, -8, -32, -24, -24, -32, -8, -40)
+polygon = PackedVector2Array(8, -40, 28, -28, 40, 0, 28, 28, 8, 40, -8, 40, -28, 28, -40, 0, -28, -28, -8, -40)
 
 [node name="Timers" type="Node" parent="."]
 
@@ -1041,12 +1155,13 @@ one_shot = true
 [node name="AttackTimers" type="Node" parent="Timers"]
 
 [node name="AttackTimer" type="Timer" parent="Timers/AttackTimers"]
-wait_time = 0.2
+process_callback = 0
+wait_time = 0.13
 one_shot = true
 
 [node name="StabilityTimer" type="Timer" parent="Timers"]
 process_callback = 0
-wait_time = 0.3
+wait_time = 0.2
 one_shot = true
 
 [node name="Checkpoint" parent="." instance=ExtResource("39_5t6tl")]
