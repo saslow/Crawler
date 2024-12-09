@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dsfbgmvpul115"]
 
 [ext_resource type="Texture2D" uid="uid://d0qj0mvftdxq5" path="res://sprites/level_parts/waterline/waterline_swamp.png" id="1_a4ai0"]
-[ext_resource type="Script" path="res://scripts/level_parts/waterline/swamp_waterline_shifting.gd" id="1_uii5m"]
+[ext_resource type="Script" uid="uid://csa14eye2ubvd" path="res://scripts/level_parts/waterline/swamp_waterline_shifting.gd" id="1_uii5m"]
 
 [sub_resource type="Animation" id="Animation_icusd"]
 length = 0.001
@@ -37,8 +37,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_iqovt"]
 _data = {
-"RESET": SubResource("Animation_icusd"),
-"shifting": SubResource("Animation_xpaw6")
+&"RESET": SubResource("Animation_icusd"),
+&"shifting": SubResource("Animation_xpaw6")
 }
 
 [node name="SwampWaterline" type="Node2D"]
@@ -55,7 +55,7 @@ texture_mode = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_iqovt")
+&"": SubResource("AnimationLibrary_iqovt")
 }
 autoplay = "shifting"
 speed_scale = 0.5

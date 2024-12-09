@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cglchcskg706i"]
 
-[ext_resource type="Script" path="res://scripts/enemies/enemy_template.gd" id="1_40kip"]
+[ext_resource type="Script" uid="uid://c356pptmbt8u" path="res://scripts/enemies/enemy_template.gd" id="1_40kip"]
 
 [node name="EnemyTemplate" type="PathFollow2D"]
 editor_description = "Template for creating enemies, that follow Path2D"

@@ -1,13 +1,13 @@
 [gd_scene load_steps=14 format=3 uid="uid://cks0nfml4ictn"]
 
-[ext_resource type="Script" path="res://scripts/level_parts/grind_pipe.gd" id="1_r72hc"]
-[ext_resource type="Script" path="res://addons/rmsmartshape/shapes/shape_open.gd" id="2_bfqfb"]
-[ext_resource type="Script" path="res://addons/rmsmartshape/shapes/point_array.gd" id="3_k5x42"]
-[ext_resource type="Script" path="res://addons/rmsmartshape/materials/edge_material.gd" id="4_c3m4y"]
-[ext_resource type="Script" path="res://addons/rmsmartshape/materials/shape_material.gd" id="4_l4o5y"]
+[ext_resource type="Script" uid="uid://gisxj7ih3fj2" path="res://scripts/level_parts/grind_pipe.gd" id="1_r72hc"]
+[ext_resource type="Script" uid="uid://noeqai0hnh46" path="res://addons/rmsmartshape/shapes/shape_open.gd" id="2_bfqfb"]
+[ext_resource type="Script" uid="uid://cntaihuljmr1j" path="res://addons/rmsmartshape/shapes/point_array.gd" id="3_k5x42"]
+[ext_resource type="Script" uid="uid://bivkhs70dj8y3" path="res://addons/rmsmartshape/materials/edge_material.gd" id="4_c3m4y"]
+[ext_resource type="Script" uid="uid://dg68m66rbc2iq" path="res://addons/rmsmartshape/materials/shape_material.gd" id="4_l4o5y"]
 [ext_resource type="Texture2D" uid="uid://dtqhbrtui8dt6" path="res://sprites/_/grind_pipe_tile.png" id="5_c8fgb"]
-[ext_resource type="Script" path="res://addons/rmsmartshape/normal_range.gd" id="6_sfw0a"]
-[ext_resource type="Script" path="res://addons/rmsmartshape/materials/edge_material_metadata.gd" id="7_ljene"]
+[ext_resource type="Script" uid="uid://bj6j3p058j2wf" path="res://addons/rmsmartshape/normal_range.gd" id="6_sfw0a"]
+[ext_resource type="Script" uid="uid://dugib1ufngi0k" path="res://addons/rmsmartshape/materials/edge_material_metadata.gd" id="7_ljene"]
 
 [sub_resource type="Resource" id="Resource_couey"]
 script = ExtResource("4_c3m4y")

@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="SS2D_Material_Shape" load_steps=12 format=3 uid="uid://bthev3f165hms"]
 
-[ext_resource type="Script" path="res://addons/rmsmartshape/materials/edge_material.gd" id="1_8sms8"]
+[ext_resource type="Script" uid="uid://bivkhs70dj8y3" path="res://addons/rmsmartshape/materials/edge_material.gd" id="1_8sms8"]
 [ext_resource type="Texture2D" uid="uid://btmj5tssherxk" path="res://sprites/friezesets/bluebox/bluebox_edge_top.png" id="2_3ifol"]
 [ext_resource type="Texture2D" uid="uid://fe80ru1a3gwm" path="res://sprites/friezesets/bluebox/bluebox_edge_corner_inner.png" id="3_v5dps"]
 [ext_resource type="Texture2D" uid="uid://b8jo3givln2l" path="res://sprites/friezesets/bluebox/bluebox_edge_corner_outer.png" id="4_fwtnr"]
-[ext_resource type="Script" path="res://addons/rmsmartshape/normal_range.gd" id="5_iouuv"]
-[ext_resource type="Script" path="res://addons/rmsmartshape/materials/edge_material_metadata.gd" id="6_jyexe"]
+[ext_resource type="Script" uid="uid://bj6j3p058j2wf" path="res://addons/rmsmartshape/normal_range.gd" id="5_iouuv"]
+[ext_resource type="Script" uid="uid://dugib1ufngi0k" path="res://addons/rmsmartshape/materials/edge_material_metadata.gd" id="6_jyexe"]
 [ext_resource type="Texture2D" uid="uid://bpbph5uawf5ob" path="res://sprites/friezesets/bluebox/bluebox_fill.png" id="7_2tlpk"]
-[ext_resource type="Script" path="res://addons/rmsmartshape/materials/shape_material.gd" id="8_lkoxd"]
+[ext_resource type="Script" uid="uid://dg68m66rbc2iq" path="res://addons/rmsmartshape/materials/shape_material.gd" id="8_lkoxd"]
 
 [sub_resource type="Resource" id="Resource_ycebv"]
 script = ExtResource("1_8sms8")

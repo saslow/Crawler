@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ca6mekv4o5fgq"]
 
-[ext_resource type="Script" path="res://scripts/entities/entity_shadow.gd" id="1_vaahs"]
+[ext_resource type="Script" uid="uid://mivb7gfvkdxg" path="res://scripts/entities/entity_shadow.gd" id="1_vaahs"]
 
 [node name="ShadowRoot" type="Node2D"]
 script = ExtResource("1_vaahs")

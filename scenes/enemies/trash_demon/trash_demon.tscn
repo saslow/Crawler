@@ -1,7 +1,7 @@
 [gd_scene load_steps=53 format=3 uid="uid://d3c3agrddqtyt"]
 
 [ext_resource type="PackedScene" uid="uid://cglchcskg706i" path="res://scenes/enemies/enemy_template.tscn" id="1_uh8uw"]
-[ext_resource type="Script" path="res://scripts/enemies/trash_demon/trash_demon.gd" id="2_lnpk4"]
+[ext_resource type="Script" uid="uid://buieljqwkth8q" path="res://scripts/enemies/trash_demon/trash_demon.gd" id="2_lnpk4"]
 [ext_resource type="Texture2D" uid="uid://bx82o3344ifxd" path="res://sprites/entities/trash_demon/spin/speen0000.png" id="3_2hxp7"]
 [ext_resource type="Texture2D" uid="uid://ch4fqfa2yathh" path="res://sprites/entities/trash_demon/idle/idle0000.png" id="3_p7j5b"]
 [ext_resource type="Texture2D" uid="uid://dj04tmh4jhjr6" path="res://sprites/entities/trash_demon/spin/speen0001.png" id="4_s5u1w"]
@@ -179,10 +179,10 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hiwta"]
 _data = {
-"RESET": SubResource("Animation_gumcn"),
-"attack": SubResource("Animation_8hquj"),
-"prepare": SubResource("Animation_kyngf"),
-"walk": SubResource("Animation_6it3p")
+&"RESET": SubResource("Animation_gumcn"),
+&"attack": SubResource("Animation_8hquj"),
+&"prepare": SubResource("Animation_kyngf"),
+&"walk": SubResource("Animation_6it3p")
 }
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pb25v"]
@@ -377,7 +377,7 @@ script = ExtResource("2_lnpk4")
 [node name="Anim" type="AnimationPlayer" parent="Behavior" index="0"]
 root_node = NodePath("../..")
 libraries = {
-"": SubResource("AnimationLibrary_hiwta")
+&"": SubResource("AnimationLibrary_hiwta")
 }
 
 [node name="TurningTimer" type="Timer" parent="Behavior" index="1"]

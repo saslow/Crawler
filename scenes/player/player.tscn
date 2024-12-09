@@ -1,6 +1,6 @@
 [gd_scene load_steps=129 format=3 uid="uid://dhp71vl6av8ov"]
 
-[ext_resource type="Script" path="res://scripts/player/player.gd" id="1_wfvhb"]
+[ext_resource type="Script" uid="uid://cg7c26wojljsk" path="res://scripts/player/player.gd" id="1_wfvhb"]
 [ext_resource type="Texture2D" uid="uid://bhdqe7q3s6pvs" path="res://sprites/entities/boy/boy_bump/boy bump.0001.png" id="2_4i5rq"]
 [ext_resource type="PackedScene" uid="uid://ca6mekv4o5fgq" path="res://scenes/entities/shadow.tscn" id="2_5ay5d"]
 [ext_resource type="Texture2D" uid="uid://dbn7im6ddd4pl" path="res://sprites/entities/boy/boy_jump/boy_jump0000.png" id="2_cimog"]
@@ -719,23 +719,23 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jpkbe"]
 _data = {
-"RESET": SubResource("Animation_qfl5w"),
-"at_ledge": SubResource("Animation_nmghk"),
-"bump": SubResource("Animation_uxgy7"),
-"death0": SubResource("Animation_hfj6v"),
-"fall": SubResource("Animation_ed8bc"),
-"idle": SubResource("Animation_oqob7"),
-"jump": SubResource("Animation_mapvx"),
-"jump_to_fall": SubResource("Animation_6dpeq"),
-"rebound": SubResource("Animation_untm7"),
-"rebound_fall": SubResource("Animation_xx3p6"),
-"run": SubResource("Animation_ahvci"),
-"run_to_idle": SubResource("Animation_joimf"),
-"slide": SubResource("Animation_lbjnp"),
-"slide_start": SubResource("Animation_47kv3"),
-"walk": SubResource("Animation_xdvwl"),
-"walk_to_run": SubResource("Animation_0jd3j"),
-"walljump": SubResource("Animation_kdas7")
+&"RESET": SubResource("Animation_qfl5w"),
+&"at_ledge": SubResource("Animation_nmghk"),
+&"bump": SubResource("Animation_uxgy7"),
+&"death0": SubResource("Animation_hfj6v"),
+&"fall": SubResource("Animation_ed8bc"),
+&"idle": SubResource("Animation_oqob7"),
+&"jump": SubResource("Animation_mapvx"),
+&"jump_to_fall": SubResource("Animation_6dpeq"),
+&"rebound": SubResource("Animation_untm7"),
+&"rebound_fall": SubResource("Animation_xx3p6"),
+&"run": SubResource("Animation_ahvci"),
+&"run_to_idle": SubResource("Animation_joimf"),
+&"slide": SubResource("Animation_lbjnp"),
+&"slide_start": SubResource("Animation_47kv3"),
+&"walk": SubResource("Animation_xdvwl"),
+&"walk_to_run": SubResource("Animation_0jd3j"),
+&"walljump": SubResource("Animation_kdas7")
 }
 
 [sub_resource type="Curve" id="Curve_uvxci"]
@@ -836,10 +836,10 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7p874"]
 _data = {
-"0": SubResource("Animation_s6a2m"),
-"1": SubResource("Animation_f0mpt"),
-"2": SubResource("Animation_fjpla"),
-"RESET": SubResource("Animation_aehsr")
+&"0": SubResource("Animation_s6a2m"),
+&"1": SubResource("Animation_f0mpt"),
+&"2": SubResource("Animation_fjpla"),
+&"RESET": SubResource("Animation_aehsr")
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o1n1h"]
@@ -911,7 +911,7 @@ text = "TEST"
 
 [node name="Anim" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_jpkbe")
+&"": SubResource("AnimationLibrary_jpkbe")
 }
 
 [node name="Sprite" type="Sprite2D" parent="."]
@@ -924,23 +924,23 @@ metadata/_edit_lock_ = true
 show_behind_parent = true
 position = Vector2(0, -30)
 emitting = false
-process_material = SubResource("ParticleProcessMaterial_erueo")
-texture = ExtResource("63_j0i8q")
 lifetime = 0.35
 one_shot = true
 explosiveness = 1.0
 fixed_fps = 24
+texture = ExtResource("63_j0i8q")
+process_material = SubResource("ParticleProcessMaterial_erueo")
 
 [node name="BumpParticleEmitter1" type="GPUParticles2D" parent="."]
 show_behind_parent = true
 position = Vector2(0, -30)
 emitting = false
-process_material = SubResource("ParticleProcessMaterial_34i2u")
-texture = ExtResource("64_evo3n")
 lifetime = 0.35
 one_shot = true
 explosiveness = 1.0
 fixed_fps = 24
+texture = ExtResource("64_evo3n")
+process_material = SubResource("ParticleProcessMaterial_34i2u")
 
 [node name="CrushingArea" type="Area2D" parent="."]
 collision_layer = 0
@@ -960,7 +960,7 @@ offset = Vector2(60, -50)
 [node name="AttackAnim" type="AnimationPlayer" parent="Rotatable/AttackSprite"]
 root_node = NodePath("../../..")
 libraries = {
-"": SubResource("AnimationLibrary_7p874")
+&"": SubResource("AnimationLibrary_7p874")
 }
 speed_scale = 0.8
 
@@ -1073,10 +1073,10 @@ position = Vector2(-36, 38)
 scale = Vector2(2, 2)
 emitting = false
 amount = 24
-process_material = SubResource("ParticleProcessMaterial_8b5vi")
-texture = ExtResource("62_mbjov")
 fixed_fps = 24
 interpolate = false
+texture = ExtResource("62_mbjov")
+process_material = SubResource("ParticleProcessMaterial_8b5vi")
 
 [node name="DustParticleEmitter1" type="GPUParticles2D" parent="Rotatable"]
 modulate = Color(0.609375, 0.57843, 0.533203, 1)
@@ -1085,10 +1085,10 @@ position = Vector2(-36, 38)
 scale = Vector2(2, 2)
 emitting = false
 amount = 24
-process_material = SubResource("ParticleProcessMaterial_8b5vi")
-texture = ExtResource("63_vu8ds")
 fixed_fps = 24
 interpolate = false
+texture = ExtResource("63_vu8ds")
+process_material = SubResource("ParticleProcessMaterial_8b5vi")
 
 [node name="Shape" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(8, -40, 28, -28, 40, 0, 28, 28, 8, 40, -8, 40, -28, 28, -40, 0, -28, -28, -8, -40)

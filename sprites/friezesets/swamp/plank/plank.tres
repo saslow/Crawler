@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="SS2D_Material_Shape" load_steps=11 format=3 uid="uid://dsf1lt8m4b8o7"]
 
-[ext_resource type="Script" path="res://addons/rmsmartshape/materials/edge_material_metadata.gd" id="1_l2k6f"]
-[ext_resource type="Script" path="res://addons/rmsmartshape/materials/shape_material.gd" id="2_0dmsm"]
-[ext_resource type="Script" path="res://addons/rmsmartshape/materials/edge_material.gd" id="2_qogyf"]
+[ext_resource type="Script" uid="uid://dugib1ufngi0k" path="res://addons/rmsmartshape/materials/edge_material_metadata.gd" id="1_l2k6f"]
+[ext_resource type="Script" uid="uid://dg68m66rbc2iq" path="res://addons/rmsmartshape/materials/shape_material.gd" id="2_0dmsm"]
+[ext_resource type="Script" uid="uid://bivkhs70dj8y3" path="res://addons/rmsmartshape/materials/edge_material.gd" id="2_qogyf"]
 [ext_resource type="Texture2D" uid="uid://b76nvq3sy4164" path="res://sprites/friezesets/swamp/plank/plank_edge.png" id="3_8munx"]
 [ext_resource type="Texture2D" uid="uid://cwj5unn3qx3a0" path="res://sprites/friezesets/swamp/plank/plank_taper_left.png" id="4_4gjtn"]
 [ext_resource type="Texture2D" uid="uid://dfhkedoq2o3ja" path="res://sprites/friezesets/swamp/plank/plank_taper_right.png" id="5_qa6fc"]
-[ext_resource type="Script" path="res://addons/rmsmartshape/normal_range.gd" id="6_tq5b8"]
+[ext_resource type="Script" uid="uid://bj6j3p058j2wf" path="res://addons/rmsmartshape/normal_range.gd" id="6_tq5b8"]
 
 [sub_resource type="Resource" id="Resource_4ymof"]
 script = ExtResource("2_qogyf")

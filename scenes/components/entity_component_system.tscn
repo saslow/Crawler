@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://w07m35qgysc0"]
 
-[ext_resource type="Script" path="res://scripts/components/entity_component_system.gd" id="1_nf1yh"]
+[ext_resource type="Script" uid="uid://crcas026ei13q" path="res://scripts/components/entity_component_system.gd" id="1_nf1yh"]
 
 [node name="EntityComponentSystem" type="Area2D"]
 collision_layer = 0

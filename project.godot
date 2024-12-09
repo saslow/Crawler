@@ -58,7 +58,7 @@ instance_dock/mjpeg_quality=1.0
 config/name="CabraMayhem"
 config/tags=PackedStringArray("2d")
 run/main_scene="res://scenes/menus/main_menu.tscn"
-config/features=PackedStringArray("4.3", "Mobile")
+config/features=PackedStringArray("4.4", "Mobile")
 boot_splash/bg_color=Color(0, 0.160784, 0.196078, 0)
 boot_splash/image="res://sprites/entities/boy/boy_walk/boy walk.0002.png"
 boot_splash/fullsize=false
@@ -70,8 +70,8 @@ g="*res://scenes/global/global.tscn"
 ss="*res://scripts/global/save_system.gd"
 rc="*res://scenes/global/room_changer_singleton.tscn"
 ch="*res://scenes/global/camera_host.tscn"
-EmbedGameAutoload="*res://addons/fabimakesgames.embed_game/embed_game_autoload.gd"
 RuntimeDebugTools="*res://addons/runtime_debug_tools/scenes/remote_inspector.tscn"
+EmbedGameAutoload="*res://addons/fabimakesgames.embed_game/embed_game_autoload.gd"
 
 [display]
 

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bhgf56nfx0uyl" path="res://sprites/backgrounds/test/oblako.png" id="2_4ow43"]
 [ext_resource type="Texture2D" uid="uid://ca67j5ikc7ko0" path="res://sprites/backgrounds/swamp/swamp_bg_trees.png" id="3_i1cul"]
 [ext_resource type="Texture2D" uid="uid://2o3ffusieoun" path="res://sprites/backgrounds/swamp/swamp_bg_water.png" id="4_u7ba7"]
-[ext_resource type="Script" path="res://scripts/global/anim_autostart.gd" id="5_v0m8g"]
+[ext_resource type="Script" uid="uid://bifpap1ytxctl" path="res://scripts/global/anim_autostart.gd" id="5_v0m8g"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iaycb"]
 
@@ -90,8 +90,8 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_34ldy"]
 _data = {
-"RESET": SubResource("Animation_v8swy"),
-"cloud_rotation": SubResource("Animation_l5lvr")
+&"RESET": SubResource("Animation_v8swy"),
+&"cloud_rotation": SubResource("Animation_l5lvr")
 }
 
 [node name="BG" type="Sprite2D"]
@@ -161,7 +161,7 @@ centered = false
 
 [node name="Anim" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_34ldy")
+&"": SubResource("AnimationLibrary_34ldy")
 }
 speed_scale = -1.2
 script = ExtResource("5_v0m8g")

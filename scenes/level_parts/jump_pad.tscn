@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dbl2ag2biwpjj"]
 
-[ext_resource type="Script" path="res://scripts/level_parts/jump_pad.gd" id="1_ng67e"]
+[ext_resource type="Script" uid="uid://cwt777kkyv3rq" path="res://scripts/level_parts/jump_pad.gd" id="1_ng67e"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ue3py"]
 radius = 72.0

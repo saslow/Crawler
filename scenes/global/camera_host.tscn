@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bu08y2r800mb6"]
 
-[ext_resource type="Script" path="res://scripts/global/camera_host.gd" id="1_7oe4p"]
+[ext_resource type="Script" uid="uid://br21ef8yrpb0" path="res://scripts/global/camera_host.gd" id="1_7oe4p"]
 
 [sub_resource type="Animation" id="Animation_6yis1"]
 length = 0.001
@@ -49,9 +49,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5opur"]
 _data = {
-"RESET": SubResource("Animation_6yis1"),
-"zoom_in": SubResource("Animation_5fen1"),
-"zoom_out": SubResource("Animation_0qv58")
+&"RESET": SubResource("Animation_6yis1"),
+&"zoom_in": SubResource("Animation_5fen1"),
+&"zoom_out": SubResource("Animation_0qv58")
 }
 
 [node name="CameraHost" type="Camera2D"]
@@ -70,7 +70,7 @@ process_callback = 0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_5opur")
+&"": SubResource("AnimationLibrary_5opur")
 }
 
 [connection signal="timeout" from="ShakeTimer" to="." method="_on_shake_timer_timeout"]

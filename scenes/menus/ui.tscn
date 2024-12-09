@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://duijkcxgyfmh0"]
 
-[ext_resource type="Script" path="res://scripts/menus/ui.gd" id="1_65mp0"]
+[ext_resource type="Script" uid="uid://ykk7yhcgn1vo" path="res://scripts/menus/ui.gd" id="1_65mp0"]
 [ext_resource type="PackedScene" uid="uid://d1btdy1brmsea" path="res://scenes/player/player_debug.tscn" id="2_i63fk"]
-[ext_resource type="Shader" path="res://shaders/blur.gdshader" id="2_reujc"]
-[ext_resource type="Script" path="res://scripts/menus/UI/escape_timer.gd" id="3_idoch"]
+[ext_resource type="Shader" uid="uid://d162jeti0lm47" path="res://shaders/blur.gdshader" id="2_reujc"]
+[ext_resource type="Script" uid="uid://cmwi7rhviwame" path="res://scripts/menus/UI/escape_timer.gd" id="3_idoch"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vgscs"]
 shader = ExtResource("2_reujc")
@@ -29,7 +29,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k1p5p"]
 _data = {
-"fade": SubResource("Animation_6jm53")
+&"fade": SubResource("Animation_6jm53")
 }
 
 [node name="UI" type="CanvasLayer"]
@@ -211,7 +211,7 @@ horizontal_alignment = 1
 [node name="Anim" type="AnimationPlayer" parent="."]
 callback_mode_process = 0
 libraries = {
-"": SubResource("AnimationLibrary_k1p5p")
+&"": SubResource("AnimationLibrary_k1p5p")
 }
 
 [connection signal="pressed" from="UI/MissionFailedScreen/Button" to="." method="_on_button_pressed"]

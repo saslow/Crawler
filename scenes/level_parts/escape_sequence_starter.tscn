@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cglchcskg706i" path="res://scenes/enemies/enemy_template.tscn" id="1_063x8"]
 [ext_resource type="PackedScene" uid="uid://w07m35qgysc0" path="res://scenes/components/entity_component_system.tscn" id="1_le6il"]
-[ext_resource type="Script" path="res://scripts/level_parts/escape_sequence_starter.gd" id="3_5m37k"]
+[ext_resource type="Script" uid="uid://cl1pl6ja7axp8" path="res://scripts/level_parts/escape_sequence_starter.gd" id="3_5m37k"]
 [ext_resource type="Texture2D" uid="uid://tmnvvrdq44uo" path="res://sprites/level_parts/the_button/pipe.png" id="4_0oqx1"]
 [ext_resource type="Texture2D" uid="uid://chdh2eho1nuib" path="res://sprites/level_parts/the_button/bottom_layer.png" id="5_8yy1k"]
 [ext_resource type="Texture2D" uid="uid://g1f4oet4pwex" path="res://sprites/level_parts/the_button/top_layer.png" id="6_jo6vq"]

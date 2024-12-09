@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://d0ofc714v1gjt"]
 
-[ext_resource type="Script" path="res://scripts/menus/main_menu.gd" id="1_nbqq7"]
+[ext_resource type="Script" uid="uid://bf534gdxb0fx2" path="res://scripts/menus/main_menu.gd" id="1_nbqq7"]
 
 [node name="MainMenu" type="Node2D"]
 scale = Vector2(2, 2)
