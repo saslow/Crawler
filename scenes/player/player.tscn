@@ -738,6 +738,20 @@ _data = {
 &"walljump": SubResource("Animation_kdas7")
 }
 
+[sub_resource type="Curve" id="Curve_fd8ee"]
+bake_resolution = 10
+_data = [Vector2(0, 0.0188679), 0.0, 1.80361, 0, 0, Vector2(0.241453, 0.667924), 1.07498, 1.07498, 0, 0, Vector2(0.972222, 0.65283), -2.40823, -2.40823, 0, 0, Vector2(1, 0.0943396), -8.55134, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_nknwo"]
+curve = SubResource("Curve_fd8ee")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8b5vi"]
+particle_flag_disable_z = true
+inherit_velocity_ratio = 0.117
+gravity = Vector3(0, -250, 0)
+scale_curve = SubResource("CurveTexture_nknwo")
+
 [sub_resource type="Curve" id="Curve_uvxci"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.442308, 0.516981), -2.90573e-07, -2.90573e-07, 0, 0, Vector2(0.745726, 0.516981), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 4
@@ -852,20 +866,6 @@ size = Vector2(32, 136.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g63mw"]
 size = Vector2(6, 40.5)
 
-[sub_resource type="Curve" id="Curve_fd8ee"]
-bake_resolution = 10
-_data = [Vector2(0, 0.0188679), 0.0, 1.80361, 0, 0, Vector2(0.241453, 0.667924), 1.07498, 1.07498, 0, 0, Vector2(0.972222, 0.65283), -2.40823, -2.40823, 0, 0, Vector2(1, 0.0943396), -8.55134, 0.0, 0, 0]
-point_count = 4
-
-[sub_resource type="CurveTexture" id="CurveTexture_nknwo"]
-curve = SubResource("Curve_fd8ee")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8b5vi"]
-particle_flag_disable_z = true
-inherit_velocity_ratio = 0.117
-gravity = Vector3(0, -250, 0)
-scale_curve = SubResource("CurveTexture_nknwo")
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kjfdk"]
 size = Vector2(960, 2160)
 
@@ -913,6 +913,31 @@ text = "TEST"
 libraries = {
 &"": SubResource("AnimationLibrary_jpkbe")
 }
+
+[node name="DustParticleRotationPivot" type="Node2D" parent="."]
+
+[node name="DustParticleEmitter0" type="GPUParticles2D" parent="DustParticleRotationPivot"]
+show_behind_parent = true
+position = Vector2(-36, 38)
+scale = Vector2(2, 2)
+emitting = false
+amount = 24
+fixed_fps = 24
+interpolate = false
+texture = ExtResource("62_mbjov")
+process_material = SubResource("ParticleProcessMaterial_8b5vi")
+
+[node name="DustParticleEmitter1" type="GPUParticles2D" parent="DustParticleRotationPivot"]
+modulate = Color(0.609375, 0.57843, 0.533203, 1)
+show_behind_parent = true
+position = Vector2(-36, 38)
+scale = Vector2(2, 2)
+emitting = false
+amount = 24
+fixed_fps = 24
+interpolate = false
+texture = ExtResource("63_vu8ds")
+process_material = SubResource("ParticleProcessMaterial_8b5vi")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)
@@ -995,10 +1020,10 @@ polygon = PackedVector2Array(0, -28, -8, -4, 0, 28, 8, -4)
 [node name="Casts" type="Node2D" parent="Rotatable"]
 
 [node name="LeftTargetNormalPos" type="Node2D" parent="Rotatable/Casts"]
-position = Vector2(-42, -39)
+position = Vector2(-42, -35)
 
 [node name="RightTargetNormalPos" type="Node2D" parent="Rotatable/Casts"]
-position = Vector2(42, -39)
+position = Vector2(42, -35)
 
 [node name="LeftTargetOffsettedPos" type="Node2D" parent="Rotatable/Casts"]
 position = Vector2(-42, 0)
@@ -1007,7 +1032,7 @@ position = Vector2(-42, 0)
 position = Vector2(42, 0)
 
 [node name="LeftAndRightRaysNormalPos" type="Node2D" parent="Rotatable/Casts"]
-position = Vector2(0, -39)
+position = Vector2(0, -35)
 
 [node name="DownCast0" type="RayCast2D" parent="Rotatable/Casts"]
 position = Vector2(-36, 0)
@@ -1030,12 +1055,12 @@ target_position = Vector2(-1.45519e-11, -57)
 collision_mask = 129
 
 [node name="LeftCast" type="RayCast2D" parent="Rotatable/Casts"]
-position = Vector2(0, -39)
+position = Vector2(0, -35)
 target_position = Vector2(-42, 0)
 collision_mask = 129
 
 [node name="RightCast" type="RayCast2D" parent="Rotatable/Casts"]
-position = Vector2(0, -39)
+position = Vector2(0, -35)
 target_position = Vector2(42, 0)
 collision_mask = 129
 
@@ -1067,31 +1092,8 @@ position = Vector2(0, 20.25)
 shape = SubResource("RectangleShape2D_g63mw")
 debug_color = Color(0.796078, 0.423529, 0, 1)
 
-[node name="DustParticleEmitter0" type="GPUParticles2D" parent="Rotatable"]
-show_behind_parent = true
-position = Vector2(-36, 38)
-scale = Vector2(2, 2)
-emitting = false
-amount = 24
-fixed_fps = 24
-interpolate = false
-texture = ExtResource("62_mbjov")
-process_material = SubResource("ParticleProcessMaterial_8b5vi")
-
-[node name="DustParticleEmitter1" type="GPUParticles2D" parent="Rotatable"]
-modulate = Color(0.609375, 0.57843, 0.533203, 1)
-show_behind_parent = true
-position = Vector2(-36, 38)
-scale = Vector2(2, 2)
-emitting = false
-amount = 24
-fixed_fps = 24
-interpolate = false
-texture = ExtResource("63_vu8ds")
-process_material = SubResource("ParticleProcessMaterial_8b5vi")
-
 [node name="Shape" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(8, -40, 28, -28, 40, 0, 28, 28, 8, 40, -8, 40, -28, 28, -40, 0, -28, -28, -8, -40)
+polygon = PackedVector2Array(8, -40, 28, -28, 40, 0, 28, 28, 6, 39, 0, 40, -6, 39, -28, 28, -40, 0, -28, -28, -8, -40)
 
 [node name="Timers" type="Node" parent="."]
 

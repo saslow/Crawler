@@ -33,7 +33,7 @@ class_name Player
 						$Timers/TurningTimer.start(0.34)
 				else:
 					if $Timers.has_node("TurningTimer"):
-						$Timers/TurningTimer.start(0.03)
+						$Timers/TurningTimer.start(0.05)
 			is_grinding = false
 			last_true_axis = new_axis
 
@@ -212,6 +212,9 @@ func _physics_process(delta: float) -> void:
 			#x_vel = Vector2.ZERO
 		if state != sm.DEBUG and state != sm.REBOUND and state != sm.RING and state != sm.GHOST:
 			velocity = x_vel + y_vel
+		if $Timers/AttackTimers/AttackTimer.time_left < (3 * $Timers/AttackTimers/AttackTimer.wait_time)/4 and $Timers/AttackTimers/AttackTimer.time_left > $Timers/AttackTimers/AttackTimer.wait_time/4:
+			velocity.y = lerpf(velocity.y, 0, 0.9)
+			
 		if state == sm.GROUND:
 			if (Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) != 0) or is_running:
 				$Timers/StabilityTimer.start()
@@ -586,14 +589,14 @@ func running() -> void:
 			floor_max_angle = PI
 		else:
 			if is_running:
-				floor_max_angle = (3*PI)/4.5
+				floor_max_angle = deg_to_rad(150)
 	else:
 		#Input.stop_joy_vibration(player_index)
 		if is_on_floor():
 			is_running = false
 			speed = NORMAL_SPEED
 		if state == sm.AIR and is_running:
-			if ($Rotatable/Casts/RightCast.is_colliding() and last_true_axis == 1) or ($Rotatable/Casts/LeftCast.is_colliding() and last_true_axis == -1):
+			if (($Rotatable/Casts/RightCast.is_colliding() and last_true_axis == 1) or ($Rotatable/Casts/LeftCast.is_colliding() and last_true_axis == -1)) and is_on_wall() and !Input.is_action_pressed("RUN" + get_player_index()):
 				if speed > MAX_SPEED - 10:
 					$Timers/BumpTimer.start(0.8)
 					ch.start_screen_shake_axis( 0.4, 0.4 )
@@ -607,6 +610,12 @@ func running() -> void:
 				speed = NORMAL_SPEED
 				state = sm.BUMPED
 		if !is_sliding:
+			#if ( last_floor_angle > deg_to_rad(45) ) and is_sliding == false:
+		##if ( get_floor_angle() > deg_to_rad(45) ) and is_sliding == false:
+				#if x_vel.y < 0:
+					#last_true_axis = -last_true_axis
+				#else:
+					#is_axis_changing_delayed = true
 			floor_max_angle = PI/4
 
 func floor_attaching() -> void:
@@ -747,7 +756,7 @@ func attack() -> void:
 		$Rotatable/AttackAreas/AttackArea.monitoring = true
 		$Rotatable/AttackAreas/AttackArea/CollisionShape.set_deferred("debug_color", Color(1, 0, 0, 0.3))
 		$Timers/AttackTimers/AttackTimer.start()
-		
+		stop_jump_timers()
 		
 var last_attack_anim_name : String = ''
 func play_random_attack_animation() -> void:
@@ -766,12 +775,12 @@ func play_random_attack_animation() -> void:
 	$Rotatable/AttackSprite/AttackAnim.play(last_attack_anim_name)
 		
 func sprite_leveling(weight : float = 0.2) -> void:
-	#if !is_releasing:
-	#if $Timers/TurningTimer.is_stopped():
 	if $Anim.current_animation != "rebound":
 		$Sprite.rotation = lerp_angle($Sprite.rotation, get_real_floor_angle(), weight)
+	$DustParticleRotationPivot.rotation = $Sprite.rotation
+
 func rotatable_leveling() -> void:
-	$Rotatable.rotation = lerp_angle($Sprite.rotation, get_real_floor_angle(), 0.05)
+	$Rotatable.rotation = get_real_floor_angle()
 	
 func sprite_rotation_reset() -> void:
 	$Sprite.rotation = lerp_angle($Sprite.rotation, 0.0, 0.1)
@@ -914,10 +923,10 @@ func input_is_run_and_direction_pressed() -> bool:
 
 func dust_paticle_emitters_start_emitting(lifetime : float = 1.0) -> void:
 	if $Timers/FloorStickBlockingTimer.is_stopped():
-		$Rotatable/DustParticleEmitter0.emitting = true
-		$Rotatable/DustParticleEmitter1.emitting = true
-		$Rotatable/DustParticleEmitter0.lifetime = lifetime
-		$Rotatable/DustParticleEmitter1.lifetime = lifetime
+		$DustParticleRotationPivot/DustParticleEmitter0.emitting = true
+		$DustParticleRotationPivot/DustParticleEmitter1.emitting = true
+		$DustParticleRotationPivot/DustParticleEmitter0.lifetime = lifetime
+		$DustParticleRotationPivot/DustParticleEmitter1.lifetime = lifetime
 		#$Sprite/DustParticleEmitter0.emitting = true
 		#$Sprite/DustParticleEmitter1.emitting = true
 		#$Sprite/DustParticleEmitter0.lifetime = lifetime
@@ -925,8 +934,8 @@ func dust_paticle_emitters_start_emitting(lifetime : float = 1.0) -> void:
 	
 func dust_paticle_emitters_stop_emitting() -> void:
 	if $Timers/FloorStickBlockingTimer.is_stopped():
-		$Rotatable/DustParticleEmitter0.emitting = false
-		$Rotatable/DustParticleEmitter1.emitting = false
+		$DustParticleRotationPivot/DustParticleEmitter0.emitting = false
+		$DustParticleRotationPivot/DustParticleEmitter1.emitting = false
 		#$Sprite/DustParticleEmitter0.emitting = false
 		#$Sprite/DustParticleEmitter1.emitting = false
 

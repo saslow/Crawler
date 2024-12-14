@@ -1,7 +1,7 @@
 extends Area2D
 class_name RoomChanger
 
-const PLAYER_OFFSET : int = 256
+const PLAYER_OFFSET : int = 312
 @export var layers_offset_x : int = 10000
 @export var level_offset : Vector2
 @export_category("Cameras")

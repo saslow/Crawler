@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dssqgricici38" path="res://scripts/level_parts/rooms/room_changer.gd" id="1_ueuom"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1qerp"]
-size = Vector2(64, 448)
+size = Vector2(448, 448)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qg0xw"]
 size = Vector2(256, 448)
