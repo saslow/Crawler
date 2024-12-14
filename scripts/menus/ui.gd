@@ -14,6 +14,8 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	$UI/Scrap.text = str(ss.current_score)
+	if Input.is_action_just_pressed("DOWN0"):
+		ss.current_score += 1
 	
 func _on_save_score_pressed():
 	pass

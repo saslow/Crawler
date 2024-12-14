@@ -58,6 +58,7 @@ var general_checkpointed_layer : Layer2D
 var layers_relocating : bool = false
 
 func _ready() -> void:
+	#Engine.time_scale = 3
 	times_up.connect(_on_times_up)
 	#player.injured.connect(_on_player_injured)
 	escape_sequence_restarted.connect(_on_escape_sequence_restarted)

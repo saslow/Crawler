@@ -212,8 +212,9 @@ func _physics_process(delta: float) -> void:
 			#x_vel = Vector2.ZERO
 		if state != sm.DEBUG and state != sm.REBOUND and state != sm.RING and state != sm.GHOST:
 			velocity = x_vel + y_vel
-		if $Timers/AttackTimers/AttackTimer.time_left < (3 * $Timers/AttackTimers/AttackTimer.wait_time)/4 and $Timers/AttackTimers/AttackTimer.time_left > $Timers/AttackTimers/AttackTimer.wait_time/4:
-			velocity.y = lerpf(velocity.y, 0, 0.9)
+		if state != sm.GROUND:
+			if $Timers/AttackTimers/AttackTimer.time_left < (3 * $Timers/AttackTimers/AttackTimer.wait_time)/4 and $Timers/AttackTimers/AttackTimer.time_left > $Timers/AttackTimers/AttackTimer.wait_time/4:
+				velocity.y = lerpf(velocity.y, 0, 0.9)
 			
 		if state == sm.GROUND:
 			if (Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) != 0) or is_running:
@@ -450,7 +451,7 @@ func state_machine(delta : float):
 		match state:
 			sm.GROUND:
 				is_jump_to_fall_transition = false
-				if $Anim.current_animation != "rebound":
+				if $Anim.current_animation != "rebound" and $Anim.current_animation != "grind":
 					if get_real_velocity().length() < 100 and !(is_running or Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) != 0):
 						$Anim.play("idle")
 					else:
@@ -739,24 +740,26 @@ func slide_dash() -> void:
 		$Rotatable/EntityComponentSystem/CollisionShape.scale.y = 1
 		
 func grinding() -> void:
-	if is_on_grind_pipe and is_running and !is_sliding and $Timers/TurningTimer.is_stopped() and is_on_floor() and Input.is_action_just_pressed("DOWN" + get_player_index()):
+	if is_on_grind_pipe and !is_releasing and is_running and !is_sliding and $Timers/TurningTimer.is_stopped() and is_on_floor() and Input.is_action_just_pressed("DOWN" + get_player_index()):
 		is_grinding = true
-		#modulate = Color.BLACK
-		position += -get_floor_normal() * 72
+		$Anim.play("grind")
+		$Timers/AttackTimers/AttackTimer.stop()
+		$Rotatable/AttackSprite/AttackAnim.play("RESET")
+		floor_max_angle = PI
 		apply_floor_snap()
+		position += -get_floor_normal() * 167
 		last_true_axis = -last_true_axis
 		is_grinding = false
-	#else:
-		#modulate = Color(0, 0, 0, 1)
 		
 func attack() -> void:
-	if Input.is_action_just_pressed("1ACTION" + get_player_index()) and $Timers/AttackTimers/AttackTimer.time_left < $Timers/AttackTimers/AttackTimer.wait_time/3 and state != sm.GHOST and $Timers/TurningTimer.is_stopped():
-		#$Rotatable/AttackAreas/AttackArea/Shape.disabled = false
-		play_random_attack_animation()
-		$Rotatable/AttackAreas/AttackArea.monitoring = true
-		$Rotatable/AttackAreas/AttackArea/CollisionShape.set_deferred("debug_color", Color(1, 0, 0, 0.3))
-		$Timers/AttackTimers/AttackTimer.start()
-		stop_jump_timers()
+	if !is_grinding and $Anim.current_animation != "grind":
+		if Input.is_action_just_pressed("1ACTION" + get_player_index()) and $Timers/AttackTimers/AttackTimer.time_left < $Timers/AttackTimers/AttackTimer.wait_time/3 and state != sm.GHOST and $Timers/TurningTimer.is_stopped():
+			#$Rotatable/AttackAreas/AttackArea/Shape.disabled = false
+			play_random_attack_animation()
+			$Rotatable/AttackAreas/AttackArea.monitoring = true
+			$Rotatable/AttackAreas/AttackArea/CollisionShape.set_deferred("debug_color", Color(1, 0, 0, 0.3))
+			$Timers/AttackTimers/AttackTimer.start()
+			stop_jump_timers()
 		
 var last_attack_anim_name : String = ''
 func play_random_attack_animation() -> void:
@@ -777,9 +780,9 @@ func play_random_attack_animation() -> void:
 func sprite_leveling(weight : float = 0.2) -> void:
 	if $Anim.current_animation != "rebound":
 		$Sprite.rotation = lerp_angle($Sprite.rotation, get_real_floor_angle(), weight)
-	$DustParticleRotationPivot.rotation = $Sprite.rotation
 
 func rotatable_leveling() -> void:
+	$DustParticleRotationPivot.rotation = get_real_floor_angle()
 	$Rotatable.rotation = get_real_floor_angle()
 	
 func sprite_rotation_reset() -> void:

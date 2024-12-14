@@ -1,4 +1,4 @@
-[gd_scene load_steps=946 format=3 uid="uid://caqd3v2cv3e0v"]
+[gd_scene load_steps=958 format=3 uid="uid://caqd3v2cv3e0v"]
 
 [ext_resource type="Script" uid="uid://n1lymu4cyngo" path="res://scripts/levels/_level_template.gd" id="1_f5vud"]
 [ext_resource type="PackedScene" uid="uid://cll2qus4k0qbn" path="res://sprites/backgrounds/test/forest_bg.tscn" id="2_rhctq"]
@@ -13,6 +13,7 @@
 [ext_resource type="Resource" uid="uid://sikm4gfm58gb" path="res://sprites/friezesets/swamp/moss/moss.tres" id="10_xrdtq"]
 [ext_resource type="PackedScene" uid="uid://7sgec55gmorl" path="res://scenes/level_parts/releaser.tscn" id="11_yjne1"]
 [ext_resource type="Texture2D" uid="uid://broma45e5icbq" path="res://sprites/friezesets/swamp/swamp_decos/other/penek0.png" id="12_aegk0"]
+[ext_resource type="PackedScene" uid="uid://cks0nfml4ictn" path="res://scenes/level_parts/grind_pipe.tscn" id="13_5ek5g"]
 [ext_resource type="Resource" uid="uid://cwxn8echq8jn4" path="res://sprites/friezesets/swamp/trees/thick_tree/thick_tree_material.tres" id="13_rgkbm"]
 [ext_resource type="Resource" uid="uid://c55p0j8mj0dvn" path="res://sprites/friezesets/swamp/trees/tree/tree_material.tres" id="14_1i2q2"]
 [ext_resource type="Texture2D" uid="uid://d0wa2lgwp78nj" path="res://sprites/level_parts/spikes/wooden/wooden_spike0.png" id="15_5awhu"]
@@ -348,13 +349,13 @@ properties = SubResource("Resource_yrps8")
 
 [sub_resource type="Resource" id="Resource_3t3yy"]
 script = ExtResource("6_qrynv")
-texture_idx = -10
+texture_idx = -7
 flip = false
 width = 1.0
 
 [sub_resource type="Resource" id="Resource_k4wkf"]
 script = ExtResource("7_4tdah")
-position = Vector2(4136, -464)
+position = Vector2(5753.43, -349.126)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
 properties = SubResource("Resource_3t3yy")
@@ -795,6 +796,88 @@ _points = {
 _point_order = PackedInt32Array(0, 9, 8, 7, 6, 1, 10, 2, 3)
 _constraints = {}
 _next_key = 11
+_material_overrides = {}
+tessellation_stages = 3
+tessellation_tolerance = 6.0
+curve_bake_interval = 20.0
+
+[sub_resource type="Resource" id="Resource_36uo5"]
+script = ExtResource("6_qrynv")
+texture_idx = -12
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_leep8"]
+script = ExtResource("7_4tdah")
+position = Vector2(1123.2, -1494.9)
+point_in = Vector2(35.5918, -598.441)
+point_out = Vector2(-28.8789, 26.7458)
+properties = SubResource("Resource_36uo5")
+
+[sub_resource type="Resource" id="Resource_bhifr"]
+script = ExtResource("6_qrynv")
+texture_idx = 5
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_vll67"]
+script = ExtResource("7_4tdah")
+position = Vector2(1952.93, -40.064)
+point_in = Vector2(-1275.34, -124.892)
+point_out = Vector2(544.088, 48.1121)
+properties = SubResource("Resource_bhifr")
+
+[sub_resource type="Resource" id="Resource_vca7m"]
+script = ExtResource("6_qrynv")
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_o0i8b"]
+script = ExtResource("7_4tdah")
+position = Vector2(2702.55, -44.2529)
+point_in = Vector2(-353.005, 10.8491)
+point_out = Vector2(964.438, -5.83722)
+properties = SubResource("Resource_vca7m")
+
+[sub_resource type="Resource" id="Resource_x0bfw"]
+script = ExtResource("6_qrynv")
+texture_idx = 1
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_aih1n"]
+script = ExtResource("7_4tdah")
+position = Vector2(3065.74, -1846.09)
+point_in = Vector2(801.392, 411.145)
+point_out = Vector2(-642.516, -208.544)
+properties = SubResource("Resource_x0bfw")
+
+[sub_resource type="Resource" id="Resource_gjmx1"]
+script = ExtResource("6_qrynv")
+texture_idx = 17
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_0cc2n"]
+script = ExtResource("7_4tdah")
+position = Vector2(1122.72, -1494.33)
+point_in = Vector2(204.838, -544.333)
+point_out = Vector2(-210.816, 166.527)
+properties = SubResource("Resource_gjmx1")
+
+[sub_resource type="Resource" id="Resource_cyp8l"]
+script = ExtResource("8_b65c4")
+_points = {
+45: SubResource("Resource_leep8"),
+63: SubResource("Resource_vll67"),
+65: SubResource("Resource_o0i8b"),
+71: SubResource("Resource_aih1n"),
+72: SubResource("Resource_0cc2n")
+}
+_point_order = PackedInt32Array(45, 63, 65, 71, 72)
+_constraints = {}
+_next_key = 74
 _material_overrides = {}
 tessellation_stages = 3
 tessellation_tolerance = 6.0
@@ -6690,7 +6773,7 @@ position = Vector2(32, -672)
 
 [node name="Player0" parent="Layers2D/Layer1/Players" instance=ExtResource("18_s5lmt")]
 z_index = 2
-position = Vector2(19459, 547)
+position = Vector2(3175, 979)
 metadata/_edit_group_ = true
 
 [node name="Friezes" type="Node2D" parent="Layers2D/Layer1"]
@@ -6720,6 +6803,19 @@ position = Vector2(-1269, -608)
 [node name="2" parent="Layers2D/Layer1/Friezes/Ground0" instance=ExtResource("11_yjne1")]
 position = Vector2(-3830, -355)
 scale = Vector2(1.1, 1)
+
+[node name="GrindPipe" parent="Layers2D/Layer1/Friezes" instance=ExtResource("13_5ek5g")]
+position = Vector2(1009, 992)
+metadata/_edit_group_ = true
+
+[node name="Shape" parent="Layers2D/Layer1/Friezes/GrindPipe" index="0"]
+_points = SubResource("Resource_cyp8l")
+
+[node name="CollisionPolygon2D" parent="Layers2D/Layer1/Friezes/GrindPipe" index="1"]
+polygon = PackedVector2Array(1180.72, -1466.84, 1172.93, -1451.17, 1159.76, -1412.17, 1124.37, -1262.89, 1100.74, -1053.73, 1112.45, -812.529, 1138.03, -692.611, 1180.57, -574.743, 1242.41, -463.514, 1326.41, -361.601, 1436.03, -271.509, 1575.33, -196.081, 1748.49, -138.819, 1959.63, -103.712, 2398.28, -84.0382, 2696.91, -108.004, 2862.12, -123.75, 3003.81, -165.772, 3127.81, -231.007, 3234.5, -316.558, 3323.86, -419.668, 3395.51, -537.452, 3448.86, -666.791, 3483.32, -804.354, 3498.38, -946.673, 3493.64, -1090.22, 3468.82, -1231.49, 3423.74, -1367.03, 3358.27, -1493.57, 3272.23, -1608.02, 3165.23, -1707.49, 3040.28, -1787.37, 2793.46, -1850.45, 2513.64, -1891.96, 2222.98, -1905.96, 1938.11, -1889.04, 1674.25, -1837.89, 1557.98, -1799.5, 1452.47, -1751.78, 1360.84, -1695.16, 1284.67, -1629.79, 1225.04, -1555.62, 1179.83, -1465.45, 1065.6, -1523.21, 1117.43, -1624.93, 1192.66, -1718.77, 1285.22, -1798.43, 1392.28, -1864.74, 1511.47, -1918.75, 1641.96, -1961.75, 1922.09, -2016.03, 2222.25, -2033.96, 2526.13, -2019.35, 2818.9, -1975.9, 3091.2, -1904.8, 3243.42, -1808.83, 3367.32, -1693.7, 3466.64, -1561.69, 3541.67, -1416.81, 3592.92, -1262.86, 3620.95, -1103.45, 3626.29, -942.039, 3609.35, -782.005, 3570.42, -626.715, 3509.69, -479.593, 3427.25, -344.201, 3323.24, -224.312, 3197.95, -123.935, 3052.04, -47.2044, 2886.62, 1.88354, 2708.19, 19.4982, 2400.51, 43.9423, 1946.22, 23.5838, 1717.76, -14.5614, 1524.53, -78.5937, 1364.57, -165.31, 1235.97, -271.02, 1136.68, -391.376, 1064.09, -521.691, 1014.95, -657.45, 985.514, -796.049, 972.801, -1057.79, 998.265, -1284.84, 1036.74, -1447.51, 1054.56, -1499.89, 1065.68, -1522.97)
+
+[node name="0" parent="Layers2D/Layer1/Friezes/GrindPipe" instance=ExtResource("11_yjne1")]
+position = Vector2(2683, -842)
 
 [node name="Ground1" parent="Layers2D/Layer1/Friezes" instance=ExtResource("4_m3h3g")]
 z_index = 1
@@ -7164,40 +7260,6 @@ position = Vector2(2568, 0)
 [node name="ParallaxBackground" type="ParallaxBackground" parent="Layers2D/Layer1/Other"]
 scroll_offset = Vector2(607, 279)
 
-[node name="CameraRoom1_BG" parent="Layers2D/Layer1" instance=ExtResource("17_vkhim")]
-z_index = 20
-position = Vector2(12978, 264)
-process_callback = 0
-limit_top = -15000000
-limit_bottom = 15000000
-position_smoothing_speed = 15.0
-background_limits_offsetted = true
-
-[node name="LimitsForeground" parent="Layers2D/Layer1/CameraRoom1_BG" index="0"]
-visible = true
-points = PackedVector2Array(19844, 1528, 4067, 1528, 4067, -2174, 19844, -2174)
-
-[node name="Limits" parent="Layers2D/Layer1/CameraRoom1_BG" index="1"]
-points = PackedVector2Array(18764, 756, 5147, 756, 5147, -1402, 18764, -1402)
-
-[node name="LeftTop" parent="Layers2D/Layer1/CameraRoom1_BG" index="2"]
-position = Vector2(5147, -1402)
-
-[node name="PosX" parent="Layers2D/Layer1/CameraRoom1_BG/LeftTop" index="1"]
-text = "9421.0"
-
-[node name="PosY" parent="Layers2D/Layer1/CameraRoom1_BG/LeftTop" index="2"]
-text = "-1426.0"
-
-[node name="RightBottom" parent="Layers2D/Layer1/CameraRoom1_BG" index="3"]
-position = Vector2(18764, 756)
-
-[node name="PosX" parent="Layers2D/Layer1/CameraRoom1_BG/RightBottom" index="1"]
-text = "23038.0"
-
-[node name="PosY" parent="Layers2D/Layer1/CameraRoom1_BG/RightBottom" index="2"]
-text = "732.0"
-
 [node name="CameraRoom0_BG" parent="Layers2D/Layer1" instance=ExtResource("17_vkhim")]
 z_index = 20
 position = Vector2(13491, 53)
@@ -7231,6 +7293,40 @@ position = Vector2(2219, 967)
 text = "7006.0"
 
 [node name="PosY" parent="Layers2D/Layer1/CameraRoom0_BG/RightBottom" index="2"]
+text = "732.0"
+
+[node name="CameraRoom1_BG" parent="Layers2D/Layer1" instance=ExtResource("17_vkhim")]
+z_index = 20
+position = Vector2(12978, 264)
+process_callback = 0
+limit_top = -15000000
+limit_bottom = 15000000
+position_smoothing_speed = 15.0
+background_limits_offsetted = true
+
+[node name="LimitsForeground" parent="Layers2D/Layer1/CameraRoom1_BG" index="0"]
+visible = true
+points = PackedVector2Array(19844, 1528, 4067, 1528, 4067, -2174, 19844, -2174)
+
+[node name="Limits" parent="Layers2D/Layer1/CameraRoom1_BG" index="1"]
+points = PackedVector2Array(18764, 756, 5147, 756, 5147, -1402, 18764, -1402)
+
+[node name="LeftTop" parent="Layers2D/Layer1/CameraRoom1_BG" index="2"]
+position = Vector2(5147, -1402)
+
+[node name="PosX" parent="Layers2D/Layer1/CameraRoom1_BG/LeftTop" index="1"]
+text = "9421.0"
+
+[node name="PosY" parent="Layers2D/Layer1/CameraRoom1_BG/LeftTop" index="2"]
+text = "-1426.0"
+
+[node name="RightBottom" parent="Layers2D/Layer1/CameraRoom1_BG" index="3"]
+position = Vector2(18764, 756)
+
+[node name="PosX" parent="Layers2D/Layer1/CameraRoom1_BG/RightBottom" index="1"]
+text = "23038.0"
+
+[node name="PosY" parent="Layers2D/Layer1/CameraRoom1_BG/RightBottom" index="2"]
 text = "732.0"
 
 [node name="Layer0" type="Node2D" parent="Layers2D"]
@@ -7607,6 +7703,39 @@ position = Vector2(-4800, -64)
 [node name="ParallaxBackground" type="ParallaxBackground" parent="Layers2D/Layer0/Other"]
 scroll_offset = Vector2(607, 279)
 
+[node name="CameraRoom0" parent="Layers2D/Layer0" node_paths=PackedStringArray("linked_camera") instance=ExtResource("17_vkhim")]
+position = Vector2(11193, 560)
+process_callback = 0
+position_smoothing_speed = 15.0
+background_limits_offsetted = true
+linked_camera = NodePath("../../Layer1/CameraRoom0_BG")
+movement = 1
+
+[node name="LimitsForeground" parent="Layers2D/Layer0/CameraRoom0" index="0"]
+visible = true
+points = PackedVector2Array(9069, 1520, -15009, 1520, -15009, -2183, 9069, -2183)
+
+[node name="Limits" parent="Layers2D/Layer0/CameraRoom0" index="1"]
+points = PackedVector2Array(7989, 748, -13929, 748, -13929, -1411, 7989, -1411)
+
+[node name="LeftTop" parent="Layers2D/Layer0/CameraRoom0" index="2"]
+position = Vector2(-13929, -1411)
+
+[node name="PosX" parent="Layers2D/Layer0/CameraRoom0/LeftTop" index="1"]
+text = "-14912.0"
+
+[node name="PosY" parent="Layers2D/Layer0/CameraRoom0/LeftTop" index="2"]
+text = "-1427.0"
+
+[node name="RightBottom" parent="Layers2D/Layer0/CameraRoom0" index="3"]
+position = Vector2(7989, 748)
+
+[node name="PosX" parent="Layers2D/Layer0/CameraRoom0/RightBottom" index="1"]
+text = "7006.0"
+
+[node name="PosY" parent="Layers2D/Layer0/CameraRoom0/RightBottom" index="2"]
+text = "732.0"
+
 [node name="CameraRoom1" parent="Layers2D/Layer0" node_paths=PackedStringArray("linked_camera") instance=ExtResource("17_vkhim")]
 position = Vector2(23677, 290)
 process_callback = 0
@@ -7641,39 +7770,6 @@ text = "23038.0"
 [node name="PosY" parent="Layers2D/Layer0/CameraRoom1/RightBottom" index="2"]
 text = "732.0"
 
-[node name="CameraRoom0" parent="Layers2D/Layer0" node_paths=PackedStringArray("linked_camera") instance=ExtResource("17_vkhim")]
-position = Vector2(11193, 560)
-process_callback = 0
-position_smoothing_speed = 15.0
-background_limits_offsetted = true
-linked_camera = NodePath("../../Layer1/CameraRoom0_BG")
-movement = 1
-
-[node name="LimitsForeground" parent="Layers2D/Layer0/CameraRoom0" index="0"]
-visible = true
-points = PackedVector2Array(9069, 1520, -15009, 1520, -15009, -2183, 9069, -2183)
-
-[node name="Limits" parent="Layers2D/Layer0/CameraRoom0" index="1"]
-points = PackedVector2Array(7989, 748, -13929, 748, -13929, -1411, 7989, -1411)
-
-[node name="LeftTop" parent="Layers2D/Layer0/CameraRoom0" index="2"]
-position = Vector2(-13929, -1411)
-
-[node name="PosX" parent="Layers2D/Layer0/CameraRoom0/LeftTop" index="1"]
-text = "-14912.0"
-
-[node name="PosY" parent="Layers2D/Layer0/CameraRoom0/LeftTop" index="2"]
-text = "-1427.0"
-
-[node name="RightBottom" parent="Layers2D/Layer0/CameraRoom0" index="3"]
-position = Vector2(7989, 748)
-
-[node name="PosX" parent="Layers2D/Layer0/CameraRoom0/RightBottom" index="1"]
-text = "7006.0"
-
-[node name="PosY" parent="Layers2D/Layer0/CameraRoom0/RightBottom" index="2"]
-text = "732.0"
-
 [node name="SwampWaterline" parent="Layers2D/Layer0" instance=ExtResource("34_xb137")]
 visible = false
 z_index = 40
@@ -7691,15 +7787,16 @@ border = NodePath("../Layers2D/Layer0/CameraRoom0")
 [editable path="Layers2D/Layer1/Players/Player0"]
 [editable path="Layers2D/Layer1/Players/Player0/Rotatable/AttackAreas/AttackArea"]
 [editable path="Layers2D/Layer1/Players/Player0/Rotatable/EntityComponentSystem"]
+[editable path="Layers2D/Layer1/Friezes/GrindPipe"]
 [editable path="Layers2D/Layer1/Friezes/Ground1/Piki"]
 [editable path="Layers2D/Layer1/LevelParts/Waterline"]
 [editable path="Layers2D/Layer1/LevelParts/Waterline2"]
 [editable path="Layers2D/Layer1/LevelParts/JumpPad1"]
-[editable path="Layers2D/Layer1/CameraRoom1_BG"]
 [editable path="Layers2D/Layer1/CameraRoom0_BG"]
+[editable path="Layers2D/Layer1/CameraRoom1_BG"]
 [editable path="Layers2D/Layer0/Friezes/StartTree0"]
 [editable path="Layers2D/Layer0/LevelParts/EntityComponentSystem"]
 [editable path="Layers2D/Layer0/LevelParts/JumpPad0"]
-[editable path="Layers2D/Layer0/CameraRoom1"]
 [editable path="Layers2D/Layer0/CameraRoom0"]
+[editable path="Layers2D/Layer0/CameraRoom1"]
 [editable path="Layers2D/Layer0/SwampWaterline"]

@@ -54,14 +54,14 @@ fill_texture_angle_offset = 0.0
 fill_mesh_offset = 0.0
 render_offset = 0.0
 
-[sub_resource type="Resource" id="Resource_6mxvv"]
+[sub_resource type="Resource" id="Resource_o4ltr"]
 script = ExtResource("3_k5x42")
 _points = {}
 _point_order = PackedInt32Array()
 _constraints = {}
-_next_key = 45
+_next_key = 49
 _material_overrides = {}
-tessellation_stages = 2
+tessellation_stages = 3
 tessellation_tolerance = 6.0
 curve_bake_interval = 20.0
 
@@ -73,8 +73,9 @@ script = ExtResource("1_r72hc")
 modulate = Color(1, 0, 1, 1)
 script = ExtResource("2_bfqfb")
 shape_material = SubResource("Resource_xjk2j")
-_points = SubResource("Resource_6mxvv")
-tessellation_stages = 2
+_points = SubResource("Resource_o4ltr")
+collision_generation_method = 1
+collision_size = 128.0
 collision_offset = 1.0
 collision_polygon_node_path = NodePath("../CollisionPolygon2D")
 
