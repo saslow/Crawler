@@ -36,7 +36,7 @@ func _ready():
 		
 		if sprite_has_texture():
 			$Marker.queue_free()
-		#g.player.injured.connect(_on_player_injured)
+		g.player.injured.connect(_on_player_injured)
 		if type == types.NORMAL:
 			default_progress_ratio = progress_ratio
 			default_progress = progress

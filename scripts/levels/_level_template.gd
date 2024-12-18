@@ -50,7 +50,7 @@ func _ready() -> void:
 				#set_svp_holder_custom_properties(h, svp, i.z, i.name)
 				$Layers3D.add_child(h)
 				
-				i.reparent(svp)
+				i.call_deferred("reparent", svp)
 				
 #func _process(delta) -> void:
 	#if !Engine.is_editor_hint():

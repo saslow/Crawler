@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://d3c3agrddqtyt"]
+[gd_scene load_steps=52 format=3 uid="uid://d3c3agrddqtyt"]
 
 [ext_resource type="PackedScene" uid="uid://cglchcskg706i" path="res://scenes/enemies/enemy_template.tscn" id="1_uh8uw"]
 [ext_resource type="Script" uid="uid://buieljqwkth8q" path="res://scripts/enemies/trash_demon/trash_demon.gd" id="2_lnpk4"]
@@ -44,7 +44,6 @@
 [ext_resource type="Texture2D" uid="uid://u60wiibkgv0v" path="res://sprites/entities/trash_demon/walk/walk0012.png" id="42_064t3"]
 [ext_resource type="Texture2D" uid="uid://pk3yv8ws0ikc" path="res://sprites/entities/trash_demon/walk/walk0013.png" id="43_mwwn2"]
 [ext_resource type="PackedScene" uid="uid://w07m35qgysc0" path="res://scenes/components/entity_component_system.tscn" id="44_jjrf0"]
-[ext_resource type="PackedScene" uid="uid://ca6mekv4o5fgq" path="res://scenes/entities/shadow.tscn" id="45_lag2r"]
 
 [sub_resource type="Animation" id="Animation_gumcn"]
 length = 0.001
@@ -413,11 +412,6 @@ one_shot = true
 sprite_frames = SubResource("SpriteFrames_pb25v")
 animation = &"sit"
 offset = Vector2(0, -56)
-
-[node name="ShadowRoot" parent="Sprite" index="0" instance=ExtResource("45_lag2r")]
-show_behind_parent = true
-position = Vector2(0, -8)
-scale = Vector2(0.5, 0.5)
 
 [node name="EntityComponentSystem" parent="." index="3" instance=ExtResource("44_jjrf0")]
 z_index = 1

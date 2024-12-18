@@ -4098,7 +4098,7 @@ properties = SubResource("Resource_q3hyy")
 
 [sub_resource type="Resource" id="Resource_uad6i"]
 script = ExtResource("6_qrynv")
-texture_idx = 0
+texture_idx = -12
 flip = false
 width = 1.0
 
@@ -7306,10 +7306,10 @@ background_limits_offsetted = true
 
 [node name="LimitsForeground" parent="Layers2D/Layer1/CameraRoom1_BG" index="0"]
 visible = true
-points = PackedVector2Array(19844, 1528, 4067, 1528, 4067, -2174, 19844, -2174)
+points = PackedVector2Array(85676, 1528, 4067, 1528, 4067, -2174, 85676, -2174)
 
 [node name="Limits" parent="Layers2D/Layer1/CameraRoom1_BG" index="1"]
-points = PackedVector2Array(18764, 756, 5147, 756, 5147, -1402, 18764, -1402)
+points = PackedVector2Array(84596, 756, 5147, 756, 5147, -1402, 84596, -1402)
 
 [node name="LeftTop" parent="Layers2D/Layer1/CameraRoom1_BG" index="2"]
 position = Vector2(5147, -1402)
@@ -7321,10 +7321,10 @@ text = "9421.0"
 text = "-1426.0"
 
 [node name="RightBottom" parent="Layers2D/Layer1/CameraRoom1_BG" index="3"]
-position = Vector2(18764, 756)
+position = Vector2(84596, 756)
 
 [node name="PosX" parent="Layers2D/Layer1/CameraRoom1_BG/RightBottom" index="1"]
-text = "23038.0"
+text = "88870.0"
 
 [node name="PosY" parent="Layers2D/Layer1/CameraRoom1_BG/RightBottom" index="2"]
 text = "732.0"
@@ -7364,7 +7364,7 @@ position = Vector2(-609, -11)
 polygon = PackedVector2Array(870.544, 1370.46, 866.227, 1314.44, 848.851, 557.557, 912.213, -170.378, 1039.71, -870.689, 1023.97, -873.551, 896.355, -172.505, 832.859, 557.045, 850.247, 1315.22, 854.59, 1371.67)
 
 [node name="Label" parent="Layers2D/Layer0/Friezes/StartTree0" index="2"]
-scale = Vector2(2.69916, 2.69916)
+scale = Vector2(2.71648, 2.71648)
 text = "StartTree0"
 
 [node name="Suk1" type="Sprite2D" parent="Layers2D/Layer0/Friezes/StartTree0"]
@@ -7745,10 +7745,10 @@ linked_camera = NodePath("../../Layer1/CameraRoom1_BG")
 
 [node name="LimitsForeground" parent="Layers2D/Layer0/CameraRoom1" index="0"]
 visible = true
-points = PackedVector2Array(12617, 1790, -3160, 1790, -3160, -1912, 12617, -1912)
+points = PackedVector2Array(78449, 1790, -3160, 1790, -3160, -1912, 78449, -1912)
 
 [node name="Limits" parent="Layers2D/Layer0/CameraRoom1" index="1"]
-points = PackedVector2Array(11537, 1018, -2080, 1018, -2080, -1140, 11537, -1140)
+points = PackedVector2Array(77369, 1018, -2080, 1018, -2080, -1140, 77369, -1140)
 
 [node name="LeftTop" parent="Layers2D/Layer0/CameraRoom1" index="2"]
 position = Vector2(-2080, -1140)
@@ -7762,10 +7762,10 @@ text = "-1426.0"
 metadata/_edit_use_anchors_ = true
 
 [node name="RightBottom" parent="Layers2D/Layer0/CameraRoom1" index="3"]
-position = Vector2(11537, 1018)
+position = Vector2(77369, 1018)
 
 [node name="PosX" parent="Layers2D/Layer0/CameraRoom1/RightBottom" index="1"]
-text = "23038.0"
+text = "88870.0"
 
 [node name="PosY" parent="Layers2D/Layer0/CameraRoom1/RightBottom" index="2"]
 text = "732.0"
