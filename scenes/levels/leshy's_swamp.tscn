@@ -4811,7 +4811,7 @@ width = 1.0
 
 [sub_resource type="Resource" id="Resource_yreyp"]
 script = ExtResource("7_4tdah")
-position = Vector2(-1295.87, 675.612)
+position = Vector2(-1318.9, 684.47)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
 properties = SubResource("Resource_4lqaa")
@@ -7250,7 +7250,7 @@ position = Vector2(-2200, -736)
 
 [node name="RoomChanger0" parent="Layers2D/Layer1/RoomChangers" node_paths=PackedStringArray("forward_camera", "backward_camera") instance=ExtResource("16_6335x")]
 position = Vector2(19117, 580)
-layers_offset_x = 14500
+layers_offset_x = 0
 forward_camera = NodePath("../../../Layer0/CameraRoom1")
 backward_camera = NodePath("../../../Layer0/CameraRoom0")
 
@@ -7364,7 +7364,7 @@ position = Vector2(-609, -11)
 polygon = PackedVector2Array(870.544, 1370.46, 866.227, 1314.44, 848.851, 557.557, 912.213, -170.378, 1039.71, -870.689, 1023.97, -873.551, 896.355, -172.505, 832.859, 557.045, 850.247, 1315.22, 854.59, 1371.67)
 
 [node name="Label" parent="Layers2D/Layer0/Friezes/StartTree0" index="2"]
-scale = Vector2(2.71648, 2.71648)
+scale = Vector2(2.69916, 2.69916)
 text = "StartTree0"
 
 [node name="Suk1" type="Sprite2D" parent="Layers2D/Layer0/Friezes/StartTree0"]

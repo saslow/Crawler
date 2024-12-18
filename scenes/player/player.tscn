@@ -1,8 +1,7 @@
-[gd_scene load_steps=131 format=3 uid="uid://dhp71vl6av8ov"]
+[gd_scene load_steps=130 format=3 uid="uid://dhp71vl6av8ov"]
 
 [ext_resource type="Script" uid="uid://cg7c26wojljsk" path="res://scripts/player/player.gd" id="1_wfvhb"]
 [ext_resource type="Texture2D" uid="uid://bhdqe7q3s6pvs" path="res://sprites/entities/boy/boy_bump/boy bump.0001.png" id="2_4i5rq"]
-[ext_resource type="PackedScene" uid="uid://ca6mekv4o5fgq" path="res://scenes/entities/shadow.tscn" id="2_5ay5d"]
 [ext_resource type="Texture2D" uid="uid://dbn7im6ddd4pl" path="res://sprites/entities/boy/boy_jump/boy_jump0000.png" id="2_cimog"]
 [ext_resource type="Texture2D" uid="uid://cmab0udvqjdpa" path="res://sprites/entities/boy/boy_idle/boy idle .0001.png" id="2_jehxh"]
 [ext_resource type="Texture2D" uid="uid://bxya6spcdaboy" path="res://sprites/entities/boy/boy_idle/boy idle .0002.png" id="4_3qdbt"]
@@ -461,25 +460,13 @@ tracks/8/keys = {
 "update": 0,
 "values": [300.0, 300.0, 650.0]
 }
-tracks/9/type = "value"
+tracks/9/type = "method"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("ShadowRoot:position")
+tracks/9/path = NodePath(".")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0, 0.583333, 1.08334, 1.75),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, -2500), Vector2(0, -2500), Vector2(0, 0)]
-}
-tracks/10/type = "method"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath(".")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
 "times": PackedFloat32Array(),
 "transitions": PackedFloat32Array(),
 "values": []
@@ -899,8 +886,6 @@ script = ExtResource("1_wfvhb")
 component_system = NodePath("Rotatable/EntityComponentSystem")
 speed = 300.0
 is_jump_to_fall_transition = true
-
-[node name="ShadowRoot" parent="." instance=ExtResource("2_5ay5d")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 self_modulate = Color(0, 1, 0.615686, 1)
