@@ -1,3 +1,6 @@
+CameraRegionController2D
+CameraRegion2D
+Path2D
 StaticBody2D
 Sprite2D
 Line2D
@@ -6,10 +9,7 @@ SS2D_Shape
 AnimationPlayer
 PathFollow2D
 CollisionPolygon2D
-Path2D
 Node2D
 Timer
 Tree
 RemoteTransform2D
-AnimatedSprite2D
-Node

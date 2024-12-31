@@ -26,4 +26,3 @@ func _on_body_exited(body):
 			body.is_in_slide_area = false
 			body.enable_slide_area_blockers_collision()
 			
-

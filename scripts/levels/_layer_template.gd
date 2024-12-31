@@ -12,7 +12,9 @@ class_name Layer2D
 							frieze.shape_material = material
 		ss2d_material_shape = material
 
+@export var preview : bool = false
 @export_range(0, 64, 0.1) var z : float = 1
+			
 @export var transparent : bool = true
 
 #func _process(delta):

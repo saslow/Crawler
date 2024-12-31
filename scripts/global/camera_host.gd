@@ -17,6 +17,7 @@ var max_strength: float = 1000
 
 var rng = RandomNumberGenerator.new()
 var shake_force : float
+var main_camera : Camera2D
 
 func _ready():
 	enabled = false

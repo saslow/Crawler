@@ -16,7 +16,6 @@ script = ExtResource("1_08i2d")
 z_index = 20
 position = Vector2(88, 0)
 shape = SubResource("RectangleShape2D_p3xve")
-debug_color = Color(0, 0, 0, 0)
 
 [node name="UpDirection" type="Label" parent="."]
 self_modulate = Color(0, 0, 0, 1)

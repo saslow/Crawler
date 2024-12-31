@@ -35,9 +35,9 @@ instance_dock/scenes=[{
 }, {
 "name": "friezes",
 "scenes": [{
-"scene": "res://sprites/friezesets/bluebox/bluebox0.tscn"
+&"scene": "res://sprites/friezesets/bluebox/bluebox0.tscn"
 }, {
-"scene": "res://sprites/friezesets/bluebox/decobox0.tscn"
+&"scene": "res://sprites/friezesets/bluebox/decobox0.tscn"
 }],
 "scroll": 0
 }, {
@@ -56,7 +56,6 @@ instance_dock/mjpeg_quality=1.0
 [application]
 
 config/name="cm"
-config/tags=PackedStringArray("2d")
 run/main_scene="res://scenes/menus/main_menu.tscn"
 config/features=PackedStringArray("4.4", "Mobile")
 boot_splash/bg_color=Color(0, 0.160784, 0.196078, 0)
@@ -81,7 +80,7 @@ window/size/mode=3
 window/size/initial_position_type=2
 window/size/initial_position=Vector2i(0, -200)
 window/stretch/mode="viewport"
-window/vsync/vsync_mode=0
+window/vsync/vsync_mode=2
 
 [editor]
 

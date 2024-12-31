@@ -83,7 +83,7 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 32
 text = "START AGAIN"
 
-[node name="ColorEffect" type="ColorRect" parent="UI"]
+[node name="Blur" type="ColorRect" parent="UI"]
 material = SubResource("ShaderMaterial_vgscs")
 layout_mode = 1
 anchors_preset = 15

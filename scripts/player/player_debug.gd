@@ -17,7 +17,7 @@ func debug(delta) -> void:
 	$Debug/MonitorsContainer/State/Label.text = "   STATE: " + str(player.sm.keys()[player.state])
 	$Debug/MonitorsContainer/FloorAngle/Label.text = "   R_FLOOR_ANGLE: " + str( snapped( player.get_real_floor_angle(true), 0.1 ) )
 	$Debug/MonitorsContainer/WallAngle/Label.text = "   WALL_ANGLE: " + str( snapped( player.get_real_wall_angle(true), 0.1 ) )
-	$Debug/MonitorsContainer/JumpBufferIsStopped/Label.text = "   J_B_stopped: " + str(player.jump_buffer_timer.is_stopped())
+	$Debug/MonitorsContainer/JumpBufferIsStopped/Label.text = "   J_B_stopped: " + str(player.is_releasing_vertically)
 	$Debug/MonitorsContainer/Vel/Label.text = "   Vel: " + str( player.velocity ) 
 	$Debug/MonitorsContainer/YVel/Label.text = "   YVel: " + str( player.y_vel ) 
 	$Debug/MonitorsContainer/XVel/Label.text = "   is_on_floor(): " + str( player.is_running ) 
