@@ -791,8 +791,7 @@ size = Vector2(122, 12)
 
 [sub_resource type="Animation" id="Animation_s6a2m"]
 resource_name = "0"
-length = 0.16667
-step = 0.0833333
+length = 0.26667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -800,7 +799,7 @@ tracks/0/path = NodePath("Rotatable/AttackSprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.133333, 0.166667),
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.233333, 0.266667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [ExtResource("74_s3wrp"), ExtResource("75_ahysd"), ExtResource("76_eicqh"), ExtResource("81_5uykb"), null]
@@ -808,7 +807,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_f0mpt"]
 resource_name = "1"
-length = 0.16667
+length = 0.26667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -816,7 +815,7 @@ tracks/0/path = NodePath("Rotatable/AttackSprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.133333, 0.166667),
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.233333, 0.266667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [ExtResource("77_il6ok"), ExtResource("78_d4w4l"), ExtResource("79_v80xt"), ExtResource("85_r100s"), null]
@@ -824,7 +823,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_fjpla"]
 resource_name = "2"
-length = 0.16667
+length = 0.26667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -832,7 +831,7 @@ tracks/0/path = NodePath("Rotatable/AttackSprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.133333, 0.166667),
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.233333, 0.266667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [ExtResource("80_nhv5c"), ExtResource("81_s4kah"), ExtResource("82_6a0pu"), ExtResource("89_at7u5"), null]
@@ -1137,7 +1136,7 @@ one_shot = true
 
 [node name="FloorStickBlockingTimer" type="Timer" parent="Timers"]
 process_callback = 0
-wait_time = 0.001
+wait_time = 0.01
 one_shot = true
 
 [node name="WallSlidingGroundingBlockingTimer" type="Timer" parent="Timers"]
@@ -1161,7 +1160,7 @@ one_shot = true
 
 [node name="AttackTimer" type="Timer" parent="Timers/AttackTimers"]
 process_callback = 0
-wait_time = 0.13
+wait_time = 0.15
 one_shot = true
 
 [node name="StabilityTimer" type="Timer" parent="Timers"]

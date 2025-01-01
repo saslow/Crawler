@@ -1870,7 +1870,7 @@ curve_bake_interval = 20.0
 
 [sub_resource type="Resource" id="Resource_iygsn"]
 script = ExtResource("6_qrynv")
-texture_idx = 15
+texture_idx = 12
 flip = false
 width = 1.0
 
@@ -1883,7 +1883,7 @@ properties = SubResource("Resource_iygsn")
 
 [sub_resource type="Resource" id="Resource_ktexh"]
 script = ExtResource("6_qrynv")
-texture_idx = -10
+texture_idx = -13
 flip = false
 width = 1.0
 
@@ -1896,7 +1896,7 @@ properties = SubResource("Resource_ktexh")
 
 [sub_resource type="Resource" id="Resource_svn7a"]
 script = ExtResource("6_qrynv")
-texture_idx = 0
+texture_idx = -4
 flip = false
 width = 1.0
 
@@ -4862,7 +4862,7 @@ properties = SubResource("Resource_t1wjt")
 
 [sub_resource type="Resource" id="Resource_r4mdl"]
 script = ExtResource("6_qrynv")
-texture_idx = 21
+texture_idx = 24
 flip = false
 width = 1.0
 
@@ -4940,7 +4940,7 @@ properties = SubResource("Resource_kepcj")
 
 [sub_resource type="Resource" id="Resource_7ndhe"]
 script = ExtResource("6_qrynv")
-texture_idx = -1
+texture_idx = 3
 flip = false
 width = 1.0
 
@@ -4992,7 +4992,7 @@ properties = SubResource("Resource_j1vqd")
 
 [sub_resource type="Resource" id="Resource_oju4f"]
 script = ExtResource("6_qrynv")
-texture_idx = 0
+texture_idx = 4
 flip = false
 width = 1.0
 
@@ -6002,13 +6002,13 @@ properties = SubResource("Resource_45jy1")
 
 [sub_resource type="Resource" id="Resource_80m2h"]
 script = ExtResource("6_qrynv")
-texture_idx = -5
+texture_idx = 10
 flip = false
 width = 1.0
 
 [sub_resource type="Resource" id="Resource_c6w2p"]
 script = ExtResource("7_4tdah")
-position = Vector2(-287.478, -1028.4)
+position = Vector2(-288.694, -1016.78)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
 properties = SubResource("Resource_80m2h")
@@ -6086,7 +6086,7 @@ width = 1.0
 
 [sub_resource type="Resource" id="Resource_jo2sv"]
 script = ExtResource("7_4tdah")
-position = Vector2(-34.3262, -1045.72)
+position = Vector2(-118.179, -1036.4)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
 properties = SubResource("Resource_ai363")
@@ -6414,7 +6414,7 @@ curve_bake_interval = 20.0
 
 [sub_resource type="Resource" id="Resource_kpwd4"]
 script = ExtResource("6_qrynv")
-texture_idx = 0
+texture_idx = -8
 flip = false
 width = 1.0
 
@@ -6730,13 +6730,13 @@ curve_bake_interval = 20.0
 
 [sub_resource type="Resource" id="Resource_jak5l"]
 script = ExtResource("6_qrynv")
-texture_idx = -9
+texture_idx = -15
 flip = false
 width = 1.0
 
 [sub_resource type="Resource" id="Resource_dk1i7"]
 script = ExtResource("7_4tdah")
-position = Vector2(232.485, -71.0743)
+position = Vector2(238.349, -72.2908)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
 properties = SubResource("Resource_jak5l")
@@ -6762,7 +6762,7 @@ _points = {
 }
 _point_order = PackedInt32Array(67, 68)
 _constraints = {}
-_next_key = 71
+_next_key = 72
 _material_overrides = {}
 tessellation_stages = 3
 tessellation_tolerance = 6.0
@@ -6805,6 +6805,11 @@ position = Vector2(32, -672)
 
 [node name="Players" type="Node2D" parent="Layers2D/Layer1"]
 position = Vector2(32, -672)
+
+[node name="Player0" parent="Layers2D/Layer1/Players" instance=ExtResource("18_s5lmt")]
+z_index = 2
+position = Vector2(16055, 489)
+metadata/_edit_group_ = true
 
 [node name="Friezes" type="Node2D" parent="Layers2D/Layer1"]
 position = Vector2(32, -448)
@@ -7115,7 +7120,7 @@ _points = SubResource("Resource_sjd36")
 position = Vector2(-22483.5, -1163.69)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Layers2D/Layer1/Friezes/Log1/StaticBody2D"]
-polygon = PackedVector2Array(21943.9, 1128.86, 22152, 1195.86, 22359, 1253, 22464, 1295, 22583, 1335, 22698, 1365, 22884, 1421, 23034, 1472, 23804.5, 1768.68, 22859.6, 1545.58, 22552.3, 1449.03, 22275.2, 1378.63, 21887.8, 1284.18)
+polygon = PackedVector2Array(21943.9, 1128.86, 22152, 1195.86, 22359, 1253, 22464, 1295, 22583, 1335, 22698, 1365, 22884, 1421, 23034, 1472, 23804.5, 1768.68, 22859.6, 1545.58, 22552.3, 1449.03, 22275.2, 1378.63, 21895.8, 1279.21)
 
 [node name="10" parent="Layers2D/Layer1/Friezes/Log1" instance=ExtResource("11_yjne1")]
 position = Vector2(-652.3, 290.082)
@@ -7310,11 +7315,6 @@ progress = 4149.11
 position = Vector2(-32, -40)
 metadata/_edit_lock_ = true
 
-[node name="Player0" parent="Layers2D/Layer0/Players" instance=ExtResource("18_s5lmt")]
-z_index = 2
-position = Vector2(16358, 767)
-metadata/_edit_group_ = true
-
 [node name="Friezes" type="Node2D" parent="Layers2D/Layer0"]
 
 [node name="StartTree0" parent="Layers2D/Layer0/Friezes" instance=ExtResource("4_m3h3g")]
@@ -7331,7 +7331,7 @@ position = Vector2(-609, -11)
 polygon = PackedVector2Array(870.544, 1370.46, 866.227, 1314.44, 848.851, 557.557, 912.213, -170.378, 1039.71, -870.689, 1023.97, -873.551, 896.355, -172.505, 832.859, 557.045, 850.247, 1315.22, 854.59, 1371.67)
 
 [node name="Label" parent="Layers2D/Layer0/Friezes/StartTree0" index="2"]
-scale = Vector2(2.51874, 2.51874)
+scale = Vector2(2.46217, 2.46217)
 text = "StartTree0"
 
 [node name="Suk1" type="Sprite2D" parent="Layers2D/Layer0/Friezes/StartTree0"]
@@ -7559,7 +7559,8 @@ flip_edges = true
 position = Vector2(431.5, -1008.4)
 
 [node name="13" parent="Layers2D/Layer0/Friezes/Ground3" instance=ExtResource("11_yjne1")]
-position = Vector2(-286.5, -1017.4)
+position = Vector2(-303.5, -990.4)
+rotation = -0.808963
 scale = Vector2(0.151801, 0.151801)
 
 [node name="12" parent="Layers2D/Layer0/Friezes/Ground3" instance=ExtResource("11_yjne1")]
@@ -7580,7 +7581,7 @@ collision_layer = 256
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Layers2D/Layer0/Friezes/SecretPlatform/StaticBody2D"]
 position = Vector2(-102.613, -81.7364)
-polygon = PackedVector2Array(-153.387, 193.736, 294.613, 17.7364, 294.613, 33.7364, -153.387, 209.736)
+polygon = PackedVector2Array(-153.387, 193.736, 81.613, 102.736, 244.613, 44.7364, 293.613, 29.7364, 289.613, 46.7364, -153.387, 209.736)
 one_way_collision = true
 
 [node name="LevelParts" type="Node2D" parent="Layers2D/Layer0"]
@@ -7699,15 +7700,15 @@ closest_camera = true
 [node name="UI" parent="." node_paths=PackedStringArray("border") instance=ExtResource("2_ylurl")]
 border = NodePath("../Layers2D/Layer0/CameraRoom0")
 
+[editable path="Layers2D/Layer1/Players/Player0"]
+[editable path="Layers2D/Layer1/Players/Player0/Rotatable/AttackAreas/AttackArea"]
+[editable path="Layers2D/Layer1/Players/Player0/Rotatable/EntityComponentSystem"]
 [editable path="Layers2D/Layer1/Friezes/GrindPipe"]
 [editable path="Layers2D/Layer1/Friezes/Ground1/Piki"]
 [editable path="Layers2D/Layer1/LevelParts/Waterline"]
 [editable path="Layers2D/Layer1/LevelParts/Waterline2"]
 [editable path="Layers2D/Layer1/LevelParts/JumpPad1"]
 [editable path="Layers2D/Layer1/CameraRoom0"]
-[editable path="Layers2D/Layer0/Players/Player0"]
-[editable path="Layers2D/Layer0/Players/Player0/Rotatable/AttackAreas/AttackArea"]
-[editable path="Layers2D/Layer0/Players/Player0/Rotatable/EntityComponentSystem"]
 [editable path="Layers2D/Layer0/Friezes/StartTree0"]
 [editable path="Layers2D/Layer0/LevelParts/EntityComponentSystem"]
 [editable path="Layers2D/Layer0/LevelParts/JumpPad0"]

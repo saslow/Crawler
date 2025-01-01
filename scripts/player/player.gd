@@ -101,7 +101,7 @@ var was_running : bool = false
 
 const NORMAL_SPEED : int = 650
 const SLIDE_MAX_SPEED  : int = 1000
-const MAX_SPEED : int = 1350
+const MAX_SPEED : int = 1300
 const JUMP_FORCE : int = 700
 const ACCELERATION : float = 0.3 # 0 - 1
 const FRICTION : float = 0.1 # 0 - 1
@@ -163,6 +163,34 @@ func _ready() -> void:
 		g.background_level_changed.connect(_on_background_level_changed)
 		last_checkpoint_position = position
 	
+func _process(delta: float) -> void:
+	if !Engine.is_editor_hint():
+		if state != sm.BUMPED:
+			if is_running:
+				if last_true_axis > 0:
+					$Sprite.scale.x = 2
+					if $Timers/AttackTimers/AttackTimer.is_stopped():
+						$Rotatable/AttackSprite.scale.x = 1.5
+						$Rotatable/AttackAreas/AttackAreaRemotePosition.position.x = 196
+				else:
+					$Sprite.scale.x = -2
+					if $Timers/AttackTimers/AttackTimer.is_stopped():
+						$Rotatable/AttackSprite.scale.x = -1.5
+						$Rotatable/AttackAreas/AttackAreaRemotePosition.position.x = -196
+			elif is_on_floor():
+				if Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) > 0:
+					$Sprite.scale.x = 2
+					if $Timers/AttackTimers/AttackTimer.is_stopped():
+						$Rotatable/AttackSprite.scale.x = 1.5
+						$Rotatable/AttackAreas/AttackAreaRemotePosition.position.x = 196
+				if Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) < 0:
+					$Sprite.scale.x = -2
+					if $Timers/AttackTimers/AttackTimer.is_stopped():
+						$Rotatable/AttackSprite.scale.x = -1.5
+						$Rotatable/AttackAreas/AttackAreaRemotePosition.position.x = -196
+
+		state_machine(delta)
+		
 func _physics_process(delta: float) -> void:
 	if !Engine.is_editor_hint():
 		if is_on_floor():
@@ -238,36 +266,6 @@ func _physics_process(delta: float) -> void:
 				#is_releasing = true
 			#else:
 				#is_releasing = false
-	
-func _process(delta: float) -> void:
-	if !Engine.is_editor_hint():
-		if state != sm.BUMPED:
-			if is_running:
-				if last_true_axis > 0:
-					$Sprite.scale.x = 2
-					if $Timers/AttackTimers/AttackTimer.is_stopped():
-						$Rotatable/AttackSprite.scale.x = 1.5
-						$Rotatable/AttackAreas/AttackAreaRemotePosition.position.x = 196
-				else:
-					$Sprite.scale.x = -2
-					if $Timers/AttackTimers/AttackTimer.is_stopped():
-						$Rotatable/AttackSprite.scale.x = -1.5
-						$Rotatable/AttackAreas/AttackAreaRemotePosition.position.x = -196
-			elif is_on_floor():
-				if Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) > 0:
-					$Sprite.scale.x = 2
-					if $Timers/AttackTimers/AttackTimer.is_stopped():
-						$Rotatable/AttackSprite.scale.x = 1.5
-						$Rotatable/AttackAreas/AttackAreaRemotePosition.position.x = 196
-				if Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) < 0:
-					$Sprite.scale.x = -2
-					if $Timers/AttackTimers/AttackTimer.is_stopped():
-						$Rotatable/AttackSprite.scale.x = -1.5
-						$Rotatable/AttackAreas/AttackAreaRemotePosition.position.x = -196
-
-		state_machine(delta)
-		
-
 
 func physics_state_machine(delta : float) -> void:
 	if !is_movement_blocked:
@@ -294,8 +292,7 @@ func physics_state_machine(delta : float) -> void:
 				
 				movement(delta)
 				
-				
-				if (!$Rotatable/Casts/UpCast0.is_colliding() and !$Rotatable/Casts/UpCast1.is_colliding() and !is_sliding):
+				if (!$Rotatable/Casts/UpCast0.is_colliding() and !$Rotatable/Casts/UpCast1.is_colliding() and !is_sliding ) and !(!$Timers/TurningTimer.is_stopped() and is_running):
 					jump_start(delta)
 				floor_detaching()
 				if !is_on_wall():
@@ -320,7 +317,8 @@ func physics_state_machine(delta : float) -> void:
 				$Timers/SlideDashTimer.paused = true
 				#slide_dash()
 				running()
-				sprite_rotation_reset()
+				if $Timers/FloorStickBlockingTimer.is_stopped() and !( $Rotatable/Casts/DownCast0.is_colliding() and $Rotatable/Casts/DownCast1.is_colliding() ):
+					sprite_rotation_reset()
 				rotatable_rotation_reset()
 				jump_input_buffering()
 				#last_true_axis_changing()
@@ -333,9 +331,10 @@ func physics_state_machine(delta : float) -> void:
 						movement(delta, 0.5, 0.5)
 					else:
 						if is_releasing:
-							if velocity.x < (speed - 150) and velocity.x > -(speed + 150):
+							if Vector2.UP.dot(velocity) > 0.5:
 								movement_in_air_state_when_running()
-					
+							#if velocity.x < (speed - 150) and velocity.x > -(speed + 150):
+								#movement_in_air_state_when_running()
 					is_jumping = false
 					if is_releasing and $Rotatable.rotation < deg_to_rad(135):
 						jump_start(delta)
@@ -460,10 +459,10 @@ func state_machine(delta : float):
 				if $Anim.current_animation != "rebound" and $Anim.current_animation != "grind":
 					if get_real_velocity().length() < 100 and !(is_running or Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) != 0):
 						$Anim.play("idle")
+						dust_paticle_emitters_stop_emitting()
 					else:
 						if is_running:
 							if !$Timers/SlideDashTimer.is_stopped():
-
 								if speed < MAX_SPEED - 10:
 									dust_paticle_emitters_start_emitting(0.25)
 								else:
@@ -477,20 +476,18 @@ func state_machine(delta : float):
 						else:
 							dust_paticle_emitters_stop_emitting()
 							if (get_real_velocity().length() < 100 and Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) == 0) or is_on_wall():
-								#if at_ledge:
-									#$Anim.play("at_ledge")
-								#else:
 								$Anim.play("idle")
 							else:
 								$Anim.play("walk")
 			sm.AIR:
 				dust_paticle_emitters_stop_emitting()
-				if !is_running and !is_releasing:# or is_releasing:
+				if !is_running and !is_releasing and $Timers/FloorStickBlockingTimer.is_stopped():# or is_releasing:
 					if $Timers/FirstJumpStateTimer.is_stopped() and $Timers/SecondJumpStateTimer.is_stopped():
 						if is_jump_to_fall_transition:
 							$Anim.play("jump_to_fall")
 						else:
-							$Anim.play("fall")
+							if $Timers/FloorStickBlockingTimer.is_stopped() and !( $Rotatable/Casts/DownCast0.is_colliding() and $Rotatable/Casts/DownCast1.is_colliding() ):
+								$Anim.play("fall")
 						
 					else:
 						$Anim.play("jump")
@@ -567,7 +564,7 @@ func running() -> void:
 			
 			if $Timers/TurningTimer.is_stopped():
 				if !is_sliding:
-					speed = move_toward(speed, MAX_SPEED, 8)
+					speed = move_toward(speed, MAX_SPEED, 750 * get_physics_process_delta_time())
 				if ( $Rotatable/Casts/DownCast0.is_colliding() or $Rotatable/Casts/DownCast1.is_colliding() ) and (($Rotatable/Casts/RightCast.is_colliding() and last_true_axis == 1) or ($Rotatable/Casts/LeftCast.is_colliding() and last_true_axis == -1)):
 					floor_max_angle = PI/4
 					is_running = false
@@ -635,7 +632,8 @@ func floor_attaching() -> void:
 		is_sliding = false
 		
 func floor_detaching() -> void:
-	if not(is_on_floor()):
+	if not(is_on_floor()) and !( $Rotatable/Casts/DownCast0.is_colliding() and $Rotatable/Casts/DownCast1.is_colliding() ):
+		$Timers/FloorStickBlockingTimer.start()
 		if last_floor_angle > deg_to_rad(135):
 			last_true_axis = -last_true_axis
 		state = sm.AIR
@@ -764,15 +762,23 @@ func grinding() -> void:
 		
 func attack() -> void:
 	if !is_grinding and $Anim.current_animation != "grind":
-		if Input.is_action_just_pressed("1ACTION" + get_player_index()) and $Timers/AttackTimers/AttackTimer.time_left < $Timers/AttackTimers/AttackTimer.wait_time/3 and state != sm.GHOST and $Timers/TurningTimer.is_stopped():
+		if Input.is_action_just_pressed("1ACTION" + get_player_index()) and $Timers/AttackTimers/AttackTimer.time_left < $Timers/AttackTimers/AttackTimer.wait_time/100 and state != sm.GHOST and $Timers/TurningTimer.is_stopped():
 			#$Rotatable/AttackAreas/AttackArea/Shape.disabled = false
+			var random_attack_sprite_rotation_offset : float = RandomNumberGenerator.new().randf_range(-1, 1)
+			$Rotatable/AttackSprite.rotation += PI/100 * random_attack_sprite_rotation_offset
 			play_random_attack_animation()
 			$Rotatable/AttackAreas/AttackArea.monitoring = true
 			$Rotatable/AttackAreas/AttackArea/CollisionShape.set_deferred("debug_color", Color(1, 0, 0, 0.3))
 			$Timers/AttackTimers/AttackTimer.start()
 			y_vel.y -= 2 * g.GRAVITY
-			
-			stop_jump_timers()
+			if !$Timers/FirstJumpStateTimer.is_stopped():
+				await $Timers/FirstJumpStateTimer.timeout
+				stop_jump_timers()
+			if !$Timers/SecondJumpStateTimer.is_stopped():
+				await $Timers/SecondJumpStateTimer.timeout
+				stop_jump_timers()
+			await $Timers/AttackTimers/AttackTimer.timeout
+			$Rotatable/AttackSprite.rotation = 0
 		
 var last_attack_anim_name : String = ''
 func play_random_attack_animation() -> void:
@@ -879,6 +885,7 @@ func _on_bump_timer_timeout() -> void:
 	if is_on_floor():
 		state = sm.GROUND
 	else:
+		$Timers/FloorStickBlockingTimer.start()
 		state = sm.AIR
 
 func _on_grind_area_body_entered(body):
@@ -988,6 +995,7 @@ func _on_attack_timer_timeout():
 func _on_crushing_area_area_entered(area):
 	if (area.name == "CrushArea") and (area.get_parent().is_killed == false) and (velocity.y > -250):
 		area.get_parent().injured.emit()
+		$Timers/FloorStickBlockingTimer.start()
 		state = sm.AIR
 		if is_on_floor():
 			$Timers/FloorStickBlockingTimer.start()

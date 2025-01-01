@@ -10,7 +10,6 @@ res://sprites/friezesets/swamp/trees/tree_thin/thin_tree_material.tres
 res://sprites/friezesets/swamp/plank/plank.tres
 res://materials/shaders/tv.gdshader
 res://shaders/noise.gdshader
-res://scripts/player/player.gd
 res://scenes/menus/main_menu.tscn
 res://scenes/player/player.tscn
 res://addons/LinkedCamera2D/linked_camera.tscn
@@ -37,3 +36,4 @@ res://scenes/components/entity_component_system.tscn
 res://scenes/level_parts/collectibles/collectible_template.tscn
 res://scenes/_/deleter.tscn
 res://scenes/level_parts/waterline/swamp_waterline.tscn
+res://materials/shapes/vein_segment_shape.tres
