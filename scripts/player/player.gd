@@ -284,10 +284,16 @@ func physics_state_machine(delta : float) -> void:
 				last_wall_angle = 0.0
 				last_real_wall_angle = 0.0
 				last_wall_normal = Vector2.ZERO
+				
+				if $Timers/TurningTimer.is_stopped():
+					slide_dash_start()
+				slide_dash()
+				
+				
 				$Timers/FloorStickBlockingTimer.stop()
 				running()
 				stop_jump_timers()
-				if !is_axis_changing_delayed and !is_sliding:
+				if !is_axis_changing_delayed and !is_sliding and $Timers/TurningTimer.is_stopped():
 					last_true_axis_changing()
 				
 				movement(delta)
@@ -302,10 +308,7 @@ func physics_state_machine(delta : float) -> void:
 				attack()
 				
 				grinding()
-				slide_dash_start()
-				slide_dash()
 
-				
 				if is_releasing:
 					y_vel = Vector2(0, 100)
 				else:
@@ -646,7 +649,7 @@ func last_true_axis_changing() -> void:
 	if Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) != 0:
 		last_true_axis = Vector2(Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()), 0).normalized().x
 		
-func falling(delta : float, gravity_mult : float = 1, max_gravity_velocity : float = 5000) -> void:
+func falling(delta : float, gravity_mult : float = 1, max_gravity_velocity : float = 3000) -> void:
 	y_vel.y += g.GRAVITY
 	y_vel.y = clampf(y_vel.y, -60_000, max_gravity_velocity)
 		
@@ -963,10 +966,11 @@ func dust_paticle_emitters_stop_emitting() -> void:
 		#$Sprite/DustParticleEmitter1.emitting = false
 
 func _on_turning_timer_timeout():
-	if state == sm.AIR:
-		$Timers/TurningTimer.start(0.01)
-		x_vel.x = lerp(x_vel.x, 0.0, 0.05)
-		#velocity.x = 0.0
+	match state:
+		sm.AIR:
+			$Timers/TurningTimer.start(0.01)
+			x_vel.x = lerp(x_vel.x, 0.0, 0.05)
+			#velocity.x = 0.0
 		
 func _on_slide_dash_timer_timeout():
 	is_sliding = false

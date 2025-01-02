@@ -36,4 +36,4 @@ res://scenes/components/entity_component_system.tscn
 res://scenes/level_parts/collectibles/collectible_template.tscn
 res://scenes/_/deleter.tscn
 res://scenes/level_parts/waterline/swamp_waterline.tscn
-res://materials/shapes/vein_segment_shape.tres
+res://scripts/player/player.gd
