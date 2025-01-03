@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://444wwq5aex0j" path="res://addons/LinkedCamera2D/linked_camera2D.gd" id="1_6pd5n"]
 
 [node name="LinkedCamera" type="Camera2D"]
+physics_interpolation_mode = 1
 zoom = Vector2(0.5, 0.5)
 limit_smoothed = true
-position_smoothing_enabled = true
 position_smoothing_speed = 20.0
 editor_draw_limits = true
 script = ExtResource("1_6pd5n")

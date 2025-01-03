@@ -489,9 +489,8 @@ func state_machine(delta : float):
 						if is_jump_to_fall_transition:
 							$Anim.play("jump_to_fall")
 						else:
-							if $Timers/FloorStickBlockingTimer.is_stopped() and !( $Rotatable/Casts/DownCast0.is_colliding() and $Rotatable/Casts/DownCast1.is_colliding() ):
+							if $Timers/FloorStickBlockingTimer.is_stopped() and !( $Rotatable/Casts/DownCast0.is_colliding() or $Rotatable/Casts/DownCast1.is_colliding() ):
 								$Anim.play("fall")
-						
 					else:
 						$Anim.play("jump")
 			sm.HURT:
@@ -649,7 +648,7 @@ func last_true_axis_changing() -> void:
 	if Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()) != 0:
 		last_true_axis = Vector2(Input.get_axis("LEFT" + get_player_index(), "RIGHT" + get_player_index()), 0).normalized().x
 		
-func falling(delta : float, gravity_mult : float = 1, max_gravity_velocity : float = 3000) -> void:
+func falling(delta : float, gravity_mult : float = 1, max_gravity_velocity : float = 5000) -> void:
 	y_vel.y += g.GRAVITY
 	y_vel.y = clampf(y_vel.y, -60_000, max_gravity_velocity)
 		

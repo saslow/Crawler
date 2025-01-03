@@ -1,4 +1,4 @@
-[gd_scene load_steps=129 format=3 uid="uid://dhp71vl6av8ov"]
+[gd_scene load_steps=128 format=3 uid="uid://dhp71vl6av8ov"]
 
 [ext_resource type="Script" uid="uid://cg7c26wojljsk" path="res://scripts/player/player.gd" id="1_wfvhb"]
 [ext_resource type="Texture2D" uid="uid://bhdqe7q3s6pvs" path="res://sprites/entities/boy/boy_bump/boy bump.0001.png" id="2_4i5rq"]
@@ -90,12 +90,6 @@
 [ext_resource type="Texture2D" uid="uid://bt21t5tilc750" path="res://sprites/entities/boy/boy_attack/boy_attack2/boy_attack2_0002.png" id="82_6a0pu"]
 [ext_resource type="Texture2D" uid="uid://df6amk1yo4av5" path="res://sprites/entities/boy/boy_attack/boy_attack1/boy_attack1_0005.png" id="85_r100s"]
 [ext_resource type="Texture2D" uid="uid://cewqmx4ovv54d" path="res://sprites/entities/boy/boy_attack/boy_attack2/boy_attack2_0005.png" id="89_at7u5"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fuixc"]
-size = Vector2(1200, 206)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2idss"]
-size = Vector2(1200, 134)
 
 [sub_resource type="Animation" id="Animation_qfl5w"]
 length = 0.001
@@ -756,6 +750,8 @@ particle_flag_disable_z = true
 gravity = Vector3(0, -250, 0)
 scale_curve = SubResource("CurveTexture_nknwo")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_31ki0"]
+
 [sub_resource type="Curve" id="Curve_uvxci"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.442308, 0.516981), -2.90573e-07, -2.90573e-07, 0, 0, Vector2(0.745726, 0.516981), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 4
@@ -873,7 +869,7 @@ size = Vector2(48, 48)
 size = Vector2(960, 2160)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("component_system")]
-physics_interpolation_mode = 2
+physics_interpolation_mode = 1
 z_index = 1
 texture_filter = 2
 collision_layer = 2
@@ -884,22 +880,6 @@ script = ExtResource("1_wfvhb")
 component_system = NodePath("Rotatable/EntityComponentSystem")
 speed = 300.0
 is_jump_to_fall_transition = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-self_modulate = Color(0, 1, 0.615686, 1)
-position = Vector2(0, -63)
-shape = SubResource("RectangleShape2D_fuixc")
-disabled = true
-debug_color = Color(0, 1, 0.701961, 0)
-metadata/_edit_lock_ = true
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-self_modulate = Color(1, 0, 0.380392, 1)
-position = Vector2(0, -233)
-shape = SubResource("RectangleShape2D_2idss")
-disabled = true
-debug_color = Color(0.772549, 0, 0.321569, 0)
-metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="."]
 visible = false
@@ -916,6 +896,7 @@ libraries = {
 }
 
 [node name="DustParticleRotationPivot" type="Node2D" parent="."]
+visible = false
 
 [node name="DustParticleEmitter0" type="GPUParticles2D" parent="DustParticleRotationPivot"]
 show_behind_parent = true
@@ -924,7 +905,6 @@ scale = Vector2(2, 2)
 emitting = false
 amount = 24
 fixed_fps = 24
-interpolate = false
 texture = ExtResource("62_mbjov")
 process_material = SubResource("ParticleProcessMaterial_8b5vi")
 
@@ -936,11 +916,11 @@ scale = Vector2(2, 2)
 emitting = false
 amount = 24
 fixed_fps = 24
-interpolate = false
 texture = ExtResource("63_vu8ds")
 process_material = SubResource("ParticleProcessMaterial_8b5vi")
 
 [node name="Sprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_31ki0")
 scale = Vector2(2, 2)
 texture = ExtResource("2_jehxh")
 offset = Vector2(12, -25)
