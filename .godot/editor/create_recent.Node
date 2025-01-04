@@ -1,4 +1,8 @@
+LinkedCamera2D
 Node2D
+Camera2D
+Layer2D
+Room
 SubViewport
 SubViewportContainer
 Marker2D
@@ -8,7 +12,3 @@ StaticBody2D
 Sprite2D
 Line2D
 SS2D_Shape_Anchor
-SS2D_Shape
-AnimationPlayer
-PathFollow2D
-CollisionPolygon2D

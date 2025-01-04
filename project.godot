@@ -13,17 +13,17 @@ config_version=5
 instance_dock/scenes=[{
 "name": "level parts",
 "scenes": [{
-"scene": "res://scenes/level_parts/releaser.tscn"
+&"scene": "res://scenes/level_parts/releaser.tscn"
 }, {
-"scene": "res://scenes/level_parts/slide_area.tscn"
+&"scene": "res://scenes/level_parts/slide_area.tscn"
 }, {
-"scene": "res://scenes/level_parts/checkpoint.tscn"
+&"scene": "res://scenes/level_parts/checkpoint.tscn"
 }, {
-"scene": "res://scenes/level_parts/jump_pad.tscn"
+&"scene": "res://scenes/level_parts/jump_pad.tscn"
 }, {
-"scene": "res://addons/LinkedCamera2D/linked_camera.tscn"
+&"scene": "res://addons/LinkedCamera2D/linked_camera.tscn"
 }, {
-"scene": "res://scenes/level_parts/rooms/room_changer.tscn"
+&"scene": "res://scenes/level_parts/rooms/room_changer.tscn"
 }],
 "scroll": 0
 }, {
@@ -304,7 +304,6 @@ common/physics_interpolation=true
 [rendering]
 
 textures/canvas_textures/default_texture_repeat=1
-renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true
 textures/default_filters/anisotropic_filtering_level=0
 environment/glow/upscale_mode=0

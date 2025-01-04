@@ -37,7 +37,7 @@ func depth_offset_y(closest_layer_z : float = g.current_level.current_room.close
 	return 1080 * (camera_z - closest_layer_z)
 
 func _ready():
-	await get_tree().create_timer(0.01).timeout
+	await get_tree().create_timer(0.001).timeout
 	player_z = g.player.get_parent().get_parent().z
 	camera_z = get_parent().z
 	
@@ -47,7 +47,7 @@ func _ready():
 	limit_top -= depth_offset_y()
 
 	if get_parent() is Layer2D:
-		zoom = zoom / camera_z
+		zoom = (Vector2.ONE * 0.5) / camera_z
 	
 	##if clone_to_bg == null:
 		##modulate = Color(0, 0 , 0, 0.5)

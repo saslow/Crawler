@@ -10,13 +10,13 @@
 
 [sub_resource type="Resource" id="Resource_fyldf"]
 script = ExtResource("3_smyv4")
-texture_idx = -3
+texture_idx = -6
 flip = false
 width = 1.0
 
 [sub_resource type="Resource" id="Resource_l1c4s"]
 script = ExtResource("4_000gr")
-position = Vector2(3296.21, 253.776)
+position = Vector2(-1210.15, 245.153)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
 properties = SubResource("Resource_fyldf")
@@ -29,7 +29,7 @@ width = 1.0
 
 [sub_resource type="Resource" id="Resource_xisds"]
 script = ExtResource("4_000gr")
-position = Vector2(4389.47, 227.695)
+position = Vector2(-116.886, 219.072)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
 properties = SubResource("Resource_irets")
@@ -42,7 +42,7 @@ width = 1.0
 
 [sub_resource type="Resource" id="Resource_5ej4k"]
 script = ExtResource("4_000gr")
-position = Vector2(4582.88, 284.381)
+position = Vector2(76.5234, 275.758)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
 properties = SubResource("Resource_ntta8")
@@ -55,7 +55,7 @@ width = 1.0
 
 [sub_resource type="Resource" id="Resource_wf6ol"]
 script = ExtResource("4_000gr")
-position = Vector2(4776.03, 412.218)
+position = Vector2(269.673, 403.595)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
 properties = SubResource("Resource_ahpwg")
@@ -68,7 +68,7 @@ width = 1.0
 
 [sub_resource type="Resource" id="Resource_ykkow"]
 script = ExtResource("4_000gr")
-position = Vector2(5055.87, 583.96)
+position = Vector2(549.514, 575.337)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
 properties = SubResource("Resource_ibfx7")
@@ -81,7 +81,7 @@ width = 1.0
 
 [sub_resource type="Resource" id="Resource_2io8f"]
 script = ExtResource("4_000gr")
-position = Vector2(5405.89, 683.394)
+position = Vector2(899.534, 674.771)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
 properties = SubResource("Resource_ypdvu")
@@ -94,7 +94,7 @@ width = 1.0
 
 [sub_resource type="Resource" id="Resource_6blsm"]
 script = ExtResource("4_000gr")
-position = Vector2(5518.76, -381.076)
+position = Vector2(1012.4, -389.699)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
 properties = SubResource("Resource_b2vfc")
@@ -107,14 +107,14 @@ width = 1.0
 
 [sub_resource type="Resource" id="Resource_yn6hm"]
 script = ExtResource("4_000gr")
-position = Vector2(3269.64, -350.749)
+position = Vector2(-1236.72, -359.372)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
 properties = SubResource("Resource_yb3oq")
 
 [sub_resource type="Resource" id="Resource_xis8n"]
 script = ExtResource("4_000gr")
-position = Vector2(3296.21, 253.776)
+position = Vector2(-1210.15, 245.153)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
 properties = SubResource("Resource_fyldf")
@@ -127,7 +127,7 @@ width = 1.0
 
 [sub_resource type="Resource" id="Resource_41gjx"]
 script = ExtResource("4_000gr")
-position = Vector2(5447.83, 451.256)
+position = Vector2(941.474, 442.633)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
 properties = SubResource("Resource_0e8mq")
@@ -140,7 +140,7 @@ width = 1.0
 
 [sub_resource type="Resource" id="Resource_000gr"]
 script = ExtResource("4_000gr")
-position = Vector2(4485.7, 238.328)
+position = Vector2(-20.6563, 229.705)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
 properties = SubResource("Resource_smyv4")
@@ -187,7 +187,7 @@ script = ExtResource("11_lm6qx")
 [node name="Shape" type="CollisionPolygon2D" parent="Collider"]
 modulate = Color(1, 1, 1, 0.321569)
 z_index = 100
-polygon = PackedVector2Array(3296.21, 253.776, 3269.64, -350.749, 5518.76, -381.076, 5447.83, 451.256, 5405.89, 683.394, 5055.87, 583.96, 4776.03, 412.218, 4582.88, 284.381, 4485.7, 238.328, 4389.47, 227.695, 3296.21, 253.776)
+polygon = PackedVector2Array(-1210.15, 245.153, -1236.72, -359.372, 1012.4, -389.699, 941.474, 442.633, 899.534, 674.771, 549.514, 575.337, 269.673, 403.595, 76.5234, 275.758, -20.6563, 229.705, -116.886, 219.072, -1210.15, 245.153)
 
 [node name="Label" type="Label" parent="."]
 z_index = 256

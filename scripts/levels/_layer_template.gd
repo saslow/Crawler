@@ -1,4 +1,5 @@
 @tool
+@icon("res://addons/rmsmartshape/assets/icon_editor_handle_control.svg")
 extends Node2D
 class_name Layer2D
 

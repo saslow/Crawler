@@ -7,22 +7,22 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vgscs"]
 shader = ExtResource("2_reujc")
-shader_parameter/blur = 3.0
-shader_parameter/alpha = 0.5
+shader_parameter/blur = 0.35
+shader_parameter/alpha = 0.9
 
 [sub_resource type="Animation" id="Animation_ofsfp"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("UI/Blur:material:shader_parameter/alpha")
+tracks/0/path = NodePath("UI/Blur:material:shader_parameter/blur")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.5]
+"values": [0.35]
 }
 
 [sub_resource type="Animation" id="Animation_6jm53"]
@@ -44,14 +44,14 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("UI/Blur:material:shader_parameter/alpha")
+tracks/1/path = NodePath("UI/Blur:material:shader_parameter/blur")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.15, 0.2, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [0.5, 1.0, 1.0, 0.5]
+"values": [0.35, 5.0, 5.0, 0.35]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k1p5p"]
