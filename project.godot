@@ -70,6 +70,7 @@ ss="*res://scripts/global/save_system.gd"
 rc="*res://scenes/global/room_changer_singleton.tscn"
 ch="*res://scenes/global/camera_host.tscn"
 EmbedGameAutoload="*res://addons/fabimakesgames.embed_game/embed_game_autoload.gd"
+GameStateService="*res://addons/game_state_saver/game_state_service.gd"
 
 [debug]
 
@@ -86,13 +87,11 @@ shapes/paths/geometry_color=Color(0.1, 1, 0.3925, 0.4)
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/transparent=true
 window/size/extend_to_title=true
 window/size/sharp_corners=true
 window/size/window_width_override=960
 window/size/window_height_override=540
 window/stretch/mode="canvas_items"
-window/per_pixel_transparency/allowed=true
 window/vsync/vsync_mode=0
 
 [editor]
@@ -101,7 +100,7 @@ movie_writer/mjpeg_quality=1.0
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/InstanceDock/plugin.cfg", "res://addons/fabimakesgames.embed_game/plugin.cfg", "res://addons/nklbdev.previewing_parallax_background/plugin.cfg", "res://addons/open_editors/plugin.cfg", "res://addons/rmsmartshape/plugin.cfg", "res://addons/run_preset/plugin.cfg", "res://addons/wiggly_appendage_2d/plugin.cfg")
+enabled=PackedStringArray("res://addons/InstanceDock/plugin.cfg", "res://addons/fabimakesgames.embed_game/plugin.cfg", "res://addons/game_state_saver/plugin.cfg", "res://addons/nklbdev.previewing_parallax_background/plugin.cfg", "res://addons/open_editors/plugin.cfg", "res://addons/rmsmartshape/plugin.cfg", "res://addons/run_preset/plugin.cfg", "res://addons/wiggly_appendage_2d/plugin.cfg")
 
 [embed_game]
 
@@ -305,8 +304,8 @@ common/physics_interpolation=true
 [rendering]
 
 textures/canvas_textures/default_texture_repeat=1
+renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true
 textures/default_filters/anisotropic_filtering_level=0
 environment/glow/upscale_mode=0
 environment/defaults/default_clear_color=Color(0.117647, 0.329412, 0.396078, 0)
-viewport/transparent_background=true

@@ -8,7 +8,7 @@ enum gamemodes {
 	PEER_COOP = 2
 }
 
-var current_level : Level3D
+var current_level : Level2D
 var current_layer : Layer2D
 var player : Player
 var second_player : Player

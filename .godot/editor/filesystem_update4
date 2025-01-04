@@ -1,6 +1,5 @@
-res://scenes/levels/leshy's_swamp.tscn
+res://scenes/levels/leshy's_swamp/swamp.tscn
 res://addons/fabimakesgames.embed_game/config/embed_shortcut.tres
-res://shaders/blur.gdshader
 res://sprites/friezesets/bluebox/bluebox0_material.tres
 res://sprites/friezesets/swamp/swamp_mud/swamp_mud_material.tres
 res://sprites/friezesets/swamp/moss/moss.tres
@@ -8,17 +7,19 @@ res://sprites/friezesets/swamp/trees/thick_tree/thick_tree_material.tres
 res://sprites/friezesets/swamp/trees/tree/tree_material.tres
 res://sprites/friezesets/swamp/trees/tree_thin/thin_tree_material.tres
 res://sprites/friezesets/swamp/plank/plank.tres
+res://shaders/blur.gdshader
 res://materials/shaders/tv.gdshader
 res://shaders/noise.gdshader
 res://materials/shaders/palette_swap.gdshader
 res://scenes/menus/main_menu.tscn
 res://scenes/player/player.tscn
 res://addons/LinkedCamera2D/linked_camera.tscn
+res://scenes/levels/leshy's_swamp.tscn
 res://scenes/level_parts/grind_pipe.tscn
 res://scenes/enemies/trash_demon/trash_demon.tscn
 res://scenes/menus/ui.tscn
 res://scenes/level_parts/jump_pad.tscn
-res://scenes/levels/_level_template.tscn
+res://scenes/levels/_room_template.tscn
 res://scenes/player/player_debug.tscn
 res://scenes/level_parts/rooms/room_changer.tscn
 res://scenes/level_parts/checkpoint.tscn
@@ -37,3 +38,5 @@ res://scenes/components/entity_component_system.tscn
 res://scenes/level_parts/collectibles/collectible_template.tscn
 res://scenes/_/deleter.tscn
 res://scenes/level_parts/waterline/swamp_waterline.tscn
+res://scripts/global/anim_autostart.gd
+res://scripts/levels/_level_template.gd

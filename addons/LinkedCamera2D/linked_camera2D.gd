@@ -30,10 +30,10 @@ enum movement_types{
 			##if value != $LeftTop.global_position:
 				##change_left_top_limits()
 
-func depth_offset_x(closest_layer_z : float = g.current_level.closest_layer_z) -> float: # VAJNO OCHEN' CAPETS JEST' !!!!!!
+func depth_offset_x(closest_layer_z : float = g.current_level.current_room.closest_layer_z) -> float: # VAJNO OCHEN' CAPETS JEST' !!!!!!
 	return 1920 * (camera_z - closest_layer_z)
 
-func depth_offset_y(closest_layer_z : float = g.current_level.closest_layer_z) -> float: # VAJNO OCHEN' CAPETS JEST' !!!!!!
+func depth_offset_y(closest_layer_z : float = g.current_level.current_room.closest_layer_z) -> float: # VAJNO OCHEN' CAPETS JEST' !!!!!!
 	return 1080 * (camera_z - closest_layer_z)
 
 func _ready():

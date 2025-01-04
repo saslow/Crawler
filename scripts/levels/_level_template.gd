@@ -1,53 +1,35 @@
-@tool
 extends Node2D
-class_name Level3D
+class_name Level2D
 
-var player_current_layer_id : int = 0
-const SVP_HOLDER_PIXEL_SIZE : float = 0.0083
-var mc : Camera2D
-var bg_holder : CanvasLayer
 var ui : CanvasLayer
-var is_mc_transitioning : bool
-var target_transition_z : float
-const DEFAULT_MC_TRANSITION_TIME : float = 2.1
+@export var start_room : Room
+var current_room : Room
 
-@export var UI : UI
 @export_category("Escape Timer")
 @export var mins : int = 1
 @export var secs : int = 0
 
-var closest_layer_z : float = 64.0
-
-func _ready() -> void:
+func _ready():
 	if !Engine.is_editor_hint():
-		mc = $MainCamera
-		bg_holder = $BGHolder
-		ui = $UI
-
 		g.current_level = self
-		if $Layers2D.get_child_count() != 0:
-			for i : Layer2D in $Layers2D.get_children():
-				if i.z < closest_layer_z:
-					closest_layer_z = i.z
-				var svp_holder : SubViewportContainer = SubViewportContainer.new()
-				var svp : SubViewport = SubViewport.new()
-				set_svp_custom_properties(svp, i.transparent, g.DEFAULT_RESOLUTION, "SVP" + str(i.get_index()))
-				$Viewports.add_child(svp_holder)
-				svp_holder.add_child(svp)
-				var h : Sprite2D = Sprite2D.new()
-				h.scale = Vector2(i.z, i.z)
-				h.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-				$Layers3D.add_child(h)
-				
-				i.call_deferred("reparent", svp)
+		ui = $UI
+		#for i in get_children():
+			#if i is Node2D and i != start_room:
+				#visible = false
+		current_room = start_room
+		change_room_to(start_room)
 
-func set_svp_custom_properties(svp : SubViewport, transparent : bool, size : Vector2, name : String) -> void:
-	svp.name = name
-	svp.size = size
-	svp.disable_3d = true
-	svp.audio_listener_enable_2d = true
-	svp.transparent_bg = transparent
-	svp.positional_shadow_atlas_size = 0
-	svp.canvas_item_default_texture_repeat = Viewport.DEFAULT_CANVAS_ITEM_TEXTURE_REPEAT_ENABLED
-	svp.render_target_update_mode = SubViewport.UPDATE_ALWAYS
-	svp.render_target_clear_mode = SubViewport.CLEAR_MODE_ALWAYS
+func change_room_to(new : Room) -> void:
+	#if current_room != null:
+		##current_room.global_position.x = 100000
+		#for i in get_children():
+			#if i is Node2D:
+				#visible = false
+	current_room.visible = false
+	#current_room.global_position.x = 100000
+	current_room.process_mode = Node.PROCESS_MODE_DISABLED
+	current_room = new
+	new.global_position = Vector2.ZERO
+	new.visible = true
+	new.process_mode = Node.PROCESS_MODE_INHERIT
+	#g.player.reparent(new.get_p)

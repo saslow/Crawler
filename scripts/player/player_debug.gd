@@ -25,7 +25,6 @@ func debug(delta) -> void:
 	$Debug/MonitorsContainer/Sliding/Label.text = "   IS_REL_V: " + str( player.is_releasing_vertically )
 	$Debug/MonitorsContainer/Position/Label.text = "    POS_X: " + str(player.position.x)
 	$Debug/MonitorsContainer/Position2/Label.text = "    POS_X_G: " + str(player.global_position.x)
-	$Debug/MonitorsContainer/GlobalX/Label.text = "    GlobX: " + str(get_parent().get_parent().get_parent().get_parent().border.limit_left)
 	
 ################################### TEST
 

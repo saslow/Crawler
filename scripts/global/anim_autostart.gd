@@ -5,7 +5,8 @@ extends AnimationPlayer
 func _ready():
 	play("cloud_rotation")
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func _physics_process(delta):
+	if get_parent().is_visible_in_tree():
+		play("cloud_rotation")
+	else:
+		stop()

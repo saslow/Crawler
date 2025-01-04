@@ -32,26 +32,25 @@ func _ready():
 func _on_body_entered(body):
 	if to != null:
 		if body is Player:
-			if !g.current_level.is_mc_transitioning:
-				g.last_player_target_rebound_position = target_position_node.global_position
-				g.player.global_position = global_position
-				#g.current_level.start_mc_transition(to.z)
-				#g.player.position.y -= g.HALF_DEFAULT_RESOLUTION_HEIGHT + 64
-				#g.player.set_deferred("position", target_position)
-				#g.second_player.set_deferred("position", g.player.position)
-				#g.second_player.visible = false
-				g.player.state = Player.sm.REBOUND
-				#g.second_player.state = Player.sm.REBOUND
-				
-				g.player.get_node("Anim").play("rebound")
-				#g.second_player.get_node("Anim").play("rebound")
-				await g.players_rebound_max_height_reached
-				g.player.speed = g.player.NORMAL_SPEED
-				if to.z == 1:
-					ch.zoom_out()
-				else:
-					ch.zoom_in()
-				ch.current_player_level = to.z
-				g.change_players_layer(to)
-				g.player.global_position = g.last_player_target_rebound_position
-				#g.second_player.global_position = g.last_player_target_rebound_position
+			g.last_player_target_rebound_position = target_position_node.global_position
+			g.player.global_position = global_position
+			#g.current_level.start_mc_transition(to.z)
+			#g.player.position.y -= g.HALF_DEFAULT_RESOLUTION_HEIGHT + 64
+			#g.player.set_deferred("position", target_position)
+			#g.second_player.set_deferred("position", g.player.position)
+			#g.second_player.visible = false
+			g.player.state = Player.sm.REBOUND
+			#g.second_player.state = Player.sm.REBOUND
+			
+			g.player.get_node("Anim").play("rebound")
+			#g.second_player.get_node("Anim").play("rebound")
+			await g.players_rebound_max_height_reached
+			g.player.speed = g.player.NORMAL_SPEED
+			if to.z == 1:
+				ch.zoom_out()
+			else:
+				ch.zoom_in()
+			ch.current_player_level = to.z
+			g.change_players_layer(to)
+			g.player.global_position = g.last_player_target_rebound_position
+			#g.second_player.global_position = g.last_player_target_rebound_position
