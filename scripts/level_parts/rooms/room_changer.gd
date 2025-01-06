@@ -6,16 +6,23 @@ const PLAYER_OFFSET : int = 312
 @export var vertical : bool = false
 @onready var point0 : Marker2D = $"0"
 
+
+
 func _on_body_entered(body):
-	if body is Player:
-		g.current_level.change_room_to(to_room_changer.get_parent().get_parent().get_parent().get_parent().get_parent().get_parent())
+	if body == g.player:
+		#transition()
+		g.current_level.ui.anim.play("fade")
+		get_tree().paused = true
+		await get_tree().create_timer(0.15).timeout
+		get_tree().paused = false
+		g.current_level.change_room_to(to_room_changer.get_parent().get_parent().get_parent())
 		g.player.call_deferred("reparent", to_room_changer.get_parent().get_parent().get_node("Players"))
-		transition()
 		if vertical:
 			g.player.global_position = to_room_changer.point0.global_position
 		else:
 			g.player.global_position.x = to_room_changer.point0.global_position.x
 			g.player.global_position.y = to_room_changer.global_position.y - 40
+		print("ffff")
 			
 func transition() -> void:
 	g.current_level.ui.anim.play("fade")

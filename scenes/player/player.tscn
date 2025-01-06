@@ -881,6 +881,9 @@ component_system = NodePath("Rotatable/EntityComponentSystem")
 speed = 300.0
 is_jump_to_fall_transition = true
 
+[node name="Camera2D2" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
+
 [node name="Label" type="Label" parent="."]
 visible = false
 offset_left = -336.0
