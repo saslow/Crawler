@@ -298,8 +298,6 @@ updater/show_new_release_info_on_editor_launch_in_output=false
 
 2d/run_on_separate_thread=true
 3d/run_on_separate_thread=true
-2d/physics_engine="Rapier2D"
-common/physics_interpolation=true
 
 [rendering]
 

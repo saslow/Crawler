@@ -40,7 +40,7 @@ func translate_room_to_viewports(from_room : Room) -> void:
 			var svp : SubViewport = SubViewport.new()
 			set_svp_custom_properties(svp, g.DEFAULT_RESOLUTION, layer.transparent)
 			get_node("Viewports").add_child(svpc)
-			svpc.add_child(svp)
+			svpc.call_deferred("add_child", svp)
 			layer.call_deferred("reparent", svp)
 	print_debug("Room translated to viewports " + from_room.name + " " + str(from_room) + " " + str(from_room.get_path()))
 					
@@ -51,7 +51,7 @@ func translate_viewports_to_room(to_room : Room) -> void:
 			var layer : Layer2D = svp.get_child(0)
 			layer.call_deferred("reparent", to_room)
 			svpc.queue_free()
-	print_debug("Viewwports translated to room " + to_room.name + " " + str(to_room))
+	print_debug("Viewports translated to room " + to_room.name + " " + str(to_room))
 					
 func set_svp_custom_properties(svp : SubViewport, size : Vector2, transparency : bool) -> void:
 	svp.name = "SVP0" # SubViewport
@@ -68,8 +68,8 @@ func set_svp_custom_properties(svp : SubViewport, size : Vector2, transparency :
 func change_room_to(new : Room) -> void:
 	current_room.visible = false
 	translate_viewports_to_room(current_room)
-	current_room.process_mode = Node.PROCESS_MODE_DISABLED
 	current_room = new
 	translate_room_to_viewports(new)
 	new.visible = true
 	new.process_mode = Node.PROCESS_MODE_INHERIT
+	#current_room.process_mode = Node.PROCESS_MODE_DISABLED

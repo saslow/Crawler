@@ -14,7 +14,6 @@ func _on_body_entered(body):
 		g.current_level.ui.anim.play("fade")
 		get_tree().paused = true
 		await get_tree().create_timer(0.15).timeout
-		get_tree().paused = false
 		g.current_level.change_room_to(to_room_changer.get_parent().get_parent().get_parent())
 		g.player.call_deferred("reparent", to_room_changer.get_parent().get_parent().get_node("Players"))
 		if vertical:
@@ -22,6 +21,8 @@ func _on_body_entered(body):
 		else:
 			g.player.global_position.x = to_room_changer.point0.global_position.x
 			g.player.global_position.y = to_room_changer.global_position.y - 40
+		await get_tree().create_timer(0.15).timeout
+		get_tree().paused = false
 		print("ffff")
 			
 func transition() -> void:

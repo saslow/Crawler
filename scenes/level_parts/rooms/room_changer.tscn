@@ -27,7 +27,7 @@ disabled = true
 debug_color = Color(1, 1, 1, 0)
 
 [node name="0" type="Marker2D" parent="."]
-position = Vector2(288, -256)
+position = Vector2(384, -256)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
